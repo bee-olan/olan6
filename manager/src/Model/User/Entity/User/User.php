@@ -65,7 +65,8 @@ class User
      * @var UchKak
      * @ORM\Column(type="user_user_uchkak", length=16)
      */
-    private $uchKak;
+    
+     private $uchKak;
     
     /**
      * @var Network[]|ArrayCollection
