@@ -60,6 +60,13 @@ class User
      * @ORM\Column(type="user_user_role", length=16)
      */
     private $role;
+
+    /**
+     * @var UchKak
+     * @ORM\Column(type="user_user_uchkak", length=16)
+     */
+    private $uchKak;
+    
     /**
      * @var Network[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="Network", mappedBy="user", orphanRemoval=true, cascade={"persist"})
@@ -71,6 +78,7 @@ class User
         $this->id = $id;
         $this->date = $date;
         $this->role = Role::user();
+        $this->uchKak = UchKak::pchel();
         $this->networks = new ArrayCollection();
     }
 
@@ -146,6 +154,14 @@ class User
         $this->role = $role;
     }
 
+    public function changeUchKak(UchKak $uchKak): void
+    {
+        if ($this->uchKak->isEqual($uchKak)) {
+            throw new \DomainException('Вы так и участвуете.');
+        }
+        $this->uchKak = $uchKak;
+    }
+
     public function isWait(): bool
     {
          return $this->status === self::STATUS_WAIT;
@@ -189,6 +205,11 @@ class User
     public function getRole(): Role
     {
         return $this->role;
+    }
+
+    public function getUchKak(): UchKak
+    {
+        return $this->uchKak;
     }
 
     /**
