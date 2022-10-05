@@ -15,6 +15,7 @@ doctrine:
             user_user_id: 'App\Model\User\Entity\User\IdType'
             user_user_email: 'App\Model\User\Entity\User\EmailType'
             user_user_role: 'App\Model\User\Entity\User\RoleType'
+            user_user_uchkak: 'App\Model\User\Entity\User\UchKakType'
             
     orm:
         auto_generate_proxy_classes: true
