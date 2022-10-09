@@ -19,11 +19,11 @@ class UserFetcher
     public function existsByResetToken(string $token): bool
     {
         return $this->connection->createQueryBuilder()
-            ->select('COUNT (*)')
-            ->from('user_users')
-            ->where('reset_token_token = :token')
-            ->setParameter(':token', $token)
-            ->execute()->fetchColumn(0) > 0;
+                ->select('COUNT (*)')
+                ->from('user_users')
+                ->where('reset_token_token = :token')
+                ->setParameter(':token', $token)
+                ->execute()->fetchColumn(0) > 0;
     }
 
     public function findForAuth(string $email): ?AuthView
@@ -34,6 +34,7 @@ class UserFetcher
                 'email',
                 'password_hash',
                 'role',
+                'uchkak',
                 'status'
             )
             ->from('user_users')
@@ -54,6 +55,7 @@ class UserFetcher
                 'id',
                 'email',
                 'role',
+                'uchkak',
                 'status'
             )
             ->from('user_users')
@@ -73,8 +75,11 @@ class UserFetcher
             ->select(
                 'id',
                 'date',
+                'name_first first_name',
+                'name_last last_name',
                 'email',
                 'role',
+                'uchkak',
                 'status'
             )
             ->from('user_users')
@@ -99,5 +104,26 @@ class UserFetcher
         $view->networks = $stmt->fetchAll();
 
         return $view;
+    }
+
+    public function findBySignUpConfirmToken(string $token): ?ShortView
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'id',
+                'email',
+                'role',
+                'uchkak',
+                'status'
+            )
+            ->from('user_users')
+            ->where('confirm_token = :token')
+            ->setParameter(':token', $token)
+            ->execute();
+
+        $stmt->setFetchMode(FetchMode::CUSTOM_OBJECT, ShortView::class);
+        $result = $stmt->fetch();
+
+        return $result ?: null;
     }
 }

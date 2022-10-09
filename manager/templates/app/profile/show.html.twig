@@ -17,22 +17,36 @@
             <table class="table table-bordered mb-0">
                 <tbody>
                     <tr>
-                        <th>ID</th>
-                        <td>{{ user.id }}</td>
+                        <th>Name</th>
+                        <td>
+                            {{ user.first_name }} {{ user.last_name }}
+                            <a href="{{ path('profile.name') }}" class="btn btn-sm btn-outline-primary"><span class="fa fa-pencil"></span></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>
+                           {{ user.email}}
+                            <a href="{{ path('profile.email') }}" class="btn btn-sm btn-outline-primary"><span class="fa fa-pencil"></span></a>
+                        </td>
                     </tr>
                     <tr>
                         <th>Созданный</th>
                         <td>{{ user.date|date('Y-m-d H:i:s') }}</td>
                     </tr>
                     {% if user.email %}
-                        <tr>
-                            <th>Email</th>
-                            <td>{{ user.email }}</td>
-                        </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
                     {% endif %}
                     <tr>
                         <th>Роль</th>
                         <td>{{ user_role(user.role) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Участвует как </th>
+                        <td>{{ user_uchkak(user.uchkak) }}</td>
                     </tr>
                     <tr>
                         <th>Статус</th>

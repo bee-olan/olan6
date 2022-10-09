@@ -32,7 +32,6 @@ final class Version20221009123533 extends AbstractMigration
         $this->addSql('ALTER TABLE user_users ALTER name_first SET NOT NULL');
         $this->addSql('ALTER TABLE user_users ALTER name_last SET NOT NULL');
 
-        $this->addSql('ALTER TABLE user_users DROP uchkak');
         $this->addSql('COMMENT ON COLUMN user_users.new_email IS \'(DC2Type:user_user_email)\'');
     }
 
@@ -40,11 +39,11 @@ final class Version20221009123533 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
 
-        $this->addSql('ALTER TABLE user_users ADD uchkak VARCHAR(16) NOT NULL');
+
         $this->addSql('ALTER TABLE user_users DROP new_email');
         $this->addSql('ALTER TABLE user_users DROP new_email_token');
         $this->addSql('ALTER TABLE user_users DROP name_first');
         $this->addSql('ALTER TABLE user_users DROP name_last');
-        $this->addSql('COMMENT ON COLUMN user_users.uchkak IS \'(DC2Type:user_user_uchkak)\'');
+
     }
 }

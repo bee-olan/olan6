@@ -70,6 +70,13 @@ class User
      * @ORM\Column(type="string", length=16)
      */
     private $status;
+
+    /**
+     * @var UchKak
+     * @ORM\Column(type="user_user_uchkak", name="uchkak", length=16)
+     */
+    private $uchKak;
+
     /**
      * @var Role
      * @ORM\Column(type="user_user_role", length=16)
@@ -87,6 +94,7 @@ class User
         $this->date = $date;
         $this->name = $name;
         $this->role = Role::user();
+        $this->uchKak = UchKak::pchel();
         $this->networks = new ArrayCollection();
     }
 
@@ -192,6 +200,14 @@ class User
         $this->role = $role;
     }
 
+    public function changeUchKak(UchKak $uchKak): void
+    {
+        if ($this->uchKak->isEqual($uchKak)) {
+            throw new \DomainException('Вы так и участвуете.');
+        }
+        $this->uchKak = $uchKak;
+    }
+
     public function isWait(): bool
     {
         return $this->status === self::STATUS_WAIT;
@@ -250,6 +266,11 @@ class User
     public function getRole(): Role
     {
         return $this->role;
+    }
+
+    public function getUchKak(): UchKak
+    {
+        return $this->uchKak;
     }
 
     /**

@@ -8,8 +8,11 @@ class DetailView
 {
     public $id;
     public $date;
+    public $first_name;
+    public $last_name;
     public $email;
     public $role;
+    public $uchkak;
     public $status;
     /**
      * @var NetworkView[]
