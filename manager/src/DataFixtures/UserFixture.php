@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Model\User\Entity\User\Email;
 use App\Model\User\Entity\User\Role;
+use App\Model\User\Entity\User\UchKak;
 use App\Model\User\Entity\User\User;
 use App\Model\User\Entity\User\Id;
 use App\Model\User\Service\PasswordHasher;
@@ -34,6 +35,8 @@ class UserFixture extends Fixture
         $user->confirmSignUp();
 
         $user->changeRole(Role::admin());
+
+        $user->changeUchKak(UchKak::pchmat());
 
         $manager->persist($user);
 
