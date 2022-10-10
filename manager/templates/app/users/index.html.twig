@@ -26,7 +26,9 @@
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td>{{ user.name }}</td>
+                    <td>
+                        <a href="{{ path('users.show', {'id': user.id}) }}">{{ user.name }}</a>
+                    </td>
                     <td>{{ user_uchkak(user.uchkak) }}</td>
                     <td>{{ user_role(user.role) }}</td>
                     <td>{{ user_status(user.status) }}</td>

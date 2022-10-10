@@ -45,13 +45,13 @@
                         <i class="nav-icon icon-speedometer"></i> Меню
                     </a>
                 </li>
-{#                {% if is_granted('ROLE_MANAGE_USERS') %}#}
+                {% if is_granted('ROLE_MANAGE_USERS') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('users') }}">
                             <i class="nav-icon icon-people"></i> Users
                         </a>
                     </li>
-{#                {% endif %}#}
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('profile') }}">
                         <i class="nav-icon icon-user"></i> Профиль

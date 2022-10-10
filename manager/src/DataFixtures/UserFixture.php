@@ -33,14 +33,24 @@ class UserFixture extends Fixture
             $hash,
             'token'
         );
-
         $user->confirmSignUp();
-
         $user->changeRole(Role::admin());
-
         $user->changeUchKak(UchKak::pchmat());
-
         $manager->persist($user);
+
+        $user1 = User::signUpByEmail(
+            Id::next(),
+            new \DateTimeImmutable(),
+            new Name('Ольга', 'Клим'),
+            new Email('user@app.test'),
+            $hash,
+            'token'
+        );
+
+        $user1->confirmSignUp();
+//        $user1->changeRole(Role::user());
+        $user1->changeUchKak(UchKak::matko());
+        $manager->persist($user1);
 
         $manager->flush();
     }

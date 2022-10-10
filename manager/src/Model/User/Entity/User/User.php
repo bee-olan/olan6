@@ -273,6 +273,12 @@ class User
         return $this->uchKak;
     }
 
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+
     /**
      * @return Network[]
      */
