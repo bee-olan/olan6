@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
         "finesse/swiftmailer-defaults-plugin": "^2.0",
+        "knplabs/knp-paginator-bundle": "^3.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^4.2",

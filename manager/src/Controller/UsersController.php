@@ -25,6 +25,12 @@ use Symfony\Component\Routing\Annotation\Route;
      */
 class UsersController extends AbstractController
 {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 
     /**
      * @Route("", name="users")
