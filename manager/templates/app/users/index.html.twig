@@ -15,6 +15,26 @@
         <a href="{{ path('users.create') }}" class="btn btn-success">Создать  пользователя</a>
     </div>
 
+    <div class="card">
+        <div class="card-body">
+
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-2">{{ form_widget(form.name) }}</div>
+                <div class="col-md-2">{{ form_widget(form.email) }}</div>
+                <div class="col-md-2">{{ form_widget(form.uchkak) }}</div>
+                <div class="col-md-2">{{ form_widget(form.role) }}</div>
+                <div class="col-md-2">{{ form_widget(form.status) }}</div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">Фильтр</button>
+                    <a href="{{ path('users') }}" class="btn btn-outline-secondary">Сброс</a>
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
     <div class="box">
         <table class="table table-bordered table-hover">
             <thead>
