@@ -18,9 +18,13 @@
             <a href="{{ path('users.role', {'id': user.id}) }}" class="btn btn-primary">Изменить Роль</a>
         {% endif %}
         <a href="{{ path('users.uchkak', {'id': user.id}) }}" class="btn btn-primary">Изменить Участие</a>
+        {% if user.wait %}
+            <form action="{{ path('users.confirm', {'id': user.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                <input type="hidden" name="token" value="{{ csrf_token('confirm') }}" />
+                <button type="submit" class="btn btn-success">Подтвердить -- Confirm</button>
+            </form>
+        {% endif %}
     </div>
-
-
 
 
     <div class="box">
