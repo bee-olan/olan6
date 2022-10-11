@@ -1,5 +1,9 @@
-{% if uchkak == 'ROLE_PCHMAT' %}
-    <span class="badge badge-secondary">Пчеловод - Матковод</span>
-{% elseif uchkak == 'ROLE_MATKO' %}
-    <span class="badge badge-success">Матковод</span>
+{% if uchkak == 'ROLE_MATKO' %}
+    <span class="badge badge-danger">Матковод</span>
+{% elseif uchkak == 'ROLE_NABLUD' %}
+    <span class="badge badge-secondary">Наблюдатель</span>
+{% elseif uchkak == 'ROLE_PCHEL' %}
+    <span class="badge badge-success">Пчеловод</span>
+{% elseif uchkak == 'ROLE_PCHMAT' %}
+    <span class="badge badge-primary">Пчеловод - Матковод</span>
 {% endif %}

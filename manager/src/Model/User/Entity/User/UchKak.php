@@ -11,6 +11,7 @@ class UchKak
     public const PCHEL = 'ROLE_PCHEL';
     public const MATKO = 'ROLE_MATKO';
     public const PCHMAT = 'ROLE_PCHMAT';
+    public const NABLUD = 'ROLE_NABLUD';
 
     private $name;
 
@@ -20,6 +21,7 @@ class UchKak
             self::PCHEL,
             self::MATKO,
             self::PCHMAT,
+            self::NABLUD,
         ]);
 
         $this->name = $name;
@@ -40,6 +42,11 @@ class UchKak
         return new self(self::PCHMAT);
     }
 
+    public static function nablud(): self
+    {
+        return new self(self::NABLUD);
+    }
+
     public function isPchel(): bool
     {
         return $this->name === self::PCHEL;
@@ -55,9 +62,14 @@ class UchKak
         return $this->name === self::PCHMAT;
     }
 
-    public function isEqual(self $uchKak): bool
+    public function isNablud(): bool
     {
-        return $this->getName() === $uchKak->getName();
+        return $this->name === self::NABLUD;
+    }
+
+    public function isEqual(self $uchkak): bool
+    {
+        return $this->getName() === $uchkak->getName();
     }
 
     public function getName(): string

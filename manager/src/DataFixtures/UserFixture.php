@@ -51,6 +51,20 @@ class UserFixture extends Fixture
 //        $user1->changeRole(Role::user());
         $user1->changeUchKak(UchKak::matko());
         $manager->persist($user1);
+ ///////////
+        $user2 = User::signUpByEmail(
+            Id::next(),
+            new \DateTimeImmutable(),
+            new Name('Pchel', '1'),
+            new Email('pchel1@app.test'),
+            $hash,
+            'token'
+        );
+
+        $user2->confirmSignUp();
+//        $user1->changeRole(Role::user());
+//        $user2->changeUchKak(UchKak::matko());
+        $manager->persist($user2);
 
         $manager->flush();
     }

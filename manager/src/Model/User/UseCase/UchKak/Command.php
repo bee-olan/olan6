@@ -17,7 +17,7 @@ class Command
      * @var string
      * @Assert\NotBlank()
      */
-    public $uchKak;
+    public $uchkak;
 
     public function __construct(string $id)
     {

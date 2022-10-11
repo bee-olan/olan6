@@ -19,6 +19,7 @@ class User
 {
     private const STATUS_WAIT = 'wait';
     public const STATUS_ACTIVE = 'active';
+    private const STATUS_BLOCKED = 'blocked';
 
     /**
      * @ORM\Column(type="user_user_id")
@@ -75,7 +76,7 @@ class User
      * @var UchKak
      * @ORM\Column(type="user_user_uchkak", name="uchkak", length=16)
      */
-    private $uchKak;
+    private $uchkak;
 
     /**
      * @var Role
@@ -94,8 +95,17 @@ class User
         $this->date = $date;
         $this->name = $name;
         $this->role = Role::user();
-        $this->uchKak = UchKak::pchel();
+        $this->uchkak = UchKak::nablud();
         $this->networks = new ArrayCollection();
+    }
+
+    public static function create(Id $id, \DateTimeImmutable $date, Name $name, Email $email, string $hash): self
+    {
+        $user = new self($id, $date, $name);
+        $user->email = $email;
+        $user->passwordHash = $hash;
+        $user->status = self::STATUS_ACTIVE;
+        return $user;
     }
 
     public static function signUpByEmail(Id $id, \DateTimeImmutable $date, Name $name, Email $email, string $hash, string $token): self
@@ -200,12 +210,12 @@ class User
         $this->role = $role;
     }
 
-    public function changeUchKak(UchKak $uchKak): void
+    public function changeUchKak(UchKak $uchkak): void
     {
-        if ($this->uchKak->isEqual($uchKak)) {
+        if ($this->uchkak->isEqual($uchkak)) {
             throw new \DomainException('Вы так и участвуете.');
         }
-        $this->uchKak = $uchKak;
+        $this->uchkak = $uchkak;
     }
 
     public function isWait(): bool
@@ -268,9 +278,9 @@ class User
         return $this->role;
     }
 
-    public function getUchKak(): UchKak
+    public function getUchkak(): UchKak
     {
-        return $this->uchKak;
+        return $this->uchkak;
     }
 
     public function getStatus(): string

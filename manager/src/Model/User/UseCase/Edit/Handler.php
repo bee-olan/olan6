@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Model\User\UseCase\UchKak;
+namespace App\Model\User\UseCase\Edit;
 
 use App\Model\Flusher;
+use App\Model\User\Entity\User\Email;
+use App\Model\User\Entity\User\Name;
 use App\Model\User\Entity\User\Id;
-use App\Model\User\Entity\User\UchKak;
 use App\Model\User\Entity\User\UserRepository;
 
 class Handler
@@ -24,7 +25,13 @@ class Handler
     {
         $user = $this->users->get(new Id($command->id));
 
-        $user->changeUchKak(new UchKak($command->uchkak));
+        $user->edit(
+            new Email($command->email),
+            new Name(
+                $command->firstName,
+                $command->lastName
+            )
+        );
 
         $this->flusher->flush();
     }
