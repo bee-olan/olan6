@@ -12,12 +12,33 @@
 
 {% block body %}
 
+    <div class="controls">
+        <a href="{{ path('users.edit', {'id': user.id}) }}" class="btn btn-primary">Редактировать</a>
+        <a href="{{ path('users.role', {'id': user.id}) }}" class="btn btn-primary">Изменить Роль</a>
+        <a href="{{ path('users.uchkak', {'id': user.id}) }}" class="btn btn-primary">Изменить Участие</a>
+    </div>
+
+
+
+
     <div class="box">
         <table class="table table-bordered">
             <tbody>
             <tr>
-                <th>Name</th>
+                <th>Имя Фамилие</th>
                 <td>{{ user.name.full}}</td>
+            </tr>
+            <tr>
+                <th>Участие как</th>
+                <td>{{ user_uchkak(user.uchkak.name) }}</td>
+            </tr>
+            <tr>
+                <th>Роль</th>
+                <td>{{ user_role(user.role.name) }}</td>
+            </tr>
+            <tr>
+                <th>Статус</th>
+                <td>{{ user_status(user.status) }}</td>
             </tr>
             <tr>
                 <th>Email</th>
@@ -28,16 +49,8 @@
                 <td>{{ user.id.value }}</td>
             </tr>
             <tr>
-                <th>Created</th>
+                <th>Дата создания</th>
                 <td>{{ user.date|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td>{{ user_role(user.role.name) }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ user_status(user.status) }}</td>
             </tr>
             </tbody>
         </table>
