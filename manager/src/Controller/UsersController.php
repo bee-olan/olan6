@@ -14,6 +14,7 @@ use App\Model\User\UseCase\UchKak;
 use App\ReadModel\User\Filter;
 use App\Model\User\UseCase\SignUp\Confirm;
 use App\ReadModel\User\UserFetcher;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
     /**
      * @Route("/users", name="users")
+     * @IsGranted("ROLE_MANAGE_USERS")
      */
 class UsersController extends AbstractController
 {
@@ -98,6 +100,11 @@ class UsersController extends AbstractController
      */
     public function edit(User $user, Request $request, Edit\Handler $handler): Response
     {
+        if ($user->getId()->getValue() === $this->getUser()->getId()) {
+            $this->addFlash('error', 'Не удается отредактировать себя.');
+            return $this->redirectToRoute('users.show', ['id' => $user->getId()]);
+        }
+
         $command = Edit\Command::fromUser($user);// заполнение текущими значениями
 
         $form = $this->createForm(Edit\Form::class, $command);
