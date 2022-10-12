@@ -16,6 +16,7 @@ doctrine:
             user_user_email: 'App\Model\User\Entity\User\EmailType'
             user_user_role: 'App\Model\User\Entity\User\RoleType'
             user_user_uchkak: 'App\Model\User\Entity\User\UchKakType'
+
             
     orm:
         auto_generate_proxy_classes: true
@@ -28,3 +29,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Model/User/Entity'
                 prefix: 'App\Model\User\Entity'
                 alias: User
+            Mesto:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Model/Mesto/Entity'
+                prefix: 'App\Model\Mesto\Entity'
+                alias: Mesto
