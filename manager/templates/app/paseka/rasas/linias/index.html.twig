@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Линия{% endblock %}
+
+
+    {% block kroxi %}  
+       
+                <a href="{{ path('home') }}">Главная</a>
+                <a href="{{ path('rabota.rasas') }}">Раса -- {{ rasa.title }}</a>
+                <span class="aktiv ">Линии зарегистрированные</span> 
+           
+    {% endblock %}
+
+{% block body %}
+
+<article class="rasa">
+	<h1 class="rasa__title  "><strong> Раса  </strong>:  {{ rasa.name }} | {{ rasa.title }}</h1>
+	<div class="linia ">
+      <div class="rasa__header  ">
+         <h1 class="rasa__title "> <strong>  Линии </strong> зарегистрированные в БД <strong> для </strong> расы <strong> {{ rasa.title }} </strong></h1>
+          {% set token = csrf_token('delete') %}
+                {% for linia in linias %}
+                      
+           
+                <ul class="rasa__data">
+					{# <li class="rasa__name">{{ linia.sort_linia }} </li> #}
+                    <li class="rasa__name  rasa__name--wid5">{{ linia.name }} </li>
+                    <li class="rasa__name">{{ linia.name_star }} </li>
+                                   
+                    <li class="rasa__name  rasa__name--wid5">
+                        <a href="{{ path('rabota.rasas.linias.edit', {'rasa_id': rasa.id, 'id': linia.id}) }}" 
+                            class="btn "><span class="fa fa-pencil"></span></a> 
+                    </li>
+                    <li class="rasa__name">
+                        <form action="{{ path('rabota.rasas.linias.delete', {'rasa_id': rasa.id, 'id': linia.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">
+                            <input type="hidden" name="token" value="{{ token }}" />
+                            <button type="submit" class="btn btn--smm "><span class="fa fa-trash"></span></button>
+                        </form>
+                    </li>
+                    <li class="rasa__name "> {{ linia.title }}  </li>
+                    <li class="rasa__name rasa__name--wid15 ">
+                        <strong class="stro stro--lin">( Кол-во номеров : </strong> 
+                        {{ linia.nomers }} ) 
+                    </li>
+                     <li>
+                        <a href="{{ path('rabota.rasas.linias.nomers', {'linia_id': linia.id}) }}" 
+							class="btn btn--sm">Добавить 
+                             <strong class="stro stro--kras"> номер </strong>
+                            в {{ linia.title }}
+                        </a>
+                     </li>                     
+                </ul>  
+         {% endfor %}                
+    </div>
+
+    <div class = "rasa__content"  >
+        <a href="{{ path('rabota.rasas.linias.create', {'rasa_id': rasa.id}) }}" 
+            class="btn btn--sm">Добавить другую
+              <strong class="stro stro--kras"> линию </strong> в БД</a>
+    </div> 
+</div>
+
+</article><!-- rasa -->
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groups{% endblock %}
+
+    {% block kroxi %}  
+       
+                <a href="{{ path('home') }}">Главная</a>
+                <a href="{{ path('rabota.rasas.linias.nomers.sparings') }}">Облет | спаринг</a>
+                <span class="aktiv ">Создать новое название</span> 
+           
+    {% endblock %}
+
+{% block body %}
+	<article class="sparing">
+    <h1 class="rasa__title  ">Добавить другой вид облета в БД</h1>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn--sm">Сохранить в БД</button>
+            {{ form_end(form) }}
+
+</article><!-- sparing -->
+
+{% endblock %}

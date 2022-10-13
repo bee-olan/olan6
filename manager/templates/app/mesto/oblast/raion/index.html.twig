@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block mesto %}Районы{% endblock %}
+
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('rabota.u4astniki.mestos.mesto') }}">Номер места расп-ния</a></li>
+         <li class="breadcrumb-item"><a href="{{ path('rabota.u4astniki.mestos.mesto') }}">Округ</a></li>
+         {# <li class="breadcrumb-item">{{ okrug.name }}</li> #}
+         <li class="breadcrumb-item active"> {{ oblast.name }} 
+        </li> 
+		<li class="breadcrumb-item active"> <a href="{{ path('rabota.u4astniki.mestos.mesto.oblast.raion.create', 
+            {'oblast_id': oblast.id}) }}" > Добавить Район </a>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+
+
+ <h2>{{ oblast.nomer }} - {{ oblast.name }}</h2>
+
+    <div class="controls">  
+        <a href="{{ path('rabota.u4astniki.mestos.mesto.oblast.raion.create', 
+            {'oblast_id': oblast.id}) }}" class="btn btn-success">Добавить Районы 
+        </a>
+    </div>
+
+    <div class="box">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Номер Районы</th>
+                <th>Действия</th>
+            </tr>
+            <tbody>
+            {% set token = csrf_token('delete') %}
+           
+             {% for raion in raions %}
+                <tr>
+                    <td>{{ raion.nomer }}</td>
+                    {# <td>{{ okrug.name }}_{{ raion.name }}</td> #}
+                    {# <td>{{ oblast.name }} -- {{ oblast.id }} </td> #}
+                    <td>
+                        {# <a href="{{ path('rabota.u4astniki.mestos.mesto.oblast', {'oblast_id': oblast.id}) }}">{{ oblast.name }} ***- добавить номер</a> #}
+                        {{ raion.name }} 
+                    </td>                
+                    
+                   <td>{{ raion.mesto }}</td>
+                    <td>
+                         <div class="d-flex flex-row">
+                            <a href="{{ path('rabota.u4astniki.mestos.mesto.oblast.raion.edit', {'oblast_id': oblast.id, 'id': raion.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
+                           <form action="{{ path('rabota.u4astniki.mestos.mesto.oblast.raion.delete', {'oblast_id': oblast.id, 'id': raion.id}) }}" method="post" onsubmit="return confirm('Удалить? Вы точно решили?')">
+                                <input type="hidden" name="token" value="{{ token }}" />
+                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>
+                            </form>
+                        </div> 
+                    </td>
+                </tr>
+            {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

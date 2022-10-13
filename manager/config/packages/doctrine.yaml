@@ -17,7 +17,12 @@ doctrine:
             user_user_role: 'App\Model\User\Entity\User\RoleType'
             user_user_uchkak: 'App\Model\User\Entity\User\UchKakType'
 
-            
+            mesto_okrug_id: 'App\Model\Mesto\Entity\Okrugs\IdType'
+
+            paseka_rasa_id: 'App\Model\Paseka\Entity\Rasas\IdType'
+            paseka_rasa_linia_id: 'App\Model\Paseka\Entity\Rasas\Linias\IdType'
+            paseka_rasa_linia_nomer_id: 'App\Model\Paseka\Entity\Rasas\Linias\Nomers\IdType'
+            paseka_rasa_linia_nomer_sparing_id: 'App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\IdType'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -35,3 +40,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Model/Mesto/Entity'
                 prefix: 'App\Model\Mesto\Entity'
                 alias: Mesto
+            Paseka:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Model/Paseka/Entity'
+                prefix: 'App\Model\Paseka\Entity'
+                alias: Paseka

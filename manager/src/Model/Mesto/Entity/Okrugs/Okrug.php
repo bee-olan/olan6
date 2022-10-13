@@ -103,15 +103,15 @@ class Okrug
 //    }
 //
 //равно Ли Имя -----------------------
-//    public function isNameEqual(string $name): bool
-//    {
-//        return $this->name === $name;
-//    }
-//
-//    public function isNomerEqual(string $nomer): bool
-//    {
-//        return $this->nomer === $nomer;
-//    }
+    public function isNameEqual(string $name): bool
+    {
+        return $this->name === $name;
+    }
+
+    public function isNomerEqual(string $nomer): bool
+    {
+        return $this->nomer === $nomer;
+    }
 
 
     public function getId(): Id

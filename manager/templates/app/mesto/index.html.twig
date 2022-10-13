@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Место-округ{% endblock %}
+
+{#{% block includemenu %}#}
+{#	<header class="header-container header-nav">#}
+{#		<img src="../../../assets/app/rabota/u4astniki/mestos/images/mesto_.png " width="55"  alt="Место">#}
+{#		<div class="header-link  ">#}
+{#				Номер места расположения пасеки#}
+{#		</div>#}
+{#	</header>#}
+{#{% endblock %}#}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+        <li class="breadcrumb-item active">Округа -- Добавляем новые в БД</li>
+    </ol>
+{% endblock %}
+
+
+{#{% block kroxi %}#}
+{#    <div class="kroxi-xl">#}
+{#         <a href="{{ path('home') }}">Главная</a>#}
+{#         #}{# <a href="{{ path('work') }}">Work</a>#}
+{#         <a href="#link">...</a>#}
+{#         <a href="#link">...</a>#}
+{#         <a href="{{ path('rabota.u4astniki.mestos.show') }}">Номер места</a> #}
+{#		 <span>Добавляем новые в БД</span>#}
+{#		 <a href="{{ path('mesto.create') }}" class="aktiv"> Добавить Округ </a>#}
+{#		 #}
+{#     </div>#}
+{#{% endblock %}#}
+
+
+
+
+
+{% block body %}
+
+    <div class="controls">
+       <a href="{{ path('mesto.create') }}" class="btn btn-success">Добавить Округ</a>
+        {#       <a href="#" class="btn btn-success">Добавить Округ</a>#}
+          </div>
+
+          <div class="box">
+              <table class="table table-bordered table-hover">
+                  <thead>
+                      <tr>
+                          <th> Номер </th>
+                          <th> Название </th>
+                          <th> Кол-во участников </th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% set token = csrf_token('delete') %}
+                      {% for okrug in okrugs %}
+                          <tr>
+
+                <td>
+{#    <a href="{{ path('mesto.oblast', {'okrug_id': okrug.id}) }}">{{ okrug.nomer }} </a>#}
+                    {{ okrug.nomer }}
+                </td>           
+                        <td>        
+                            {# {% if okrug.u4astniki %}
+                                <a href="{{ path('rabota.u4astniki', {'form': {'okrug': okrug.id}}) }}">{{ okrug.name }}</a>
+                            {% else %} #}
+{#    <a href="{{ path('mesto.oblast', {'okrug_id': okrug.id}) }}">{{ okrug.name }} </a>#}
+                            {# {% endif %} #}
+                            {{ okrug.name }}
+                        </td>
+                        <td>        
+                                {# {{ okrug.u4astniki }}         #}
+                        </td>
+                       
+                        <td>
+{#                            <div class="d-flex flex-row">#}
+{#                                <a href="{{ path('mesto.edit', {'id': okrug.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>#}
+{#                                <form action="{{ path('mesto.delete', {'id': okrug.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
+{#                                    <input type="hidden" name="token" value="{{ token }}" />#}
+{#                                    <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></button>#}
+{#                                </form>#}
+{#                            </div>#}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

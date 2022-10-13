@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Раса{% endblock %}
+
+    {% block kroxi %}  
+       
+                <a href="{{ path('home') }}">Главная</a>
+                <a href="{{ path('rabota.rasas') }}">Расы зарегистрированные</a>
+                <span class="aktiv ">Добавить другую расу</span> 
+           
+    {% endblock %}
+
+{% block body %}
+
+<article class="rasa">
+    <h1 class="rasa__title  ">Добавить другую расу</h1>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn--sm">Добавить в БД</button>
+            {{ form_end(form) }}
+
+</article><!-- rasa -->
+
+
+
+{% endblock %}

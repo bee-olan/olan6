@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create{% endblock %}
+
+{% block kroxi %}  
+       
+		<a href="{{ path('home') }}">Главная</a>
+		<a href="{{ path('rabota.rasas') }}">Раса -- </a>
+		<a href="{{ path('rabota.rasas') }}">Линия -- {{ linia.name }}</a>
+		<span class="aktiv ">Заполнить номер для линии {{ linia.name }}</span> 
+   
+    {% endblock %}
+
+{% block body %}
+<article class="rasa">
+	<h1 class="rasa__title  "><strong>Раса </strong>:   {{ linia.title }}</h1>
+	<div class="linia ">
+		<h1 class="rasa__title  "><strong>Линия </strong>:  {{ linia.name }}</h1>
+		<div class="nomer ">
+			<h1 class="rasa__title  ">Добавить другой <strong> номер </strong> для <strong> линии </strong></h1>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div>
+                <button type="submit" class="btn btn--sm">Добавить номер</button>
+            </div>
+            {{ form_end(form) }}
+		
+		</div>		
+	</div>
+</article><!-- rasa -->
+
+{% endblock %}

@@ -21,6 +21,12 @@ services:
     App\Model\User\Entity\User\UserRepository: ~
     App\Model\Mesto\Entity\Okrugs\OkrugRepository: ~
 
+    App\Model\Paseka\Entity\Rasas\RasaRepository: ~
+    App\Model\Paseka\Entity\Rasas\Linias\LiniaRepository: ~
+    App\Model\Paseka\Entity\Rasas\Linias\Nomers\NomerRepository: ~
+
+    App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\SparingRepository: ~
+
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
