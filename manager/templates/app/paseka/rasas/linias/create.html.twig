@@ -2,10 +2,10 @@
 
 {% block title %}Create{% endblock %}
 
- {% block kroxi %}  
+ {% block breadcrumbs %}
        
                 <a href="{{ path('home') }}">Главная</a>
-                <a href="{{ path('rabota.rasas') }}">Расы </a>
+                <a href="{{ path('paseka.rasas') }}">Расы </a>
                 <span class="aktiv ">Добавить другую линию</span> 
            
     {% endblock %}
@@ -13,13 +13,13 @@
 {% block body %}
 
 <article class="rasa">
-<h1 	class="rasa__title  "><strong> Раса </strong>:  {{ rasa.name }} | {{ rasa.title }}</h1>
+{#<h1 	class="rasa__title  "><strong> Раса </strong>:  {{ rasa.name }} | {{ rasa.title }}</h1>#}
 	<div class="linia ">
 		<h1 class="rasa__title  ">Добавить другую <strong> линию </strong></h1>
 
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button type="submit" class="btn btn--sm">Добавить в БД</button>
+            <button type="submit" class="btn-my btn-my--sm">Добавить в БД</button>
             {{ form_end(form) }}
 	</div>
 </article>

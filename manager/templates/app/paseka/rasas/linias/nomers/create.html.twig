@@ -2,14 +2,14 @@
 
 {% block title %}Create{% endblock %}
 
-{% block kroxi %}  
-       
-		<a href="{{ path('home') }}">Главная</a>
-		<a href="{{ path('rabota.rasas') }}">Раса -- </a>
-		<a href="{{ path('rabota.rasas') }}">Линия -- {{ linia.name }}</a>
-		<span class="aktiv ">Заполнить номер для линии {{ linia.name }}</span> 
-   
-    {% endblock %}
+{#{% block kroxi %}  #}
+{#       #}
+{#		<a href="{{ path('home') }}">Главная</a>#}
+{#		<a href="{{ path('paseka.rasas') }}">Раса -- </a>#}
+{#		<a href="{{ path('paseka.rasas') }}">Линия -- {{ linia.name }}</a>#}
+{#		<span class="aktiv ">Заполнить номер для линии {{ linia.name }}</span> #}
+{#   #}
+{#    {% endblock %}#}
 
 {% block body %}
 <article class="rasa">
@@ -21,12 +21,12 @@
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <div>
-                <button type="submit" class="btn btn--sm">Добавить номер</button>
+                <button type="submit" class="btn-my btn-my--sm">Добавить номер</button>
             </div>
             {{ form_end(form) }}
 		
 		</div>		
 	</div>
-</article><!-- rasa -->
+</article><!-- rasas -->
 
 {% endblock %}

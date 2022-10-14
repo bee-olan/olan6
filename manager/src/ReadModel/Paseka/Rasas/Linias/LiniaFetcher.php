@@ -21,8 +21,8 @@ class LiniaFetcher
         return (int)$this->connection->createQueryBuilder()
             ->select('MAX(l.sort_linia) AS m')
             ->from('paseka_rasa_linias', 'l')
-			->andWhere('rasa_id = :rasa')
-            ->setParameter(':rasa', $rasa)
+			->andWhere('rasa_id = :rasas')
+            ->setParameter(':rasas', $rasa)
             ->execute()->fetch()['m'];
     }
 	
@@ -37,8 +37,8 @@ class LiniaFetcher
 				'sort_linia'
             )
             ->from('paseka_rasa_linias')
-            ->andWhere('rasa_id = :rasa')
-            ->setParameter(':rasa', $rasa)
+            ->andWhere('rasa_id = :rasas')
+            ->setParameter(':rasas', $rasa)
             ->orderBy('name')
             ->orderBy('name_star')
             ->orderBy('title')
@@ -66,8 +66,8 @@ class LiniaFetcher
                 // ) AS members_count'
             )
             ->from('paseka_rasa_linias', 'l')
-            ->andWhere('rasa_id = :rasa')
-            ->setParameter(':rasa', $rasa)
+            ->andWhere('rasa_id = :rasas')
+            ->setParameter(':rasas', $rasa)
             ->orderBy('name')
             ->orderBy('name_star')
             ->orderBy('title')
@@ -97,8 +97,8 @@ class LiniaFetcher
                 // ) AS members_count'
             )
             ->from('paseka_rasa_linias', 'l')
-            ->andWhere('rasa_id = :rasa')
-            ->setParameter(':rasa', $rasa)
+            ->andWhere('rasa_id = :rasas')
+            ->setParameter(':rasas', $rasa)
 ->innerJoin('l', 'paseka_rasa_linia_nomers', 'n', 'n.linia_id = l.id')
             ->orderBy('name')
             ->orderBy('name_star')

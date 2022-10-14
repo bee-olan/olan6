@@ -1,0 +1,171 @@
+///////////Раса ==========
+.rasa {
+  margin: 6rem -1rem 2rem -1rem;
+  padding: 1.5rem 1.5rem;
+  overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+  background-color: #588557;
+  //background-color: transparent;
+  box-shadow: 0 15px 25px rgba($black, .35);
+  border-radius: 5px;
+}
+.rasa__header {
+  margin: 0 0 2.5rem;
+
+  &--preview {
+    margin: -2.5rem -2.5rem 2.5rem; // убираем margin- картинка встанет без отступов
+  }
+}
+.rasa__title {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: $col-text;
+  //font-weight: 500;
+  a {
+    color: inherit; // что бы изменить цвет ссылки - на родительский post__title
+    text-decoration: none;
+    //  &:hover {
+    //     text-decoration: underline; // при наведении вернуться к подчеркиванию
+    // }
+  }
+  &--mb0 {
+    margin-bottom: 0;
+  }
+}
+.rasa__data {
+  display: flex; // добавляем т.к добаилась li-шка
+  //justify-content: center;
+  justify-content: space-between;
+  align-items: center; // выравнивание по вертикали
+  list-style: none; // убрала точку у li
+  width: 100%;
+  color: $col-text;
+  line-height: 2.0;
+
+  a {
+    padding: .6rem 1.6rem;
+    color: inherit;
+
+    opacity: 0.6;
+    transition: opacity .2s linear;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+      background-color: sandybrown;
+    }
+  }
+}
+.rasa__name {
+  // display: flex; // добавляем т.к добаилась li-шка
+  width: 10.0rem;
+  color: $col-text;
+  padding: .6rem;
+  border-bottom: 1px solid $col-text; // linia
+
+  &--wid25 {
+    width: 25.0rem;
+  }
+  &--wid15 {
+    width: 15.0rem;
+  }
+  &--wid5 {
+    width: 5.0rem;
+  }
+}
+.rasa__content {
+  margin-bottom: 2rem; // отступ от футора
+}
+
+.linia {
+  margin: 1rem ;
+  width: 98%;
+  padding: 1.5rem 1.5rem;
+  overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+  background-color: #70a370;
+  //background-color: transparent;
+  box-shadow: 0 15px 25px rgba($black, .35);
+  border-radius: 5px;
+}
+
+.nomer {
+  margin: 1rem;
+  width: 98%;
+  padding: 1rem 1rem;
+  overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+  background-color: #7eb47e;
+  //background-color: transparent;
+  box-shadow: 0 15px 25px rgba($black, .35);
+  border-radius: 5px;
+}
+
+.b-color {
+  padding: 0 1rem;
+  // padding-left: 1rem;
+  background-color: #588557;
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+}
+
+// display: inline-block;  по умолч будут блочными
+//font-family: inherit;  шрифт наследуется у родителя
+// box-shadow: 0 7px 17px -10px rgba($blue, .3);  тень для кнопки
+.btn-my {
+  display: inline-block; // чтобы падинги корректно работали
+  vertical-align: top;
+  padding: 1.1em 1.6em;
+  // падинги сделаем в em -эначит будут зависить от шрифта
+  // меняем size шрифта - автоматом изменится падинги
+
+  // background: linear-gradient( $grad1, $grad2);
+  border: 1px solid $kroxi;
+  // border: none; // убираем бордер
+  cursor: pointer;
+  border-radius: 3em; // скругляем
+
+  font-family: inherit; //шрифт наследуется у родителя
+  font-size: 1.3rem;
+  line-height: 1.1; //
+  font-weight: 500;
+  color: $white;
+  text-decoration: none; //убираем подчеркивание
+  // плавное изменение цвета
+  transition: background-color .3s linear;
+
+  &:hover {
+    background: linear-gradient( $grad1-o, $grad2-o);
+    text-decoration: none;
+  }
+  // модификаторы &--red и &--blue
+  &--red {
+    //background-color: $red;
+    background: linear-gradient( $grad1, $grad2 );
+    box-shadow: 0 7px 17px -10px rgba($red, .6); // тень у кнопки
+
+    &:hover,
+    &:focus {
+      //darken  затемнение цвета при наведении
+      background: linear-gradient($grad1-o, $grad2-o);
+      //background-color: darken($red, 5%);
+    }
+  }
+
+  &--blue {
+    background-color: $blue;
+    box-shadow: 0 7px 17px -10px rgba($blue, .3);
+
+    &:hover,
+    &:focus {
+      background-color: darken($blue, 15%);
+    }
+  }
+  // скругление в form
+  &--rounded {
+    border-radius: 0.41em;
+  }
+  // уменьшаем кнопку
+  &--sm {
+    padding: 0.5em 1.25em;
+  }
+  &--smm {
+    padding: 0.4em 1.25em;
+  }
+}

@@ -1,0 +1,94 @@
+ /*=====хлебные крошки ======================*/
+.kroxi {
+     display: flex;
+    //padding-left:  $sidebar-width;
+    position: fixed; // фиксированное позиционирование
+    top: 60px;
+   // left:  $sidebar-width;
+    z-index: $z-index-kroxi;
+
+  
+}
+ .kroxi-xl * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+     
+ }
+
+ .kroxi-xl {
+     display: flex;
+     flex-wrap: wrap;
+     counter-reset: flag;
+     margin: 0px 0px 10px 10px;
+
+    
+ }
+
+
+ .kroxi-xl a,
+ .kroxi-xl span {
+     background: transparent;
+     color: $kroxi ;
+     transition: all 0.5s;
+     text-decoration: none;
+     outline: none;
+     
+     line-height: 24px;
+     padding: 0 20px 0 20px;
+     position: relative;
+     font-size: 14px;
+    
+     box-shadow: 0 10px 15px rgba($black, .25); //тень
+
+     border: 1px solid $kroxi;
+     border-right: 0;
+     margin: 1px 0;
+     border-radius: 3px 0 0 3px;
+     opacity: 1;
+ }
+
+ .kroxi-xl .aktiv {
+    // background: #f1e9c2;
+     color: $kroxi; 
+    // opacity: .5;
+ }
+
+ .kroxi-xl a:first-child {
+     padding-left: 26px;
+     padding-bottom: 1px;
+ }
+
+ .kroxi-xl a:first-child:before {
+     left: 14px;
+ }
+
+ .kroxi-xl a:hover {
+     background: $kroxi;
+     color: $white;
+ }
+
+ .kroxi-xl a:hover:after {
+     background: $kroxi;
+ }
+
+ .kroxi-xl a:after,
+ .kroxi-xl span:after {
+     content: '';
+     position: absolute;
+     top: 0;
+     right: -10px;
+     width: 24px;
+     height: 24px;
+     box-shadow: 0 10px 15px rgba($black, .45); //тень
+     transform: scale(0.7) rotate(45deg);
+     z-index: 1;
+     box-shadow: 1px -1px 0 1px $color-text;
+     border-radius: 0 5px 0 50px;
+     background: $kroxi;
+     transition: all 0.5s;
+ }
+
+
+
+ /*==============================================*/

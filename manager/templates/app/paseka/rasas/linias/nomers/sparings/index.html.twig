@@ -24,11 +24,11 @@
                     <li class="sparing__name">{{ sparing.name }} ( {{ sparing.nomers }} )</li>
                     <li class="sparing__name sparing__name--wi25">  {{ sparing.title }}  </li>               
                     <li class="sparing__name sparing__name--wi10">
-                        <a href="{{ path('rabota.rasas.linias.nomers.sparings.edit', {'id': sparing.id}) }}" class="btn btn-sm "><span class="fa fa-pencil"></span></a> 
+                        <a href="{{ path('paseka.rasas.linias.nomers.sparings.edit', {'id': sparing.id}) }}" class="btn btn-sm "><span class="fa fa-pencil"></span></a>
                     </li>
                     <li class="sparing__name ">
                        
-                        <form action="{{ path('rabota.rasas.linias.nomers.sparings.delete', {'id': sparing.id}) }}" method="post" onsubmit="return confirm('Удалить? Вы уверены?')">
+                        <form action="{{ path('paseka.rasas.linias.nomers.sparings.delete', {'id': sparing.id}) }}" method="post" onsubmit="return confirm('Удалить? Вы уверены?')">
                                 <input type="hidden" name="token" value="{{ token }}" />
                                 <button type="submit" class="btn btn--smm"><span class="fa fa-trash"></span></button>
                         </form>
@@ -39,7 +39,7 @@
     </div>
 
 		<div class = "rasa__content"  >
-			<a href="{{ path('rabota.rasas.linias.nomers.sparings.create') }}" 
+			<a href="{{ path('paseka.rasas.linias.nomers.sparings.create') }}"
 				class="btn btn--sm">Добавить другой вид облета в БД</a>
 		</div>
 	</div>		

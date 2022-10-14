@@ -3,6 +3,37 @@
 @import "~simple-line-icons/scss/simple-line-icons";
 @import "~font-awesome/scss/font-awesome";
 
+html {
+    font-size: 72.5%;
+}
+
+body {
+    background-color: #ffffff;
+    //набор шрифтов
+    font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: $white;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+a  {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 main {
     & > .container {
         padding: 80px 15px 0;
@@ -51,3 +82,7 @@ main {
         padding-left: 15px;
     }
 }
+@import "rasas/rasa";
+@import "rasas/info_rasa";
+@import "rasas/sparing";
+@import "rasas/kroxi";

@@ -40,7 +40,7 @@ class Okrug
 //	  /**
 //      * @var ArrayCollection|Oblast[]
 //      * @ORM\OneToMany(
-//      *     targetEntity="App\Model\Rabota\Entity\U4astniki\Mesto\Oblasts\Oblast",
+//      *     targetEntity="App\Model\Paseka\Entity\U4astniki\Mesto\Oblasts\Oblast",
 //      *     mappedBy="okrug", orphanRemoval=true, cascade={"all"}
 //      * )
 //      * @ORM\OrderBy({"name" = "ASC"})

@@ -2,53 +2,16 @@
 
 {% block title %}Раса{% endblock %}
 
-    {% block kroxi %}  
-       
-                <a href="{{ path('home') }}">Главная</a>
-                
-                <span class="aktiv ">Расы зарегистрированные</span> 
-           
-    {% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        <li class="breadcrumb-item active">Расы зарегистрированные</li>
+    </ol>
+{% endblock %}    
 
 {% block body %}
 
-{# <article class="rasa">
-	
-    <div class="rasa__header  ">
-        <h1 class="rasa__title  ">Расы зарегистрированные в БД</h1>
-        {% set token = csrf_token('delete') %}
-
-        {% for key1, rasaL in rasaLs %}                      
-            <ul class="rasa__data">  
-                <li class="rasa__li"> {{ key1 }} --->> </li>
-
-                <div class="linia  ">
-                    {% for key2, ras in rasaL %}
-                        <ul class="rasa__data">  
-                            <li class="linia__li">  {{ key2 }}   --->></li>
-						
-                                <div class="linia  ">
-                                    {% for key3, rasNom in ras %}
-                                        <ul class="rasa__data">  
-                                            <li class="nomer__li">  {{ key3 }} --- {{ rasNom }}</li>
-                                                
-                                        </ul>  
-                                    {% endfor %} 
-                                </div>          
-                        </ul>  
-                    {% endfor %} 
-                </div>                       
-                </ul>  
-         {% endfor %}                
-    </div>
-
-    <div class = "rasa__content"  >
-        <a href="{{ path('rabota.rasas.create') }}" 
-            class="btn btn--sm">Добавить другую расу в БД</a>
-    </div> 
-
-
-</article><!-- rasa --> #}
 	
 <article class="rasa">
 	
@@ -62,13 +25,13 @@
                     <li class="rasa__name  rasa__name--wid5">{{ rasa.name }} </li>
                     <li class="rasa__name">  {{ rasa.title }}  </li>               
                     <li class="rasa__name rasa__name--wid5 ">
-                        <a href="{{ path('rabota.rasas.edit', {'id': rasa.id}) }}" 
-                            class="btn "><span class="fa fa-pencil"></span></a> 
+                        <a href="{{ path('paseka.rasas.edit', {'id': rasa.id}) }}"
+                            class="btn-my "><span class="fa fa-pencil"></span></a>
                     </li>
                     <li class="rasa__name ">
-                        <form action="{{ path('rabota.rasas.delete', {'id': rasa.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">
+                        <form action="{{ path('paseka.rasas.delete', {'id': rasa.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">
                             <input type="hidden" name="token" value="{{ token }}" />
-                            <button type="submit" class="btn btn--smm "><span class="fa fa-trash"></span></button>
+                            <button type="submit" class="btn-my btn-my--smm "><span class="fa fa-trash"></span></button>
                         </form>
                     </li>
                     <li class="rasa__name  rasa__name--wid15">
@@ -76,8 +39,8 @@
                         {{ rasa.linias }} ) 
                     </li> 
                      <li>
-                        <a href="{{ path('rabota.rasas.linias',{'rasa_id': rasa.id}) }}" 
-							class="btn btn--sm">Смотреть/Добавить 
+                        <a href="{{ path('paseka.rasas.linias',{'id': rasa.id}) }}"
+							class="btn-my btn-my--sm">Смотреть/Добавить
                              <strong class="stro stro--kras"> линии </strong>
                             в {{ rasa.title }}
                         </a>
@@ -87,12 +50,12 @@
     </div>
 
     <div class = "rasa__content"  >
-        <a href="{{ path('rabota.rasas.create') }}" 
-            class="btn btn--sm">Добавить другую <strong class="stro stro--kras"> расу </strong>  в БД</a>
+        <a href="{{ path('paseka.rasas.create') }}"
+            class="btn-my btn-my--sm">Добавить другую <strong class="stro stro--kras"> расу </strong>  в БД</a>
     </div> 
 
 
-</article><!-- rasa -->
+</article><!-- rasas -->
 
 
 {% endblock %}

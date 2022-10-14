@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Mesto;
 
-//use App\Model\Rabota\Entity\U4astniki\Mesto\Okrug;
+//use App\Model\Paseka\Entity\U4astniki\Mesto\Okrug;
 
 use App\Model\Mesto\UseCase\Okrugs\Create;
 use App\Model\Mesto\UseCase\Okrugs\Edit;

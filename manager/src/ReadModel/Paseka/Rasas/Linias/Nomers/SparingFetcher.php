@@ -23,7 +23,7 @@ class SparingFetcher
                 'id',
                 'name'	
             )
-            ->from('rabota_rasas_linias_nomers_sparings')
+            ->from('paseka_rasa_linia_nomer_sparings')
             ->orderBy('name')
             ->execute();
 
@@ -37,9 +37,9 @@ class SparingFetcher
                 'g.id',
                 'g.name',
                 'g.title' ,
-                '(SELECT COUNT(*) FROM rabota_rasas_linias_nomers n WHERE n.sparing_id = g.id) AS nomers'
+                '(SELECT COUNT(*) FROM paseka_rasa_linia_nomers n WHERE n.sparing_id = g.id) AS nomers'
             )
-            ->from('rabota_rasas_linias_nomers_sparings', 'g')
+            ->from('paseka_rasa_linia_nomer_sparings', 'g')
             ->orderBy('name')
 			->orderBy('title')
             ->execute();

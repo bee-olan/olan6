@@ -58,8 +58,23 @@ class Rasa
         $this->name = $name;
         $this->title = $title;
     }
-	
-	///////////////////////
+    // равно Ли Имя для Rasa
+//    public function isNameEqual(string $name): bool
+//    {
+//        return $this->name === $name;
+//    }
+//
+//    public function addRasa(RasaId $id, string $name, string $title): void
+//    {
+//        foreach ($this->rasas as $rasa) {
+//            if ($rasa->isNameEqual($name)) {
+//                throw new \DomainException('Rasa already exists.');
+//            }
+//        }
+//        $this->rasas->add(new Linia($this, $id, $name, $title));
+//    }
+//
+//	///////////////////////
     public function addLinia(LiniaId $id, 
                                 string $name, 
                                 string $nameStar, 

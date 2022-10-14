@@ -2,14 +2,14 @@
 
 {% block title %}{{ linia.name }}{% endblock %}
 
- {% block kroxi %}  
-       
-                <a href="{{ path('home') }}">Главная</a>
-                <a href="{{ path('rabota.rasas') }}">Расы </a>
-				<a href="{{ path('rabota.rasas.linias',{'rasa_id': rasa.id}) }}" >Линии в {{ rasa.title }}</a>
-                <span class="aktiv ">Редактировать  линию</span> 
-           
-    {% endblock %}
+{# {% block kroxi %}  #}
+{#       #}
+{#                <a href="{{ path('home') }}">Главная</a>#}
+{#                <a href="{{ path('paseka.rasas') }}">Расы </a>#}
+{#				<a href="{{ path('paseka.rasas.linias',{'id': rasa.id}) }}" >Линии в {{ rasa.title }}</a>#}
+{#                <span class="aktiv ">Редактировать  линию</span> #}
+{#           #}
+{#    {% endblock %}#}
 
 {% block body %}
 <article class="rasa">
@@ -19,7 +19,7 @@
 
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button type="submit" class="btn btn--sm">Добавить измения в БД</button>
+            <button type="submit" class="btn-my btn-my--sm">Добавить измения в БД</button>
             {{ form_end(form) }}
 	</div>
 </article>
