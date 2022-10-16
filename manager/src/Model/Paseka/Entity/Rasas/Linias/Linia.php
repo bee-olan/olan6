@@ -108,6 +108,7 @@ public function addNomer(NomerId $id,
             if ($nomer->isNameEqual($name)) {
                 throw new \DomainException('номер уже существует.');
             }
+
             if ($nomer->isNameStarEqual($nameStar)) {
                 throw new \DomainException('Такая запись уже существует.');
             }

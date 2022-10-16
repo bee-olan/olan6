@@ -13,14 +13,17 @@
 {% block body %}
 
 <article class="rasa">
-{#<h1 	class="rasa__title  "><strong> Раса </strong>:  {{ rasa.name }} | {{ rasa.title }}</h1>#}
+<h1 	class="rasa__title  "><strong> Раса </strong>:  {{ rasa.name }} | {{ rasa.title }}</h1>
 	<div class="linia ">
-		<h1 class="rasa__title  ">Добавить другую <strong> линию </strong></h1>
 
+<h3 class="rasa__title"> <strong>{{ name }} </strong> - таким будет сокращенное название <strong> раса_линия </strong>,
+     оно формируется автоматически с учетом данных из БД</h3>
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <button type="submit" class="btn-my btn-my--sm">Добавить в БД</button>
-            {{ form_end(form) }}
+            <a href="{{ path('paseka.rasas.linias',{'id': rasa.id}) }}"
+                class="btn-my btn-my--sm"> Выйти из режима "Добавить"</a>
+        {{ form_end(form) }}
 	</div>
 </article>
 

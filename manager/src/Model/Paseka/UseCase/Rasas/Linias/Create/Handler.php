@@ -24,14 +24,13 @@ class Handler
     {
         $rasa = $this->rasas->get(new RasaId($command->rasa));
 
-        $rasa->addLinia(
+     $rasa->addLinia(
             Id::next(),
             $command->name ,
 			$command->nameStar,
 			$command->title,
 			$command->sortLinia
         );
-
         $this->flusher->flush();
     }
 }

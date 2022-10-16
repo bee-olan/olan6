@@ -59,29 +59,28 @@ class LiniaController extends AbstractController
      */
     public function create(Rasa $rasa, LiniaFetcher $linias, Request $request, Create\Handler $handler): Response
    {
-        //$this->denyAccessUnlessGranted(MateriAccess::MANAGE_MEMBERS, $materi);
-        $command = new Create\Command($rasa->getId()->getValue());
-        $command->title = $rasa->getName();
-		$command->sortLinia = $linias->getMaxSortLinia($rasa->getId()->getValue()) + 1;
+       $maxSort = $linias->getMaxSortLinia($rasa->getId()->getValue()) + 1;
+
+       $command = Create\Command::fromRasa($rasa, $maxSort);// заполнение  значениями из Rasa
+//        $command = new Create\Command($rasa->getId()->getValue());
+//        $command->title = $rasa->getName();
+//		$command->sortLinia = $linias->getMaxSortLinia($rasa->getId()->getValue()) + 1;
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
 //dd($command);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-				$command->title = $command->title."_".$command->name;
                 $handler->handle($command);
-
-
                 return $this->redirectToRoute('paseka.rasas.linias', ['id' => $rasa->getId()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
         }
-
         return $this->render('app/paseka/rasas/linias/create.html.twig', [
-            'rasas' => $rasa,
+            'rasa' => $rasa,
             'form' => $form->createView(),
+            'name' => $command->title,
         ]);
    }
 

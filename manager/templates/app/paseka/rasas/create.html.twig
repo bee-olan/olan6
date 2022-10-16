@@ -13,11 +13,13 @@
 {% block body %}
 
 <article class="rasa">
-    <h1 class="rasa__title  ">Добавить другую расу</h1>
+    <h1 class="rasa__title  ">Добавление названия другой расы </h1>
 
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button type="submit" class="btn btn--sm">Добавить в БД</button>
+            <button type="submit" class="btn-my btn-my--sm">Добавить в БД</button>
+            <a href="{{ path('paseka.rasas') }}"
+                class="btn-my btn-my--sm"> Выйти из режима "Добавить"</a>
             {{ form_end(form) }}
 
 </article><!-- rasas -->

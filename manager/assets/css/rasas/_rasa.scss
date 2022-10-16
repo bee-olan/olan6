@@ -117,7 +117,7 @@
 
   // background: linear-gradient( $grad1, $grad2);
   border: 1px solid $kroxi;
-  // border: none; // убираем бордер
+   //border: none; // убираем бордер
   cursor: pointer;
   border-radius: 3em; // скругляем
 
@@ -125,13 +125,14 @@
   font-size: 1.3rem;
   line-height: 1.1; //
   font-weight: 500;
-  color: $white;
+  color: $color-rasa;
   text-decoration: none; //убираем подчеркивание
   // плавное изменение цвета
   transition: background-color .3s linear;
 
   &:hover {
     background: linear-gradient( $grad1-o, $grad2-o);
+    color: $white;
     text-decoration: none;
   }
   // модификаторы &--red и &--blue

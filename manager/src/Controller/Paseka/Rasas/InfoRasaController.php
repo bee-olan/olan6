@@ -53,7 +53,7 @@ class InfoRasaController extends AbstractController
     }
 	
 	 /**
-     * @Route("/info_linia/{rasa_id}", name=".info_linia")
+     * @Route("/info_linia/{id}", name=".info_linia")
 	 * @ParamConverter("rasas", options={"id" = "rasa_id"})
      * @param Rasa $rasa
      * @param LiniaFetcher $linias

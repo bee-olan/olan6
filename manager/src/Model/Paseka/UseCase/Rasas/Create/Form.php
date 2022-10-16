@@ -21,7 +21,7 @@ class Form extends AbstractType
             ]
         ))
         ->add('title', Type\TextType::class, array(
-            'label' => 'Описание и название расы',
+            'label' => 'Полное название расы',
             'attr' => [
                 'placeholder' => 'Введите текст'
             ]

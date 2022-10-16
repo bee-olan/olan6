@@ -82,10 +82,12 @@ class Rasa
 								int $sortLinia): void
     {
         foreach ($this->linias as $linia) {
-            if ($linia->isNameEqual($name)) {
-                throw new \DomainException('Linia already exists.');
+            if ($linia->isNameStarEqual($nameStar)) {
+                throw new \DomainException('Линия уже существует. Попробуйте для
+                этой линии добавить свой номер');
             }
         }
+
         $this->linias->add(new Linia($this, 
 									$id, 
 									$name, 

@@ -83,7 +83,7 @@ class RasaFetcher
                 'n.id as nomer_id',
                 'n.title as nomer_title'
             )
-            ->from('rabota_rasas', 'r')
+            ->from('paseka_rasas', 'r')
             ->innerJoin('r', 'paseka_rasa_linias', 'l', 'l.rasa_id = r.id')
             ->innerJoin('l', 'paseka_rasa_linia_nomers', 'n', 'n.linia_id = l.id')
             ->orderBy('name')

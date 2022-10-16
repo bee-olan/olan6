@@ -12,11 +12,12 @@
 
 {% block body %}
 
-	
+
 <article class="rasa">
 	
       <div class="rasa__header  ">
          <h1 class="rasa__title  ">Расы зарегистрированные в БД</h1>
+
           {% set token = csrf_token('delete') %}
                 {% for rasa in rasas %}
                       
@@ -48,14 +49,14 @@
                 </ul>  
          {% endfor %}                
     </div>
-
+</article><!-- rasas -->
     <div class = "rasa__content"  >
         <a href="{{ path('paseka.rasas.create') }}"
-            class="btn-my btn-my--sm">Добавить другую <strong class="stro stro--kras"> расу </strong>  в БД</a>
+            class="btn-my btn-my--sm">Добавить название другой <strong class="stro stro--kras"> расы </strong>  в БД</a>
     </div> 
 
 
-</article><!-- rasas -->
+
 
 
 {% endblock %}

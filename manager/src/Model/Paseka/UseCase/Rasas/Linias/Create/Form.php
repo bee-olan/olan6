@@ -14,19 +14,14 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('name', Type\TextType::class, array(
-            'label' => 'Сокращенное название линии',
-            'attr' => [
-                'placeholder' => 'Введите сокр. название'
-            ]
-        ))
+
         ->add('nameStar', Type\TextType::class, array(
-            'label' => 'Название линии в докуентах',
+            'label' => 'Добавить название линии из документов или личных архивных данных',
             'attr' => [
-                'placeholder' => 'Введите название'
+                'placeholder' => 'Введите название линии ....'
             ]
         ))
-		->add('sortLinia', Type\IntegerType::class)
+
         ;
     }
 
