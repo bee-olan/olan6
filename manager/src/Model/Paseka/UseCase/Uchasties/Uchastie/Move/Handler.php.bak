@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Model\Rabota\UseCase\U4astniki\U4astnik\Move;
+
+use App\Model\Flusher;
+use App\Model\Rabota\Entity\U4astniki\Group\GroupRepository;
+use App\Model\Rabota\Entity\U4astniki\Group\Id as GroupId;
+use App\Model\Rabota\Entity\U4astniki\U4astnik\Id;
+use App\Model\Rabota\Entity\U4astniki\U4astnik\U4astnikRepository;
+
+class Handler
+{
+    private $u4astniki;
+    private $groups;
+    private $flusher;
+
+    public function __construct(U4astnikRepository $u4astniki, GroupRepository $groups, Flusher $flusher)
+    {
+        $this->u4astniki = $u4astniki;
+        $this->groups = $groups;
+        $this->flusher = $flusher;
+    }
+
+    public function handle(Command $command): void
+    {
+        $u4astnik = $this->u4astniki->get(new Id($command->id));
+        $group = $this->groups->get(new GroupId($command->group));
+
+        $u4astnik->move($group);
+
+        $this->flusher->flush();
+    }
+}

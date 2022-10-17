@@ -23,6 +23,12 @@ doctrine:
             paseka_rasa_linia_id: 'App\Model\Paseka\Entity\Rasas\Linias\IdType'
             paseka_rasa_linia_nomer_id: 'App\Model\Paseka\Entity\Rasas\Linias\Nomers\IdType'
             paseka_rasa_linia_nomer_sparing_id: 'App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\IdType'
+
+            paseka_uchasties_group_id: 'App\Model\Paseka\Entity\Uchasties\Group\IdType'
+            paseka_uchasties_uchastie_id: 'App\Model\Paseka\Entity\Uchasties\Uchastie\IdType'
+            paseka_uchasties_uchastie_status: 'App\Model\Paseka\Entity\Uchasties\Uchastie\EmailType'
+            paseka_uchasties_uchastie_email: 'App\Model\Paseka\Entity\Uchasties\Uchastie\StatusType'
+
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore

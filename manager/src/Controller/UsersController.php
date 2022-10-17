@@ -12,6 +12,7 @@ use App\Model\User\UseCase\Edit;
 use App\Model\User\UseCase\Role;
 use App\Model\User\UseCase\UchKak;
 use App\ReadModel\User\Filter;
+use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
 use App\Model\User\UseCase\SignUp\Confirm;
 use App\ReadModel\User\UserFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -274,10 +275,13 @@ class UsersController extends AbstractController
     /**
      * @Route("/{id}", name=".show")
      * @param User $user
+     * @param UchastieFetcher $uchasties
      * @return Response
      */
-    public function show(User $user): Response
+    public function show(User $user, UchastieFetcher $uchasties): Response
     {
-        return $this->render('app/users/show.html.twig', compact('user'));
+        $uchastie = $uchasties->find($user->getId()->getValue());
+
+        return $this->render('app/users/show.html.twig', compact('user', 'uchastie'));
     }
 }

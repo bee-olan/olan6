@@ -37,6 +37,14 @@
                 <button type="submit" class="btn btn-success">Activate</button>
             </form>
         {% endif %}
+
+{#        {% if is_granted('ROLE_WORK_MANAGE_MEMBERS') %}#}
+            {% if uchastie %}
+                <a href="{{ path('paseka.uchasties.show', {'id': uchastie.id}) }}" class="btn btn-primary">Сотреть участника</a>
+            {% else %}
+                <a href="{{ path('paseka.uchasties.create', {'id': user.id}) }}" class="btn btn-primary">Создать участника</a>
+            {% endif %}
+{#        {% endif %}#}
     </div>
 
 
