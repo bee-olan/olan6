@@ -34,7 +34,7 @@ class Handler
         if ($this->uchasties->has($id)) {
             throw new \DomainException('Uchastie уже существует !!.');
         }
-
+        //$command->email = 'user@app.test';
         $group = $this->groups->get(new GroupId($command->group));
 
         $uchastie = new Uchastie(
@@ -44,9 +44,9 @@ class Handler
                 $command->firstName,
                 $command->lastName,
                 $command->lastNike
-            ),
-            new Email($command->email)
+            )
         );
+
 
         $this->uchasties->add($uchastie);
 

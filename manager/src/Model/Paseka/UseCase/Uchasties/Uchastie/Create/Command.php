@@ -36,11 +36,11 @@ class Command
     public $lastNike;
 
 
-    /**
-     * @var string
-     * @Assert\Email()
-     */
-    public $email;
+    // /**
+    //  * @var string
+    //  * @Assert\Email()
+    //  */
+    // public $email;
 
     public function __construct(string $id)
     {

@@ -52,12 +52,16 @@ class Name
 
     public function getNike(): string
     {
-        return $this->last;
+        return $this->nike;
     }
 
     public function getFull(): string
     {
         return $this->first . ' ' . $this->last;
+    }
+    public function __toString(): string
+    {
+        return $this->value;
     }
 }
 

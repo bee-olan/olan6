@@ -23,7 +23,7 @@
                 <div class="col-md-2">{{ form_widget(form.name) }}</div>
                 {# <div class="col-md-2">{{ form_widget(form.email) }}</div> #}
                 <div class="col-md-2">{{ form_widget(form.group) }}</div>
-                <div class="col-md-2">{{ form_widget(form.status) }}</div>
+{#                <div class="col-md-2">{{ form_widget(form.status) }}</div>#}
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary">Filter</button>
                     <a href="{{ path('paseka.uchasties') }}" class="btn btn-outline-secondary">Reset</a>
@@ -39,18 +39,20 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Email', 'email') }}</th>
+{#                <th>Ник</th>#}
+                {# <th>{{ knp_pagination_sortable(pagination, 'Email', 'email') }}</th> #}
                 <th>{{ knp_pagination_sortable(pagination, 'Group', 'group') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>
+{#                <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>#}
             </tr>
             </thead>
             <tbody>
-            {% for u4astnik in pagination %}
+            {% for uchastie in pagination %}
                 <tr>
                     <td><a href="{{ path('paseka.uchasties.show', {'id': uchastie.id}) }}">{{ uchastie.name }}</a></td>
-                    <td>{{ uchastie.email }}</td>
+{#                    <td>{{ uchastie.name.nike }}</td>#}
+                    {# <td>{{ uchastie.email }}</td> #}
                     <td>{{ uchastie.group }}</td>
-                    <td>{{ uchastie_status(uchastie.status) }}</td>
+{#                    <td>{{ uchastie_status(uchastie.status) }}</td>#}
                 </tr>
             {% endfor %}
             </tbody>

@@ -22,28 +22,37 @@
             <tbody>
                 <tr>
                     <th>Name</th>
-                    <td>{{ u4astnik.name.full }}</td>
+                    <td>{{ uchastie.name.full }}</td>
+                   
 {#					<td>#}
 {#						<a href="{{ path('paseka.uchasties.edit', {'id': uchastie.id}) }}" class="btn btn-primary">Редактировать</a>#}
 {#					</td>#}
                 </tr>
-                <tr>
+                 <tr>
+                    <th>Ник</th>
+                  
+                    <td>{{ uchastie.name.nike }}</td>
+{#					<td>#}
+{#						<a href="{{ path('paseka.uchasties.edit', {'id': uchastie.id}) }}" class="btn btn-primary">Редактировать</a>#}
+{#					</td>#}
+                </tr>
+                {# <tr>
                     <th>Email</th>
                     <td>{{ uchastie.email.value }}</td>
 					<td>---</td>
-                </tr>
+                </tr> #}
                 <tr>
                     <th>Group</th>
                     <td>{{ uchastie.group.name }}</td>
-					<td>
+					{# <td>
 						<a href="{{ path('paseka.uchasties.move', {'id': uchastie.id}) }}"
 						class="btn btn-primary">Перевести в другую группу</a>
-					</td>
+					</td> #}
                 </tr>
                 <tr>
-                    <th>Status</th>
-                    <td>{{ member_status(uchastie.status.name) }}</td>
-					<td>
+                    {# <th>Status</th>
+                    <td>{{ member_status(uchastie.status.name) }}</td> #}
+					{# <td>
 						{% if uchastie.active and uchastie.id.value != app.user.id %}
 							<form action="{{ path('paseka.uchasties.archive', {'id': uchastie.id}) }}" method="post" onsubmit="return confirm('Отправить в архив?')">
 								<input type="hidden" name="token" value="{{ csrf_token('archive') }}" />
@@ -56,7 +65,7 @@
 								<button type="submit" class="btn btn-success">Активизировать</button>
 							</form>
 						{% endif %}
-					</td>
+					</td> #}
                 </tr>
             </tbody>
         </table>

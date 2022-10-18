@@ -30,11 +30,11 @@ class Command
      */
     public $lastNike;
 
-    /**
-     * @var string
-     * @Assert\Email()
-     */
-    public $email;
+    // /**
+    //  * @var string
+    //  * @Assert\Email()
+    //  */
+    // public $email;
 
     public function __construct(string $id)
     {
@@ -46,8 +46,8 @@ class Command
         $command = new self($uchastie->getId()->getValue());
         $command->firstName = $uchastie->getName()->getFirst();
         $command->lastName = $uchastie->getName()->getLast();
-        $command->nikeName = $uchastie->getName()->getNike();
-        $command->email = $uchastie->getEmail()->getValue();
+        $command->lastNike = $uchastie->getName()->getNike();
+        // $command->email = $uchastie->getEmail()->getValue();
         return $command;
     }
 }

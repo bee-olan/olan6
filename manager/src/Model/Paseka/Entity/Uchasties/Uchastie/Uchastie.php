@@ -33,30 +33,30 @@ class Uchastie
      * @ORM\Embedded(class="Name")
      */
     private $name;
-    /**
-     * @var Email
-     * @ORM\Column(type="paseka_uchasties_uchastie_email")
-     */
-    private $email;
-    /**
-     * @var Status
-     * @ORM\Column(type="paseka_uchasties_uchastie_status", length=16)
-     */
-    private $status;
+    // /**
+    //  * @var Email
+    //  * @ORM\Column(type="paseka_uchasties_uchastie_email")
+    //  */
+    // private $email;
+    ///**
+    //  * @var Status
+    //  * @ORM\Column(type="paseka_uchasties_uchastie_status", length=16)
+    //  */
+    // private $status;
 
-    public function __construct(Id $id, Group $group, Name $name, Email $email)
+    public function __construct(Id $id, Group $group, Name $name)
     {
         $this->id = $id;
         $this->group = $group;
         $this->name = $name;
-        $this->email = $email;
-        $this->status = Status::active();
+        //$this->email = $email;
+        //$this->status = Status::active();
     }
 
-    public function edit(Name $name, Email $email): void
+    public function edit(Name $name): void
     {
         $this->name = $name;
-        $this->email = $email;
+       // $this->email = $email;
     }
 
     public function move(Group $group): void
@@ -105,13 +105,18 @@ class Uchastie
         return $this->name;
     }
 
-    public function getEmail(): Email
-    {
-        return $this->email;
-    }
+    // public function getEmail(): Email
+    // {
+    //     return $this->email;
+    // }
 
-    public function getStatus(): Status
-    {
-        return $this->status;
-    }
+    // public function getStatus(): Status
+    // {
+    //     return $this->status;
+    // }
+
+    // public function __toString(): string
+    // {
+    //     return $this->value;
+    // }
 }

@@ -2,31 +2,33 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Rabota\UseCase\U4astniki\U4astnik\Move;
+namespace App\Model\Sait\UseCase\U4astniks\Personas\Edit;
 
-use App\Model\Rabota\Entity\U4astniki\U4astnik\U4astnik;
+use App\Model\Sait\Entity\U4astniks\Personas\Personas;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
 {
     /**
+     * @var string
      * @Assert\NotBlank()
      */
     public $id;
+	
     /**
      * @Assert\NotBlank()
      */
-    public $group;
+    public $nomer;
 
     public function __construct(string $id)
     {
         $this->id = $id;
     }
 
-    public static function fromU4astnik(U4astnik $u4astnik): self
+    public static function fromPersona(Personas $persona): self
     {
-        $command = new self($u4astnik->getId()->getValue());
-        $command->group = $u4astnik->getGroup()->getId()->getValue();
+        $command = new self($persona->getId()->getValue());
+        $command->nomer = $persona->getNomer();
         return $command;
     }
 }

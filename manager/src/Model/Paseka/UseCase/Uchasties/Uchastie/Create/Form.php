@@ -23,10 +23,10 @@ class Form extends AbstractType
     {
         $builder
             ->add('group', Type\ChoiceType::class, ['choices' => array_flip($this->groups->assoc())])
-            ->add('firstName', Type\TextType::class)
+            ->add('firstName', Type\TextType::class, ['label' => 'Имя'])
             ->add('lastName', Type\TextType::class)
-            ->add('lastNike', Type\TextType::class)
-            ->add('email', Type\EmailType::class);
+            ->add('lastNike', Type\TextType::class, ['label' => 'Ник']);
+            // ->add('email', Type\EmailType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

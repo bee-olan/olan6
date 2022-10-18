@@ -28,9 +28,9 @@ class Handler
         $uchastie->edit(
             new Name(
                 $command->firstName,
-                $command->lastName
-            ),
-            new Email($command->email)
+                $command->lastName,
+                $command->lastNike
+            )
         );
 
         $this->flusher->flush();
