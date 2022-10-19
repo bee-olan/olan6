@@ -1,15 +1,14 @@
 <?php
 
-declare(strict_types=1);
 
-namespace App\Model\Sait\UseCase\U4astniks\Personas\Diapazon;
+namespace App\Model\Paseka\UseCase\Uchasties\Personas\Diapazon;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
 {
     /**
-	 * @var int
+     * @var int
      * @Assert\NotBlank()
      */
     public $diapazon;

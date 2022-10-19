@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
 
-namespace App\Model\Sait\Entity\U4astniks\Personas;
+namespace App\Model\Paseka\Entity\Uchasties\Personas;
 
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Персональный номер{% endblock %}
+
+{#{% block kroxi %}   #}
+{#            <a href="{{ path('home') }}">Главная</a>#}
+{#            <a href="{{ path('sait.u4astniks.groups') }}">Года</a>          #}
+{#            <span class="aktiv">персональный номер</span> #}
+{#{% endblock %}#}
+
+{% block body %}
+
+    <h2 class = "page__title ">Вы выбрали персональный номер :  {{person }} </h2>
+
+   <button type="submit" class="btn-my btn-my--sm">Создать</button>
+ <div class="persona">
+ 
+ 
+
+<a href="{{ path('paseka.uchasties.personas.show') }}"  >
+   <h2> Если ошиблись - вернитель на  страничку выбора персонального номера </h2>             
+</a>
+</div>
+    <div class="card">
+        <div class="card-body">
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn-my btn-my--sm">Создать</button>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

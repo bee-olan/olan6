@@ -29,6 +29,8 @@ services:
     App\Model\Paseka\Entity\Uchasties\Group\GroupRepository: ~
     App\Model\Paseka\Entity\Uchasties\Uchastie\UchastieRepository: ~
 
+    App\Model\Paseka\Entity\Uchasties\Personas\PersonaRepository: ~
+
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class

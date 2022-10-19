@@ -46,12 +46,14 @@ class UchastieFetcher
                 'm.id',
                 'TRIM(CONCAT(m.name_first, \' \', m.name_last, \' \', m.name_nike)) AS name',
                 // 'm.email',
-                'g.name as group'
+                'g.name as group',
+                'p.nomer as persona'
                 // ,
                 // 'm.status'
             )
             ->from('paseka_uchasties_uchasties', 'm')
-            ->innerJoin('m', 'paseka_uchasties_groups', 'g', 'm.group_id = g.id');
+            ->innerJoin('m', 'paseka_uchasties_groups', 'g', 'm.group_id = g.id')
+            ->innerJoin('m', 'paseka_uchasties_personas', 'p', 'm.id = p.id');
 
         if ($filter->name) {
             $qb->andWhere($qb->expr()->like('LOWER(CONCAT(m.name_first, \' \', m.name_last, \' \', m.name_mike))', ':name'));

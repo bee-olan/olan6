@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Uchasties;
 
+use App\Model\Paseka\Entity\Uchasties\Personas\Persona;
 use App\Model\User\Entity\User\User;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
+
 use App\Model\Paseka\UseCase\Uchasties\Uchastie\Archive;
 use App\Model\Paseka\UseCase\Uchasties\Uchastie\Edit;
 use App\Model\Paseka\UseCase\Uchasties\Uchastie\Reinstate;
@@ -211,16 +213,17 @@ class UchastiesController extends AbstractController
 //            $this->addFlash('error', $e->getMessage());
 //        }
 //
-//        return $this->redirectToRoute('paseka.uchasties.showu', ['id' => $uchastie->getId()]);
+//        return $this->redirectToRoute('paseka.uchasties.show', ['id' => $uchastie->getId()]);
 //    }
 //
     /**
      * @Route("/{id}", name=".show")
      * @param Uchastie $uchastie
+     * @param Persona $persona
      * @return Response
      */
-    public function show(Uchastie $uchastie): Response
+    public function show(Uchastie $uchastie, Persona $persona): Response
     {
-        return $this->render('app/paseka/uchasties/show.html.twig', compact('uchastie'));
+        return $this->render('app/paseka/uchasties/show.html.twig', compact('uchastie', 'persona'));
     }
 }

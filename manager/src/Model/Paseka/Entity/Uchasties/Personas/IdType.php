@@ -1,15 +1,14 @@
 <?php
 
-declare(strict_types=1);
 
-namespace App\Model\Sait\Entity\U4astniks\Personas;
+namespace App\Model\Paseka\Entity\Uchasties\Personas;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
 
 class IdType extends GuidType
 {
-    public const NAME = 'sait_u4astniks_persona_id';
+    public const NAME = 'paseka_uchasties_persona_id';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {

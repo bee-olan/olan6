@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Sait\UseCase\U4astniks\Personas\Create;
+namespace App\Model\Paseka\UseCase\Uchasties\Personas\Create;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;

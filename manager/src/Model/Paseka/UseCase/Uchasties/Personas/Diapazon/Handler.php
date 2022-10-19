@@ -1,13 +1,12 @@
 <?php
 
-declare(strict_types=1);
 
-namespace App\Model\Sait\UseCase\U4astniks\Personas\Diapazon;
+namespace App\Model\Paseka\UseCase\Uchasties\Personas\Diapazon;
 
 use App\Model\Flusher;
-use App\Model\Sait\Entity\U4astniks\Personas\Persona;
-use App\Model\Sait\Entity\U4astniks\Personas\Id;
-use App\Model\Sait\Entity\U4astniks\Personas\PersonaRepository;
+use App\Model\Paseka\Entity\Uchasties\Personas\Persona;
+use App\Model\Paseka\Entity\Uchasties\Personas\Id;
+use App\Model\Paseka\Entity\Uchasties\Personas\PersonaRepository;
 
 class Handler
 {
@@ -22,6 +21,8 @@ class Handler
 
     public function handle(Command $command): void
     {
+
+
         // $persona = new Persona(
         //     Id::next(),
         //     $command->nomer

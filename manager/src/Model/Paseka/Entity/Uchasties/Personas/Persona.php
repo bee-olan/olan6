@@ -1,20 +1,19 @@
 <?php
 
-declare(strict_types=1);
 
-namespace App\Model\Sait\Entity\U4astniks\Personas;
+namespace App\Model\Paseka\Entity\Uchasties\Personas;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="sait_u4astniks_personas")
+ * @ORM\Table(name="paseka_uchasties_personas")
  */
 class Persona
 {
     /**
      * @var Id
-     * @ORM\Column(type="sait_u4astniks_persona_id")
+     * @ORM\Column(type="paseka_uchasties_persona_id")
      * @ORM\Id
      */
     private $id;
@@ -46,9 +45,6 @@ class Persona
     {
         return $this->nomer;
     }
-	
-	public function __toString(): string
-    {
-        return $this->nomer;
-    }
+
+
 }

@@ -2,26 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Sait\UseCase\U4astniks\Personas\Create;
+namespace App\Model\Paseka\UseCase\Uchasties\Personas\Create;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
 {
     /**
-	 * @var int
+     * @var string
+     * @Assert\NotBlank()
+     */
+    public $id;
+
+    /**
+     * @var int
      * @Assert\NotBlank()
      */
     public $nomer;
 
-   // /**
-   //  * @Assert\NotBlank()
-   //  */
-   // public $u4astnik;
-
-   // public function __construct( string $u4astnik)
-   // {
-    //    $this->u4astnik = $u4astnik;
-   // }
+    public function __construct(string $id)
+    {
+        $this->id = $id;
+    }
 
 }

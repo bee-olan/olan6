@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
 
-namespace App\Model\Sait\UseCase\U4astniks\Personas\Diapazon;
+namespace App\Model\Paseka\UseCase\Uchasties\Personas\Diapazon;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -19,18 +18,18 @@ class Form extends AbstractType
         //     ->add('nomer', Type\IntegerType::class, array(
         //         'label' => 'Вы выбрали персональный номер'
         //     ));
-            $builder->add('diapazon', ChoiceType::class, array(
-                'label' => 'Выбираем  : ',
-                'choices'  => array(
-                    'от 1 до 50' => 1,
-                    'от 51 до 100' => 2,
-                    'от 101 до 150' => 3,
-                    'от 151 до 200' => 4,
-                    'от 201 до 250' => 5,
-                    'от 251 до 300' => 6,
+        $builder->add('diapazon', ChoiceType::class, array(
+            'label' => 'Выбираем  : ',
+            'choices'  => array(
+                'от 1 до 50' => 1,
+                'от 51 до 100' => 2,
+                'от 101 до 150' => 3,
+                'от 151 до 200' => 4,
+                'от 201 до 250' => 5,
+                'от 251 до 300' => 6,
 
-                ),
-            ));
+            ),
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void
