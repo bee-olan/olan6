@@ -13,41 +13,31 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class GroupFixture extends Fixture
 {
-    public const REFERENCE_MATKOV = 'work_member_group_staff';
-    public const REFERENCE_PCHEL = 'work_member_group_customers';
-    public const REFERENCE_PCHELMAT = 'work_member_group_staff';
-    public const REFERENCE_NABLUD = 'work_member_group_customers';
-
     public function load(ObjectManager $manager): void
     {
-
-        $matkov = new Group(
+        $grup = new Group(
             Id::next(),
             'Матководы'
         );
-        $manager->persist($matkov);
-        $this->setReference(self::REFERENCE_MATKOV, $matkov);
+        $manager->persist($grup);
 
-        $pchel = new Group(
+        $grup = new Group(
             Id::next(),
             'Пчеловоды'
         );
-        $manager->persist($pchel);
-        $this->setReference(self::REFERENCE_PCHEL, $pchel);
+        $manager->persist($grup);
 
-        $pchelmat = new Group(
+        $grup = new Group(
             Id::next(),
             'Пчело-Матководы'
         );
-        $manager->persist($pchelmat);
-        $this->setReference(self::REFERENCE_PCHELMAT, $pchelmat);
+        $manager->persist($grup);
 
-        $nablud = new Group(
+        $grup = new Group(
             Id::next(),
             'Наблюдатели'
         );
-        $manager->persist($nablud);
-        $this->setReference(self::REFERENCE_NABLUD, $nablud);
+        $manager->persist($grup);
 
     $manager->flush();
     }
