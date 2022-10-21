@@ -33,15 +33,11 @@
 {#{% endblock %}#}
 
 
-
-
-
 {% block body %}
 
     <div class="controls">
-       <a href="{{ path('mesto.create') }}" class="btn btn-success">Добавить Округ</a>
-        {#       <a href="#" class="btn btn-success">Добавить Округ</a>#}
-          </div>
+       <a href="{{ path('mesto.okrug.create') }}" class="btn-my btn-my--smm">Добавить Округ</a>
+    </div>
 
           <div class="box">
               <table class="table table-bordered table-hover">
@@ -56,32 +52,31 @@
                   <tbody>
                       {% set token = csrf_token('delete') %}
                       {% for okrug in okrugs %}
-                          <tr>
+                    <tr>
 
-                <td>
-{#    <a href="{{ path('mesto.oblast', {'okrug_id': okrug.id}) }}">{{ okrug.nomer }} </a>#}
-                    {{ okrug.nomer }}
-                </td>           
-                        <td>        
+                        <td>
+                            {{ okrug.nomer }}
+                        </td>
+                        <td>
                             {# {% if okrug.u4astniki %}
                                 <a href="{{ path('rabota.u4astniki', {'form': {'okrug': okrug.id}}) }}">{{ okrug.name }}</a>
                             {% else %} #}
-{#    <a href="{{ path('mesto.oblast', {'okrug_id': okrug.id}) }}">{{ okrug.name }} </a>#}
+                            <a href="{{ path('mesto.okrug.oblast', {'okrug_id': okrug.id}) }}">{{ okrug.name }} </a>
                             {# {% endif %} #}
-                            {{ okrug.name }}
+
                         </td>
                         <td>        
                                 {# {{ okrug.u4astniki }}         #}
                         </td>
                        
                         <td>
-{#                            <div class="d-flex flex-row">#}
-{#                                <a href="{{ path('mesto.edit', {'id': okrug.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>#}
-{#                                <form action="{{ path('mesto.delete', {'id': okrug.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
-{#                                    <input type="hidden" name="token" value="{{ token }}" />#}
-{#                                    <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></button>#}
-{#                                </form>#}
-{#                            </div>#}
+                            <div class="d-flex flex-row">
+                                <a href="{{ path('mesto.okrug.edit', {'id': okrug.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
+                                <form action="{{ path('mesto.okrug.delete', {'id': okrug.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                    <input type="hidden" name="token" value="{{ token }}" />
+                                    <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}

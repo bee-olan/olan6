@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Uchasties;
 
+use App\Annotation\Guid;
 use App\Model\Paseka\Entity\Uchasties\Personas\Id;
 use App\Model\Paseka\Entity\Uchasties\Personas\Persona;
 

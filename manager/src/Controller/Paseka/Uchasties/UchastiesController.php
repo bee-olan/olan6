@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Uchasties;
 
+use App\Annotation\Guid;
 use App\Model\Paseka\Entity\Uchasties\Personas\Persona;
 use App\Model\User\Entity\User\User;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
@@ -217,7 +218,7 @@ class UchastiesController extends AbstractController
 //    }
 //
     /**
-     * @Route("/{id}", name=".show")
+     * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
      * @param Uchastie $uchastie
      * @param Persona $persona
      * @return Response

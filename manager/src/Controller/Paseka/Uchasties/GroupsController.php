@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Uchasties;
 
+use App\Annotation\Guid;
 use App\Model\Paseka\Entity\Uchasties\Group\Group;
 use App\Model\Paseka\UseCase\Uchasties\Group\Create;
 use App\Model\Paseka\UseCase\Uchasties\Group\Edit;
@@ -15,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 // * @IsGranted("ROLE_Paseka_MANAGE_MEMBERS")
 /**
  * @Route("/paseka/uchasties/groups", name="paseka.uchasties.groups")
@@ -125,7 +127,7 @@ class GroupsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name=".show")
+     * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
      * @return Response
      */
     public function show(): Response

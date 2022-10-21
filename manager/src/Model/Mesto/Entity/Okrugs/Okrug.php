@@ -3,9 +3,9 @@
 
 namespace App\Model\Mesto\Entity\Okrugs;
 
-//use App\Model\Mesto\Entity\Okrugs\Oblasts\Oblast;
-//use App\Model\Mesto\Entity\Okrugs\Oblasts\Id as OblastId;
-//use Doctrine\Common\Collections\ArrayCollection;
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Oblast;
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Id as OblastId;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Doctrine\ORM\Mapping as ORM;
 

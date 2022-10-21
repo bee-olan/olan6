@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Paseka\Uchasties;
 
+use App\Annotation\Guid;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 

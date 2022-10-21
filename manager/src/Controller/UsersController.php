@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Annotation\Guid;
 use App\Model\User\Entity\User\User;
 use App\Model\User\UseCase\Activate;
 use App\Model\User\UseCase\Block;
@@ -273,7 +274,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name=".show")
+     * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
      * @param User $user
      * @param UchastieFetcher $uchasties
      * @return Response

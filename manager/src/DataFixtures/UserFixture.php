@@ -14,6 +14,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class UserFixture extends Fixture
 {
+    public const REFERENCE_ADMIN = 'user_user_admin';
+    public const REFERENCE_USER = 'user_user_user';
+
     private $hasher;
 
     public function __construct(PasswordHasher $hasher)
@@ -25,7 +28,7 @@ class UserFixture extends Fixture
     {
         $hash = $this->hasher->hash('password');
 
-        $user = User::signUpByEmail(
+        $admin = User::signUpByEmail(
             Id::next(),
             new \DateTimeImmutable(),
             new Name('Ol', 'An'),
@@ -33,12 +36,14 @@ class UserFixture extends Fixture
             $hash,
             'token'
         );
-        $user->confirmSignUp();
-        $user->changeRole(Role::admin());
-        $user->changeUchKak(UchKak::pchmat());
-        $manager->persist($user);
+        $admin->confirmSignUp();
+        $admin->changeRole(Role::admin());
+        $admin->changeUchKak(UchKak::pchmat());
+        $manager->persist($admin);
 
-        $user1 = User::signUpByEmail(
+        $this->setReference(self::REFERENCE_ADMIN, $admin);
+
+        $user = User::signUpByEmail(
             Id::next(),
             new \DateTimeImmutable(),
             new Name('Ольга', 'Клим'),
@@ -47,10 +52,11 @@ class UserFixture extends Fixture
             'token'
         );
 
-        $user1->confirmSignUp();
-//        $user1->changeRole(Role::user());
-        $user1->changeUchKak(UchKak::matko());
-        $manager->persist($user1);
+        $user->confirmSignUp();
+//        $user->changeRole(Role::user());
+        $user->changeUchKak(UchKak::matko());
+        $manager->persist($user);
+        $this->setReference(self::REFERENCE_USER, $user);
  ///////////
         $user2 = User::signUpByEmail(
             Id::next(),
@@ -65,6 +71,8 @@ class UserFixture extends Fixture
 //        $user1->changeRole(Role::user());
 //        $user2->changeUchKak(UchKak::matko());
         $manager->persist($user2);
+
+        $this->setReference(self::REFERENCE_USER, $user2);
 
         $manager->flush();
     }

@@ -159,7 +159,7 @@ class LiniaController extends AbstractController
     }
 
     /**
-     * @Route("/{linia_id}", name=".show", requirements={"linia_id"=Guid::PATTERN}))
+     * @Route("/{linia_id}", name=".show", requirements={"linia_id"=Guid::PATTERN})
      * @param Rasa $rasa
      * @return Response
      */

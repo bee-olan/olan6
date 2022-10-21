@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Mesto\UseCase\Okrugs\Edit;
 
-use App\Model\Rabota\Entity\U4astniki\Mesto\Okrug;
+use App\Model\Mesto\Entity\Okrugs\Okrug;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
