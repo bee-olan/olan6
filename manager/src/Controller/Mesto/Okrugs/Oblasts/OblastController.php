@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller\Mesto\Okrugs\Oblasts;
 
+use App\Model\Mesto\UseCase\Okrugs\Oblasts\Create;
+use App\Model\Mesto\UseCase\Okrugs\Oblasts\Edit;
+use App\Model\Mesto\UseCase\Okrugs\Oblasts\Remove;
 
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Id;
 
+use App\Annotation\Guid;
 use App\Model\Mesto\Entity\Okrugs\Okrug;
 use App\ReadModel\Mesto\Oblasts\OblastFetcher;
 use Psr\Log\LoggerInterface;
@@ -16,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;;
 
 /**
- * @Route("/mesto/okrug/{okrug_id}/oblast", name="mesto.okrug.oblast")
+ * @Route("/mesto/okrug/{id}/oblast", name="mesto.okrug.oblast")
  */
 class OblastController extends AbstractController
 {
@@ -28,18 +33,130 @@ class OblastController extends AbstractController
     }
 
     /**
-     * @Route("", name="")
+     * @Route("/", name="")
      * @param Okrug $okrug
      * @param OblastFetcher $oblasts
      * @return Response
      */
     public function index(Okrug $okrug, OblastFetcher $oblasts): Response
     {
-
         return $this->render('app/mesto/okrug/oblast/index.html.twig', [
             'okrug' => $okrug,
             'oblasts' => $oblasts->allOfOkrug($okrug->getId()->getValue()),
         ]);
+    }
+
+    /**
+     * @Route("/create", name=".create")
+     * @param Okrug $okrug
+     * @param Request $request
+     * @param Create\Handler $handler
+     * @return Response
+     */
+    public function create(Okrug $okrug, Request $request, Create\Handler $handler): Response
+    {
+        //$this->denyAccessUnlessGranted(OkrugAccess::MANAGE_MEMBERS, $okrug);
+        $command = new Create\Command($okrug->getId()->getValue());
+        $command->mesto = $okrug->getNomer();
+//dd($command->mesto);
+        $form = $this->createForm(Create\Form::class, $command);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+
+                $handler->handle($command);
+
+                return $this->redirectToRoute('mesto.okrug.oblast', ['id' => $okrug->getId()]);
+
+                } catch (\DomainException $e) {
+                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('app/mesto/okrug/oblast/create.html.twig', [
+            'okrug' => $okrug,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{oblast_id}/edit", name=".edit")
+     * @param Okrug $okrug
+     * @param string $id
+     * @param Request $request
+     * @param Edit\Handler $handler
+     * @return Response
+     */
+    public function edit(Okrug $okrug, string $id, Request $request, Edit\Handler $handler): Response
+    {
+        // $this->denyAccessUnlessGranted(OkrugAccess::MANAGE_MEMBERS, $okrug);
+
+        $oblast = $okrug->getOblast(new Id($id));
+
+        $command = Edit\Command::fromOblast($okrug, $oblast);
+        // dd($command);
+        $form = $this->createForm(Edit\Form::class, $command);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                // $command->mesto = $okrug->getNomer()."_".$command->nomer;
+
+                $handler->handle($command);
+                return $this->redirectToRoute('mesto.okrug.oblast.show', ['okrug_id' => $okrug->getId(), 'id' => $id]);
+            } catch (\DomainException $e) {
+                $this->errors->handle($e);
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('app/mesto/okrug/oblast/edit.html.twig', [
+            'okrug' => $okrug,
+            'oblast' => $oblast,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{oblast_id}/delete", name=".delete", methods={"POST"})
+     * @param Okrug $okrug
+     * @param string $id
+     * @param Request $request
+     * @param Remove\Handler $handler
+     * @return Response
+     */
+    public function delete(Okrug $okrug, string $id, Request $request, Remove\Handler $handler): Response
+    {
+        //$this->denyAccessUnlessGranted(OkrugAccess::MANAGE_MEMBERS, $okrug);
+
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            return $this->redirectToRoute('mesto.okrug.oblast', ['id' => $okrug->getId()]);
+        }
+
+        $oblast = $okrug->getOblast(new Id($id));
+
+        $command = new Remove\Command($okrug->getId()->getValue(), $oblast->getId()->getValue());
+
+        try {
+            $handler->handle($command);
+        } catch (\DomainException $e) {
+            $this->errors->handle($e);
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('mesto.okrug.oblast', ['id' => $okrug->getId()]);
+    }
+
+    /**
+     * @Route("/{okrug_id}", name=".show", requirements={"id"=Guid::PATTERN}))
+     * @param Okrug $okrug
+     * @return Response
+     */
+    public function show(Okrug $okrug): Response
+    {
+        return $this->redirectToRoute('mesto.okrug.oblast', ['id' => $okrug->getId()]);
     }
 
 }

@@ -25,7 +25,7 @@ class OblastFetcher
                 'nomer',
                 'mesto'
             )
-            ->from('rabota_u4astniki_mesto_oblasts')
+            ->from('mesto_okrug_oblasts')
             ->andWhere('okrug_id = :okrug')
             ->setParameter(':okrug', $okrug)
             ->orderBy('name')
@@ -51,7 +51,7 @@ class OblastFetcher
                 //     WHERE md.department_id = d.id AND ms.materi_id = :okrug
                 // ) AS members_count'
             )
-            ->from('rabota_u4astniki_mesto_oblasts', 'd')
+            ->from('mesto_okrug_oblasts', 'd')
             ->andWhere('okrug_id = :okrug')
             ->setParameter(':okrug', $okrug)
             ->orderBy('name')

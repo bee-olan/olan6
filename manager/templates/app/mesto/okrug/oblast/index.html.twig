@@ -21,8 +21,8 @@
  <h2>{{ okrug.nomer }} - {{ okrug.name }}</h2>
 
     <div class="controls">  
-        <a href="{{ path('mesto.oblast.create',
-            {'okrug_id': okrug.id}) }}" class="btn btn-success">Добавить Край\Область 
+        <a href="{{ path('mesto.okrug.oblast.create',
+            {'id': okrug.id}) }}" class="btn-my btn-success">Добавить Край\Область
         </a>
     </div>
 
@@ -32,7 +32,7 @@
             <tr>
                 <th>Номер</th>
                 <th>Название</th>
-                <th>Номер Округ\Край\Область</th>
+                <th>Номер Округ-Область</th>
                 <th>Действия</th>
             </tr>
             <tbody>
@@ -41,18 +41,18 @@
              {% for oblast in oblasts %}
                 <tr>
                     <td>{{ oblast.nomer }}</td>
-                    {# <td>{{ okrug.name }}_{{ oblast.name }}</td> #}
+
                     {# <td>{{ oblast.name }} -- {{ oblast.id }} </td> #}
                     <td>
-                         <a href="{{ path('mesto.oblast.raion', {'oblast_id': oblast.id}) }}">{{ oblast.name }} ***- добавить район</a>
-                        {# {{ oblast.name }} ***- добавить район #}
+                         <a href="{{ path('mesto.okrug.oblast.raion', {'oblast_id': oblast.id}) }}">{{ oblast.name }} ***- добавить район</a>
+
                     </td>                
                     
                    <td>{{ oblast.mesto }}</td>
                     <td>
                         <div class="d-flex flex-row">
-                            <a href="{{ path('mesto.oblast.edit', {'okrug_id': okrug.id, 'id': oblast.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
-                            <form action="{{ path('mesto.oblast.delete', {'okrug_id': okrug.id, 'id': oblast.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                            <a href="{{ path('mesto.okrug.oblast.edit', {'id': okrug.id, 'oblast_id': oblast.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
+                            <form action="{{ path('mesto.okrug.oblast.delete', {'id': okrug.id, 'oblast_id': oblast.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                                 <input type="hidden" name="token" value="{{ token }}" />
                                 <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>
                             </form>

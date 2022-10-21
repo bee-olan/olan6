@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Mesto\Entity\Okrugs\Oblasts;
 
+use App\Model\Mesto\Entity\Okrugs\Okrug;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -64,6 +65,17 @@ class Oblast
     {
         $this->name = $name;
         $this->nomer = $nomer;
+    }
+
+// равно Ли Имя
+    public function isNameEqual(string $name): bool
+    {
+        return $this->name === $name;
+    }
+
+    public function isNomerEqual(string $nomer): bool
+    {
+        return $this->nomer === $nomer;
     }
 
     public function getId(): Id
