@@ -17,26 +17,26 @@ class PlemMatkaRepository
 
     public function __construct(EntityManagerInterface $em)
     {
-        $this->repo = $em->getRepository(Project::class);
+        $this->repo = $em->getRepository(PlemMatka::class);
         $this->em = $em;
     }
 
-    public function get(Id $id): Project
+    public function get(Id $id): PlemMatka
     {
-        /** @var Project $project */
-        if (!$project = $this->repo->find($id->getValue())) {
-            throw new EntityNotFoundException('Project is not found.');
+        /** @var PlemMatka $plemmatka */
+        if (!$plemmatka = $this->repo->find($id->getValue())) {
+            throw new EntityNotFoundException('PlemMatka is not found.');
         }
-        return $project;
+        return $plemmatka;
     }
 
-    public function add(Project $project): void
+    public function add(PlemMatka $plemmatka): void
     {
-        $this->em->persist($project);
+        $this->em->persist($plemmatka);
     }
 
-    public function remove(Project $project): void
+    public function remove(PlemMatka $plemmatka): void
     {
-        $this->em->remove($project);
+        $this->em->remove($plemmatka);
     }
 }
