@@ -21,6 +21,9 @@ services:
     App\Model\User\Entity\User\UserRepository: ~
     App\Model\Mesto\Entity\Okrugs\OkrugRepository: ~
     App\Model\Mesto\Entity\Okrugs\Oblasts\OblastRepository: ~
+    App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\RaionRepository: ~
+
+    App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository: ~
 
     App\Model\Paseka\Entity\Rasas\RasaRepository: ~
     App\Model\Paseka\Entity\Rasas\Linias\LiniaRepository: ~

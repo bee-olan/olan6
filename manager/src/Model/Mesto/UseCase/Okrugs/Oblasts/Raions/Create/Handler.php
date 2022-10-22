@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Model\Mesto\UseCase\Okrugs\Oblasts\Raions\Create;
 
 use App\Model\Flusher;
-use App\Model\Mesto\Entity\Okrugs\Oblasts\OblastRepository;
-use App\Model\Mesto\UseCase\Okrugs\Oblasts\Raions\Id;
 
+use App\Model\Mesto\Entity\Okrugs\Oblasts\OblastRepository;
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\Id;
 use App\Model\Mesto\Entity\Okrugs\Oblasts\Id as OblastId;;
 
 
@@ -30,7 +30,7 @@ class Handler
             Id::next(),
             $command->name,
 			$command->nomer,
-			$command->mesto
+            $command->mesto = $command->mesto."-".$command->nomer
         );
 
         $this->flusher->flush();

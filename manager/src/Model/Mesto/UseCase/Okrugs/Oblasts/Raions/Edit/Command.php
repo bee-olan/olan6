@@ -6,7 +6,7 @@ namespace App\Model\Mesto\UseCase\Okrugs\Oblasts\Raions\Edit;
 
 
 use App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\Raion;
-use App\Model\Mesto\UseCase\Okrugs\Oblasts\Oblast;
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Oblast;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command

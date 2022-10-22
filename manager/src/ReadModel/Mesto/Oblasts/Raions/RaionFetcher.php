@@ -26,7 +26,7 @@ class RaionFetcher
                 'nomer',
                 'mesto'
             )
-            ->from('rabota_u4astniki_mesto_oblast_raions')
+            ->from('mesto_okrug_oblast_raions')
             ->andWhere('oblast_id = :oblast')
             ->setParameter(':oblast', $oblast)
             ->orderBy('name')
@@ -52,7 +52,7 @@ class RaionFetcher
                 //     WHERE md.department_id = d.id AND ms.materi_id = :okrug
                 // ) AS members_count'
             )
-            ->from('rabota_u4astniki_mesto_oblast_raions', 'd')
+            ->from('mesto_okrug_oblast_raions', 'd')
             ->andWhere('oblast_id = :oblast')
             ->setParameter(':oblast', $oblast)
             ->orderBy('name')

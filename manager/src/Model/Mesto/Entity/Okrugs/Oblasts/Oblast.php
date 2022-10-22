@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model\Mesto\Entity\Okrugs\Oblasts;
 
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\Raion;
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\Id as RaionId;
+
 use App\Model\Mesto\Entity\Okrugs\Okrug;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -46,6 +49,16 @@ class Oblast
      */
     private $mesto;
 
+    /**
+     * @var ArrayCollection|Raion[]
+     * @ORM\OneToMany(
+     *     targetEntity="App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\Raion",
+     *     mappedBy="oblast", orphanRemoval=true, cascade={"all"}
+     * )
+     * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private $raions;
+
     public function __construct(Okrug $okrug,
                                 Id $id,
                                 string $name,
@@ -58,13 +71,40 @@ class Oblast
         $this->name = $name;
         $this->nomer = $nomer;
         $this->mesto = $mesto;
-       // $this->raions = new ArrayCollection();
+        $this->raions = new ArrayCollection();
     }
 
     public function edit(string $name, string $nomer ): void
     {
         $this->name = $name;
         $this->nomer = $nomer;
+    }
+
+    //------------------------------
+    public function addRaion(  RaionId $id,
+                               string $name,
+                               string $nomer,
+                               string $mesto): void
+    {
+        foreach ($this->raions as $raion) {
+            if ($raion->isNameEqual($name)) {
+                throw new \DomainException('Такое название района - существует.');
+            }
+            if ($raion->isNomerEqual($nomer)) {
+                throw new \DomainException('Такой номер района - уже существует.');
+            }
+        }
+        $this->raions->add(new Raion($this, $id, $name, $nomer, $mesto));
+    }
+    public function editRaion(RaionId $id, string $name, $nomer, $mesto): void
+    {
+        foreach ($this->raions as $current) {
+            if ($current->getId()->isEqual($id)) {
+                $current->edit($name, $nomer, $mesto);
+                return;
+            }
+        }
+        throw new \DomainException('Названия района - нет в базе данных .');
     }
 
 // равно Ли Имя
@@ -96,5 +136,20 @@ class Oblast
     public function getMesto(): string
     {
         return $this->mesto;
+    }
+
+    public function getRaions()
+    {
+        return $this->raions->toArray();
+    }
+
+    public function getRaion(RaionId $id): Raion
+    {
+        foreach ($this->raions as $raion) {
+            if ($raion->getId()->isEqual($id)) {
+                return $raion;
+            }
+        }
+        throw new \DomainException('raion is not found.');
     }
 }

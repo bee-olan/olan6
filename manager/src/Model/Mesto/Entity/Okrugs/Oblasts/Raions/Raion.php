@@ -4,25 +4,27 @@ declare(strict_types=1);
 
 namespace App\Model\Mesto\Entity\Okrugs\Oblasts\Raions;
 
-use App\Model\Mesto\UseCase\Okrugs\Oblasts\Oblast;
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Oblast;
+//use App\Model\Mesto\Entity\Okrugs\Oblasts\Id;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="rabota_u4astniki_mesto_oblast_raions")
+ * @ORM\Table(name="mesto_okrug_oblast_raions")
  */
 class Raion
 {
     /**
      * @var Oblast
-     * @ORM\ManyToOne(targetEntity="App\Model\Rabota\Entity\U4astniki\Mesto\Oblasts\Oblast", inversedBy="raions")
+     * @ORM\ManyToOne(targetEntity="App\Model\Mesto\Entity\Okrugs\Oblasts\Oblast", inversedBy="raions")
      * @ORM\JoinColumn(name="oblast_id", referencedColumnName="id", nullable=false)
      */
     private $oblast;
 
     /**
      * @var Id
-     * @ORM\Column(type="rabota_u4astniki_mesto_oblast_raion_id")
+     * @ORM\Column(type="mesto_okrug_oblast_raion_id")
      * @ORM\Id
      */
     private $id;
