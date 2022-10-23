@@ -2,13 +2,14 @@
 
 {% block title %}Create{% endblock %}
 
- {% block breadcrumbs %}
-       
-                <a href="{{ path('home') }}">Главная</a>
-                <a href="{{ path('paseka.rasas') }}">Расы </a>
-                <span class="aktiv ">Добавить другую линию</span> 
-           
-    {% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Раса -- {{ rasa.title }}</a></li>
+        <li class="breadcrumb-item active">Добавить другую лини</li>
+    </ol>
+{% endblock %}
 
 {% block body %}
 

@@ -29,7 +29,7 @@ class Handler
             $command->sort
         );
 
-        $this->projects->add($plemmatka);
+        $this->plemmatkas->add($plemmatka);
 
         $this->flusher->flush();
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Create;
 
+use App\Model\Paseka\Entity\Rasas\Linias\Linia;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
@@ -42,5 +43,15 @@ class Command
     public function __construct(string $linia)
     {
         $this->linia = $linia;
+    }
+    public static function fromLinia(Linia $linia, int $maxSort): self
+    {
+
+        $command = new self($linia->getId()->getValue());
+        $command->sortNomer = $maxSort;
+        $command->name = "н-".$maxSort;
+        $command->title = $linia->getName()."_".$command->name;
+
+        return $command;
     }
 }

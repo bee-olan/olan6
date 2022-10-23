@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\UseCase\Matkas\PlemMatka\Edit;
+namespace App\Model\Paseka\UseCase\Matkas\PlemMatka\Create;
 
 
 use Symfony\Component\Form\AbstractType;

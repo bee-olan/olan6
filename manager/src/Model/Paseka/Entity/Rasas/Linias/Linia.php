@@ -97,7 +97,7 @@ class Linia
 
 	
 public function addNomer(NomerId $id,
-                                Sparing $sparing, 
+                               // Sparing $sparing,
                                 string $name, 
                                 string $nameStar, 
                                 string $title,
@@ -113,7 +113,9 @@ public function addNomer(NomerId $id,
                 throw new \DomainException('Такая запись уже существует.');
             }
         }
-        $this->nomers->add(new Nomer($this, $id, $sparing, $name, $nameStar, $title, $sortNomer));
+        $this->nomers->add(new Nomer($this, $id,
+           // $sparing,
+            $name, $nameStar, $title, $sortNomer));
     }
 
     public function editNomer(NomerId $id, string $name, string $nameStar): void

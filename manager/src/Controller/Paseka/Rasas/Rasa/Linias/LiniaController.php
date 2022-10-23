@@ -62,9 +62,7 @@ class LiniaController extends AbstractController
        $maxSort = $linias->getMaxSortLinia($rasa->getId()->getValue()) + 1;
 
        $command = Create\Command::fromRasa($rasa, $maxSort);// заполнение  значениями из Rasa
-//        $command = new Create\Command($rasa->getId()->getValue());
-//        $command->title = $rasa->getName();
-//		$command->sortLinia = $linias->getMaxSortLinia($rasa->getId()->getValue()) + 1;
+
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
 //dd($command);

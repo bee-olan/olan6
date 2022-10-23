@@ -59,11 +59,11 @@ class NomerController extends AbstractController
      */
     public function create(Linia $linia, NomerFetcher $nomers, Request $request, Create\Handler $handler): Response
     {
-        // $this->denyAccessUnlessGranted(LiniaAccess::MANAGE_MEMBERS, $linia);
-        $command = new Create\Command($linia->getId()->getValue());
-        $command->title = $linia->getTitle();
-    $command->sortNomer = $nomers->getMaxSortNomer($linia->getId()->getValue()) + 1;
-//dd($command->sortNomer);
+        $maxSort = $nomers->getMaxSortNomer($linia->getId()->getValue()) + 1;
+
+        $command = Create\Command::fromLinia($linia, $maxSort);// заполнение  значениями из
+
+
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
 
@@ -80,6 +80,7 @@ class NomerController extends AbstractController
         return $this->render('app/paseka/rasas/linias/nomers/create.html.twig', [
             'linia' => $linia,
             'form' => $form->createView(),
+            'name' => $command->title,
         ]);
     }
 

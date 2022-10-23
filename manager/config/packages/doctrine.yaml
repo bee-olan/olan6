@@ -31,8 +31,8 @@ doctrine:
 
             paseka_uchasties_group_id: 'App\Model\Paseka\Entity\Uchasties\Group\IdType'
             paseka_uchasties_uchastie_id: 'App\Model\Paseka\Entity\Uchasties\Uchastie\IdType'
-            paseka_uchasties_uchastie_status: 'App\Model\Paseka\Entity\Uchasties\Uchastie\EmailType'
-            paseka_uchasties_uchastie_email: 'App\Model\Paseka\Entity\Uchasties\Uchastie\StatusType'
+            paseka_uchasties_uchastie_status: 'App\Model\Paseka\Entity\Uchasties\Uchastie\StatusType'
+            paseka_uchasties_uchastie_email: 'App\Model\Paseka\Entity\Uchasties\Uchastie\EmailType'
 
             paseka_uchasties_persona_id: 'App\Model\Paseka\Entity\Uchasties\Personas\IdType'
 

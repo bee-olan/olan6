@@ -69,7 +69,7 @@ class NomerFetcher
             ->from('paseka_rasa_linia_nomers', 'd')
             ->andWhere('linia_id = :linia')
             ->setParameter(':linia', $linia)
-            ->innerJoin('d', 'paseka_rasa_linia_nomer_sparings', 's', 'd.sparing_id = s.id')
+           // ->innerJoin('d', 'paseka_rasa_linia_nomer_sparings', 's', 'd.sparing_id = s.id')
             ->orderBy('name')
             ->orderBy('name_star')
             ->orderBy('title')

@@ -28,12 +28,12 @@ class Nomer
      */
     private $id;
 	
-	 /**
-     * @var Sparing
-     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\Sparing")
-     * @ORM\JoinColumn(name="sparing_id", referencedColumnName="id", nullable=false)
-     */
-    private $sparing;
+//	 /**
+//     * @var Sparing
+//     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\Sparing")
+//     * @ORM\JoinColumn(name="sparing_id", referencedColumnName="id", nullable=false)
+//     */
+//    private $sparing;
 
     /**
      * @var string
@@ -60,7 +60,7 @@ class Nomer
     private $sortNomer;
 
     public function __construct(Linia $linia, Id $id,
-								Sparing $sparing,
+								//Sparing $sparing,
                                 string $name,
                                 string $nameStar,
                                 string $title, 
@@ -69,7 +69,7 @@ class Nomer
     {
         $this->linia = $linia;
         $this->id = $id;
-		$this->sparing = $sparing;
+		//$this->sparing = $sparing;
         $this->name = $name;
         $this->nameStar = $nameStar;
         $this->title = $title;
@@ -85,10 +85,10 @@ class Nomer
 
     }
 	
-	public function move(Sparing $sparing): void
-    {
-        $this->sparing = $sparing;
-    }
+//	public function move(Sparing $sparing): void
+//    {
+//        $this->sparing = $sparing;
+//    }
 	
 // равно Ли Имя
     public function isNameEqual(string $name): bool
@@ -111,10 +111,10 @@ class Nomer
         return $this->id;
     }
 	
-	public function getSparing(): Sparing
-    {
-        return $this->sparing;
-    }
+//	public function getSparing(): Sparing
+//    {
+//        return $this->sparing;
+//    }
 
     public function getName(): string
     {

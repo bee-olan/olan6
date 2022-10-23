@@ -2,14 +2,15 @@
 
 {% block title %}Nomer{% endblock %}
 
-{#   {% block kroxi %}  #}
-{#       #}
-{#		<a href="{{ path('home') }}">Главная</a>#}
-{#		<a href="{{ path('paseka.rasas') }}">Раса -- </a>#}
-{#		<a href="{{ path('paseka.rasas') }}">Линия -- {{ linia.name }}</a>#}
-{#		<span class="aktiv ">Номера зарегистрированные</span> #}
-{#   #}
-{#    {% endblock %}#}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Расы </a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Линия -- {{ linia.name }}</a></li>
+        <li class="breadcrumb-item active">Номера зарегистрированные</li>
+    </ol>
+{% endblock %}
+
 
 {% block body %}
 
@@ -43,8 +44,8 @@
 					<li class="rasa__name rasa__name--wid5">{{ nomer.sparing }}</li>
                     <li class="rasa__name rasa__name--wid15 b-color ">{{ nomer.title }}_{{ nomer.sparing }}</li>  
                      <li>
-                        <a href="{{ path('paseka.rasas.linias.nomers', {'linia_id': linia.id}) }}"
-							class="btn-my btn-my--sm">Добавить <strong class="stro stro--kras">  ЗаводМатку </strong>
+                        <a href="{{ path('paseka.matkas.create', { 'id': nomer.id}) }}"
+							class="btn-my btn-my--sm">Добавить как<strong class="stro stro--kras"> ПлемМатку</strong>
                         </a>
                      </li>                     
                 </ul>  
