@@ -39,14 +39,15 @@ class InfoRasaController extends AbstractController
      */
     public function infoRasa(RasaFetcher $fetcher): Response
     {
-     //   $rasas = $fetcher->all();
 		
     $rasas = $fetcher->allRasaLinNom();
-//dd($rasas);
     $rasaLsNs = [];
     foreach ($rasas as $item) {       
-         $rasaLsNs[$item['name']][$item['linias']][$item['nomers']] = $item['nomer_title'];
+         $rasaLsNs[$item['name']][$item['linias']][$item['nomers']][$item['nomer_id']] = $item['nomer_title'];
+       // $nomerId[$item['nomers']] = $item['nomer_id'];
+
     }
+
 //dd($rasaLsNs);
     return $this->render('app/paseka/rasas/info_rasa.html.twig',
 								compact('rasaLsNs'));

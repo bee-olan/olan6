@@ -69,7 +69,7 @@ class NomerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-				$command->title =  $command->title."_".$command->name;
+				//$command->title =  $command->title."_".$command->name;
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.rasas.linias.nomers', ['linia_id' => $linia->getId()]);
             } catch (\DomainException $e) {
