@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Paseka\Entity\Rasas\Linias\Nomers;
 
 use App\Model\Paseka\Entity\Rasas\Linias\Linia;
-use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\Sparing;
+//use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\Sparing;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

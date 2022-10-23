@@ -27,8 +27,8 @@ services:
     App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository: ~
 
     App\Model\Paseka\Entity\Rasas\RasaRepository: ~
-    App\Model\Paseka\Entity\Rasas\Linias\LiniaRepository: ~
-    App\Model\Paseka\Entity\Rasas\Linias\Nomers\NomerRepository: ~
+#    App\Model\Paseka\Entity\Rasas\Linias\LiniaRepository: ~
+#    App\Model\Paseka\Entity\Rasas\Linias\Nomers\NomerRepository: ~
 
 
     App\Model\Paseka\Entity\Uchasties\Group\GroupRepository: ~
