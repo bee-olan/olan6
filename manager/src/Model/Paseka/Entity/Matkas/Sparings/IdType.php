@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings;
+namespace App\Model\Paseka\Entity\Matkas\Sparings;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
 
 class IdType extends GuidType
 {
-    public const NAME = 'paseka_rasa_linia_nomer_sparing_id';
+    public const NAME = 'paseka_matkas_sparing_id';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {

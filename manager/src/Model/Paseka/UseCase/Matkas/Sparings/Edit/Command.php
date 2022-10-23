@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Sparings\Edit;
+namespace App\Model\Paseka\UseCase\Matkas\Sparings\Edit;
 
-use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\Sparing;
+use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command

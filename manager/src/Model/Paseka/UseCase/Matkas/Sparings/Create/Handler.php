@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Sparings\Create;
+namespace App\Model\Paseka\UseCase\Matkas\Sparings\Create;
 
 use App\Model\Flusher;
-use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\Sparing;
-use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\Id;
-use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\SparingRepository;
+use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
+use App\Model\Paseka\Entity\Matkas\Sparings\Id;
+use App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository;
 
 class Handler
 {

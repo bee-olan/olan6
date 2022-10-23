@@ -24,12 +24,13 @@ services:
     App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\RaionRepository: ~
 
     App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository: ~
+    App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository: ~
 
     App\Model\Paseka\Entity\Rasas\RasaRepository: ~
     App\Model\Paseka\Entity\Rasas\Linias\LiniaRepository: ~
     App\Model\Paseka\Entity\Rasas\Linias\Nomers\NomerRepository: ~
 
-    App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\SparingRepository: ~
+
     App\Model\Paseka\Entity\Uchasties\Group\GroupRepository: ~
     App\Model\Paseka\Entity\Uchasties\Uchastie\UchastieRepository: ~
 

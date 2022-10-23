@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Paseka\Rasas\Rasa\Linias\Nomers;
+namespace App\Controller\Paseka\Matkas;
 
-use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings\Sparing;
-use App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Sparings\Create;
-use App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Sparings\Edit;
-use App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Sparings\Remove;
-use App\ReadModel\Paseka\Rasas\Linias\Nomers\SparingFetcher;
+use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
+use App\Model\Paseka\UseCase\Matkas\Sparings\Create;
+use App\Model\Paseka\UseCase\Matkas\Sparings\Edit;
+use App\Model\Paseka\UseCase\Matkas\Sparings\Remove;
+use App\ReadModel\Paseka\Matkas\SparingFetcher;
 use App\Controller\ErrorHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 // * @IsGranted("ROLE_Paseka_MANAGE_MATERIS")
 /**
- * @Route("/paseka/rasas/linias/nomers/sparings", name="paseka.rasas.linias.nomers.sparings")
+ * @Route("/paseka/matkas/sparings", name="paseka.matkas.sparings")
  */
 class SparingsController extends AbstractController
 {
@@ -38,7 +38,7 @@ class SparingsController extends AbstractController
     {
         $sparings = $fetcher->all();
 
-        return $this->render('app/paseka/rasas/linias/nomers/sparings/index.html.twig', compact('sparings'));
+        return $this->render('app/paseka/matkas/sparings/index.html.twig', compact('sparings'));
     }
 
     /**
@@ -57,14 +57,14 @@ class SparingsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('paseka.rasas.linias.nomers.sparings');
+                return $this->redirectToRoute('paseka.matkas.sparings');
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
         }
 
-        return $this->render('app/paseka/rasas/linias/nomers/sparings/create.html.twig', [
+        return $this->render('app/paseka/matkas/sparings/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -86,14 +86,14 @@ class SparingsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('paseka.rasas.linias.nomers.sparings.show', ['id' => $sparing->getId()]);
+                return $this->redirectToRoute('paseka.matkas.sparings.show', ['id' => $sparing->getId()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
         }
 
-        return $this->render('app/paseka/rasas/linias/nomers/sparings/edit.html.twig', [
+        return $this->render('app/paseka/matkas/sparings/edit.html.twig', [
             'sparing' => $sparing,
             'form' => $form->createView(),
         ]);
@@ -109,20 +109,20 @@ class SparingsController extends AbstractController
     public function delete(Sparing $sparing, Request $request, Remove\Handler $handler): Response
     {
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
-            return $this->redirectToRoute('paseka.rasas.linias.nomers.sparings.show', ['id' => $sparing->getId()]);
+            return $this->redirectToRoute('paseka.matkas.sparings.show', ['id' => $sparing->getId()]);
         }
 
         $command = new Remove\Command($sparing->getId()->getValue());
 
         try {
             $handler->handle($command);
-            return $this->redirectToRoute('paseka.rasas.linias.nomers.sparings');
+            return $this->redirectToRoute('paseka.matkas.sparings');
         } catch (\DomainException $e) {
             $this->errors->handle($e);
             $this->addFlash('error', $e->getMessage());
         }
 
-        return $this->redirectToRoute('paseka.rasas.linias.nomers.sparings.show', ['id' => $sparing->getId()]);
+        return $this->redirectToRoute('paseka.matkas.sparings.show', ['id' => $sparing->getId()]);
     }
 
     /**
@@ -131,6 +131,6 @@ class SparingsController extends AbstractController
      */
     public function show(): Response
     {
-        return $this->redirectToRoute('paseka.rasas.linias.nomers.sparings');
+        return $this->redirectToRoute('paseka.matkas.sparings');
     }
 }

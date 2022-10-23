@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ReadModel\Paseka\Rasas\Linias\Nomers;
+namespace App\ReadModel\Paseka\Matkas;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
@@ -23,7 +23,7 @@ class SparingFetcher
                 'id',
                 'name'	
             )
-            ->from('paseka_rasa_linia_nomer_sparings')
+            ->from('paseka_matkas_sparings')
             ->orderBy('name')
             ->execute();
 
@@ -36,10 +36,11 @@ class SparingFetcher
             ->select(
                 'g.id',
                 'g.name',
-                'g.title' ,
-                '(SELECT COUNT(*) FROM paseka_rasa_linia_nomers n WHERE n.sparing_id = g.id) AS nomers'
+                'g.title'
+//                ,
+//                '(SELECT COUNT(*) FROM paseka_rasa_linia_nomers n WHERE n.sparing_id = g.id) AS nomers'
             )
-            ->from('paseka_rasa_linia_nomer_sparings', 'g')
+            ->from('paseka_matkas_sparings', 'g')
             ->orderBy('name')
 			->orderBy('title')
             ->execute();

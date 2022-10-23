@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Sparings\Remove;
+namespace App\Model\Paseka\UseCase\Matkas\Sparings\Remove;
 
 use Symfony\Component\Validator\Constraints as Assert;
 

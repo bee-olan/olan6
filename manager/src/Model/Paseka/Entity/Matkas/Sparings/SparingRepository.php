@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings;
+namespace App\Model\Paseka\Entity\Matkas\Sparings;
 
 use App\Model\EntityNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;

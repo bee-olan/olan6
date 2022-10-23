@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\Entity\Rasas\Linias\Nomers\Sparings;
+namespace App\Model\Paseka\Entity\Matkas\Sparings;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="paseka_rasa_linia_nomer_sparings")
+ * @ORM\Table(name="paseka_matkas_sparings")
  */
 class Sparing
 {
     /**
      * @var Id
-     * @ORM\Column(type="paseka_rasa_linia_nomer_sparing_id")
+     * @ORM\Column(type="paseka_matkas_sparing_id")
      * @ORM\Id
      */
     private $id;

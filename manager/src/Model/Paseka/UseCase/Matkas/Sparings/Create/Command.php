@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Sparings\Create;
+namespace App\Model\Paseka\UseCase\Matkas\Sparings\Create;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
