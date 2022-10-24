@@ -30,24 +30,24 @@
                     {# <li class="rasa__name">{{ nomer.name }}</li> #}
                     <li class="rasa__name">{{ nomer.name_star }}</li>
                                   
-{#                    <li class="rasa__name rasa__name--wid5">#}
-{#                        <a href="{{ path('paseka.rasas.linias.nomers.edit', {'linia_id': linia.id, 'id': nomer.id}) }}"#}
-{#                            class="btn-my "><span class="fa fa-pencil"></span></a>#}
-{#                    </li>#}
-{#                    <li class="rasa__name">#}
-{#                        <form action="{{ path('paseka.rasas.linias.nomers.delete', {'linia_id': linia.id, 'id': nomer.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">#}
-{#                            <input type="hidden" name="token" value="{{ token }}" />#}
-{#                            <button type="submit" class="btn-my btn-my--smm "><span class="fa fa-trash"></span></button>#}
-{#                        </form>#}
-{#                    </li>#}
+                    <li class="rasa__name rasa__name--wid5">
+                        <a href="{{ path('paseka.rasas.linias.nomers.edit', {'linia_id': linia.id, 'id': nomer.id}) }}"
+                            class="btn-my "><span class="fa fa-pencil"></span></a>
+                    </li>
+                    <li class="rasa__name">
+                        <form action="{{ path('paseka.rasas.linias.nomers.delete', {'linia_id': linia.id, 'id': nomer.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">
+                            <input type="hidden" name="token" value="{{ token }}" />
+                            <button type="submit" class="btn-my btn-my--smm "><span class="fa fa-trash"></span></button>
+                        </form>
+                    </li>
                     <li class="rasa__name rasa__name--wid5">н-{{ nomer.sort_nomer }}</li>
 
                     <li class="rasa__name rasa__name--wid15 b-color ">{{ nomer.title }}</li>
-{#                     <li>#}
-{#                        <a href="{{ path('paseka.matkas.create', { 'id': nomer.id}) }}"#}
-{#							class="btn-my btn-my--sm">Добавить как<strong class="stro stro--kras"> ПлемМатку</strong>#}
-{#                        </a>#}
-{#                     </li>                     #}
+                     <li>
+                        <a href="{{ path('paseka.matkas.create', { 'id': nomer.id}) }}"
+							class="btn-my btn-my--sm">Добавить как<strong class="stro stro--kras"> ПлемМатку</strong>
+                        </a>
+                     </li>
                 </ul>  
                 {% endfor %}
             </div>

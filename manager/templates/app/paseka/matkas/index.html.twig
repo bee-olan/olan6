@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Projects{% endblock %}
+{% block title %}ПлемМатка{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">Пасека</a></li>
-        <li class="breadcrumb-item active">Projects</li>
+        <li class="breadcrumb-item active">ПлемМатка</li>
     </ol>
 {% endblock %}
 
@@ -45,8 +45,8 @@
             <tbody>
             {% for plemmatka in pagination %}
                 <tr>
-{#                    <td><a href="{{ path('paseka.matkas.plemmatka.show', {'id': plemmatka.id}) }}">{{ plemmatka.name }}</a></td>#}
-                    <td>  {{ plemmatka.name }}</td>
+                    <td><a href="{{ path('paseka.matkas.plemmatka.show', {'id': plemmatka.id}) }}">{{ plemmatka.name }}</a></td>
+{#                    <td>  {{ plemmatka.name }}</td>#}
 
                     <td>{{ plemmatka_status(plemmatka.status) }}</td>
                 </tr>

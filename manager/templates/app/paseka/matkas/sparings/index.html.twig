@@ -21,7 +21,8 @@
                       
            
                 <ul class="sparing__data">  
-                    <li class="sparing__name">{{ sparing.name }} ( {{ sparing.nomers }} )</li>
+                   <li class="sparing__name">{{ sparing.name }}  {#  ( {{ sparing.nomers }} )#}
+                    </li>
                     <li class="sparing__name sparing__name--wi25">  {{ sparing.title }}  </li>               
                     <li class="sparing__name sparing__name--wi10">
                         <a href="{{ path('paseka.matkas.sparings.edit', {'id': sparing.id}) }}" class="btn btn-sm "><span class="fa fa-pencil"></span></a>

@@ -73,7 +73,7 @@ class PlemMatkasController extends AbstractController
                            Create\Handler $handler): Response
     {
 //        $this->denyAccessUnlessGranted('ROLE_WORK_MANAGE_PROJECTS');
-        //$nomer = $nomers->get(new Id(id));
+
         $nomer = $nomers->get(new Id($id));
 
         $command = new Create\Command();

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Matkas\PlemMatka;
 
+use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,25 +19,36 @@ class PlemMatka
      * @ORM\Id
      */
     private $id;
+
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     private $name;
+
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
     private $sort;
+
     /**
      * @var Status
      * @ORM\Column(type="paseka_matkas_plemmatka_status", length=16)
      */
     private $status;
 
-    public function __construct(Id $id, string $name, int $sort)
+    /**
+     * @var Sparing
+     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Matkas\Sparings\Sparing")
+     * @ORM\JoinColumn(name="sparing_id", referencedColumnName="id", nullable=false)
+     */
+    private $sparing;
+
+    public function __construct( Id $id, Sparing $sparing, string $name, int $sort)
     {
         $this->id = $id;
+        $this->sparing = $sparing;
         $this->name = $name;
         $this->sort = $sort;
         $this->status = Status::active();
@@ -46,6 +58,11 @@ class PlemMatka
     {
         $this->name = $name;
         $this->sort = $sort;
+    }
+
+    public function move(Sparing $sparing): void
+    {
+        $this->sparing = $sparing;
     }
 
     public function archive(): void
@@ -77,6 +94,11 @@ class PlemMatka
     public function getId(): Id
     {
         return $this->id;
+    }
+
+    public function getSparing(): Sparing
+    {
+        return $this->sparing;
     }
 
     public function getName(): string

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ plemmatka.name }}{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">Пасека</a></li>
+        <li class="breadcrumb-item active">ПлемМатка</li>
+        <li class="breadcrumb-item active">{{ plemmatka.name }}</li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}

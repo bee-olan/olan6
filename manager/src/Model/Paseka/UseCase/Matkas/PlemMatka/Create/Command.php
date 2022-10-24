@@ -16,4 +16,10 @@ class Command
      * @Assert\NotBlank()
      */
     public $sort;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
+    public $sparing;
 }
