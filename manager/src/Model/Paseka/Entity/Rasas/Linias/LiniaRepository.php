@@ -21,6 +21,7 @@ class LiniaRepository
         $this->em = $em;
     }
 
+
     public function has(Id $id): bool
     {
         return $this->repo->createQueryBuilder('t')

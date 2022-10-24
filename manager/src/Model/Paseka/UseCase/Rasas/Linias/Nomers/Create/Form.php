@@ -22,17 +22,20 @@ class Form extends AbstractType
 //        $this->sparings = $sparings;
 //    }
 
+//            ->add('sparing', Type\ChoiceType::class, ['choices' => array_flip($this->sparings->assoc())])
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-//            ->add('sparing', Type\ChoiceType::class, ['choices' => array_flip($this->sparings->assoc())])
+
             ->add('nameStar', Type\TextType::class, array(
-        'label' => 'Добавить название номера из документов или личных архивных данных',
-        'attr' => [
-            'placeholder' => 'Введите название номера ....'
-        ]
-            )) ;
+                'label' => 'Добавить название номераааа из документов или личных архивных данных',
+                'attr' => [
+                    'placeholder' => 'Введите название линии ....'
+                ]
+            ))
+
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -42,3 +45,4 @@ class Form extends AbstractType
         ));
     }
 }
+

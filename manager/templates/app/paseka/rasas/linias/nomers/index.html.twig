@@ -30,35 +30,35 @@
                     {# <li class="rasa__name">{{ nomer.name }}</li> #}
                     <li class="rasa__name">{{ nomer.name_star }}</li>
                                   
-                    <li class="rasa__name rasa__name--wid5">
-                        <a href="{{ path('paseka.rasas.linias.nomers.edit', {'linia_id': linia.id, 'id': nomer.id}) }}"
-                            class="btn-my "><span class="fa fa-pencil"></span></a>
-                    </li>
-                    <li class="rasa__name">
-                        <form action="{{ path('paseka.rasas.linias.nomers.delete', {'linia_id': linia.id, 'id': nomer.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">
-                            <input type="hidden" name="token" value="{{ token }}" />
-                            <button type="submit" class="btn-my btn-my--smm "><span class="fa fa-trash"></span></button>
-                        </form>
-                    </li>
+{#                    <li class="rasa__name rasa__name--wid5">#}
+{#                        <a href="{{ path('paseka.rasas.linias.nomers.edit', {'linia_id': linia.id, 'id': nomer.id}) }}"#}
+{#                            class="btn-my "><span class="fa fa-pencil"></span></a>#}
+{#                    </li>#}
+{#                    <li class="rasa__name">#}
+{#                        <form action="{{ path('paseka.rasas.linias.nomers.delete', {'linia_id': linia.id, 'id': nomer.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">#}
+{#                            <input type="hidden" name="token" value="{{ token }}" />#}
+{#                            <button type="submit" class="btn-my btn-my--smm "><span class="fa fa-trash"></span></button>#}
+{#                        </form>#}
+{#                    </li>#}
                     <li class="rasa__name rasa__name--wid5">н-{{ nomer.sort_nomer }}</li>
-					<li class="rasa__name rasa__name--wid5">{{ nomer.sparing }}</li>
-                    <li class="rasa__name rasa__name--wid15 b-color ">{{ nomer.title }}_{{ nomer.sparing }}</li>  
-                     <li>
-                        <a href="{{ path('paseka.matkas.create', { 'id': nomer.id}) }}"
-							class="btn-my btn-my--sm">Добавить как<strong class="stro stro--kras"> ПлемМатку</strong>
-                        </a>
-                     </li>                     
-                </ul>  
-         {% endfor %}                
-    </div>
 
-		<div class = "rasa__content"  >
-			<a href="{{ path('paseka.rasas.linias.nomers.create', {'linia_id': linia.id}) }}"
-				class="btn-my btn-my--sm">Добавить другой
-                 <strong class="stro stro--kras"> номер </strong> в БД</a>
-		</div>
-	</div>		
-</div>
+                    <li class="rasa__name rasa__name--wid15 b-color ">{{ nomer.title }}</li>
+{#                     <li>#}
+{#                        <a href="{{ path('paseka.matkas.create', { 'id': nomer.id}) }}"#}
+{#							class="btn-my btn-my--sm">Добавить как<strong class="stro stro--kras"> ПлемМатку</strong>#}
+{#                        </a>#}
+{#                     </li>                     #}
+                </ul>  
+                {% endfor %}
+            </div>
+
+            <div class = "rasa__content"  >
+                <a href="{{ path('paseka.rasas.linias.nomers.create', {'linia_id': linia.id}) }}"
+                    class="btn-my btn-my--sm">Добавить другой
+                     <strong class="stro stro--kras"> номер </strong> в БД</a>
+            </div>
+	    </div>
+    </div>
 
 </article><!-- rasas -->
 

@@ -56,9 +56,7 @@ class NomerFetcher
                 'd.name',
                 'd.name_star',
                 'd.title',
-                'd.sort_nomer',
-               // 'd.sparing_id'
-                's.name as sparing'
+                'd.sort_nomer'
                 // '(
                 //     SELECT COUNT(ms.member_id)
                 //     FROM work_projects_project_memberships ms
@@ -69,7 +67,6 @@ class NomerFetcher
             ->from('paseka_rasa_linia_nomers', 'd')
             ->andWhere('linia_id = :linia')
             ->setParameter(':linia', $linia)
-           // ->innerJoin('d', 'paseka_rasa_linia_nomer_sparings', 's', 'd.sparing_id = s.id')
             ->orderBy('name')
             ->orderBy('name_star')
             ->orderBy('title')
