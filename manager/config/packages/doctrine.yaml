@@ -22,7 +22,7 @@ doctrine:
             paseka_matkas_plemmatka_status: 'App\Model\Paseka\Entity\Matkas\PlemMatka\StatusType'
 
             mesto_okrug_id: 'App\Model\Mesto\Entity\Okrugs\IdType'
-#            mesto_okrug_oblast_id: 'App\Model\Mesto\Entity\Okrugs\Oblasts\IdType'
+            mesto_okrug_oblast_id: 'App\Model\Mesto\Entity\Okrugs\Oblasts\IdType'
 #            mesto_okrug_oblast_raion_id: 'App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\IdType'
 
             paseka_rasa_id: 'App\Model\Paseka\Entity\Rasas\IdType'
