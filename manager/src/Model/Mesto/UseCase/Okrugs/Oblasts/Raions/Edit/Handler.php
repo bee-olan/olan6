@@ -22,7 +22,7 @@ class Handler
     public function handle(Command $command): void
     {
         $raion = $this->raions->get(new Id($command->id));
-
+        $command->mesto = $command->mesto."-".$command->nomer;
         $raion->edit($command->name, $command->nomer, $command->mesto);
 
         $this->flusher->flush();

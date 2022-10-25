@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Край\Область{% endblock %}
+{% block title %}Районы{% endblock %}
 
 
 {% block breadcrumbs %}
@@ -8,9 +8,11 @@
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
 {#        <li class="breadcrumb-item"><a href="{{ path('rabota.u4astniki.mestos.mesto') }}">Номер места расп-ния</a></li>#}
 {#         <li class="breadcrumb-item"><a href="{{ path('rabota.u4astniki.mestos.mesto') }}">Округ</a></li>#}
-{#         <li class="breadcrumb-item">{{ okrug.name }}</li>#}
-{#        <li class="breadcrumb-item active"> <a href="{{ path('rabota.u4astniki.mestos.mesto.oblast.create', #}
-{#            {'okrug_id': okrug.id}) }}" > Добавить Область </a>#}
+         {# <li class="breadcrumb-item">{{ okrug.name }}</li> #}
+         <li class="breadcrumb-item active"> {{ oblast.name }} 
+        </li> 
+{#		<li class="breadcrumb-item active"> <a href="{{ path('mesto.okrug.oblast.raion.create',#}
+{#            {'id': oblast.id}) }}" > Добавить Район </a>#}
 {#        </li>#}
     </ol>
 {% endblock %}
@@ -18,11 +20,11 @@
 {% block body %}
 
 
- <h2>{{ okrug.nomer }} - {{ okrug.name }}</h2>
+ <h2>{{ oblast.nomer }} - {{ oblast.name }}</h2>
 
     <div class="controls">  
-        <a href="{{ path('mesto.okrug.oblast.create',
-            {'id': okrug.id}) }}" class="btn-my btn-success">Добавить Край\Область
+        <a href="{{ path('mesto.okrug.oblast.raion.create',
+            {'id': oblast.id}) }}" class="btn btn-success">Добавить Районы
         </a>
     </div>
 
@@ -32,30 +34,30 @@
             <tr>
                 <th>Номер</th>
                 <th>Название</th>
-                <th>Номер Округ-Область</th>
+                <th>Номер Районы</th>
                 <th>Действия</th>
             </tr>
             <tbody>
             {% set token = csrf_token('delete') %}
            
-             {% for oblast in oblasts %}
+             {% for raion in raions %}
                 <tr>
-                    <td>{{ oblast.nomer }}</td>
+                    <td>{{ raion.nomer }}</td>
 
                     <td>
-                         <a href="{{ path('mesto.okrug.oblast.raion', {'id': oblast.id}) }}">{{ oblast.name }} ***- добавить район</a>
 
-                    </td>
-
-                   <td>{{ oblast.mesto }}</td>
+                        {{ raion.name }} 
+                    </td>                
+                    
+                   <td>{{ raion.mesto }}</td>
                     <td>
-                        <div class="d-flex flex-row">
-                            <a href="{{ path('mesto.okrug.oblast.edit', {'id': okrug.id, 'oblast_id': oblast.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
-                            <form action="{{ path('mesto.okrug.oblast.delete', {'id': okrug.id, 'oblast_id': oblast.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                         <div class="d-flex flex-row">
+                            <a href="{{ path('mesto.okrug.oblast.raion.edit', {'id': oblast.id, 'raion_id': raion.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
+                           <form action="{{ path('mesto.okrug.oblast.raion.delete', {'id': oblast.id, 'raion_id': raion.id}) }}" method="post" onsubmit="return confirm('Удалить? Вы точно решили?')">
                                 <input type="hidden" name="token" value="{{ token }}" />
                                 <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>
                             </form>
-                        </div>
+                        </div> 
                     </td>
                 </tr>
             {% endfor %} 

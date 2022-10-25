@@ -50,9 +50,12 @@ class Command
     public static function fromRaion(Oblast $oblast, Raion $raion): self
     {
         $command = new self($oblast->getId()->getValue(), $raion->getId()->getValue());
+        $mest = explode("-", $raion->getMesto());
+
         $command->name = $raion->getName();
 		$command->nomer = $raion->getNomer();
-		$command->mesto = $raion->getMesto();
+		$command->mesto = $mest[0]."-".$mest[1];
+
         return $command;
     }
 }
