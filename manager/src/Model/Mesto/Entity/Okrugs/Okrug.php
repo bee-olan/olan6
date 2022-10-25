@@ -79,7 +79,7 @@ public function addOblast(  OblastId $id,
         $this->oblasts->add(new Oblast($this, $id, $name, $nomer, $mesto));
     }
 
-    public function editOblast(OblastId $id, string $name, $nomer, $mesto): void
+    public function editOblast(OblastId $id, string $name, string $nomer, string $mesto): void
     {
         foreach ($this->oblasts as $current) {
             if ($current->getId()->isEqual($id)) {

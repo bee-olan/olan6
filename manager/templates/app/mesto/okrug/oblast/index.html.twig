@@ -42,22 +42,22 @@
                 <tr>
                     <td>{{ oblast.nomer }}</td>
 
-                    {# <td>{{ oblast.name }} -- {{ oblast.id }} </td> #}
-                    <td>
-                         <a href="{{ path('mesto.okrug.oblast.raion', {'id': oblast.id}) }}">{{ oblast.name }} ***- добавить район</a>
+                     <td>{{ oblast.name }} </td>
+{#                    <td>#}
+{#                         <a href="{{ path('mesto.okrug.oblast.raion', {'id': oblast.id}) }}">{{ oblast.name }} ***- добавить район</a>#}
 
-                    </td>                
+{#                    </td>                #}
                     
                    <td>{{ oblast.mesto }}</td>
-{#                    <td>#}
-{#                        <div class="d-flex flex-row">#}
-{#                            <a href="{{ path('mesto.okrug.oblast.edit', {'id': okrug.id, 'oblast_id': oblast.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>#}
-{#                            <form action="{{ path('mesto.okrug.oblast.delete', {'id': okrug.id, 'oblast_id': oblast.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
-{#                                <input type="hidden" name="token" value="{{ token }}" />#}
-{#                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>#}
-{#                            </form>#}
-{#                        </div>#}
-{#                    </td>#}
+                    <td>
+                        <div class="d-flex flex-row">
+                            <a href="{{ path('mesto.okrug.oblast.edit', {'id': okrug.id, 'oblast_id': oblast.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
+                            <form action="{{ path('mesto.okrug.oblast.delete', {'id': okrug.id, 'oblast_id': oblast.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                <input type="hidden" name="token" value="{{ token }}" />
+                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             {% endfor %} 
             </tbody>

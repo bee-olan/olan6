@@ -74,10 +74,11 @@ class Oblast
 //        $this->raions = new ArrayCollection();
     }
 
-    public function edit(string $name, string $nomer ): void
+    public function edit(string $name, string $nomer , string $mesto): void
     {
         $this->name = $name;
         $this->nomer = $nomer;
+        $this->mesto = $mesto;
     }
 
     //------------------------------

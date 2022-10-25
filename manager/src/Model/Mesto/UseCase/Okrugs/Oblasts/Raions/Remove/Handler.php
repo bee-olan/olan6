@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Mesto\UseCase\Okrugs\Oblasts\Edit;
+namespace App\Model\Mesto\UseCase\Okrugs\Oblasts\Raions\Remove;
 
 use App\Model\Flusher;
 
-use App\Model\Mesto\Entity\Okrugs\Id ;
 use App\Model\Mesto\Entity\Okrugs\Oblasts\OblastRepository;
-use App\Model\Mesto\Entity\Okrugs\Oblasts\Id as OblastId;
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\Id as RaionId;
+
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Id;
 
 class Handler
 {
@@ -18,14 +19,15 @@ class Handler
     public function __construct(OblastRepository $oblasts, Flusher $flusher)
     {
         $this->oblasts = $oblasts;
+        //$this->u4astniki = $u4astniki;
         $this->flusher = $flusher;
     }
 
     public function handle(Command $command): void
     {
-        $oblast = $this->oblasts->get(new OblastId($command->id));
+        $oblast = $this->oblasts->get(new Id($command->oblast));
 
-        $oblast->edit($command->name, $command->nomer, $command->mesto);
+		$oblast->removeRaion(new RaionId($command->id));
 
         $this->flusher->flush();
     }
