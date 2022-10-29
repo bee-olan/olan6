@@ -45,13 +45,22 @@
                         <i class="nav-icon icon-speedometer"></i> Меню
                     </a>
                 </li>
+                <li class="nav-title">Место расположения</li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('mesto.okrug') }}">
-                        <i class="nav-icon icon-user"></i> Место
+                        <i class="nav-icon icon-user"></i>Создать номер-места
+                    </a>
+                    <a class="nav-link" href="{{ path('mesto.infamesto.okrugs') }}">
+                        <i class="nav-icon icon-user"></i>Выбрать номер-места
                     </a>
                 </li>
                 <li class="nav-title">Информация</li>
                 {# {% if is_granted('ROLE_WORK_MANAGE_MEMBERS') %} #}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('mesto.infamesto.inform') }}">
+                        <i class="nav-icon icon-people"></i> mesto.infamesto
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('paseka.rasas.info_rasa') }}">
                         <i class="nav-icon icon-people"></i> Раса_Линия_Номер

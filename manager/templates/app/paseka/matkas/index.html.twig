@@ -43,12 +43,19 @@
             </tr>
             </thead>
             <tbody>
+            {% set token = csrf_token('delete') %}
             {% for plemmatka in pagination %}
                 <tr>
                     <td><a href="{{ path('paseka.matkas.plemmatka.show', {'id': plemmatka.id}) }}">{{ plemmatka.name }}</a></td>
 {#                    <td>  {{ plemmatka.name }}</td>#}
-
+{#                    <td>{{ plemmatka.mestonomer }}</td>#}
                     <td>{{ plemmatka_status(plemmatka.status) }}</td>
+                    <td >
+                        <form action="{{ path('paseka.matkas.delete', {'id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">
+                            <input type="hidden" name="token" value="{{ token }}" />
+                            <button type="submit" class="btn-my btn-my--smm "><span class="fa fa-trash"></span></button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

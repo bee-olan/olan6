@@ -29,14 +29,23 @@ class Handler
     public function handle(Command $command): void
     {
         $sparing = $this->sparings->get(new SparingId($command->sparing));
-//dd($sparing->getName());
+
+
+        if ($this->plemmatkas->hasBySort($command->sort)) {
+            throw new \DomainException('ТАКОЙ номер есть в БД.');
+        }
+
         $plemmatka = new PlemMatka(
             Id::next(),
-            $sparing,
             $command->name = $command->name."_".$sparing->getName(),
-            $command->sort
-        );
+            $command->sort,
+            $sparing,
+            $command->uchastieId,
+            $command->mesto,
+            $command->persona
 
+        );
+//dd($plemmatka);
         $this->plemmatkas->add($plemmatka);
 
         $this->flusher->flush();

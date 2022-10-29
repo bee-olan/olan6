@@ -29,6 +29,17 @@ class PlemMatkaFetcher
             ->execute()->fetch()['m'];
     }
 
+    public function exists(int $sort): bool
+    {
+       // dd($sort);
+        return $this->connection->createQueryBuilder()
+                ->select('COUNT (sort)')
+                ->from('paseka_matkas_plemmatkas')
+                ->where('sort = :sort')
+                ->setParameter(':sort', $sort)
+                ->execute()->fetchColumn() > 0;
+    }
+
     /**
      * @param Filter $filter
      * @param int $page
@@ -44,8 +55,12 @@ class PlemMatkaFetcher
                 'p.id',
                 'p.name',
                 'p.status'
+                //,
+              //  'm.nomer as mestonomer'
             )
-            ->from('paseka_matkas_plemmatkas', 'p');
+            ->from('paseka_matkas_plemmatkas', 'p')
+           // ->innerJoin('p', 'mesto_mestonomers', 'm', 'p.id = m.id')
+        ;
 
         if ($filter->name) {
             $qb->andWhere($qb->expr()->like('p.name', ':name'));

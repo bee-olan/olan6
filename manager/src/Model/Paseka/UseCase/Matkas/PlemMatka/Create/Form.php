@@ -24,7 +24,8 @@ class Form extends AbstractType
     {
         $builder
             ->add('sparing', Type\ChoiceType::class, ['choices' => array_flip($this->sparings->assoc())])
-            ->add('name', Type\TextType::class)
+          // ;
+        // ->add('name', Type\TextType::class)
             ->add('sort', Type\IntegerType::class);
     }
 

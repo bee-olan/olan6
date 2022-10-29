@@ -27,6 +27,24 @@ class PlemMatka
     private $name;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", name="uchastie_id")
+     */
+    private $uchastieId;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+      private $mesto;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $persona;
+
+    /**
      * @var int
      * @ORM\Column(type="integer")
      */
@@ -45,15 +63,47 @@ class PlemMatka
      */
     private $sparing;
 
-    public function __construct( Id $id, Sparing $sparing, string $name, int $sort)
+    public function __construct( Id $id,
+                                 string $name,
+                                 int $sort,
+                                 Sparing $sparing,
+                                 string $uchastieId,
+                                 string  $mesto,
+                                 int  $persona
+                                  )
     {
         $this->id = $id;
-        $this->sparing = $sparing;
         $this->name = $name;
         $this->sort = $sort;
         $this->status = Status::active();
-    }
+        $this->uchastieId = $uchastieId;
+        $this->sparing = $sparing;
+        $this->mesto = $mesto;
+        $this->persona = $persona;
 
+
+
+    }
+//    public function addMatka(MatkaId $id,
+//                             string $name,
+//                             string $nameStar,
+//                             string $title,
+//                             int $sortLinia): void
+//    {
+//        foreach ($this->linias as $linia) {
+//            if ($linia->isNameStarEqual($nameStar)) {
+//                throw new \DomainException('Линия уже существует. Попробуйте для
+//                этой линии добавить свой номер');
+//            }
+//        }
+//
+//        $this->linias->add(new Linia($this,
+//            $id,
+//            $name,
+//            $nameStar,
+//            $title,
+//            $sortLinia));
+//    }
     public function edit(string $name, int $sort): void
     {
         $this->name = $name;
@@ -104,6 +154,11 @@ class PlemMatka
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getUchastieId(): string
+    {
+        return $this->uchastieId;
     }
 
     public function getSort(): int

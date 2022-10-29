@@ -22,6 +22,7 @@ services:
     App\Model\Mesto\Entity\Okrugs\OkrugRepository: ~
     App\Model\Mesto\Entity\Okrugs\Oblasts\OblastRepository: ~
     App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\RaionRepository: ~
+    App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository: ~
 
     App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository: ~
     App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository: ~

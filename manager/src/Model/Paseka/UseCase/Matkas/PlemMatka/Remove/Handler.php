@@ -6,10 +6,11 @@ namespace App\Model\Paseka\UseCase\Matkas\PlemMatka\Remove;
 
 use App\Model\Flusher;
 
+use App\Model\Paseka\Entity\Matkas\PlemMatka\Id;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository;
 
-use App\Model\Work\Entity\Projects\Project\Id;
-use App\Model\Work\Entity\Projects\Project\ProjectRepository;
+//use App\Model\Work\Entity\Projects\Project\Id;
+//use App\Model\Work\Entity\Projects\Project\ProjectRepository;
 
 class Handler
 {

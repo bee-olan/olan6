@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Место-район{% endblock %}
+
+{# {% block includemenu %}
+	<header class="header-container header-nav">
+		<img src="../../../assets/app/rabota/u4astniki/mestos/images/mesto_.png " width="55"  alt="Место">
+		<div class="header-link  ">
+				Номер места расположения пасеки
+		</div>
+	</header>
+{% endblock %} #}
+
+
+{#{% block kroxi %}#}
+{#    <a href="{{ path('home') }}">Главная</a>#}
+{#    <a href="{{ path('sait.mestos.inform') }}">Место</a>#}
+{#    <a href="{{ path('sait.mestos.okrugs') }}">Номера Округов</a>#}
+{#    <a href="#">Номера Области</a>#}
+{#    #}{# <a href="#link">...</a>#}
+{#     <a href="#link">...</a>  #}
+{#    <span class="aktiv">Номера Регионов/Областей</span>#}
+{#{% endblock %}#}
+
+{% block body %}
+
+    <div class="name">
+        <ul class="mesto__title">
+            <li class="mesto__title-item "> {{ name_ok }}</li>
+        </ul>
+
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </div>
+
+    <div class="name mar-lef ">
+        <ul class="mesto__title">
+            <li class="mesto__title-item nomer">{{ oblast.nomer }}</li>
+            <li class="mesto__title-item "> {{ oblast.name }}</li>
+        </ul>
+
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </div>
+
+    <div class="mesto  info-gradien">
+        <div class="mesto__raspol ">
+            <ul class="mesto__title">
+                <li class="mesto__title-item ">
+                    Название Вашего района  -  выбираем
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    {% for raion in raions %}
+        <div class="mesto mesto-h mar-lef2 ">
+            <div class="mesto__raspol">
+                <ul class="mesto__title">
+                    <li class="mesto__title-item nomer">
+                        {{ raion.mesto }}
+                    </li>
+                    <li class="mesto__title-item ">
+                        <a href="{{ path('mesto.infamesto.mesto', {'raion_id': raion.id , 'name_ok':  name_ok , 'name_ob':  oblast.name }) }}">
+                            {{ raion.name }}
+                        </a>
+{#                         {{ raion.name }}#}
+                    </li>
+                </ul>
+                <a class="mesto__read" href="#">смотреть районы ...</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

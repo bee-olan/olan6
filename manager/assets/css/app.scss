@@ -98,6 +98,14 @@ main {
         padding-left: 15px;
     }
 }
+
+@import "form/group-form";
+
+@import "page/page";
+
+@import "mesto/infamesto/inform";
+@import "mesto/infamesto/mesto";
+
 @import "main";
 @import "rasas/rasa";
 @import "rasas/info_rasa";
@@ -106,5 +114,4 @@ main {
 
 @import "personas/persona";
 
-@import "page/page";
-@import "form/group-form";
+

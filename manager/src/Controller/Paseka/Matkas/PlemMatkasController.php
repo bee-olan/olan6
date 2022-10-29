@@ -4,10 +4,18 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Matkas;
 
+use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
+use App\Model\Mesto\Entity\InfaMesto\Id as MestoNomerId;
+
+use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
 use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Id;
 use App\Model\Paseka\Entity\Rasas\Linias\Nomers\NomerRepository;
 
+use App\Model\Paseka\Entity\Uchasties\Personas\PersonaRepository;
+use App\Model\Paseka\Entity\Uchasties\Personas\Id as PersonaId;
+
 use App\Model\Paseka\UseCase\Matkas\PlemMatka\Create;
+use App\Model\Paseka\UseCase\Matkas\PlemMatka\Remove;
 use App\ReadModel\Paseka\Matkas\PlemMatka\Filter;
 
 use App\ReadModel\Paseka\Matkas\PlemMatka\PlemMatkaFetcher;
@@ -62,6 +70,8 @@ class PlemMatkasController extends AbstractController
      * @Route("/create/{id}", name=".create")
      * @param Request $request
      * @param NomerRepository $nomers
+     * @param PersonaRepository $personas
+     * @param MestoNomerRepository $mestonomers
      * @param string $id
      * @param PlemMatkaFetcher $plemmatkas
      * @param Create\Handler $handler
@@ -69,6 +79,8 @@ class PlemMatkasController extends AbstractController
      */
     public function create(string $id, Request $request,
                            PlemMatkaFetcher $plemmatkas,
+                           PersonaRepository $personas,
+                           MestoNomerRepository $mestonomers,
                            NomerRepository $nomers,
                            Create\Handler $handler): Response
     {
@@ -76,12 +88,30 @@ class PlemMatkasController extends AbstractController
 
         $nomer = $nomers->get(new Id($id));
 
+        $uchastieId =  $this->getUser()->getId();
+        $persona = $personas->get(new PersonaId($uchastieId));
+        $mestonomer = $mestonomers->get(new MestoNomerId($uchastieId));
+
+
+
         $command = new Create\Command();
+
         $command->sort = $plemmatkas->getMaxSort() + 1;
-        $command->name = $nomer->getTitle()."_п-м-".$command->sort;
-     //dd($command->name);
+
+        $command->uchastieId = $uchastieId;
+
+        $command->persona = $persona->getNomer();
+
+        $command->mesto = $mestonomer->getNomer();
+
+        $command->name = $nomer->getTitle()." : пН-". $command->persona."_".$command->mesto."_№".$command->sort;
+
+        //dd($command);
+
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
+
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
@@ -97,4 +127,31 @@ class PlemMatkasController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}/delete", name=".delete", methods={"POST"})
+     * @param PlemMatka $plemmatka
+     * @param Request $request
+     * @param Remove\Handler $handler
+     * @return Response
+     */
+    public function delete(PlemMatka $plemmatka, Request $request, Remove\Handler $handler): Response
+    {
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            return $this->redirectToRoute('paseka.matkas');
+        }
+
+        $command = new Remove\Command($plemmatka->getId()->getValue());
+
+        try {
+            $handler->handle($command);
+            return $this->redirectToRoute('paseka.matkas');
+        } catch (\DomainException $e) {
+            $this->logger->error($e->getMessage(), ['exception' => $e]);
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('paseka.matkas');
+    }
+
 }

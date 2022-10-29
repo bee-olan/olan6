@@ -24,6 +24,7 @@ doctrine:
             mesto_okrug_id: 'App\Model\Mesto\Entity\Okrugs\IdType'
             mesto_okrug_oblast_id: 'App\Model\Mesto\Entity\Okrugs\Oblasts\IdType'
             mesto_okrug_oblast_raion_id: 'App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\IdType'
+            mesto_mestonomer_id: 'App\Model\Mesto\Entity\InfaMesto\IdType'
 
             paseka_rasa_id: 'App\Model\Paseka\Entity\Rasas\IdType'
             paseka_rasa_linia_id: 'App\Model\Paseka\Entity\Rasas\Linias\IdType'

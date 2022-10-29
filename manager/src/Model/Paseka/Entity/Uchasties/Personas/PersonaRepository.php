@@ -24,7 +24,9 @@ class PersonaRepository
     {
         /** @var Persona $persona */
         if (!$persona = $this->repo->find($id->getValue())) {
-            throw new EntityNotFoundException('Persona is not found.');
+          return $this->redirectToRoute('paseka.uchasties.personas.diapazon');
+            //  return $this->render('app/paseka/uchasties/personas/diapazon.html.twig');
+            //throw new EntityNotFoundException('Persona is not found.');
         }
         return $persona;
     }

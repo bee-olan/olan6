@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Место{% endblock %}
+
+{#{% block kroxi %}#}
+{#    <a href="{{ path('home') }}">Главная</a>#}
+{#    #}{# <a href="{{ path('work') }}">Work</a> #}
+{#    #}{# <a href="#link">...</a>#}
+{#    <a href="#link">...</a>#}
+{#    <a href="#link">...</a>  #}
+{#    <span class="aktiv">Место</span>#}
+{#{% endblock %}#}
+
+{% block body %}
+
+    <div class="inform " >
+        <div class="inform__item">
+            <img class="inform__tuman" src="{{ asset('assets/images/stories/p4ela1.jpg') }}" alt="">
+            <div class="inform__title">p4ela1</div>
+            <time class="inform__date" datetime="2021-03-21 19:21">21.03.2021</time>
+        </div>
+        <div class="inform__item">
+            <img class="inform__tuman" src="{{ asset('assets/images/mestos/mesto_.png') }}" alt="">
+            <div class="inform__title">p4ela1</div>
+            <time class="inform__date" datetime="2021-03-21 19:21">21.03.2021</time>
+        </div>
+        <div class="inform__item">
+            <img class="inform__tuman" src="{{ asset('assets/images/mestos/mesto_.png') }}" alt="">
+            <div class="inform__title">p4ela1</div>
+            <time class="inform__date" datetime="2021-03-21 19:21">21.03.2021</time>
+        </div>
+        <div class="inform__item">4</div>
+    </div>
+{% endblock %}

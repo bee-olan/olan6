@@ -1,0 +1,130 @@
+.container-mesto {
+    max-width: 80rem;
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+    //@include breakpoint($mobile-bp) {
+    //    padding-left: 1.5rem;
+    //    padding-right: 1.5rem;
+    //}
+
+}
+.mesto {
+    padding: 1rem 2rem ;
+    overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+
+    position: relative;// относительно этого будем делать
+
+    background-color: transparent;
+    transition: box-shadow .2s linear;
+    border-radius: 5px;
+
+}
+
+.info-gradien {
+    background-image: linear-gradient(
+        to bottom,
+        rgba($gradien, 0),
+        rgba($gradien, .1) 25%,
+        rgba($gradien, .2) 50%,
+        rgba($gradien, .1) 75%,
+        rgba($gradien, 0)
+     );
+}
+
+.mesto__raspol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; // выравнивание по вертикали
+
+}
+.mesto__title {
+    display: flex; // добавляем т.к добаилась li-шка
+
+    color: $color-text;
+    line-height: 1.2;
+
+    padding-right: 1rem ;
+
+    a {
+        font-size: 1.4rem;
+        text-decoration: none;
+        color: inherit; // что бы изменить цвет ссылки - на родительский ...
+    }
+}
+
+.mesto__title-item {
+    &:not(:last-child):after { // убираем точку у последнего эл-та
+        content: "";
+        display: inline-block;
+        width: 6px;// точка между элементами
+        height: 6px;
+        margin: 0 1.5rem; //отчтупы между точкой и элементами
+        position: relative;
+        top: -2px; // точка поднять вверх
+
+        border-radius: 50%;
+        background-color: $color-text;
+    }
+}
+.mesto-h {
+    &:hover {
+        box-shadow: 0 15px 25px rgba($black, .35);
+    }
+}
+
+.mar-top {
+    margin-left: -3rem;
+    margin-bottom: 5rem;
+}
+
+.marg-top {
+    margin-top: -7rem;
+}
+
+.mar-lef {
+    margin-left: 15rem;
+}
+.mar-lef2 {
+    margin-left: 25rem;
+}
+
+
+
+.name {
+    display: flex;
+    align-items: center; // выравнивание по вертикали
+
+    margin-bottom: 1.5rem;
+
+    font-size: 1.6rem;
+    color: $color-text;
+
+    border-bottom: 1px solid #beba97;
+}
+
+.linia-top {
+    border-top: 1px solid #beba97;
+}
+
+.nomer-text,
+.nomer-red,
+.nomer {
+    font-size: 1.6rem;
+}
+.nomer {
+    color: $text;
+}
+.nomer-red {
+    color: red;
+}
+
+.nomer-text {
+    $color: $grad1;
+}
+.mesto__read {
+    font-size: 1.2rem;
+    color: $text;
+}

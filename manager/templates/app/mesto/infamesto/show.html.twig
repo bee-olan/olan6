@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Персональный номер{% endblock %}
+
+{#{% block kroxi %}   #}
+{#            <a href="{{ path('home') }}">Главная</a>#}
+{#            #}{# <a href="{{ path('sait.mestos.inform') }}">Год участия в проекте</a> #}
+{#            <span class="aktiv ">Персональный номер !!!!!</span> #}
+{#{% endblock %}#}
+
+{% block body %}
+
+ <h2 class = "page__title ">Номера мест расположения пасек участников проекта !!!!!!!!</h2>
+ <div class="persona">
+
+	{% for mestonomer in fetcher %}
+        <div class = "persona-nomer">		
+		    {{ mestonomer.mestonomer  }}
+        </div>
+	{% endfor %}
+</div>
+    <h2 class = "page__title ">Ваш номер места расположения пасеки  </h2>
+    <div class = "persona-nomer">
+        {{ mestonomer.nomer }}
+    </div>
+{% endblock %}

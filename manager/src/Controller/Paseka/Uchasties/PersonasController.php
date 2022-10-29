@@ -21,7 +21,7 @@ use App\Model\Paseka\UseCase\Uchasties\Personas\Diapazon;
 use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
 
 use Psr\Log\LoggerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

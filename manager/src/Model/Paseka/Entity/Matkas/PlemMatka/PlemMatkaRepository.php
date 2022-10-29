@@ -30,6 +30,15 @@ class PlemMatkaRepository
         return $plemmatka;
     }
 
+    public function hasBySort(int $sort): bool
+    {
+        return $this->repo->createQueryBuilder('t')
+                ->select('COUNT(t.id)')
+                ->andWhere('t.sort = :sort')
+                ->setParameter(':sort', $sort)
+                ->getQuery()->getSingleScalarResult() > 0;
+    }
+
     public function add(PlemMatka $plemmatka): void
     {
         $this->em->persist($plemmatka);

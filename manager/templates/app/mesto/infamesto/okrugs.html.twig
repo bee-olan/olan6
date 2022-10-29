@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Место-округ{% endblock %}
+
+
+{% block body %}
+    <div class="page" >
+{#        <main class="main">#}
+          <div class="container-mesto">
+            <div class="mesto  info-gradien">
+                <div class="mesto__raspol ">
+                    <ul class="mesto__title">
+                        <li class="mesto__title-item ">
+                            Определимся с номером места расположения пасеки
+                        </li>
+                        <li class="mesto__title-item ">
+                            Выбираем свой Округ
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% for okrug in okrugs %}
+                <div class="mesto mesto-h">
+                    <div class="mesto__raspol">
+                        <ul class="mesto__title">
+                            <li class="mesto__title-item nomer">
+                                {{ okrug.nomer }}
+                            </li>
+                            <li class="mesto__title-item ">
+                                <a href="{{ path('mesto.infamesto.oblasts', {'okrug_id': okrug.id}) }}">{{ okrug.name }} </a>
+    {#                            {{ path('sait.mestos.oblasts', {'okrug_id': okrug.id}) }}#}
+                            </li>
+                        </ul>
+                        <a class="mesto__read" href="#">смотреть регионы/области ...</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{#        </main>#}
+    </div>
+{% endblock %}
