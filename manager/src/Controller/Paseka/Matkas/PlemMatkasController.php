@@ -56,7 +56,7 @@ class PlemMatkasController extends AbstractController
             $filter,
             $request->query->getInt('page', 1),
             self::PER_PAGE,
-            $request->query->get('sort', 'name'),
+            $request->query->get('sort', 'name', 'persona'),
             $request->query->get('direction', 'asc')
         );
 
@@ -93,18 +93,19 @@ class PlemMatkasController extends AbstractController
         $mestonomer = $mestonomers->get(new MestoNomerId($uchastieId));
 
 
-
         $command = new Create\Command();
 
-        $command->sort = $plemmatkas->getMaxSort() + 1;
+        $command->rasaNomId = $id;
 
         $command->uchastieId = $uchastieId;
 
         $command->persona = $persona->getNomer();
 
+        $command->sort = $plemmatkas->getMaxSortPerson($command->persona) + 1;
+
         $command->mesto = $mestonomer->getNomer();
 
-        $command->name = $nomer->getTitle()." : пН-". $command->persona."_".$command->mesto."_№".$command->sort;
+        $command->name = $nomer->getTitle()." : ".$command->mesto."_пН-". $command->persona."_№".$command->sort;
 
         //dd($command);
 

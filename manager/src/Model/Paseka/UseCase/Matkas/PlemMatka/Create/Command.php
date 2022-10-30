@@ -28,6 +28,12 @@ class Command
      * @var string
      * @Assert\NotBlank()
      */
+    public $rasaNomId;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
     public $mesto;
 
     /**

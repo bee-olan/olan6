@@ -39,6 +39,17 @@ class PlemMatkaRepository
                 ->getQuery()->getSingleScalarResult() > 0;
     }
 
+    public function hasSortPerson(int $sort, int $persona): bool
+    {
+        return $this->repo->createQueryBuilder('t')
+                ->select('COUNT(t.id)')
+                ->andWhere('t.sort = :sort')
+                ->setParameter(':sort', $sort)
+                ->andWhere('t.persona = :persona')
+                ->setParameter(':persona', $persona)
+                ->getQuery()->getSingleScalarResult() > 0;
+    }
+
     public function add(PlemMatka $plemmatka): void
     {
         $this->em->persist($plemmatka);

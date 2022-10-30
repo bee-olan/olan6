@@ -12,5 +12,11 @@
 {% endblock %}
 
 {% block body %}
+<h2>{{ plemmatka.name }}</h2>
+    <h3>Базовые данные ПлемМатки : {{ infaRasaNom[0].rasa }} _ {{ infaRasaNom[0].linia }} _ {{ infaRasaNom[0].nomer }}</h3>
+
+    <h3>Номер места расположения пасеки : {{ plemmatka.mesto }} : {{ infaMesto[0].okrug }} - {{ infaMesto[0].oblast }} - {{ infaMesto[0].raion }}</h3>
+<h3>пН-{{ plemmatka.persona }} - персональный номер участника с ником: {{ uchastie.name.nike}} ( {{ uchastie.name.last }} , {{ uchastie.name.first }}) ,
+   </h3>
 
 {% endblock %}

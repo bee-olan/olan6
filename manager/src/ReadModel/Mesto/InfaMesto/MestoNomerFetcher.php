@@ -60,8 +60,7 @@ class MestoNomerFetcher
         $stmt = $this->connection->createQueryBuilder()
             ->select(
                 'm.id',
-                'm.nomer AS mestonomer',
-                'm.nomer'
+                'm.nomer AS mestonomer'
 
             )
             ->from('mesto_mestonomers', 'm')

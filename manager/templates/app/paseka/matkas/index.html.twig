@@ -23,6 +23,7 @@
             {{ form_start(form) }}
             <div class="row">
                 <div class="col-md-2">{{ form_widget(form.name) }}</div>
+                <div class="col-md-2">{{ form_widget(form.persona) }}</div>
                 <div class="col-md-2">{{ form_widget(form.status) }}</div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary">Filter</button>
@@ -39,6 +40,7 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'ПерсонНомер', 'persona') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>
             </tr>
             </thead>
@@ -48,7 +50,7 @@
                 <tr>
                     <td><a href="{{ path('paseka.matkas.plemmatka.show', {'id': plemmatka.id}) }}">{{ plemmatka.name }}</a></td>
 {#                    <td>  {{ plemmatka.name }}</td>#}
-{#                    <td>{{ plemmatka.mestonomer }}</td>#}
+                    <td>{{ plemmatka.persona }}</td>
                     <td>{{ plemmatka_status(plemmatka.status) }}</td>
                     <td >
                         <form action="{{ path('paseka.matkas.delete', {'id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">

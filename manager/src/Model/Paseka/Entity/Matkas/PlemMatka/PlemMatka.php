@@ -34,9 +34,21 @@ class PlemMatka
 
     /**
      * @var string
+     * @ORM\Column(type="string", name="rasa_nom_id")
+     */
+    private $rasaNomId;
+
+    /**
+     * @var string
      * @ORM\Column(type="string")
      */
       private $mesto;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $title;
 
     /**
      * @var int
@@ -69,7 +81,9 @@ class PlemMatka
                                  Sparing $sparing,
                                  string $uchastieId,
                                  string  $mesto,
-                                 int  $persona
+                                 int  $persona,
+                                 string $rasaNomId,
+                                 string $title
                                   )
     {
         $this->id = $id;
@@ -80,6 +94,8 @@ class PlemMatka
         $this->sparing = $sparing;
         $this->mesto = $mesto;
         $this->persona = $persona;
+        $this->rasaNomId = $rasaNomId;
+        $this->title = $title;
 
 
 
@@ -156,14 +172,34 @@ class PlemMatka
         return $this->name;
     }
 
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getMesto(): string
+    {
+        return $this->mesto;
+    }
+
     public function getUchastieId(): string
     {
         return $this->uchastieId;
     }
 
+    public function getPersona(): int
+    {
+        return $this->persona;
+    }
+
     public function getSort(): int
     {
         return $this->sort;
+    }
+
+    public function getRasaNomId(): string
+    {
+        return $this->rasaNomId;
     }
 
     public function getStatus(): Status
