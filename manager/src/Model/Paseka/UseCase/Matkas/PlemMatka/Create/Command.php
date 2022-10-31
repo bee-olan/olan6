@@ -34,6 +34,12 @@ class Command
      * @var string
      * @Assert\NotBlank()
      */
+    public $title;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
     public $mesto;
 
     /**

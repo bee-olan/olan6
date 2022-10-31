@@ -7,6 +7,8 @@ namespace App\Controller\Paseka\Matkas\PlemMatka;
 use App\Annotation\Guid;
 
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
+use App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository;
+use App\Model\Paseka\Entity\Matkas\Sparings\Id as SparingId;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\UchastieRepository;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id;
 use App\ReadModel\Paseka\Matkas\PlemMatka\PlemMatkaFetcher;
@@ -24,20 +26,22 @@ class PlemMatkaController extends AbstractController
      * @param PlemMatka $plemmatka
      * @param PlemMatkaFetcher $fetchers
      * @param UchastieRepository $uchasties
+     * @param SparingRepository $sparings
      * @return Response
      */
     public function show(PlemMatka $plemmatka, PlemMatkaFetcher $fetchers,
-                         UchastieRepository $uchasties ): Response
+                         UchastieRepository $uchasties ,
+                        SparingRepository $sparings ): Response
     {
         $uchastie = $uchasties->get(new Id($plemmatka->getUchastieId()));
-        //  dd($uchastie);
-      //  $infaPersona = $fetchers->infaPersona($plemmatka->getPersona());
-       // dd($infaPersona);
+
+        $infaSparing = $fetchers->infaSparing($plemmatka->getSparing()->getId()->getValue());
+
         $infaRasaNom = $fetchers->infaRasaNom($plemmatka->getRasaNomId());
 
        $infaMesto = $fetchers->infaMesto($plemmatka->getMesto());
 
         return $this->render('app/paseka/matkas/plemmatka/show.html.twig',
-            compact('plemmatka', 'infaRasaNom', 'infaMesto', 'uchastie'));
+            compact('plemmatka', 'infaRasaNom', 'infaMesto', 'uchastie','infaSparing'));
     }
 }

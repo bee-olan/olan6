@@ -23,7 +23,7 @@ class SparingRepository
 
     public function get(Id $id): Sparing
     {
-        /** @var Sparings $sparings */
+        /** @var Sparing $sparing */
         if (!$sparing = $this->repo->find($id->getValue())) {
             throw new EntityNotFoundException('Sparing is not found.');
         }

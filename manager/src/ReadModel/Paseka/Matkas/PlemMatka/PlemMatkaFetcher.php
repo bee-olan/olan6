@@ -42,21 +42,22 @@ class PlemMatkaFetcher
                 ->execute()->fetchColumn() > 0;
     }
 
-//    public function infaPersona(int $persona): array
-//    {
-//        $stmt = $this->connection->createQueryBuilder()
-//            ->select(
-//                'u.name_nike AS nike'
-//            )
-//            ->from('paseka_uchasties_personas', 'p')
-//            ->innerJoin('p', 'paseka_uchasties_uchasties', 'u', 'p.id = u.id')
-//            ->andWhere('p.nomer = :persona')
-//            ->setParameter(':persona', $persona)
-//            // ->orderBy('p.sort')->addOrderBy('d.name')
-//            ->execute();
-//
-//        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
-//    }
+    public function infaSparing(string $sparingId): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                's.title ',
+                's.name'
+            )
+            ->from('paseka_matkas_sparings', 's')
+            //->innerJoin('p', 'paseka_uchasties_uchasties', 'u', 'p.id = u.id')
+            ->andWhere('s.id = :sparingId')
+            ->setParameter(':sparingId', $sparingId)
+            // ->orderBy('p.sort')->addOrderBy('d.name')
+            ->execute();
+
+        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
+    }
 
     public function infaRasaNom(string $rasaNomId): array
     {
@@ -113,12 +114,13 @@ class PlemMatkaFetcher
                 'p.name',
                 'p.persona',
                 'p.status',
-                'p.rasa_nom_id'
+                'p.rasa_nom_id',
+                's.title AS sparing'
                 //,
               //  'm.nomer as mestonomer'
             )
             ->from('paseka_matkas_plemmatkas', 'p')
-           // ->innerJoin('p', 'mesto_mestonomers', 'm', 'p.id = m.id')
+            ->innerJoin('p', 'paseka_matkas_sparings', 's', 'p.sparing_id = s.id')
         ;
 
         if ($filter->name) {

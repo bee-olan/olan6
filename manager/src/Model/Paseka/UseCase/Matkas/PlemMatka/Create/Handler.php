@@ -30,7 +30,7 @@ class Handler
     {
         $sparing = $this->sparings->get(new SparingId($command->sparing));
 
-
+//dd($sparing->getId());
 //        if ($this->plemmatkas->hasBySort($command->sort)) {
 //            throw new \DomainException('ТАКОЙ номер есть в БД.');
 //        }
@@ -47,7 +47,8 @@ class Handler
             $command->uchastieId,
             $command->mesto,
             $command->persona,
-            $command->rasaNomId
+            $command->rasaNomId,
+            $command->title
 
         );
 //dd($plemmatka);

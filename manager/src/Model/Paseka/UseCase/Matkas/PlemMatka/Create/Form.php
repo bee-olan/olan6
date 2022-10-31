@@ -23,10 +23,16 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('sparing', Type\ChoiceType::class, ['choices' => array_flip($this->sparings->assoc())])
-          // ;
-        // ->add('name', Type\TextType::class)
-            ->add('sort', Type\IntegerType::class);
+            ->add('sparing', Type\ChoiceType::class, [
+                'label' => 'Вид облёта (спаринг)',
+                'choices' => array_flip($this->sparings->assoc())])
+            ->add('title', Type\TextType::class, array(
+                'label' => 'Ваша внутренняя нумерация или название маточки  и комментарий',
+                'attr' => [
+                    'placeholder' => 'Пример: рыжая красотка )))'
+                ]
+            ));
+//            ->add('sort', Type\IntegerType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
