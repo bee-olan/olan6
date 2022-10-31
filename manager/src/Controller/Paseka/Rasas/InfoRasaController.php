@@ -11,6 +11,7 @@ use App\Model\Paseka\Entity\Rasas\Linias\Id;
 use App\ReadModel\Paseka\Rasas\RasaFetcher;
 use App\ReadModel\Paseka\Rasas\Linias\LiniaFetcher;
 use App\Controller\ErrorHandler;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,12 +26,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InfoRasaController extends AbstractController
 {
-    private $errors;
+    private $logger;
 
-    public function __construct(ErrorHandler $errors)
+    public function __construct(LoggerInterface $logger)
     {
-        $this->errors = $errors;
+        $this->logger = $logger;
     }
+
 
     /**
      * @Route("/info_rasa", name=".info_rasa")

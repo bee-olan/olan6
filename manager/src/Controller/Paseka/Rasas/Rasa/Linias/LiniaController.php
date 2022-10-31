@@ -13,6 +13,7 @@ use App\Model\Paseka\UseCase\Rasas\Linias\Remove;
 use App\ReadModel\Paseka\Rasas\Linias\LiniaFetcher;
 //use App\Security\Voter\Paseka\Rasas\MateriAccess;
 use App\Controller\ErrorHandler;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,12 +25,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class LiniaController extends AbstractController
 {
-    private $errors;
+    private $logger;
 
-    public function __construct(ErrorHandler $errors)
+    public function __construct(LoggerInterface $logger)
     {
-        $this->errors = $errors;
+        $this->logger = $logger;
     }
+
 
     /**
      * @Route("", name="")
@@ -71,7 +73,7 @@ class LiniaController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.rasas.linias', ['id' => $rasa->getId()]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -113,7 +115,7 @@ class LiniaController extends AbstractController
                 return $this->redirectToRoute('paseka.rasas.linias.show',
 									['id' => $rasa->getId(), 'linia_id' => $linia_id]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -148,7 +150,7 @@ class LiniaController extends AbstractController
         try {
             $handler->handle($command);
         } catch (\DomainException $e) {
-            $this->errors->handle($e);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 

@@ -40,7 +40,7 @@ class ResetController extends AbstractController
                 $this->addFlash('success', 'Проверьте свою электронную почту.');
                 return $this->redirectToRoute('home');
             } catch (\DomainException $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -76,7 +76,7 @@ class ResetController extends AbstractController
                 $this->addFlash('success', 'Пароль успешно изменен.');
                 return $this->redirectToRoute('home');
             } catch (\DomainException $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }

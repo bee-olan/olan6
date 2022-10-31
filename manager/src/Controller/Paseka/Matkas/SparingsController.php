@@ -10,6 +10,7 @@ use App\Model\Paseka\UseCase\Matkas\Sparings\Edit;
 use App\Model\Paseka\UseCase\Matkas\Sparings\Remove;
 use App\ReadModel\Paseka\Matkas\SparingFetcher;
 use App\Controller\ErrorHandler;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,12 +23,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SparingsController extends AbstractController
 {
-    private $errors;
+    private $logger;
 
-    public function __construct(ErrorHandler $errors)
+    public function __construct(LoggerInterface $logger)
     {
-        $this->errors = $errors;
+        $this->logger = $logger;
     }
+
 
     /**
      * @Route("", name="")
@@ -59,7 +61,7 @@ class SparingsController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.matkas.sparings');
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -88,7 +90,7 @@ class SparingsController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.matkas.sparings.show', ['id' => $sparing->getId()]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -118,7 +120,7 @@ class SparingsController extends AbstractController
             $handler->handle($command);
             return $this->redirectToRoute('paseka.matkas.sparings');
         } catch (\DomainException $e) {
-            $this->errors->handle($e);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 

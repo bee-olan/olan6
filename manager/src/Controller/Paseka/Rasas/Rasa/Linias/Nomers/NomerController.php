@@ -16,6 +16,7 @@ use App\Model\Paseka\UseCase\Rasas\Linias\Nomers\Remove;
 use App\ReadModel\Paseka\Rasas\Linias\Nomers\NomerFetcher;
 //use App\Security\Voter\Paseka\Materis\Linia\LiniaAccess;
 use App\Controller\ErrorHandler;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,12 +29,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class NomerController extends AbstractController
 {
-    private $errors;
+    private $logger;
 
-    public function __construct(ErrorHandler $errors)
+    public function __construct(LoggerInterface $logger)
     {
-        $this->errors = $errors;
+        $this->logger = $logger;
     }
+
 
     /**
      * @Route("", name="")
@@ -77,7 +79,7 @@ class NomerController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.rasas.linias.nomers', ['linia_id' => $linia->getId()]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -113,7 +115,7 @@ class NomerController extends AbstractController
                 return $this->redirectToRoute('paseka.rasas.linias.nomers.show',
 											['linia_id' => $linia->getId(), 'id' => $id]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -148,7 +150,7 @@ class NomerController extends AbstractController
         try {
             $handler->handle($command);
         } catch (\DomainException $e) {
-            $this->errors->handle($e);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 

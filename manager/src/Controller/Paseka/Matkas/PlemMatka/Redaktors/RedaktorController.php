@@ -49,7 +49,7 @@ class RedaktorController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.matkas.plemmatka.show', ['id' => $plemmatka->getId()]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -80,7 +80,7 @@ class RedaktorController extends AbstractController
         try {
             $handler->handle($command);
         } catch (\DomainException $e) {
-            $this->errors->handle($e);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 
@@ -107,7 +107,7 @@ class RedaktorController extends AbstractController
 //        try {
 //            $handler->handle($command);
 //        } catch (\DomainException $e) {
-//            $this->errors->handle($e);
+//            $this->logger->warning($e->getMessage(), ['exception' => $e]);
 //            $this->addFlash('error', $e->getMessage());
 //        }
 //

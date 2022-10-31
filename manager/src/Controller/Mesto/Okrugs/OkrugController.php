@@ -60,7 +60,7 @@ class OkrugController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('mesto.okrug');
             } catch (\DomainException $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -89,7 +89,7 @@ class OkrugController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('mesto.okrug.show', ['id' => $okrug->getId()]);
             } catch (\DomainException $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -119,7 +119,7 @@ class OkrugController extends AbstractController
             $handler->handle($command);
             return $this->redirectToRoute('mesto.okrug');
         } catch (\DomainException $e) {
-            $this->logger->error($e->getMessage(), ['exception' => $e]);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 

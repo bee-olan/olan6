@@ -11,6 +11,7 @@ use App\Model\Paseka\UseCase\Rasas\Edit;
 use App\Model\Paseka\UseCase\Rasas\Remove;
 use App\ReadModel\Paseka\Rasas\RasaFetcher;
 use App\Controller\ErrorHandler;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,12 +25,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RasasController extends AbstractController
 {
-    private $errors;
+    private $logger;
 
-    public function __construct(ErrorHandler $errors)
+    public function __construct(LoggerInterface $logger)
     {
-        $this->errors = $errors;
+        $this->logger = $logger;
     }
+
 
     /**
      * @Route("", name="")
@@ -64,7 +66,7 @@ class RasasController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.rasas');
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -93,7 +95,7 @@ class RasasController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.rasas.show', ['id' => $rasa->getId()]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -123,7 +125,7 @@ class RasasController extends AbstractController
             $handler->handle($command);
             return $this->redirectToRoute('paseka.rasas');
         } catch (\DomainException $e) {
-            $this->errors->handle($e);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 

@@ -70,7 +70,7 @@ class OblastController extends AbstractController
                 return $this->redirectToRoute('mesto.okrug.oblast', ['id' => $okrug->getId()]);
 
                 } catch (\DomainException $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -107,7 +107,7 @@ class OblastController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('mesto.okrug.oblast.show', ['id' => $okrug->getId(), 'oblast_id' => $oblast_id]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -142,7 +142,7 @@ class OblastController extends AbstractController
         try {
             $handler->handle($command);
         } catch (\DomainException $e) {
-            $this->errors->handle($e);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 

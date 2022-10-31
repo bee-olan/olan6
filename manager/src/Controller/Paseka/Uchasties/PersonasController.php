@@ -71,7 +71,7 @@ class PersonasController extends AbstractController
 
                 return $this->redirectToRoute('paseka.uchasties.personas',  ['itogo' => $diapazon]);
             } catch (\DomainException $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -174,7 +174,7 @@ class PersonasController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.uchasties.personas.show');
             } catch (\DomainException $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -207,7 +207,7 @@ class PersonasController extends AbstractController
     //         $handler->handle($command);
     //         return $this->redirectToRoute('work.members.groups');
     //     } catch (\DomainException $e) {
-    //         $this->errors->handle($e);
+    //         $this->logger->warning($e->getMessage(), ['exception' => $e]);
     //         $this->addFlash('error', $e->getMessage());
     //     }
 

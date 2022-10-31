@@ -92,7 +92,7 @@ class UchastiesController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.uchasties.show', ['id' => $user->getId()]);
             } catch (\DomainException $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -121,7 +121,7 @@ class UchastiesController extends AbstractController
 //                $handler->handle($command);
 //                return $this->redirectToRoute('paseka.uchasties.show', ['id' => $uchastie->getId()]);
 //            } catch (\DomainException $e) {
-//                $this->logger->error($e->getMessage(), ['exception' => $e]);
+//                $this->logger->warning($e->getMessage(), ['exception' => $e]);
 //                $this->addFlash('error', $e->getMessage());
 //            }
 //        }
@@ -151,7 +151,7 @@ class UchastiesController extends AbstractController
 //                $handler->handle($command);
 //                return $this->redirectToRoute('paseka.uchasties.show', ['id' => $uchastie->getId()]);
 //            } catch (\DomainException $e) {
-//                $this->logger->error($e->getMessage(), ['exception' => $e]);
+//                $this->logger->warning($e->getMessage(), ['exception' => $e]);
 //                $this->addFlash('error', $e->getMessage());
 //            }
 //        }
@@ -180,7 +180,7 @@ class UchastiesController extends AbstractController
 //        try {
 //            $handler->handle($command);
 //        } catch (\DomainException $e) {
-//            $this->logger->error($e->getMessage(), ['exception' => $e]);
+//            $this->logger->warning($e->getMessage(), ['exception' => $e]);
 //            $this->addFlash('error', $e->getMessage());
 //        }
 //
@@ -210,7 +210,7 @@ class UchastiesController extends AbstractController
 //        try {
 //            $handler->handle($command);
 //        } catch (\DomainException $e) {
-//            $this->logger->error($e->getMessage(), ['exception' => $e]);
+//            $this->logger->warning($e->getMessage(), ['exception' => $e]);
 //            $this->addFlash('error', $e->getMessage());
 //        }
 //

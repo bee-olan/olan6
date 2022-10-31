@@ -10,6 +10,7 @@ use App\Model\Paseka\UseCase\Rasas\Remove;
 
 //use App\Security\Voter\Paseka\Materis\MateriAccess;
 use App\ReadModel\Paseka\Rasas\Linias\LiniaFetcher;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,8 +21,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RasaController extends AbstractController
 {
+    private $logger;
 
-     /**
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
+
+    /**
       * @Route("", name=".show", requirements={"id"=Guid::PATTERN})
       * @param Rasa $rasa
       * @param LiniaFetcher $fetcher
@@ -56,7 +64,7 @@ class RasaController extends AbstractController
         try {
             $handler->handle($command);
         } catch (\DomainException $e) {
-            $this->errors->handle($e);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 

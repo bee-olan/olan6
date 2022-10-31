@@ -73,7 +73,7 @@ class RaionController extends AbstractController
 
                 return $this->redirectToRoute('mesto.okrug.oblast.raion', ['id' => $oblast->getId()]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -109,7 +109,7 @@ class RaionController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('mesto.okrug.oblast.raion.show', ['id' => $oblast->getId(), 'raion_id' => $raion_id]);
             } catch (\DomainException $e) {
-                $this->errors->handle($e);
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -144,7 +144,7 @@ class RaionController extends AbstractController
         try {
             $handler->handle($command);
         } catch (\DomainException $e) {
-            $this->errors->handle($e);
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
         }
 
