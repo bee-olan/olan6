@@ -13,10 +13,10 @@ class Form extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('nomer', Type\IntegerType::class, array(
-                'label' => 'Вы выбрали персональный номер'
-            ));
+    //    $builder
+//            ->add('nomer', Type\IntegerType::class, array(
+//                'label' => 'Вы выбрали персональный номер'
+//            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

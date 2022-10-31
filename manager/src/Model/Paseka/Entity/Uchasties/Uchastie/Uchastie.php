@@ -20,8 +20,6 @@ class Uchastie
      */
     private $id;
 
-
-
     /**
      * @var Group
      * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Uchasties\Group\Group")
@@ -33,30 +31,30 @@ class Uchastie
      * @ORM\Embedded(class="Name")
      */
     private $name;
-    // /**
-    //  * @var Email
-    //  * @ORM\Column(type="paseka_uchasties_uchastie_email")
-    //  */
-    // private $email;
-    ///**
-    //  * @var Status
-    //  * @ORM\Column(type="paseka_uchasties_uchastie_status", length=16)
-    //  */
-    // private $status;
+     /**
+      * @var Email
+      * @ORM\Column(type="paseka_uchasties_uchastie_email")
+      */
+     private $email;
+    /**
+      * @var Status
+      * @ORM\Column(type="paseka_uchasties_uchastie_status", length=16)
+      */
+     private $status;
 
-    public function __construct(Id $id, Group $group, Name $name)
+    public function __construct(Id $id, Group $group,  Name $name, Email $email)
     {
         $this->id = $id;
         $this->group = $group;
         $this->name = $name;
-        //$this->email = $email;
-        //$this->status = Status::active();
+        $this->email = $email;
+        $this->status = Status::active();
     }
 
-    public function edit(Name $name): void
+    public function edit(Name $name, Email $email): void
     {
         $this->name = $name;
-       // $this->email = $email;
+        $this->email = $email;
     }
 
     public function move(Group $group): void
@@ -67,7 +65,7 @@ class Uchastie
     public function archive(): void
     {
         if ($this->status->isArchived()) {
-            throw new \DomainException('Uchastie is already archived.');
+            throw new \DomainException('Участие уже заархивировано.');
         }
         $this->status = Status::archived();
     }
@@ -75,7 +73,7 @@ class Uchastie
     public function reinstate(): void
     {
         if ($this->status->isActive()) {
-            throw new \DomainException('Uchastie is already active.');
+            throw new \DomainException('Участие уже активно.');
         }
         $this->status = Status::active();
     }
@@ -105,18 +103,14 @@ class Uchastie
         return $this->name;
     }
 
-    // public function getEmail(): Email
-    // {
-    //     return $this->email;
-    // }
+     public function getEmail(): Email
+     {
+         return $this->email;
+     }
 
-    // public function getStatus(): Status
-    // {
-    //     return $this->status;
-    // }
+     public function getStatus(): Status
+     {
+         return $this->status;
+     }
 
-    // public function __toString(): string
-    // {
-    //     return $this->value;
-    // }
 }

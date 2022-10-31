@@ -23,7 +23,7 @@ class Handler
     {
         $uchastie = $this->uchasties->get(new Id($command->id));
 
-        $Uchastie->archive();
+        $uchastie->archive();
 
         $this->flusher->flush();
     }

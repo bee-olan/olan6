@@ -14,8 +14,9 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstName', Type\TextType::class)
-            ->add('lastName', Type\TextType::class)
+            ->add('firstName', Type\TextType::class, ['label' => 'Имя'])
+            ->add('lastName', Type\TextType::class, ['label' => 'Фамилия'])
+            ->add('nikeName', Type\TextType::class, ['label' => 'Ник'])
             ->add('email', Type\EmailType::class);
     }
 

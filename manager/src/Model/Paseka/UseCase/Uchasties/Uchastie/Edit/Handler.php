@@ -29,8 +29,9 @@ class Handler
             new Name(
                 $command->firstName,
                 $command->lastName,
-                $command->lastNike
-            )
+                $command->nikeName
+            ),
+            new Email($command->email)
         );
 
         $this->flusher->flush();

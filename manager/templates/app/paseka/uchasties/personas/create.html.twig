@@ -12,24 +12,23 @@
 
     <h2 class = "page__title ">Вы выбрали персональный номер :  {{person }} </h2>
 
-   <button type="submit" class="btn-my btn-my--sm">Создать</button>
- <div class="persona">
- 
- 
+{#   <button type="submit" class="btn-my btn-my--sm">Создать</button>#}
 
-<a href="{{ path('paseka.uchasties.personas.show') }}"  >
-   <h2> Если ошиблись - вернитель на  страничку выбора персонального номера </h2>             
-</a>
-</div>
-    <div class="card">
-        <div class="card-body">
+{#    <div class="card">#}
+{#        <div class="card-body">#}
 
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button type="submit" class="btn-my btn-my--sm">Создать</button>
+            <button type="submit" class="btn-my btn-my--sm">Записать в БД</button>
             {{ form_end(form) }}
 
-        </div>
+{#        </div>#}
+{#    </div>#}
+
+    <div class="persona">
+        <a href="{{ path('paseka.uchasties.personas.show') }}"  >
+            <h2> Если ошиблись - вернитель на  страничку выбора персонального номера </h2>
+        </a>
     </div>
 
 {% endblock %}

@@ -53,8 +53,4 @@ class Status
         return $this->name === self::ARCHIVED;
     }
 
-    public function __toString(): string
-    {
-        return $this->value;
-    }
 }

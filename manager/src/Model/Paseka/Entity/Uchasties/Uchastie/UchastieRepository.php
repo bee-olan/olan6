@@ -44,7 +44,7 @@ class UchastieRepository
     {
         /** @var Uchastie $uchastie */
         if (!$uchastie = $this->repo->find($id->getValue())) {
-            throw new EntityNotFoundException('Uchastie is not found.');
+            throw new EntityNotFoundException('Участие не найдено.');
         }
         return $uchastie;
     }

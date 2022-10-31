@@ -47,12 +47,13 @@ class PersonasController extends AbstractController
      * @param Diapazon\Handler $handler
      * @return Response
      */
-    public function diapazon(PersonaFetcher $fetcher, Request $request, Diapazon\Handler $handler ): Response
+    public function diapazon( PersonaFetcher $fetcher, Request $request, Diapazon\Handler $handler ): Response
     {
         $diapazon = 1;
-        if ($fetcher->exists($this->getUser()->getId())) {
+
+        if ($fetcher->exists($this->getUser()->getId() )) {
             $this->addFlash('error', 'Вы уже выбрали ПЕРСОНАЬНЫЙ номер .');
-            return $this->redirectToRoute('paseka.uchasties.personas', ['itogo' => $diapazon]);
+            return $this->redirectToRoute('paseka.uchasties.personas.show');
         }
         $personas = $fetcher->allPers();
 

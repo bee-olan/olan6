@@ -13,9 +13,9 @@
 
 {% block body %}
 
-{#    <div class="controls">        #}
-{#        <a href="{{ path('users.show', {'id': uchastie.id}) }}" class="btn btn-primary">Смотреть как User</a>        #}
-{#    </div>#}
+    <div class="controls">
+        <a href="{{ path('users.show', {'id': uchastie.id}) }}" class="btn btn-primary">Смотреть как User</a>
+    </div>
 
     <div class="box">
         <table class="table table-bordered">
@@ -31,44 +31,44 @@
                  <tr>
                     <th>Ник</th>
                     <td>{{ uchastie.name.nike }}</td>
-{#					<td>#}
-{#						<a href="{{ path('paseka.uchasties.edit', {'id': uchastie.id}) }}" class="btn btn-primary">Редактировать</a>#}
-{#					</td>#}
+					<td>
+						<a href="{{ path('paseka.uchasties.edit', {'id': uchastie.id}) }}" class="btn btn-primary">Редактировать</a>
+					</td>
                 </tr>
-                <tr>
-                    <th>Персональный номер</th>
-                    <td>{{ persona.nomer }}</td>
-                </tr>
-                {# <tr>
+{#                <tr>#}
+{#                    <th>ПерсонНомер</th>#}
+{#                    <td>{{ persona.nomer }}</td>#}
+{#                </tr>#}
+                 <tr>
                     <th>Email</th>
                     <td>{{ uchastie.email.value }}</td>
 					<td>---</td>
-                </tr> #}
+                </tr>
                 <tr>
                     <th>Group</th>
                     <td>{{ uchastie.group.name }}</td>
-					{# <td>
+					 <td>
 						<a href="{{ path('paseka.uchasties.move', {'id': uchastie.id}) }}"
 						class="btn btn-primary">Перевести в другую группу</a>
-					</td> #}
+					</td>
                 </tr>
                 <tr>
-                    {# <th>Status</th>
-                    <td>{{ member_status(uchastie.status.name) }}</td> #}
-					{# <td>
+                     <th>Status</th>
+                    <td>{{ uchastie_status(uchastie.status.name) }}</td>
+					 <td>
 						{% if uchastie.active and uchastie.id.value != app.user.id %}
 							<form action="{{ path('paseka.uchasties.archive', {'id': uchastie.id}) }}" method="post" onsubmit="return confirm('Отправить в архив?')">
 								<input type="hidden" name="token" value="{{ csrf_token('archive') }}" />
-								<button type="submit" class="btn btn-danger">Архив</button>
+								<button type="submit" class="btn-my btn-danger">Архив</button>
 							</form>
 						{% endif %}
-						{% if u4astnik.archived %}
+						{% if uchastie.archived %}
 							<form action="{{ path('paseka.uchasties.reinstate', {'id': uchastie.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
 								<input type="hidden" name="token" value="{{ csrf_token('reinstate') }}" />
 								<button type="submit" class="btn btn-success">Активизировать</button>
 							</form>
 						{% endif %}
-					</td> #}
+					</td>
                 </tr>
             </tbody>
         </table>

@@ -19,16 +19,17 @@ class Form extends AbstractType
         //         'label' => 'Вы выбрали персональный номер'
         //     ));
         $builder->add('diapazon', ChoiceType::class, array(
-            'label' => 'Выбираем  : ',
+            'label' => 'Выбираем подходящий : ',
             'choices'  => array(
+                'Выбираем' ,
                 'от 1 до 50' => 1,
                 'от 51 до 100' => 2,
                 'от 101 до 150' => 3,
                 'от 151 до 200' => 4,
                 'от 201 до 250' => 5,
                 'от 251 до 300' => 6,
-
             ),
+            'attr' => ['onchange' => 'this.form.submit()']
         ));
     }
 

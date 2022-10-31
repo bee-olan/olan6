@@ -27,20 +27,20 @@ class Form extends AbstractType
                 'placeholder' => 'Ник',
                 'onchange' => 'this.form.submit()',
             ]])
-            // ->add('email', Type\TextType::class, ['required' => false, 'attr' => [
-            //     'placeholder' => 'Email',
-            //     'onchange' => 'this.form.submit()',
-            // ]])
+             ->add('email', Type\TextType::class, ['required' => false, 'attr' => [
+                 'placeholder' => 'Email',
+                 'onchange' => 'this.form.submit()',
+             ]])
             ->add('group', Type\ChoiceType::class, [
                 'choices' => array_flip($this->groups->assoc()),
                 'required' => false,
                 'placeholder' => 'Группы',
                 'attr' => ['onchange' => 'this.form.submit()']
-            ]);
-//            ->add('status', Type\ChoiceType::class, ['choices' => [
-//                'Активный' => Status::ACTIVE,
-//                'Архив' => Status::ARCHIVED,
-//            ], 'required' => false, 'placeholder' => 'Статус', 'attr' => ['onchange' => 'this.form.submit()']]);
+            ])
+            ->add('status', Type\ChoiceType::class, ['choices' => [
+                'Активный' => Status::ACTIVE,
+                'Архив' => Status::ARCHIVED,
+            ], 'required' => false, 'placeholder' => 'Статус', 'attr' => ['onchange' => 'this.form.submit()']]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

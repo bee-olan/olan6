@@ -22,11 +22,19 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('group', Type\ChoiceType::class, ['choices' => array_flip($this->groups->assoc())])
+            ->add('group', Type\ChoiceType::class, [
+                'label' => 'Выбрать группу участников  ',
+                'choices' => array_flip($this->groups->assoc())])
             ->add('firstName', Type\TextType::class, ['label' => 'Имя'])
-            ->add('lastName', Type\TextType::class)
-            ->add('lastNike', Type\TextType::class, ['label' => 'Ник']);
-            // ->add('email', Type\EmailType::class);
+            ->add('lastName', Type\TextType::class, ['label' => 'Фамилия'])
+
+            ->add('nikeName', Type\TextType::class, array(
+                'label' => 'Ваш ник',
+                'attr' => [
+                    'placeholder' => 'Введите ник'
+                ]
+            ))
+            ->add('email', Type\EmailType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

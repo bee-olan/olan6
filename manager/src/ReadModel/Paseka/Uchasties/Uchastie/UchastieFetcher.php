@@ -45,11 +45,10 @@ class UchastieFetcher
             ->select(
                 'm.id',
                 'TRIM(CONCAT(m.name_first, \' \', m.name_last, \' \', m.name_nike)) AS name',
-                // 'm.email',
+                 'm.email',
                 'g.name as group',
-                'p.nomer as persona'
-                // ,
-                // 'm.status'
+                'p.nomer as persona',
+                 'm.status'
             )
             ->from('paseka_uchasties_uchasties', 'm')
             ->innerJoin('m', 'paseka_uchasties_groups', 'g', 'm.group_id = g.id')
@@ -60,15 +59,15 @@ class UchastieFetcher
             $qb->setParameter(':name', '%' . mb_strtolower($filter->name) . '%');
         }
 
-        // if ($filter->email) {
-        //     $qb->andWhere($qb->expr()->like('LOWER(m.email)', ':email'));
-        //     $qb->setParameter(':email', '%' . mb_strtolower($filter->email) . '%');
-        // }
+         if ($filter->email) {
+             $qb->andWhere($qb->expr()->like('LOWER(m.email)', ':email'));
+             $qb->setParameter(':email', '%' . mb_strtolower($filter->email) . '%');
+         }
 
-        // if ($filter->status) {
-        //     $qb->andWhere('m.status = :status');
-        //     $qb->setParameter(':status', $filter->status);
-        // }
+         if ($filter->status) {
+             $qb->andWhere('m.status = :status');
+             $qb->setParameter(':status', $filter->status);
+         }
 
         if ($filter->group) {
             $qb->andWhere('m.group_id = :group');
@@ -93,6 +92,16 @@ class UchastieFetcher
                 ->setParameter(':id', $id)
                 ->execute()->fetchColumn() > 0;
     }
+
+//    public function existsPerson(string $id): bool
+//    {
+//        return $this->connection->createQueryBuilder()
+//                ->select('COUNT (id)')
+//                ->from('paseka_uchasties_personas')
+//                ->where('id = :id')
+//                ->setParameter(':id', $id)
+//                ->execute()->fetchColumn() > 0;
+//    }
 
     
     public function activeGroupedList(): array

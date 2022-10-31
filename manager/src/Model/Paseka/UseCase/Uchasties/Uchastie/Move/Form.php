@@ -22,7 +22,9 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('group', Type\ChoiceType::class, ['choices' => array_flip($this->groups->assoc())]);
+            ->add('group', Type\ChoiceType::class, [
+                'label' => 'Выбрать другую группу участника  ',
+                'choices' => array_flip($this->groups->assoc())]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -19,7 +19,8 @@
 {#        </div>#}
 {#	{% endfor %}#}
 </div>   
- <h2 class = "page__title ">Выбор персонального  номера участника</h2>     
+ <h2 class = "page__title ">Для выбора персонНомера участника - жмите на выбранную цифру</h2>
+
 <div class="persona">
  
 	{% for person in persons %}
@@ -32,8 +33,9 @@
 </div>
 
 <div class="persona">
+    <h3 class = "page__title ">Если выбрали не тот диапазон - можно ..&nbsp; </h3>
         <a  href= "{{ path('paseka.uchasties.personas.diapazon') }}" class="btn-my btn-my--sm">
-                Изменить диапазон 
+                Изменить диапазон
         </a>
 </div>
  {% endblock %}

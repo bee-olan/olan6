@@ -7,7 +7,7 @@
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
 {#        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Работа</a></li>#}
         <li class="breadcrumb-item"><a href="{{ path('paseka.uchasties') }}">Участники</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('paseka.uchasties.show', {'id': u4astnik.id}) }}">{{ u4astnik.name.full }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.uchasties.show', {'id': uchastie.id}) }}">{{ uchastie.name.full }}</a></li>
         <li class="breadcrumb-item active">Перевести в другую группу</li>
     </ol>
 {% endblock %}
