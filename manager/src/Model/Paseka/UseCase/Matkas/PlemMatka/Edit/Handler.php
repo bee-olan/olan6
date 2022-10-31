@@ -7,6 +7,7 @@ namespace App\Model\Paseka\UseCase\Matkas\PlemMatka\Edit;
 use App\Model\Flusher;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Id;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository;
+use App\Model\Paseka\Entity\Matkas\Sparings\Id as SparingId;
 
 
 class Handler
@@ -22,11 +23,12 @@ class Handler
 
     public function handle(Command $command): void
     {
+       // dd($command);
+       // $sparing = $this->sparings->get(new SparingId($command->sparing));
         $plemmatka = $this->plemmatkas->get(new Id($command->id));
 
         $plemmatka->edit(
-            $command->name,
-            $command->sort
+            $command->title
         );
 
         $this->flusher->flush();

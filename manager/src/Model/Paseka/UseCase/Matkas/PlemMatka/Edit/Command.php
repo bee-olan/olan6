@@ -14,14 +14,14 @@ class Command
      * @Assert\NotBlank()
      */
     public $id;
+
     /**
+     * @var string
      * @Assert\NotBlank()
      */
-    public $name;
-    /**
-     * @Assert\NotBlank()
-     */
-    public $sort;
+    public $title;
+
+
 
     public function __construct(string $id)
     {
@@ -31,8 +31,8 @@ class Command
     public static function fromPlemMatka(PlemMatka $plemmatka): self
     {
         $command = new self($plemmatka->getId()->getValue());
-        $command->name = $plemmatka->getName();
-        $command->sort = $plemmatka->getSort();
+        $command->title = $plemmatka->getTitle();
+
         return $command;
     }
 }

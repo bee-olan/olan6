@@ -120,10 +120,10 @@ class PlemMatka
 //            $title,
 //            $sortLinia));
 //    }
-    public function edit(string $name, int $sort): void
+    public function edit( string $title): void
     {
-        $this->name = $name;
-        $this->sort = $sort;
+        //$this->sparing = $sparing;
+        $this->title = $title;
     }
 
     public function move(Sparing $sparing): void
