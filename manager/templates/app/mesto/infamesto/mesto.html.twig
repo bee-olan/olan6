@@ -66,23 +66,20 @@
                 <li class="mesto__title-item ">
                     Номер места расположения Вашей пасеки
                 </li>
-                <li class="mesto__title-item nomer-red">{{ raion.mesto }} </li>
+                <li class=" nomer-red">{{ raion.mesto }} </li>
                 <li class="mesto__title-item ">
-                    <a class="mesto__read" href=" {{ path('mesto.infamesto.create', {'raion_id': raion.id , 'mestonomer': raion.mesto }) }}">
+                    <a class=" btn-my" href=" {{ path('mesto.infamesto.create', {'raion_id': raion.id , 'mestonomer': raion.mesto }) }}">
                         Сохранить!!!!!!!!!!
                     </a>
                 </li>
+
 {#                {{ path('mesto.infamesto.create', {'id': raion.mesto }) }}#}
             </ul>
         </div>
     </div>
-    <div>
-        <a class="mesto__read" href=" {{ path('mesto.infamesto.create', {'raion_id': raion.id , 'mestonomer': raion.mesto }) }}">
-            {{ raion.mesto }}  - Сохранить Номер места расположения Вашей пасеки
-        </a>
-    </div>
 
-    <div class="mesto marg-top linia-top">
+
+    <div class="mesto ">
         <div class="mesto__raspol ">
             <ul class="mesto__title nomer-text">
                 <li class="mesto__title-item ">
@@ -94,6 +91,16 @@
                 Написать
             </button> {# комментарий в modal.js  #}
         </div>
+    </div>
+    <div class="mesto" >
+        <ul class="mesto__title nomer-text" >
+            <li class="mesto__title-item ">
+                <a href="{{ path('mesto.infamesto.okrugs') }}"  >
+                    <h2> Если ошиблись - вернитель на  страничку выбора номера места расположения пасеки </h2>
+                </a>
+            </li>
+            <li></li>
+        </ul>
     </div>
 
 {% endblock %}

@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Раса{% endblock %}
+{% block title %}ПлемМатка{% endblock %}
 
     {% block kroxi %}  
        
                 <a href="{{ path('home') }}">Главная</a>
                 <a href="{{ path('paseka.matkas') }}">Расы зарегистрированные</a>
-                <span class="aktiv ">Добавить другую матку</span>
+                <span class="aktiv ">Добавить новую ПлемМатку</span>
            
     {% endblock %}
 
 {% block body %}
 
 <article class="rasa">
-    <h1 class="rasa__title  ">Добавление названия другой матки </h1>
-
+    <h1 class="rasa__title  ">Автоматически формируется название новой ПлемМатки  : {{ command.name }}</h1>
+    <h1 class="rasa__title  ">Вам надо заполнить еще две позиции:</h1>
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <button type="submit" class="btn-my btn-my--sm">Добавить в БД</button>

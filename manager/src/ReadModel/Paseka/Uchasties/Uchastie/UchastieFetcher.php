@@ -47,12 +47,12 @@ class UchastieFetcher
                 'TRIM(CONCAT(m.name_first, \' \', m.name_last, \' \', m.name_nike)) AS name',
                  'm.email',
                 'g.name as group',
-                'p.nomer as persona',
+//                'p.nomer as persona',
                  'm.status'
             )
             ->from('paseka_uchasties_uchasties', 'm')
-            ->innerJoin('m', 'paseka_uchasties_groups', 'g', 'm.group_id = g.id')
-            ->innerJoin('m', 'paseka_uchasties_personas', 'p', 'm.id = p.id');
+            ->innerJoin('m', 'paseka_uchasties_groups', 'g', 'm.group_id = g.id');
+           // ->innerJoin('m', 'paseka_uchasties_personas', 'p', 'm.id = p.id');
 
         if ($filter->name) {
             $qb->andWhere($qb->expr()->like('LOWER(CONCAT(m.name_first, \' \', m.name_last, \' \', m.name_mike))', ':name'));
@@ -93,15 +93,6 @@ class UchastieFetcher
                 ->execute()->fetchColumn() > 0;
     }
 
-//    public function existsPerson(string $id): bool
-//    {
-//        return $this->connection->createQueryBuilder()
-//                ->select('COUNT (id)')
-//                ->from('paseka_uchasties_personas')
-//                ->where('id = :id')
-//                ->setParameter(':id', $id)
-//                ->execute()->fetchColumn() > 0;
-//    }
 
     
     public function activeGroupedList(): array

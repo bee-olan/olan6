@@ -31,6 +31,26 @@ class PlemMatkaFetcher
             ->execute()->fetch()['m'];
     }
 
+    public function existsPerson(string $id): bool
+    {
+        return $this->connection->createQueryBuilder()
+                ->select('COUNT (id)')
+                ->from('paseka_uchasties_personas')
+                ->where('id = :id')
+                ->setParameter(':id', $id)
+                ->execute()->fetchColumn() > 0;
+    }
+
+    public function existsMesto(string $id): bool
+    {
+        return $this->connection->createQueryBuilder()
+                ->select('COUNT (id)')
+                ->from('mesto_mestonomers')
+                ->where('id = :id')
+                ->setParameter(':id', $id)
+                ->execute()->fetchColumn() > 0;
+    }
+
     public function exists(int $sort): bool
     {
        // dd($sort);

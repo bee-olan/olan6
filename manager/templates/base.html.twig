@@ -50,9 +50,7 @@
                     <a class="nav-link" href="{{ path('mesto.okrug') }}">
                         <i class="nav-icon icon-user"></i>Создать номер-места
                     </a>
-                    <a class="nav-link" href="{{ path('mesto.infamesto.okrugs') }}">
-                        <i class="nav-icon icon-user"></i>Выбрать номер-места
-                    </a>
+
                 </li>
                 <li class="nav-title">Информация</li>
                 {# {% if is_granted('ROLE_WORK_MANAGE_MEMBERS') %} #}
@@ -73,8 +71,18 @@
                 </li>
                 <li class="nav-title">Участники</li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ path('paseka.uchasties.uchastie') }}">
+                        <i class="nav-icon icon-user"></i> Стать участником
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('paseka.uchasties.personas.diapazon' ) }}">
                         <i class="nav-icon icon-user"></i> Персональный номер
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{ path('mesto.infamesto.okrugs') }}">
+                        <i class="nav-icon icon-user"></i>Выбрать номер-места
                     </a>
                 </li>
                 <li class="nav-item">

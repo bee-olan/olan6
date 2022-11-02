@@ -54,7 +54,7 @@ class MestoNomerController  extends AbstractController
 
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('mesto.infamesto.okrugs');
+                return $this->redirectToRoute('paseka.uchasties.uchastie');
             } catch (\DomainException $e) {
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());

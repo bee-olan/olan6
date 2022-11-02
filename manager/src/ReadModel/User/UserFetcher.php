@@ -26,7 +26,7 @@ class UserFetcher
         $this->paginator = $paginator;
     }
 
-
+//существует с помощью Токена Сброса
     public function existsByResetToken(string $token): bool
     {
         return $this->connection->createQueryBuilder()
@@ -36,7 +36,7 @@ class UserFetcher
                 ->setParameter(':token', $token)
                 ->execute()->fetchColumn(0) > 0;
     }
-
+// найти для Аутентификации
     public function findForAuth(string $email): ?AuthView
     {
         $stmt = $this->connection->createQueryBuilder()
@@ -58,7 +58,7 @@ class UserFetcher
 
         return $result ?: null;
     }
-
+// найти по электронной почте
     public function findByEmail(string $email): ?ShortView
     {
         $stmt = $this->connection->createQueryBuilder()
@@ -83,7 +83,7 @@ class UserFetcher
     public function get(string $id): User
     {
         if (!$user = $this->repository->find($id)) {
-            throw new NotFoundException('User is not found');
+            throw new NotFoundException('Пользователь не найден');
         }
         return $user;
     }

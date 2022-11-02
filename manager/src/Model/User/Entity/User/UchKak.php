@@ -66,7 +66,7 @@ class UchKak
     {
         return $this->name === self::NABLUD;
     }
-
+// Равнозначно isEqual
     public function isEqual(self $uchkak): bool
     {
         return $this->getName() === $uchkak->getName();

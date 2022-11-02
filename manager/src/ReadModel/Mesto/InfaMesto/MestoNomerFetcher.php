@@ -4,16 +4,25 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Mesto\InfaMesto;
 
+use App\Model\Mesto\Entity\InfaMesto\MestoNomer;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
+use Doctrine\ORM\EntityManagerInterface;
 
 class MestoNomerFetcher
 {
     private $connection;
+    private $repository;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, EntityManagerInterface $em)
     {
         $this->connection = $connection;
+        $this->repository = $em->getRepository(MestoNomer::class);
+    }
+
+    public function find(string $id): ?MestoNomer
+    {
+        return $this->repository->find($id);
     }
 
     public function assoc(): array

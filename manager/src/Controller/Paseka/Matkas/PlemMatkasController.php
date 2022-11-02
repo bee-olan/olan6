@@ -86,6 +86,16 @@ class PlemMatkasController extends AbstractController
     {
 //        $this->denyAccessUnlessGranted('ROLE_WORK_MANAGE_PROJECTS');
 
+        if (!$plemmatkas->existsPerson($this->getUser()->getId())) {
+            $this->addFlash('error', 'Начните с выбора ПерсонНомера ');
+            return $this->redirectToRoute('paseka.uchasties.personas.diapazon');
+        }
+
+        if (!$plemmatkas->existsMesto($this->getUser()->getId())) {
+            $this->addFlash('error', 'Пожалуйста, определитесь с номером места расположения Вашей пасеки ');
+            return $this->redirectToRoute('mesto.infamesto.okrugs');
+        }
+
         $nomer = $nomers->get(new Id($id));
 
         $uchastieId =  $this->getUser()->getId();
@@ -126,6 +136,7 @@ class PlemMatkasController extends AbstractController
 
         return $this->render('app/paseka/matkas/create.html.twig', [
             'form' => $form->createView(),
+            'command' => $command,
         ]);
     }
 

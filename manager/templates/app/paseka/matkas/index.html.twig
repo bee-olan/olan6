@@ -48,7 +48,7 @@
             {% set token = csrf_token('delete') %}
             {% for plemmatka in pagination %}
                 <tr>
-                    <td><a href="{{ path('paseka.matkas.plemmatka.show', {'id': plemmatka.id}) }}">{{ plemmatka.name }}</a></td>
+                    <td><a href="{{ path('paseka.matkas.plemmatka.show', {'id': plemmatka.id}) }}">{{ plemmatka.name }}{{ plemmatka.id }}</a></td>
 {#                    <td>  {{ plemmatka.name }}</td>#}
                     <td>{{ plemmatka.persona }}</td>
                     <td>{{ plemmatka_status(plemmatka.status) }}</td>

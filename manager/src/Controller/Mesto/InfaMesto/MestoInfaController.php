@@ -41,10 +41,5 @@ class MestoInfaController extends AbstractController
 
         return $this->render('app/mesto/infamesto/mesto.html.twig',
             compact('name_ok', 'name_ob' , 'raion'));
-//        return $this->render('app/mesto/infamesto/mesto.html.twig', [
-//            'name_ok' => $name_ok,
-//            'name_ob' => $name_ob,
-//            'raion' => $raion,
-//        ]);
     }
 }

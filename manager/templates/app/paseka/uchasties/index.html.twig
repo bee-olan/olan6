@@ -39,7 +39,6 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th>
-                <th>ПерсонНомер</th>
                  <th>{{ knp_pagination_sortable(pagination, 'Email', 'email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Group', 'group') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>
@@ -50,7 +49,7 @@
                 <tr>
                     <td><a href="{{ path('paseka.uchasties.show', {'id': uchastie.id}) }}">{{ uchastie.name }}</a></td>
 {#                    <td>{{ uchastie.name.nike }}</td>#}
-                     <td>{{ uchastie.persona }}</td>
+{#                     <td>{{ uchastie.persona }}</td>#}
                     <td>{{ uchastie.email }}</td>
                     <td>{{ uchastie.group }}</td>
                     <td>{{ uchastie_status(uchastie.status) }}</td>

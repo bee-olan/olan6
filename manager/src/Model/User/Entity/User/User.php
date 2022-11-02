@@ -114,7 +114,7 @@ class User
         $this->email = $email;
     }
 
-
+//Регистрация по электронной почте
     public static function signUpByEmail(Id $id, \DateTimeImmutable $date, Name $name, Email $email, string $hash, string $token): self
     {
         $user = new self($id, $date, $name);
@@ -125,16 +125,18 @@ class User
         return $user;
     }
 
+    //Подтверждение регистрации
     public function confirmSignUp(): void
     {
         if (!$this->isWait()) {
-            throw new \DomainException('User is already confirmed.');
+            throw new \DomainException('Пользователь уже подтвержден.');
         }
 
         $this->status = self::STATUS_ACTIVE;
         $this->confirmToken = null;
     }
 
+    //Регистрация в сети
     public static function signUpByNetwork(Id $id, \DateTimeImmutable $date, Name $name, string $network, string $identity): self
     {
         $user = new self($id, $date, $name);
@@ -143,80 +145,86 @@ class User
         return $user;
     }
 
+    //Присоединить сеть
     public function attachNetwork(string $network, string $identity): void
     {
         foreach ($this->networks as $existing) {
             if ($existing->isForNetwork($network)) {
-                throw new \DomainException('Network is already attached.');
+                throw new \DomainException('Сеть уже подключена.');
             }
         }
         $this->networks->add(new Network($this, $network, $identity));
     }
 
+    //запросить сброс пароля
     public function requestPasswordReset(ResetToken $token, \DateTimeImmutable $date): void
     {
         if (!$this->isActive()) {
-            throw new \DomainException('User is not active.');
+            throw new \DomainException('Пользователь не активен.');
         }
         if (!$this->email) {
-            throw new \DomainException('Email is not specified.');
+            throw new \DomainException('Адрес электронной почты не указан.');
         }
         if ($this->resetToken && !$this->resetToken->isExpiredTo($date)) {
-            throw new \DomainException('Resetting is already requested.');
+            throw new \DomainException('Сброс уже запрошен.');
         }
         $this->resetToken = $token;
     }
 
+    //сброс пароля
     public function passwordReset(\DateTimeImmutable $date, string $hash): void
     {
         if (!$this->resetToken) {
-            throw new \DomainException('Resetting is not requested.');
+            throw new \DomainException('Сброс не запрашивается.');
         }
         if ($this->resetToken->isExpiredTo($date)) {
-            throw new \DomainException('Reset token is expired.');
+            throw new \DomainException('Срок действия токена сброса истек.');
         }
         $this->passwordHash = $hash;
         $this->resetToken = null;
     }
 
+    //запрос на изменение электронной почты
     public function requestEmailChanging(Email $email, string $token): void
     {
         if (!$this->isActive()) {
-            throw new \DomainException('User is not active.');
+            throw new \DomainException('Пользователь не активен.');
         }
         if ($this->email && $this->email->isEqual($email)) {
-            throw new \DomainException('Email is already same.');
+            throw new \DomainException('Электронная почта уже такая же.');
         }
         $this->newEmail = $email;
         $this->newEmailToken = $token;
     }
-
+//подтвердите изменение электронной почты
     public function confirmEmailChanging(string $token): void
     {
         if (!$this->newEmailToken) {
-            throw new \DomainException('Changing is not requested.');
+            throw new \DomainException('Изменение не требуется.');
         }
         if ($this->newEmailToken !== $token) {
-            throw new \DomainException('Incorrect changing token.');
+            throw new \DomainException('Неправильное изменение токена.');
         }
         $this->email = $this->newEmail;
         $this->newEmail = null;
         $this->newEmailToken = null;
     }
 
+    //изменить имя
     public function changeName(Name $name): void
     {
         $this->name = $name;
     }
 
+    //изменить role
     public function changeRole(Role $role): void
     {
         if ($this->role->isEqual($role)) {
-            throw new \DomainException('Role is already same.');
+            throw new \DomainException('Роль уже та же самая.');
         }
         $this->role = $role;
     }
-
+//изменить учкак
     public function changeUchKak(UchKak $uchkak): void
     {
         if ($this->uchkak->isEqual($uchkak)) {
@@ -228,7 +236,7 @@ class User
     public function activate(): void
     {
         if ($this->isActive()) {
-            throw new \DomainException('User is already active.');
+            throw new \DomainException('Пользователь уже активен.');
         }
         $this->status = self::STATUS_ACTIVE;
     }
@@ -236,7 +244,7 @@ class User
     public function block(): void
     {
         if ($this->isBlocked()) {
-            throw new \DomainException('User is already blocked.');
+            throw new \DomainException('Пользователь уже заблокирован.');
         }
         $this->status = self::STATUS_BLOCKED;
     }
@@ -246,11 +254,13 @@ class User
         return $this->status === self::STATUS_WAIT;
     }
 
+    //является активным
     public function isActive(): bool
     {
         return $this->status === self::STATUS_ACTIVE;
     }
 
+    //заблокирован
     public function isBlocked(): bool
     {
         return $this->status === self::STATUS_BLOCKED;
@@ -296,6 +306,7 @@ class User
         return $this->newEmailToken;
     }
 
+    //получить токен сброса
     public function getResetToken(): ?ResetToken
     {
         return $this->resetToken;

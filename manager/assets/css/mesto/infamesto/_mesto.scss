@@ -55,20 +55,20 @@
     }
 }
 
-.mesto__title-item {
-    &:not(:last-child):after { // убираем точку у последнего эл-та
-        content: "";
-        display: inline-block;
-        width: 6px;// точка между элементами
-        height: 6px;
-        margin: 0 1.5rem; //отчтупы между точкой и элементами
-        position: relative;
-        top: -2px; // точка поднять вверх
-
-        border-radius: 50%;
-        background-color: $color-text;
-    }
-}
+//.mesto__title-item {
+//    &:not(:last-child):after { // убираем точку у последнего эл-та
+//        content: "";
+//        display: inline-block;
+//        width: 6px;// точка между элементами
+//        height: 6px;
+//        margin: 0 1.5rem; //отчтупы между точкой и элементами
+//        position: relative;
+//        top: -2px; // точка поднять вверх
+//
+//        border-radius: 50%;
+//        background-color: $color-text;
+//    }
+//}
 .mesto-h {
     &:hover {
         box-shadow: 0 15px 25px rgba($black, .35);

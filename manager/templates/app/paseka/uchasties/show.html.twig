@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Участники{% endblock %}
+{% block title %}Участник{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
 {#        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Работа</a></li>#}
-        <li class="breadcrumb-item"><a href="{{ path('paseka.uchasties') }}">Участники</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.uchasties') }}">Участник</a></li>
         <li class="breadcrumb-item active">{{ uchastie.name.full }}</li>
     </ol>
 {% endblock %}

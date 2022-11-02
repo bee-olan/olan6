@@ -4,16 +4,25 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Paseka\Uchasties;
 
+use App\Model\Paseka\Entity\Uchasties\Personas\Persona;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PersonaFetcher
 {
     private $connection;
+    private $repository;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, EntityManagerInterface $em)
     {
         $this->connection = $connection;
+        $this->repository = $em->getRepository(Persona::class);
+    }
+
+    public function find(string $id): ?Persona
+    {
+        return $this->repository->find($id);
     }
 
     public function assoc(): array

@@ -17,12 +17,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/paseka/matkas/{id}", name="paseka.matkas.plemmatka")
+ * @Route("/paseka/matkas", name="paseka.matkas.plemmatka")
  */
 class PlemMatkaController extends AbstractController
 {
     /**
-     * @Route("", name=".show", requirements={"id"=Guid::PATTERN})
+     * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
      * @param PlemMatka $plemmatka
      * @param PlemMatkaFetcher $fetchers
      * @param UchastieRepository $uchasties
@@ -33,6 +33,7 @@ class PlemMatkaController extends AbstractController
                          UchastieRepository $uchasties ,
                         SparingRepository $sparings ): Response
     {
+       // dd($plemmatka->getUchastieId());
         $uchastie = $uchasties->get(new Id($plemmatka->getUchastieId()));
 
         $infaSparing = $fetchers->infaSparing($plemmatka->getSparing()->getId()->getValue());
