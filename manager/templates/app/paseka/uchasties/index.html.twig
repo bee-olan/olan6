@@ -21,6 +21,7 @@
             {{ form_start(form) }}
             <div class="row">
                 <div class="col-md-2">{{ form_widget(form.name) }}</div>
+                <div class="col-md-2">{{ form_widget(form.uchkak) }}</div>
                  <div class="col-md-2">{{ form_widget(form.email) }}</div>
                 <div class="col-md-2">{{ form_widget(form.group) }}</div>
                 <div class="col-md-2">{{ form_widget(form.status) }}</div>
@@ -39,6 +40,7 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Участие как', 'uchkak') }}</th>
                  <th>{{ knp_pagination_sortable(pagination, 'Email', 'email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Group', 'group') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>
@@ -48,8 +50,7 @@
             {% for uchastie in pagination %}
                 <tr>
                     <td><a href="{{ path('paseka.uchasties.show', {'id': uchastie.id}) }}">{{ uchastie.name }}</a></td>
-{#                    <td>{{ uchastie.name.nike }}</td>#}
-{#                     <td>{{ uchastie.persona }}</td>#}
+                    <td>{{ user_uchkak(uchastie.uchkak) }}</td>
                     <td>{{ uchastie.email }}</td>
                     <td>{{ uchastie.group }}</td>
                     <td>{{ uchastie_status(uchastie.status) }}</td>

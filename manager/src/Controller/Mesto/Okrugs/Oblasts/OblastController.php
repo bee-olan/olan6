@@ -102,7 +102,7 @@ class OblastController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                 $command->mesto = $okrug->getNomer()."_".$command->nomer;
+                 $command->mesto = $okrug->getNomer()."-".$command->nomer;
 
                 $handler->handle($command);
                 return $this->redirectToRoute('mesto.okrug.oblast.show', ['id' => $okrug->getId(), 'oblast_id' => $oblast_id]);

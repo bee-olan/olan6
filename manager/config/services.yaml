@@ -37,6 +37,8 @@ services:
 
     App\Model\Paseka\Entity\Uchasties\Personas\PersonaRepository: ~
 
+    App\Model\Sezons\Entity\Sezon\SezonRepository: ~
+
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class

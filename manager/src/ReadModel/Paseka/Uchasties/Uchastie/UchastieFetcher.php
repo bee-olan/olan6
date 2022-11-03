@@ -47,7 +47,7 @@ class UchastieFetcher
                 'TRIM(CONCAT(m.name_first, \' \', m.name_last, \' \', m.name_nike)) AS name',
                  'm.email',
                 'g.name as group',
-//                'p.nomer as persona',
+                'uchkak',
                  'm.status'
             )
             ->from('paseka_uchasties_uchasties', 'm')
@@ -74,7 +74,12 @@ class UchastieFetcher
             $qb->setParameter(':group', $filter->group);
         }
 
-        if (!\in_array($sort, ['name', 'group'], true)) {
+        if ($filter->uchkak) {
+            $qb->andWhere('uchkak = :uchkak');
+            $qb->setParameter(':uchkak', $filter->uchkak);
+        }
+
+        if (!\in_array($sort, ['name', 'uchkak', 'group'], true)) {
             throw new \UnexpectedValueException('Cannot sort by ' . $sort);
         }
 

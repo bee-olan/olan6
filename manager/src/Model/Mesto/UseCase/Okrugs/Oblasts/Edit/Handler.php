@@ -25,6 +25,7 @@ class Handler
     {
         $oblast = $this->oblasts->get(new OblastId($command->id));
 
+
         $oblast->edit($command->name, $command->nomer, $command->mesto);
 
         $this->flusher->flush();

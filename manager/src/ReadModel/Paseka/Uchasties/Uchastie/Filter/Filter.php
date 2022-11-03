@@ -12,4 +12,5 @@ class Filter
     public $email;
     public $group;
     public $status = Status::ACTIVE;
+    public $uchkak;
 }

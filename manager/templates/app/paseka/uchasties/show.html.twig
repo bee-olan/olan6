@@ -35,10 +35,10 @@
 						<a href="{{ path('paseka.uchasties.edit', {'id': uchastie.id}) }}" class="btn btn-primary">Редактировать</a>
 					</td>
                 </tr>
-{#                <tr>#}
-{#                    <th>ПерсонНомер</th>#}
-{#                    <td>{{ persona.nomer }}</td>#}
-{#                </tr>#}
+                <tr>
+                    <th>Участие как</th>
+                    <td>{{ user_uchkak(uchastie.uchkak.name) }}</td>
+                </tr>
                  <tr>
                     <th>Email</th>
                     <td>{{ uchastie.email.value }}</td>
@@ -51,6 +51,10 @@
 						<a href="{{ path('paseka.uchasties.move', {'id': uchastie.id}) }}"
 						class="btn btn-primary">Перевести в другую группу</a>
 					</td>
+                </tr>
+                <tr>
+                    <th>Дата создания</th>
+                    <td>{{ uchastie.date|date('Y-m-d H:i:s') }}</td>
                 </tr>
                 <tr>
                      <th>Status</th>
@@ -69,6 +73,7 @@
 							</form>
 						{% endif %}
 					</td>
+
                 </tr>
             </tbody>
         </table>

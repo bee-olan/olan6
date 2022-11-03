@@ -39,6 +39,7 @@ class Handler
 
         $uchastie = new Uchastie(
             $id,
+            new \DateTimeImmutable(),
             $group,
             new Name(
                 $command->firstName,
