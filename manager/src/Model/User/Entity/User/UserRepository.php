@@ -21,6 +21,11 @@ class UserRepository
         $this->repo = $em->getRepository(User::class);
     }
 
+    public function find(string $id): ?User
+    {
+        return $this->repo->find($id);
+    }
+
     /**
      * @param string $token
      * @return User|object|null

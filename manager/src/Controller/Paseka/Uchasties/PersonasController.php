@@ -173,7 +173,7 @@ class PersonasController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('paseka.uchasties.personas.show');
+                return $this->redirectToRoute('paseka.uchasties.uchastie');
             } catch (\DomainException $e) {
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
