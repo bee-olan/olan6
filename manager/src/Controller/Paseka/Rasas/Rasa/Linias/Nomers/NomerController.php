@@ -55,6 +55,21 @@ class NomerController extends AbstractController
     }
 
     /**
+     * @Route("/plemmatka", name=".plemmatka")
+     * @param Linia $linia
+     * @param NomerFetcher $nomers
+     * @return Response
+     */
+    public function plemmatka(Linia $linia, NomerFetcher $nomers): Response
+    {
+
+        return $this->render('app/paseka/rasas/linias/nomers/plemmatka.html.twig', [
+            'linia' => $linia,
+            'nomers' => $nomers->allOfLinia($linia->getId()->getValue()),
+        ]);
+    }
+
+    /**
      * @Route("/create", name=".create")
      * @param Linia $linia
      * @param NomerFetcher $nomers

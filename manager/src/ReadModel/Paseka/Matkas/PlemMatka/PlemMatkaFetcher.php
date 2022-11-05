@@ -4,21 +4,32 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Paseka\Matkas\PlemMatka;
 
+use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
+
 use Doctrine\DBAL\FetchMode;
 use App\ReadModel\Paseka\Matkas\PlemMatka\Filter\Filter;
 use Doctrine\DBAL\Connection;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PlemMatkaFetcher
 {
     private $connection;
     private $paginator;
+    private $repository;
 
-    public function __construct(Connection $connection, PaginatorInterface $paginator)
+    public function __construct(Connection $connection, 
+                                PaginatorInterface $paginator, EntityManagerInterface $em)
     {
         $this->connection = $connection;
         $this->paginator = $paginator;
+        $this->repository = $em->getRepository(PlemMatka::class);
+    }
+
+    public function find(string $id): ?PlemMatka
+    {
+        return $this->repository->find($id);
     }
 
     public function getMaxSortPerson(int $persona): int

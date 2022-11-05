@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Участники{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        {#        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Работа</a></li>#}
+        <li class="breadcrumb-item active">Участники</li>
+    </ol>
+{% endblock %}
+
+
+{% block body %}
+    <article class="uchastie">
+        <div class="uchastie__header  ">
+
+{#            {% if uchastie and  persona and mestoNomer %}#}
+{#                <h1 class="uchastie__title  "> {{ uchastie.name.full}}, Вы участник проекта и, по желанию,#}
+{#                    можете принять участие в предстоящих сезонах как: матковод, пчеловод, пчелоМатковод или наблюдатель.</h1>#}
+{#            {% else %}#}
+                <h1 class="uchastie__title  "> Для регистрации ПлемМатки, надо последовательно заполнить пункты: 1 - 3 </h1>
+{#            {% endif %}#}
+
+            <ul class="uchastie__data">
+                {% if nomer %}
+                    <li>
+                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                    </li>
+                    <li class="uchastie__name  ">Раса - Линия - Номер  -- базовые данные </li>
+                    <li><div class = "uchastie-nomer uchastie-nomer__wid8">
+                            {{ nomer.title }}
+                        </div></li>
+                    <li></li>
+                {% else %}
+                    <li class="uchastie__name" >1. Выбрать расу </li>
+                    <li>
+                        <a href="{{ path('paseka.rasas.plemmatka') }}"
+                           class="btn-my btn-my--sm">Выбрать <strong class="stro stro--kras">расу  </strong>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <ul class="uchastie__data">
+                {% if mestoNomer and persona %}
+                    <li>
+                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                    </li>
+                    <li class="uchastie__name  ">С учетом Ваших данных: ПерсонНомера и НомерМеста.</li>
+                    <li><div class = "uchastie-nomer uchastie-nomer__wid12">
+                            {{ nomer.title }} : {{ mestoNomer.nomer }}_Пн-{{ persona.nomer }}
+                        </div></li>
+                    <li></li>
+                {% else %}
+                    <li class="uchastie__name" >Упс! Вы не выбрали  ПерсонНомера и НомерМеста ?</li>
+                    <li>
+                        <a href="{{ path('paseka.uchasties.uchastie') }}"
+                           class="btn-my btn-my--sm"> Вернитесь к : <strong class="stro stro--kras">Стать участником </strong>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="uchastie__data">
+{#                {% if uchastie %}#}
+{#                    <li>#}
+{#                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">#}
+{#                            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>#}
+{#                        </svg>#}
+{#                    </li>#}
+{#                    <li class="uchastie__name  ">{{ uchastie.name.nike }}, данные о Вашем участии записаны в БД.</li>#}
+{#                    <li></li>#}
+{#                    <li></li>#}
+{#                {% else %}#}
+                    <li class="uchastie__name" >3. И Вам надо будет заполнить еще пару позиций:</li>
+                    <li>
+                        <a href="{{ path('paseka.matkas.plemmatka-create',{'id' : nomer.id}  ) }}"
+                           class="btn-my btn-my--sm">Продолжить регистрацию <strong class="stro stro--kras">ПлемМатки  </strong>
+                        </a>
+                    </li>
+{#                {% endif %}#}
+            </ul>
+
+
+        </div>
+
+    </article><!-- uchastie -->
+
+{% endblock %}

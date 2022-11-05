@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Matkas;
 
+use App\Annotation\Guid;
+
 use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
 use App\Model\Mesto\Entity\InfaMesto\Id as MestoNomerId;
 
@@ -65,6 +67,83 @@ class PlemMatkasController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/plemmatka-create/{id}", name=".plemmatka-create" , requirements={"id"=Guid::PATTERN})
+     * @param Request $request
+     * @param NomerRepository $nomers
+     * @param PersonaRepository $personas
+     * @param MestoNomerRepository $mestonomers
+     * @param string $id
+     * @param PlemMatkaFetcher $plemmatkas
+     * @param Create\Handler $handler
+     * @return Response
+     */
+    public function plemmatkaCreate(string $id, Request $request,
+                           PlemMatkaFetcher $plemmatkas,
+                           PersonaRepository $personas,
+                           MestoNomerRepository $mestonomers,
+                           NomerRepository $nomers,
+                           Create\Handler $handler): Response
+    {
+//        $this->denyAccessUnlessGranted('ROLE_WORK_MANAGE_PROJECTS');
+
+        if (!$plemmatkas->existsPerson($this->getUser()->getId())) {
+            $this->addFlash('error', 'Начните с выбора ПерсонНомера ');
+            return $this->redirectToRoute('paseka.uchasties.personas.diapazon');
+        }
+
+        if (!$plemmatkas->existsMesto($this->getUser()->getId())) {
+            $this->addFlash('error', 'Пожалуйста, определитесь с номером места расположения Вашей пасеки ');
+            return $this->redirectToRoute('mesto.infamesto.okrugs');
+        }
+
+        $nomer = $nomers->get(new Id($id));
+
+        $uchastieId =  $this->getUser()->getId();
+        $persona = $personas->get(new PersonaId($uchastieId));
+        $mestonomer = $mestonomers->get(new MestoNomerId($uchastieId));
+
+
+        $command = new Create\Command();
+
+        $command->rasaNomId = $id;
+
+        $command->uchastieId = $uchastieId;
+
+        $command->persona = $persona->getNomer();
+
+        $command->sort = $plemmatkas->getMaxSortPerson($command->persona) + 1;
+
+        $command->mesto = $mestonomer->getNomer();
+
+        $command->name = $nomer->getTitle()." : ".$command->mesto."_пН-". $command->persona."_№".$command->sort;
+
+        //dd($command);
+
+        $form = $this->createForm(Create\Form::class, $command);
+        $form->handleRequest($request);
+
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $handler->handle($command);
+
+                return $this->redirectToRoute('paseka.matkas.plemmatka.sdelano',
+                    [ 'id_nom' => $id , 'plemmatka' => $command->name]);
+            } catch (\DomainException $e) {
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('app/paseka/matkas/create.html.twig', [
+            'form' => $form->createView(),
+            'command' => $command,
+        ]);
+    }
+
 
     /**
      * @Route("/create/{id}", name=".create")

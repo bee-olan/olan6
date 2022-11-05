@@ -52,6 +52,21 @@ class LiniaController extends AbstractController
     }
 
     /**
+     * @Route("/plemmatka", name=".plemmatka")
+     * @param Rasa $rasa
+     * @param Request $request
+     * @param LiniaFetcher $linias
+     * @return Response
+     */
+    public function plemmatka( Rasa $rasa, Request $request,  LiniaFetcher $linias ): Response
+    {
+        return $this->render('app/paseka/rasas/linias/plemmatka.html.twig', [
+            'rasa' => $rasa,
+            'linias' => $linias->allOfRasa($rasa->getId()->getValue()),
+        ]);
+    }
+
+    /**
      * @Route("/create", name=".create")
      * @param Rasa $rasa
 	 * @param LiniaFetcher $linias

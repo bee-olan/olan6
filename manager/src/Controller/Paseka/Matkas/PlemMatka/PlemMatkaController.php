@@ -9,40 +9,116 @@ use App\Annotation\Guid;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
 use App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository;
 use App\Model\Paseka\Entity\Matkas\Sparings\Id as SparingId;
+
+use App\Model\Paseka\Entity\Rasas\Linias\Nomers\NomerRepository;
+use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Id as NomerId;
+
 use App\Model\Paseka\Entity\Uchasties\Uchastie\UchastieRepository;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id;
+use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
 use App\ReadModel\Paseka\Matkas\PlemMatka\PlemMatkaFetcher;
+use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/paseka/matkas", name="paseka.matkas.plemmatka")
+ * @Route("/paseka/matkas/plemmatka", name="paseka.matkas.plemmatka")
  */
 class PlemMatkaController extends AbstractController
 {
     /**
-     * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
-     * @param PlemMatka $plemmatka
-     * @param PlemMatkaFetcher $fetchers
-     * @param UchastieRepository $uchasties
-     * @param SparingRepository $sparings
+     * @Route("/", name="")
      * @return Response
      */
-    public function show(PlemMatka $plemmatka, PlemMatkaFetcher $fetchers,
-                         UchastieRepository $uchasties ,
-                        SparingRepository $sparings ): Response
+    public function index(): Response
     {
-       // dd($plemmatka->getUchastieId());
-        $uchastie = $uchasties->get(new Id($plemmatka->getUchastieId()));
 
-        $infaSparing = $fetchers->infaSparing($plemmatka->getSparing()->getId()->getValue());
-
-        $infaRasaNom = $fetchers->infaRasaNom($plemmatka->getRasaNomId());
-
-       $infaMesto = $fetchers->infaMesto($plemmatka->getMesto());
-
-        return $this->render('app/paseka/matkas/plemmatka/show.html.twig',
-            compact('plemmatka', 'infaRasaNom', 'infaMesto', 'uchastie','infaSparing'));
+        return $this->render('app/paseka/matkas/plemmatka/index.html.twig'
+//            ,
+//            compact('rasas')
+        );
     }
+
+    /**
+     * @Route("/plemmatka/{id}", name=".plemmatka" , requirements={"id"=Guid::PATTERN})
+     * @param Request $request
+     * @param NomerRepository $nomers
+     * @param PersonaFetcher $personas
+     * @param MestoNomerFetcher $mestoNomers
+     * @param string $id
+     * @return Response
+     */
+    public function plemmatka(string $id, Request $request,
+                              PersonaFetcher $personas, MestoNomerFetcher $mestoNomers,
+                              NomerRepository $nomers): Response
+    {
+        $idUser = $this->getUser()->getId();
+
+        $nomer = $nomers->get(new NomerId($id));
+
+        $persona = $personas->find($idUser);
+
+        $mestoNomer = $mestoNomers->find($idUser);
+
+        return $this->render('app/paseka/matkas/plemmatka/plemmatka.html.twig',
+            compact('nomer', 'persona', 'mestoNomer') );
+    }
+
+    /**
+     * @Route("/sdelano/{id_nom}/{plemmatka}", name=".sdelano" , requirements={"id_nom"=Guid::PATTERN})
+     * @param Request $request
+     * @param NomerRepository $nomers
+     * @param PersonaFetcher $personas
+     * @param MestoNomerFetcher $mestoNomers
+     * @param string $id_nom
+     * @param string $plemmatka
+     * @return Response
+     */
+    public function sdelano(string $id_nom, string $plemmatka, Request $request,
+                              PersonaFetcher $personas, MestoNomerFetcher $mestoNomers,
+                              NomerRepository $nomers): Response
+    {
+
+        $idUser = $this->getUser()->getId();
+
+        $nomer = $nomers->get(new NomerId($id_nom));
+
+        $persona = $personas->find($idUser);
+
+        $mestoNomer = $mestoNomers->find($idUser);
+
+
+
+        return $this->render('app/paseka/matkas/plemmatka/sdelano.html.twig',
+            compact('nomer', 'persona', 'mestoNomer', 'plemmatka') );
+    }
+
+   /**
+    * @Route("/{plem_id}", name=".show", requirements={"plem_id"=Guid::PATTERN})
+    * @param PlemMatka $plemmatka
+    * @param   string $plem_id
+    * @param PlemMatkaFetcher $fetchers
+    * @param UchastieRepository $uchasties
+    * @param SparingRepository $sparings
+    * @return Response
+    */
+   public function show( string $plem_id, PlemMatkaFetcher $fetchers,
+                        UchastieRepository $uchasties ,
+                       SparingRepository $sparings ): Response
+   {
+
+      $plemmatka = $fetchers->find($plem_id);
+       $uchastie = $uchasties->get(new Id($plemmatka->getUchastieId()));
+
+       $infaSparing = $fetchers->infaSparing($plemmatka->getSparing()->getId()->getValue());
+
+       $infaRasaNom = $fetchers->infaRasaNom($plemmatka->getRasaNomId());
+
+      $infaMesto = $fetchers->infaMesto($plemmatka->getMesto());
+
+       return $this->render('app/paseka/matkas/plemmatka/show.html.twig',
+           compact('plemmatka', 'infaRasaNom', 'infaMesto', 'uchastie','infaSparing'));
+   }
 }

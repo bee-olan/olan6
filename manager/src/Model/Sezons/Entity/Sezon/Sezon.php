@@ -33,10 +33,11 @@ class Sezon
     private $sezon;
 
 
-    public function __construct(Id $id, int $god )
+    public function __construct(Id $id, int $god , string $sezon)
     {
         $this->id = $id;
-        $this->$god = $god;
+        $this->god = $god;
+        $this->sezon = $sezon;
 
     }
 
@@ -54,6 +55,11 @@ class Sezon
     public function getGod(): int
     {
         return $this->god;
+    }
+
+    public function getSezon(): string
+    {
+        return $this->sezon;
     }
 
 

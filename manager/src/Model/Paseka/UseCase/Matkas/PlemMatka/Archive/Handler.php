@@ -21,6 +21,7 @@ class Handler
 
     public function handle(Command $command): void
     {
+        dd($command->id);
         $plemmatka = $this->plemmatkas->get(new Id($command->id));
 
         $plemmatka->archive();

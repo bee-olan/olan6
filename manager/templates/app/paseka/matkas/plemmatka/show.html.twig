@@ -11,7 +11,44 @@
     </ol>
 {% endblock %}
 
-{% block body %}
+{% block body %} 
+
+    <article class="matka" >
+        <div class="matka__header" >
+            <h1 class="matka__title  ">Данные ПлемМатки взятые за основу :</h1>
+            <h1 class="matka__title  ">{{ plemmatka.name }} -------- статус -{{ plemmatka_status(plemmatka.status.name) }} </h1>
+       
+            <ul class="matka__data"> 
+                <li class="matka__name" >Раса</li>
+                <li class="matka__name matka__name--wid200">{{ infaRasaNom[0].rasa }}</li>
+            </ul>
+             <ul class="matka__data"> 
+                <li class="matka__name" >л-линия</li>
+                <li class="matka__name matka__name--wid200" >{{ infaRasaNom[0].linia }}</li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" >н-номер</li>
+                <li class="matka__name matka__name--wid200" >{{ infaRasaNom[0].nomer }}</li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" >{{ plemmatka.mesto }}</li>
+                <li class="matka__name matka__name--wid200" >{{ infaMesto[0].okrug }} - {{ infaMesto[0].oblast }} - {{ infaMesto[0].raion }}</li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" >пН-{{ plemmatka.persona }}</li>
+                <li class="matka__name matka__name--wid200" >персональный номер матковода с ником: {{ uchastie.name.nike}} ( {{ uchastie.name.last }} , {{ uchastie.name.first }}) ,</li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" > №{{plemmatka.sort}}</li>
+                <li class="matka__name matka__name--wid200" >--<strong class="stro stro--kras"> {{ plemmatka.title}} </strong>  --  внутренняя нумерация или название маточки  и комментарий  </li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" >{{ infaSparing[0].name}}</li>
+                <li class="matka__name matka__name--wid200" >-- {{ infaSparing[0].title}} --  вид облёта (спаринг)  </li>
+            </ul>       
+        </div>
+    </article>
+
 
     <div class="controls">
         <a href="{{ path('paseka.matkas.plemmatka.redaktors.edit', {'plemmatka_id': plemmatka.id}) }}" class="btn-me btn-primary">Редактировать  комментарий</a>
@@ -22,38 +59,11 @@
             </form>
         {% endif %}
         {% if plemmatka.archived %}
-{#            <form action="{{ path('paseka.matkas.plemmatka.redaktors.reinstate', {'plemmatka_id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
-{#                <input type="hidden" name="token" value="{{ csrf_token('reinstate') }}" />#}
-{#                <button type="submit" class="btn btn-success">Reinstate</button>#}
-{#            </form>#}
+           <form action="{{ path('paseka.matkas.plemmatka.redaktors.reinstate', {'plemmatka_id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+               <input type="hidden" name="token" value="{{ csrf_token('reinstate') }}" />
+               <button type="submit" class="btn btn-success">Reinstate</button>
+            </form>
         {% endif %}
-{#        <form action="{{ path('paseka.matkas.plemmatka.redaktors.delete', {'plemmatka_id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
-{#            <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />#}
-{#            <button type="submit" class="btn btn-danger">Delete</button>#}
-{#        </form>#}
-    </div>
-
-    <div class="box">
-        <table class="table table-bordered">
-            <tbody>
-            <tr>
-                <th> ПлемМатка - берем за основу</th>
-                <td>{{ plemmatka.name }}</td>
-            </tr>
-            <tr>
-                <th>Статус </th>
-                <td>{{ plemmatka_status(plemmatka.status.name) }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-<h2>{{ plemmatka.name }}</h2>
-    <h3>Базовые данные ПлемМатки : {{ infaRasaNom[0].rasa }} _ {{ infaRasaNom[0].linia }} _ {{ infaRasaNom[0].nomer }}</h3>
-
-    <h3>Номер места расположения пасеки : {{ plemmatka.mesto }} : {{ infaMesto[0].okrug }} - {{ infaMesto[0].oblast }} - {{ infaMesto[0].raion }}</h3>
-<h3>пН-{{ plemmatka.persona }} - персональный номер матковода с ником: {{ uchastie.name.nike}} ( {{ uchastie.name.last }} , {{ uchastie.name.first }}) ,
-   </h3>
-    <h3> №{{plemmatka.sort}} :  внутренняя нумерация или название маточки  и комментарий  -- {{ plemmatka.title}} </h3>
-<h3>{{ infaSparing[0].name}}  : вид облёта (спаринг)  -- {{ infaSparing[0].title}} </h3>
+ 
+  </div>
 {% endblock %}

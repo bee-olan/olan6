@@ -49,6 +49,21 @@ class RasasController extends AbstractController
     }
 
     /**
+     * @Route("/plemmatka", name=".plemmatka")
+     * @param RasaFetcher $fetcher
+     * @return Response
+     */
+    public function plemmatka(RasaFetcher $fetcher): Response
+    {
+        $rasas = $fetcher->all();
+        //dd($rasas);
+
+
+        return $this->render('app/paseka/rasas/plemmatka.html.twig',
+            compact('rasas'));
+    }
+
+    /**
      * @Route("/create", name=".create")
      * @param Request $request
      * @param Create\Handler $handler

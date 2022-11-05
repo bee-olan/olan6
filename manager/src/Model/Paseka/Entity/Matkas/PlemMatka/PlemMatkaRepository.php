@@ -25,10 +25,19 @@ class PlemMatkaRepository
     {
         /** @var PlemMatka $plemmatka */
         if (!$plemmatka = $this->repo->find($id->getValue())) {
-            throw new EntityNotFoundException('PlemMatka is not found.');
+            throw new EntityNotFoundException('plemmatka is not found.');
         }
         return $plemmatka;
     }
+
+    // public function get(Id $id): PlemMatka
+    // {
+    //     /** @var PlemMatka $plemmatka */
+    //     if (!$plemmatka = $this->repo->find($id->getValue())) {
+    //         throw new EntityNotFoundException('PlemMatka is not found.');
+    //     }
+    //     return $plemmatka;
+    // }
 
     public function hasBySort(int $sort): bool
     {

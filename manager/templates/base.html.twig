@@ -45,6 +45,28 @@
                         <i class="nav-icon icon-speedometer"></i> Меню
                     </a>
                 </li>
+                <li class="nav-title">СЕЗОН</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('sezons') }}">
+                        <i class="nav-icon icon-user"></i>Список сезонов
+                    </a>
+                </li>
+                <li class="nav-title">МАТКИ</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('paseka.matkas.plemmatka') }}">
+                        <i class="nav-icon icon-user"></i>ПлемМатка - регистр-ция.
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('paseka.matkas') }}">
+                        <i class="nav-icon icon-user"></i> ПлемМатки - список
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('paseka.matkas') }}">
+                        <i class="nav-icon icon-user"></i> ТестМатки - регистр-ция
+                    </a>
+                </li>
                 <li class="nav-title">Место расположения</li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('mesto.okrug') }}">
@@ -97,11 +119,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('paseka.matkas') }}">
-                        <i class="nav-icon icon-user"></i> Племенная  матка
-                    </a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('paseka.matkas.sparings') }}">
                         <i class="nav-icon icon-people"></i> Облет|Спаринг
