@@ -20,6 +20,7 @@ class ChildMatka
     private $type;
     private $progress;
     private $priority;
+    private $parent;  // родитель
 
     public function __construct(
         Id $id,
@@ -47,6 +48,21 @@ class ChildMatka
     {
         $this->name = $name;
         $this->content = $content;
+    }
+
+    public function setChildOf(?ChildMatka $parent): void
+    {
+        if ($parent) {
+            $current = $parent;
+            do {
+                if ($current === $this) {
+                    throw new \DomainException('Цикломатические дети.');
+                }
+            }
+            while ($current && $current = $current->getParent());
+        }
+
+        $this->parent = $parent;
     }
 
     public function plan(?\DateTimeImmutable $date): void
@@ -103,5 +119,10 @@ class ChildMatka
     public function getPriority(): int
     {
         return $this->priority;
+    }
+
+    public function getParent(): ?PlemMatka
+    {
+        return $this->parent;
     }
 }
