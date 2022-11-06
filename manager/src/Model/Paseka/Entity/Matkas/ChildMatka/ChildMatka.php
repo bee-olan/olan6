@@ -14,6 +14,7 @@ class ChildMatka
     private $plemmatka;
     private $author;
     private $date;
+    private $planDate;
     private $name;
     private $content;
     private $type;
@@ -48,6 +49,11 @@ class ChildMatka
         $this->content = $content;
     }
 
+    public function plan(?\DateTimeImmutable $date): void
+    {
+        $this->planDate = $date;
+    }
+
     public function getId(): Id
     {
         return $this->id;
@@ -67,6 +73,12 @@ class ChildMatka
     {
         return $this->date;
     }
+
+    public function getPlanDate(): ?\DateTimeImmutable
+    {
+        return $this->planDate;
+    }
+
 
     public function getName(): string
     {
