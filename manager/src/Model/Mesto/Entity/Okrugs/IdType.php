@@ -30,4 +30,5 @@ class IdType extends GuidType
     {
         return true;
     }
+    
 }
