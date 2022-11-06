@@ -21,6 +21,7 @@ class ChildMatka
     private $progress;
     private $priority;
     private $parent;  // родитель
+    private $status;
 
     public function __construct(
         Id $id,
@@ -42,6 +43,7 @@ class ChildMatka
         $this->progress = 0;
         $this->type = $type;
         $this->priority = $priority;
+        $this->status = Status::new();
     }
 
     public function edit(string $name, ?string $content): void
@@ -68,6 +70,36 @@ class ChildMatka
     public function plan(?\DateTimeImmutable $date): void
     {
         $this->planDate = $date;
+    }
+// переместить
+    public function move(PlemMatka $plemmatka): void
+    {
+        if ($plemmatka === $this->plemmatka) {
+            throw new \DomainException('PlemMatka это уже то же самое.');
+        }
+        $this->plemmatka = $plemmatka;
+    }
+
+//изменить тип
+    public function changeType(Type $type): void
+    {
+        if ($this->type->isEqual($type)) {
+            throw new \DomainException('Тип уже тот же самый.');
+        }
+        $this->type = $type;
+    }
+
+    public function changeStatus(Status $status): void
+    {
+        if ($this->status->isEqual($status)) {
+            throw new \DomainException('Status is already same.');
+        }
+        $this->status = $status;
+    }
+
+    public function isNew(): bool
+    {
+        return $this->status->isNew();
     }
 
     public function getId(): Id
@@ -124,5 +156,10 @@ class ChildMatka
     public function getParent(): ?PlemMatka
     {
         return $this->parent;
+    }
+
+    public function getStatus(): Status
+    {
+        return $this->status;
     }
 }
