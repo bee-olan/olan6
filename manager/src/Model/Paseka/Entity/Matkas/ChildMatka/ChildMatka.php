@@ -214,4 +214,12 @@ class ChildMatka
     {
         return $this->status;
     }
+
+    /**
+     * @return Uchastie[]
+     */
+    public function getExecutors(): array
+    {
+        return $this->executors->toArray();
+    }
 }
