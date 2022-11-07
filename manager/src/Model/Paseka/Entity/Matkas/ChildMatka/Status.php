@@ -12,7 +12,7 @@ class Status
     public const WORKING = 'в работе';
     public const HELP = 'вопрос';
     public const REJECTED = 'отклонена';
-    public const DONE = 'сделано';
+    public const DONE = 'завершино';
 
     private $name;
 

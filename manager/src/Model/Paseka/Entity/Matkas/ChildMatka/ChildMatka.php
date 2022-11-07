@@ -97,6 +97,26 @@ class ChildMatka
         $this->status = $status;
     }
 
+    public function changeProgress(int $progress): void
+    {
+        Assert::range($progress, 0, 100);
+        if ($progress === $this->progress) {
+            throw new \DomainException('Прогресс уже такой же.');
+        }
+        $this->progress = $progress;
+    }
+
+    public function changePriority(int $priority): void
+    {
+        Assert::range($priority, 1, 4);
+        if ($priority === $this->priority) {
+            throw new \DomainException('Priority is already same.');
+        }
+        $this->priority = $priority;
+    }
+
+
+
     public function isNew(): bool
     {
         return $this->status->isNew();
