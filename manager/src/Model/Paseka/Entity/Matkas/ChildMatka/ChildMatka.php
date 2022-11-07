@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Model\Paseka\Entity\Matkas\ChildMatka;
 
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
-use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 
+use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
+use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
+
+use Doctrine\Common\Collections\ArrayCollection;
 
 class ChildMatka
 {
@@ -22,6 +25,7 @@ class ChildMatka
     private $priority;
     private $parent;  // родитель
     private $status;
+    private $executors; // экзекутор - исполнитель
 
     public function __construct(
         Id $id,
@@ -44,6 +48,7 @@ class ChildMatka
         $this->type = $type;
         $this->priority = $priority;
         $this->status = Status::new();
+        $this->executors = new ArrayCollection();
     }
 
     public function edit(string $name, ?string $content): void
@@ -115,7 +120,34 @@ class ChildMatka
         $this->priority = $priority;
     }
 
+    public function hasExecutor(UchastieId $id): bool
+    {
+        foreach ($this->executors as $executor) {
+            if ($executor->getId()->isEqual($id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public function assignExecutor(Uchastie $executor): void
+    {
+        if ($this->executors->contains($executor)) {
+            throw new \DomainException('Executor is already assigned.');
+        }
+        $this->executors->add($executor);
+    }
+
+    public function revokeExecutor(UchastieId $id): void
+    {
+        foreach ($this->executors as $current) {
+            if ($current->getId()->isEqual($id)) {
+                $this->executors->removeElement($current);
+                return;
+            }
+        }
+        throw new \DomainException('Executor is not assigned.');
+    }
 
     public function isNew(): bool
     {
