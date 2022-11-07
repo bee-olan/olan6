@@ -10,23 +10,111 @@ use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="paseka_matkas_childmatkas", indexes={
+ *     @ORM\Index(columns={"date"})
+ * })
+ */
 class ChildMatka
 {
+    /**
+     * @var Id
+     * @ORM\Column(type="paseka_matkas_childmatka_id")
+     * @ORM\Id
+     */
     private $id;
+
+    /**
+     * @var PlemMatka
+     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka")
+     * @ORM\JoinColumn(name="plemmatka_id", referencedColumnName="id", nullable=false)
+     */
     private $plemmatka;
+
+    /**
+     * @var Uchastie
+     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
+     */
     private $author;
+
+    /**
+     * @var \DateTimeImmutable
+     * @ORM\Column(type="datetime_immutable")
+     */
     private $date;
+
+    /**
+     * @var \DateTimeImmutable|null
+     * @ORM\Column(type="date_immutable", nullable=true)
+     */   
     private $planDate;
+
+    /**
+     * @var \DateTimeImmutable|null
+     * @ORM\Column(type="date_immutable", nullable=true)
+     */
     private $startDate;
+
+    /**
+     * @var \DateTimeImmutable|null
+     * @ORM\Column(type="date_immutable", nullable=true)
+     */
     private $endDate;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */    
     private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */    
     private $content;
+
+    /**
+     * @var Type
+     * @ORM\Column(type="paseka_matkas_childmatka_type", length=16)
+     */    
     private $type;
-    private $progress;
+
+    /**
+     * @ORM\Column(type="smallint") 
+     */
+    private $progress;  // smallint - маленький int
+
+    /**
+     * @ORM\Column(type="smallint")
+     */    
     private $priority;
+
+    /**
+     * @var ChildMatka|null
+     * @ORM\ManyToOne(targetEntity="ChildMatka")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */    
     private $parent;  // родитель
+
+    /**
+     * @var Status
+     * @ORM\Column(type="paseka_matkas_childmatka_status", length=16)
+     */    
     private $status;
+
+     /**
+     * @var Uchastie[]|ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie")
+     * @ORM\JoinTable(name="paseka_matkas_childmatkas_executors",
+     *      joinColumns={@ORM\JoinColumn(name="childmatka_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="uchastie_id", referencedColumnName="id")}
+     * )
+     * @ORM\OrderBy({"name.first" = "ASC"})
+     */   
     private $executors; // экзекутор - исполнитель
 
     public function __construct(
