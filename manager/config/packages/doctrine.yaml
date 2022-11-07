@@ -21,6 +21,10 @@ doctrine:
             paseka_matkas_sparing_id: 'App\Model\Paseka\Entity\Matkas\Sparings\IdType'
             paseka_matkas_plemmatka_status: 'App\Model\Paseka\Entity\Matkas\PlemMatka\StatusType'
 
+            paseka_matkas_childmatka_status: 'App\Model\Paseka\Entity\Matkas\ChildMatka\StatusType'
+            paseka_matkas_childmatka_id: 'App\Model\Paseka\Entity\Matkas\ChildMatka\IdType'
+            paseka_matkas_childmatka_type: 'App\Model\Paseka\Entity\Matkas\ChildMatka\TypeType'
+
             mesto_okrug_id: 'App\Model\Mesto\Entity\Okrugs\IdType'
             mesto_okrug_oblast_id: 'App\Model\Mesto\Entity\Okrugs\Oblasts\IdType'
             mesto_okrug_oblast_raion_id: 'App\Model\Mesto\Entity\Okrugs\Oblasts\Raions\IdType'
