@@ -96,14 +96,22 @@ class ChildMatka
         $this->type = $type;
     }
 
-    public function changeStatus(Status $status): void
+    public function changeStatus(Status $status, \DateTimeImmutable $date): void
     {
         if ($this->status->isEqual($status)) {
             throw new \DomainException('Status is already same.');
         }
         $this->status = $status;
-        if ($status->isDone() && $this->progress !== 100) {
-            $this->changeProgress(100);
+        if (!$status->isNew() && !$this->startDate) {
+            $this->startDate = $date;
+        }
+        if ($status->isDone()) {
+            if ($this->progress !== 100) {
+                $this->changeProgress(100);
+            }
+            $this->endDate = $date;
+        } else {
+            $this->endDate = null;
         }
     }
 
@@ -183,7 +191,16 @@ class ChildMatka
     {
         return $this->planDate;
     }
+    
+    public function getStartDate(): ?\DateTimeImmutable
+    {
+        return $this->startDate;
+    }
 
+    public function getEndDate(): ?\DateTimeImmutable
+    {
+        return $this->endDate;
+    }
 
     public function getName(): string
     {
