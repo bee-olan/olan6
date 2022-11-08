@@ -23,6 +23,8 @@ class ChildMatka
     /**
      * @var Id
      * @ORM\Column(type="paseka_matkas_childmatka_id")
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\SequenceGenerator(sequenceName="paseka_matkas_childmatkas_seq", initialValue=1)
      * @ORM\Id
      */
     private $id;
