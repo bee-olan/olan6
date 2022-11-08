@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\UseCase\Matkas\ChildMatka\Progress;
+namespace App\Model\Paseka\UseCase\Matkas\ChildMatka\ChildOf;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -14,13 +14,7 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('progress', Type\ChoiceType::class, ['choices' => [
-                0 => 0,
-                25 => 25,
-                50 => 50,
-                75 => 75,
-                100 => 100
-            ], 'attr' => ['onchange' => 'this.form.submit()']]);
+            ->add('parent', Type\IntegerType::class, ['required' => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -28,10 +22,5 @@ class Form extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Command::class,
         ));
-    }
-
-    public function getBlockPrefix(): string
-    {
-        return 'progress';
     }
 }

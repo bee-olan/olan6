@@ -90,21 +90,20 @@
                     </td>
                     <td>
                         {% if childmatka.type != 'none' %}
-                            {{ work_projects_childmatka_type(childmatka.type) }}
+                            {{ paseka_matkas_childmatka_type(childmatka.type) }}
                         {% endif %}
                     </td>
-                    <td>{{ work_projects_childmatka_priority(childmatka.priority) }}</td>
+                    <td>{{ paseka_matkas_childmatka_priority(childmatka.priority) }}</td>
                     <td>
                         {% for executor in childmatka.executors %}
                             <span class="badge badge-default" style="background: #eee">{{ executor.name }}</span>
                         {% endfor %}
                     </td>
                     <td>{{ childmatka.plan_date ? childmatka.plan_date|date('Y-m-d') : '' }}</td>
-                    <td>{{ work_projects_childmatka_status(childmatka.status) }}</td>
+                    <td>{{ paseka_matkas_childmatka_status(childmatka.status) }}</td>
                     <td>
                         {% if childmatka.progress %}
-                            {# {{ work_projects_childmatka_progress(childmatka.progress) }} #}
-                            {{childmatka.progress}}
+                             {{ paseka_matkas_childmatka_progress(childmatka.progress) }}
                         {% endif %}
                     </td>
                 </tr>

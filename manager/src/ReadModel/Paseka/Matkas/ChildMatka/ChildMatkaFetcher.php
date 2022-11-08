@@ -63,10 +63,10 @@ class ChildMatkaFetcher
             $qb->setParameter(':plemmatka', $filter->plemmatka);
         }
 
-        if ($filter->author) {
-            $qb->andWhere('t.author_id = :author');
-            $qb->setParameter(':author', $filter->author);
-        }
+//        if ($filter->author) {
+//            $qb->andWhere('t.author_id = :author');
+//            $qb->setParameter(':author', $filter->author);
+//        }
 
         // if ($filter->name) {
         //     $qb->andWhere($qb->expr()->like('LOWER(t.name)', ':name'));
@@ -88,13 +88,13 @@ class ChildMatkaFetcher
             $qb->setParameter(':status', $filter->status);
         }
 
-        // if ($filter->executor) {
-        //     $qb->innerJoin('t', 'work_projects_tasks_executors', 'e', 'e.task_id = t.id');
-        //     $qb->andWhere('e.member_id = :executor');
-        //     $qb->setParameter(':executor', $filter->executor);
-        // }
-
-        if (!\in_array($sort, ['t.id', 't.date', 'author_name', 'plemmatka_name', 'name', 't.type', 't.plan_date', 't.progress', 't.priority', 't.status'], true)) {
+         if ($filter->executor) {
+             $qb->innerJoin('t', 'paseka_matkas_childmatkas_executors', 'e', 'e.childmatka_id = t.id');
+             $qb->andWhere('e.uchastie_id = :executor');
+             $qb->setParameter(':executor', $filter->executor);
+         }
+       // , 'author_name'
+        if (!\in_array($sort, ['t.id', 't.date', 'plemmatka_name', 'name', 't.type', 't.plan_date', 't.progress', 't.priority', 't.status'], true)) {
             throw new \UnexpectedValueException('Cannot sort by ' . $sort);
         }
 
@@ -153,20 +153,20 @@ class ChildMatkaFetcher
     //     }, $tasks);
     // }
 
-    // private function batchLoadExecutors(array $ids): array
-    // {
-    //     $stmt = $this->connection->createQueryBuilder()
-    //         ->select(
-    //             'e.task_id',
-    //             'TRIM(CONCAT(m.name_first, \' \', m.name_last)) AS name'
-    //         )
-    //         ->from('work_projects_tasks_executors', 'e')
-    //         ->innerJoin('e', 'work_members_members', 'm', 'm.id = e.member_id')
-    //         ->andWhere('e.task_id IN (:task)')
-    //         ->setParameter(':task', $ids, Connection::PARAM_INT_ARRAY)
-    //         ->orderBy('name')
-    //         ->execute();
+     private function batchLoadExecutors(array $ids): array
+     {
+         $stmt = $this->connection->createQueryBuilder()
+             ->select(
+                 'e.childmatka_id',
+                 'TRIM(CONCAT(m.name_first, \' \', m.name_last)) AS name'
+             )
+             ->from('paseka_matkas_childmatkas_executors', 'e')
+             ->innerJoin('e', 'paseka_uchasties_uchasties', 'm', 'm.id = e.uchastie_id')
+             ->andWhere('e.childmatka_id IN (:childmatka)')
+             ->setParameter(':childmatka', $ids, Connection::PARAM_INT_ARRAY)
+             ->orderBy('name')
+             ->execute();
 
-    //     return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
-    // }
+         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
+     }
 }

@@ -63,7 +63,7 @@ class ChildMatkasController extends AbstractController
         // } else {
          //   $filter = Filter\Filter::all()->forUchastie($this->getUser()->getId());
        // }
-
+//dd($filter);
         $form = $this->createForm(Filter\Form::class, $filter);
         $form->handleRequest($request);
 
@@ -74,7 +74,7 @@ class ChildMatkasController extends AbstractController
             $request->query->get('sort', 't.id'),
             $request->query->get('direction', 'desc')
         );
-
+//dd($pagination);
         return $this->render('app/paseka/matkas/childmatkas/index.html.twig', [
             'plemmatka' => null,
             'pagination' => $pagination,

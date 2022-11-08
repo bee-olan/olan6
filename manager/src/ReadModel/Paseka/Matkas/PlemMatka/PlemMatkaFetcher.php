@@ -42,6 +42,20 @@ class PlemMatkaFetcher
             ->execute()->fetch()['m'];
     }
 
+    public function allList(): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'id',
+                'name'
+            )
+            ->from('paseka_matkas_plemmatkas')
+            ->orderBy('sort')
+            ->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+    }
+
     public function existsPerson(string $id): bool
     {
         return $this->connection->createQueryBuilder()
