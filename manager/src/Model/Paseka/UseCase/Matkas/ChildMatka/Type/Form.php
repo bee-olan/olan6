@@ -18,7 +18,7 @@ class Form extends AbstractType
             ->add('type', Type\ChoiceType::class, ['choices' => [
                 'None' => ChildMatkaType::NONE,
                 'Error' => ChildMatkaType::ERROR,
-                'Feature' => ChildMatkaType::FEATURE,
+                'Свободна' => ChildMatkaType::SVOBODNA,
             ], 'attr' => ['onchange' => 'this.form.submit()']]);
     }
 

@@ -77,7 +77,7 @@
                         {{ plemmatka }} 
                         </div> 
                     </li>
-                    <li class="uchastie__name  ">эти данные берём за основу!  ПлемМатка записана  в БД</li>
+                    <li class="uchastie__name  ">эти данные берём за основу при регистрации ДочьМатки!  </li>
                     <li></li>
                 {% else %}
                 <li class="uchastie__name" >3. И Вам надо будет заполнить еще пару позиций:</li>
@@ -91,14 +91,18 @@
             <ul class="uchastie__data"> 
                 <li> </li>
             </ul>
-            <ul class="uchastie__data"> 
+            <ul class="uchastie__data">
+                <li>
+                    <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemId.id}  ) }}"
+                       class="btn-my btn-my--sm">Перейти к регистрации  <strong class="stro stro--kras">ДочьМатки  </strong>
+                    </a>
+                </li>
                 <li> 
                     <a href="{{ path('paseka.matkas'  ) }}"
                        class="btn-my btn-my--sm">Список всех зарегистрированных  <strong class="stro stro--kras">ПлемМатки  </strong>
                     </a>
                 </li>
             </ul>
-
         </div>
 
     </article><!-- uchastie -->

@@ -152,7 +152,7 @@ class ChildMatkasController extends AbstractController
 
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
-
+//dd($plemmatka);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);

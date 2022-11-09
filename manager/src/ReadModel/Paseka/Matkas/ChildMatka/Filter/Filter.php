@@ -14,6 +14,7 @@ class Filter
     public $status;
     public $priority;
     public $executor;
+    public $name;
     //public $roots;
 
     private function __construct(?string $plemmatka)

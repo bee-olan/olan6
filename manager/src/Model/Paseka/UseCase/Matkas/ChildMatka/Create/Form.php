@@ -18,12 +18,13 @@ class Form extends AbstractType
         $builder
             ->add('name', Type\TextType::class)
             ->add('content', Type\TextareaType::class, ['required' => false, 'attr' => ['rows' => 10]])
-            ->add('parent', Type\IntegerType::class, ['required' => false])
+           // ->add('parent', Type\IntegerType::class, ['required' => false])
             ->add('plan', Type\DateType::class, ['required' => false, 'widget' => 'single_text', 'input' => 'datetime_immutable'])
             ->add('type', Type\ChoiceType::class, ['choices' => [
-                'None' => ChildMatkaType::NONE,
-                'Error' => ChildMatkaType::ERROR,
-                'Свободна' => ChildMatkaType::SVOBODNA,
+                'Эли-тная' => ChildMatkaType::ELIT,
+                'Бре-ндовая' => ChildMatkaType::BREND,
+                'Ада-птированная' => ChildMatkaType::ADAPT,
+                'Мес-тная' => ChildMatkaType::MESTN,
             ]])
             ->add('priority', Type\ChoiceType::class, ['choices' => [
                 'Low' => 1,

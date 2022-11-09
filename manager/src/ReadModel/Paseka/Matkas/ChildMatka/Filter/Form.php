@@ -33,30 +33,31 @@ class Form extends AbstractType
                 'onchange' => 'this.form.submit()',
             ]])
             ->add('type', Type\ChoiceType::class, ['choices' => [
-                'None' => ChildMatkaType::NONE,
-                'Error' => ChildMatkaType::ERROR,
-                'Свободна' => ChildMatkaType::SVOBODNA,
-            ], 'required' => false, 'placeholder' => 'All types', 'attr' => ['onchange' => 'this.form.submit()']])
+                'Эли-тная' => ChildMatkaType::ELIT,
+                'Бре-ндовая' => ChildMatkaType::BREND,
+                'Ада' => ChildMatkaType::ADAPT,
+                'Мес' => ChildMatkaType::MESTN,
+            ], 'required' => false, 'placeholder' => 'Категории', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('status', Type\ChoiceType::class, ['choices' => [
                 'новая' => Status::NEW,
                 'в работе' => Status::WORKING,
                 'вопрос' => Status::HELP,
                 'отклонена' => Status::REJECTED,
-                'завершино' => Status::DONE,
-            ], 'required' => false, 'placeholder' => 'All statuses', 'attr' => ['onchange' => 'this.form.submit()']])
+                'завершено' => Status::DONE,
+            ], 'required' => false, 'placeholder' => 'Статусы', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('priority', Type\ChoiceType::class, ['choices' => [
                 'Low' => 1,
                 'Normal' => 2,
                 'High' => 3,
                 'Extra' => 4
-            ], 'required' => false, 'placeholder' => 'All priorities', 'attr' => ['onchange' => 'this.form.submit()']])
+            ], 'required' => false, 'placeholder' => 'Приоритеты', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('author', Type\ChoiceType::class, [
                 'choices' => $uchasties,
-                'required' => false, 'placeholder' => 'All authors', 'attr' => ['onchange' => 'this.form.submit()']
+                'required' => false, 'placeholder' => 'Авторы', 'attr' => ['onchange' => 'this.form.submit()']
             ])
             ->add('executor', Type\ChoiceType::class, [
                 'choices' => $uchasties,
-                'required' => false, 'placeholder' => 'All executors', 'attr' => ['onchange' => 'this.form.submit()']
+                'required' => false, 'placeholder' => 'Исполнители', 'attr' => ['onchange' => 'this.form.submit()']
             ]);
     //         ->add('roots', Type\ChoiceType::class, ['choices' => [
     //             'Roots' => Status::NEW,

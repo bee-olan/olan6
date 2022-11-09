@@ -1,15 +1,13 @@
-{% if status == 'new' %}
-    <span class="badge badge-secondary">New</span>
-{% elseif status == 'working' %}
-    <span class="badge badge-primary">Working</span>
-{% elseif status == 'help' %}
-    <span class="badge badge-warning">Help</span>
-{% elseif status == 'checking' %}
-    <span class="badge badge-danger">Checking</span>
-{% elseif status == 'rejected' %}
-    <span class="badge badge-info">Rejected</span>
-{% elseif status == 'done' %}
-    <span class="badge badge-success">Done</span>
+{% if status == 'новая' %}
+    <span class="badge badge-secondary">Новая</span>
+{% elseif status == 'в работе' %}
+    <span class="badge badge-primary">В работе</span>
+{% elseif status == 'вопрос' %}
+    <span class="badge badge-warning">Вопрос</span>
+{% elseif status == 'отклонена' %}
+    <span class="badge badge-info">Отклонена</span>
+{% elseif status == 'завершено' %}
+    <span class="badge badge-success">Завершено</span>
 {% elseif status == 'archived' %}
-    <span class="badge badge-dark">Archived</span>
+    <span class="badge badge-dark">Архивирована</span>
 {% endif %}

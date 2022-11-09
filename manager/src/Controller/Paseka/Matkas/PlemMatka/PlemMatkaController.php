@@ -74,11 +74,12 @@ class PlemMatkaController extends AbstractController
      * @param MestoNomerFetcher $mestoNomers
      * @param string $id_nom
      * @param string $plemmatka
+     * @param PlemMatkaFetcher $plemmatkas
      * @return Response
      */
     public function sdelano(string $id_nom, string $plemmatka, Request $request,
                               PersonaFetcher $personas, MestoNomerFetcher $mestoNomers,
-                              NomerRepository $nomers): Response
+                              NomerRepository $nomers, PlemMatkaFetcher $plemmatkas): Response
     {
 
         $idUser = $this->getUser()->getId();
@@ -89,10 +90,11 @@ class PlemMatkaController extends AbstractController
 
         $mestoNomer = $mestoNomers->find($idUser);
 
+        $plemId = $plemmatkas->findIdByPlemMatka($plemmatka);
 
 
         return $this->render('app/paseka/matkas/plemmatka/sdelano.html.twig',
-            compact('nomer', 'persona', 'mestoNomer', 'plemmatka') );
+            compact('nomer', 'persona', 'mestoNomer', 'plemmatka', 'plemId') );
     }
 
    /**

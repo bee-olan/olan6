@@ -51,6 +51,9 @@
 
 
     <div class="controls">
+        <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemmatka.id}  ) }}"
+           class="btn-my btn-my--sm">Перейти к регистрации  <strong class="stro stro--kras">ДочьМатки  </strong>
+        </a>
         <a href="{{ path('paseka.matkas.plemmatka.redaktors.edit', {'plemmatka_id': plemmatka.id}) }}" class="btn-me btn-primary">Редактировать  комментарий</a>
         {% if plemmatka.active and plemmatka.id.value != app.user.id %}
             <form action="{{ path('paseka.matkas.plemmatka.redaktors.archive', {'plemmatka_id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены, что племМатку в архив ?')">

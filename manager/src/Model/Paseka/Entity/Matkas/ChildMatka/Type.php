@@ -8,18 +8,20 @@ use Webmozart\Assert\Assert;
 
 class Type
 {
-    public const NONE = 'none';
-    public const ERROR = 'error';
-    public const SVOBODNA = 'Свободна';
+    public const ELIT = 'Эли';
+    public const BREND = 'Бре';
+    public const ADAPT = 'Ада';
+    public const MESTN = 'Мес';
 
     private $name;
 
     public function __construct(string $name)
     {
         Assert::oneOf($name, [
-            self::NONE,
-            self::ERROR,
-            self::SVOBODNA,
+            self::ELIT,
+            self::BREND,
+            self::ADAPT,
+            self::MESTN,
         ]);
 
         $this->name = $name;

@@ -51,7 +51,7 @@ class Command
     {
         $this->plemmatka = $plemmatka;
         $this->uchastie = $uchastie;
-        $this->type = Type::NONE;
+        $this->type = Type::MESTN;
         $this->priority = 2;
     }
 }

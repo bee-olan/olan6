@@ -37,20 +37,25 @@ class ChildMatkaFetcher
                 't.id',
                 't.date',
                 't.author_id',
-                'TRIM(CONCAT(m.name_first, \' \', m.name_last)) AS author_name',
+                'm.name_nike AS  author_name',
                 't.plemmatka_id',
                 'p.name plemmatka_name',
-                // 't.name',
+                't.name',
                 't.parent_id AS parent',
                 't.type',
                 't.priority',
                 't.progress',
                 't.plan_date',
-                't.status'
+                't.status',
+                'r.nomer AS mesto',
+                'u.nomer AS  author_persona'
             )
             ->from('paseka_matkas_childmatkas', 't')
             ->innerJoin('t', 'paseka_uchasties_uchasties', 'm', 't.author_id = m.id')
-            ->innerJoin('t', 'paseka_matkas_plemmatkas', 'p', 't.plemmatka_id = p.id');
+            ->innerJoin('t', 'paseka_matkas_plemmatkas', 'p', 't.plemmatka_id = p.id')
+            ->innerJoin('t', 'mesto_mestonomers', 'r', 't.author_id = r.id')
+            ->innerJoin('t', 'paseka_uchasties_personas', 'u', 't.author_id = u.id')
+        ;
 
         // if ($filter->member) {
         //     $qb->innerJoin('t', 'work_projects_project_memberships', 'ms', 't.project_id = ms.project_id');
@@ -68,10 +73,10 @@ class ChildMatkaFetcher
 //            $qb->setParameter(':author', $filter->author);
 //        }
 
-        // if ($filter->name) {
-        //     $qb->andWhere($qb->expr()->like('LOWER(t.name)', ':name'));
-        //     $qb->setParameter(':name', '%' . mb_strtolower($filter->name) . '%');
-        // }
+         if ($filter->name) {
+             $qb->andWhere($qb->expr()->like('LOWER(t.name)', ':name'));
+             $qb->setParameter(':name', '%' . mb_strtolower($filter->name) . '%');
+         }
 
         if ($filter->type) {
             $qb->andWhere('t.type = :type');

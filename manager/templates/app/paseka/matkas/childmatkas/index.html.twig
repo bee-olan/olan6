@@ -56,17 +56,17 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'ID', 't.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Date', 't.date') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Author', 'author_name') }}</th>
+{#                <th>{{ knp_pagination_sortable(pagination, 'ID', 't.id') }}</th>#}
+                <th>{{ knp_pagination_sortable(pagination, 'Дата', 't.date') }}</th>
                 {% if not plemmatka %}
-                    <th>{{ knp_pagination_sortable(pagination, 'PlemMatka', 'plemmatka_name') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'ПлемМатка', 'plemmatka_name') }}</th>
                 {% endif %}
-                {# <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th> #}
-                <th>{{ knp_pagination_sortable(pagination, 'Type', 't.type') }}</th>
+                 <th>{{ knp_pagination_sortable(pagination, 'ДочьМатка', 'name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Автор', 'author_name') }}</th>
+{#                <th>{{ knp_pagination_sortable(pagination, 'Type', 't.type') }}</th>#}
                 <th>{{ knp_pagination_sortable(pagination, '<span class="fa fa-fire"></span>', 't.priority', {'encode': false}) }}</th>
-                <th>Executors</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Plan', 't.plan_date') }}</th>
+                <th>Исполнитель</th>
+{#                <th>{{ knp_pagination_sortable(pagination, 'Plan', 't.plan_date') }}</th>#}
                 <th>{{ knp_pagination_sortable(pagination, 'Status', 't.status') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Ready', 't.progress') }}</th>
             </tr>
@@ -74,32 +74,37 @@
             <tbody>
             {% for childmatka in pagination %}
                 <tr>
-                    <td>{{ childmatka.id }}</td>
+{#                    <td>{{ childmatka.id }} </td>#}
                     <td>{{ childmatka.date|date('Y-m-d') }}</td>
-                    <td>{{ childmatka.author_name }}</td>
-                    {# {% if not project %}
+
+
+{#                     {% if not project %}#}
                         <td>
-                            <a href="{{ path('work.projects.project.show', {'id': childmatka.project_id}) }}">{{ childmatka.project_name }}</a>
+{#                            <a href="{{ path('work.projects.project.show', {'id': childmatka.project_id}) }}">{{ childmatka.project_name }}</a>#}
+                        {{ childmatka.plemmatka_name }}
                         </td>
-                    {% endif %}
-                    <td> #}
+{#                    {% endif %}#}
+                    <td>
                         {% if childmatka.parent %}
                             <span class="fa fa-angle-double-right"></span>
                         {% endif %}
-                        <a href="{{ path('paseka.matkas.childmatkas.show', {'id': childmatka.id}) }}">{{ childmatka.name }}</a>
+{#                        <a href="{{ path('paseka.matkas.childmatkas.show', {'id': childmatka.id}) }}">{{ childmatka.name }}</a>#}
+{#                        {{ childmatka.name }}#}
+                            {{ paseka_matkas_childmatka_type(childmatka.type) }}{{ childmatka.mesto }}_пН-{{ childmatka.author_persona }}_{{ childmatka.id }}
                     </td>
-                    <td>
-                        {% if childmatka.type != 'none' %}
-                            {{ paseka_matkas_childmatka_type(childmatka.type) }}
-                        {% endif %}
-                    </td>
+                    <td>{{ childmatka.author_name }}</td>
+{#                    <td>#}
+{#                        {% if childmatka.type != 'none' %}#}
+{#                            {{ paseka_matkas_childmatka_type(childmatka.type) }}#}
+{#                        {% endif %}#}
+{#                    </td>#}
                     <td>{{ paseka_matkas_childmatka_priority(childmatka.priority) }}</td>
                     <td>
                         {% for executor in childmatka.executors %}
                             <span class="badge badge-default" style="background: #eee">{{ executor.name }}</span>
                         {% endfor %}
                     </td>
-                    <td>{{ childmatka.plan_date ? childmatka.plan_date|date('Y-m-d') : '' }}</td>
+{#                    <td>{{ childmatka.plan_date ? childmatka.plan_date|date('Y-m-d') : '' }}</td>#}
                     <td>{{ paseka_matkas_childmatka_status(childmatka.status) }}</td>
                     <td>
                         {% if childmatka.progress %}

@@ -32,6 +32,26 @@ class PlemMatkaFetcher
         return $this->repository->find($id);
     }
 
+    public function findIdByPlemMatka(string $name): ?IdView
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'id',
+                'name'
+
+            )
+            ->from('paseka_matkas_plemmatkas')
+            ->where('name = :name')
+            ->setParameter(':name', $name)
+            ->execute();
+
+        $stmt->setFetchMode(FetchMode::CUSTOM_OBJECT, IdView::class);
+        $result = $stmt->fetch();
+
+        return $result ?: null;
+    }
+
+
     public function getMaxSortPerson(int $persona): int
     {
         return (int)$this->connection->createQueryBuilder()
