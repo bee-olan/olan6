@@ -14,6 +14,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class UserFixture extends Fixture
 {
+    public const REFERENCE_ADMIN = 'user_user_admin';
+    public const REFERENCE_USER = 'user_user_user';
+
     private $hasher;
 
     public function __construct(PasswordHasher $hasher)
@@ -37,6 +40,7 @@ class UserFixture extends Fixture
         $user->changeRole(Role::admin());
         $user->changeUchKak(UchKak::pchmat());
         $manager->persist($user);
+        $this->setReference(self::REFERENCE_ADMIN, $user);
 
         $user1 = User::signUpByEmail(
             Id::next(),
@@ -51,6 +55,7 @@ class UserFixture extends Fixture
 //        $user1->changeRole(Role::user());
         $user1->changeUchKak(UchKak::matko());
         $manager->persist($user1);
+        $this->setReference(self::REFERENCE_USER, $user1);
  ///////////
         $user2 = User::signUpByEmail(
             Id::next(),

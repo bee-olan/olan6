@@ -15,6 +15,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class OkrugFixtures extends Fixture
 {
+    public const REFERENCE_PRIWOL= 'mesto_okrug_priwol';
+    public const REFERENCE_UGG= 'mesto_okrug_$ugg';
+
     public function load(ObjectManager $manager): void
     {
         $okrug = new Okrug(
@@ -31,19 +34,23 @@ class OkrugFixtures extends Fixture
         );
         $manager->persist($okrug);
 
-        $okrug = new Okrug(
+        $ugg = new Okrug(
             Id::next(),
             'Южный',
             '3'
         );
-        $manager->persist($okrug);
+        $manager->persist($ugg);
+        $this->setReference(self::REFERENCE_UGG, $ugg);
 
-        $okrug = new Okrug(
+
+        $priwol = new Okrug(
             Id::next(),
             'Приволжский',
             '4'
         );
-        $manager->persist($okrug);
+        $manager->persist($priwol);
+        $this->setReference(self::REFERENCE_PRIWOL, $priwol);
+
 
         $okrug = new Okrug(
             Id::next(),
