@@ -42,11 +42,18 @@ class OkrugFixtures extends Fixture
         $manager->persist($ugg);
         $this->setReference(self::REFERENCE_UGG, $ugg);
 
+        $priwol = new Okrug(
+            Id::next(),
+            ' Северо-Кавказский',
+            '4'
+        );
+        $manager->persist($priwol);
+        //$this->setReference(self::REFERENCE_PRIWOL, $priwol);
 
         $priwol = new Okrug(
             Id::next(),
             'Приволжский',
-            '4'
+            '5'
         );
         $manager->persist($priwol);
         $this->setReference(self::REFERENCE_PRIWOL, $priwol);
@@ -55,23 +62,18 @@ class OkrugFixtures extends Fixture
         $okrug = new Okrug(
             Id::next(),
             'Уральский',
-            '5'
-        );
-        $manager->persist($okrug);
-
-        $okrug = new Okrug(
-            Id::next(),
-            'Сибирский',
             '6'
         );
         $manager->persist($okrug);
 
         $okrug = new Okrug(
             Id::next(),
-            'Северо-Кавказский',
+            'Сибирский',
             '7'
         );
         $manager->persist($okrug);
+
+
 
         $okrug = new Okrug(
             Id::next(),
