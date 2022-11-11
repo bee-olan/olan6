@@ -27,6 +27,11 @@ class Filter
         return new self($plemmatka);
     }
 
+    public static function allChildMat(): self
+    {
+        return new self(null);
+    }
+
     public static function all(): self
     {
         return new self(null);

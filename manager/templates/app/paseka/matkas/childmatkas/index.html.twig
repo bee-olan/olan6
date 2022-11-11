@@ -22,11 +22,13 @@
         {% include 'app/work/_tabs.html.twig' %}
     {% endif %} #}
 
-    {# {% if plemmatka %}
+     {% if plemmatka %}
         <div class="controls">
-            <a href="{{ path('work.projects.project.childmatkas.create', {'project_id': project.id}) }}" class="btn btn-success">Add childmatkas</a>
+            <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemmatka.id} ) }}"
+               class="btn-my btn-success matka__title ">Добавить ДочьМатку к ПлемМатке {{ plemmatka.name }}
+            </a>
         </div>
-    {% endif %} #}
+    {% endif %}
 
     <div class="card">
         <div class="card-body pb-1">
@@ -78,19 +80,20 @@
                     <td>{{ childmatka.date|date('Y-m-d') }}</td>
 
 
-{#                     {% if not project %}#}
+                    {% if not plemmatka %}
                         <td>
-{#                            <a href="{{ path('work.projects.project.show', {'id': childmatka.project_id}) }}">{{ childmatka.project_name }}</a>#}
-                        {{ childmatka.plemmatka_name }}
+{#                            <a href="{{ path('paseka.matkas.plemmatka.show', {'id': childmatka.project_id}) }}">{{ childmatka.project_name }}</a>#}
+                            <a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': childmatka.plemmatka_id}) }}">{{ childmatka.plemmatka_name }}</a>
+                            {#                        {{ childmatka.plemmatka_name }}#}
                         </td>
-{#                    {% endif %}#}
+                    {% endif %}
                     <td>
                         {% if childmatka.parent %}
                             <span class="fa fa-angle-double-right"></span>
                         {% endif %}
-{#                        <a href="{{ path('paseka.matkas.childmatkas.show', {'id': childmatka.id}) }}">{{ childmatka.name }}</a>#}
-{#                        {{ childmatka.name }}#}
+                        <a href="{{ path('paseka.matkas.childmatkas.show', {'id': childmatka.id}) }}">
                             {{ paseka_matkas_childmatka_type(childmatka.type) }}{{ childmatka.mesto }}_пН-{{ childmatka.author_persona }}_{{ childmatka.id }}
+                        </a>
                     </td>
                     <td>{{ childmatka.author_name }}</td>
 {#                    <td>#}

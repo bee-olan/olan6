@@ -17,7 +17,7 @@ class Command
      */
     public $uchaste;
 
-    public function __construct(int $id, string $uchaste)
+    public function __construct(string $uchaste,int $id )
     {
         $this->id = $id;
         $this->uchaste = $uchaste;

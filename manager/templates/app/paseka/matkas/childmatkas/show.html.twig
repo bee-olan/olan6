@@ -1,63 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ task.name }}{% endblock %}
+{% block title %}{{ childmatka.name }}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects') }}">Projects</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.show', {'id': project.id}) }}">{{ project.name }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.tasks', {'project_id': project.id}) }}">Tasks</a></li>
-        <li class="breadcrumb-item active">{{ task.name }}</li>
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">На главную</a></li>
+{#        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Пасека</a></li>#}
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.childmatkas', {'plemmatka_id': plemmatka.id}) }}">ДочьМатки</a></li>
+        <li class="breadcrumb-item active">{{ childmatka.name }}</li>
     </ol>
 {% endblock %}
 
 {% block body %}
 
     <h1 class="mt-0 mb-3 font-xl">
-        {% if task.parent %}
-            <a href="{{ path('work.projects.tasks.show', {'id': task.parent.id}) }}">{{ task.parent.name }}</a> /
+        {% if childmatka.parent %}
+            <a href="{{ path('paseka.matkas.childmatkas.show', {'id': childmatka.parent.id}) }}">{{ childmatka.parent.name }}</a> /
         {% endif %}
-        {{ task.name }}
+        {{ childmatka.name }}
     </h1>
 
     <div class="controls">
 
-        {% if task.hasExecutor(member.id) %}
-            {% if task.isNew() %}
-                <form action="{{ path('work.projects.tasks.start', {'id': task.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+        {% if childmatka.hasExecutor(uchastie.id) %}
+            {% if childmatka.isNew() %}
+                <form action="{{ path('paseka.matkas.childmatkas.start', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                     <input type="hidden" name="token" value="{{ csrf_token('start') }}" />
-                    <button type="submit" class="btn btn-success">Start</button>
+                    <button type="submit" class="btn btn-success">Начало</button>
                 </form>
             {% endif %}
         {% else %}
-            <form action="{{ path('work.projects.tasks.take', {'id': task.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+            <form action="{{ path('paseka.matkas.childmatkas.take', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                 <input type="hidden" name="token" value="{{ csrf_token('take') }}" />
-                <button type="submit" class="btn btn-success">Take</button>
+                <button type="submit" class="btn btn-success">Бери</button>
             </form>
-            {% if task.isNew() %}
-                <form action="{{ path('work.projects.tasks.take_and_start', {'id': task.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+            {% if childmatka.isNew() %}
+                <form action="{{ path('paseka.matkas.childmatkas.take_and_start', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                     <input type="hidden" name="token" value="{{ csrf_token('take-and-start') }}" />
-                    <button type="submit" class="btn btn-success">Take & Start</button>
+                    <button type="submit" class="btn btn-success">Бери и Начни</button>
                 </form>
             {% endif %}
         {% endif %}
-        <a href="{{ path('work.projects.tasks.assign', {'id': task.id}) }}" class="btn btn-primary">Assign Executors</a>
-        <a href="{{ path('work.projects.project.tasks.create', {'project_id': project.id}) }}?parent={{ task.id }}" class="btn btn-primary">Add
-            SubTasks</a>
-        <a href="{{ path('work.projects.tasks.edit', {'id': task.id}) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ path('paseka.matkas.childmatkas.assign', {'id': childmatka.id}) }}" class="btn btn-primary">Назначить исполнителей</a>
+        <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id': plemmatka.id}) }}?parent={{ childmatka.id }}" class="btn btn-primary">Add
+            Подзадачи</a>
+        <a href="{{ path('paseka.matkas.childmatkas.edit', {'id': childmatka.id}) }}" class="btn btn-primary">Edit</a>
         <div class="btn-group">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                More&hellip;
+                Перети&hellip;
             </button>
             <div class="dropdown-menu" x-placement="bottom-start">
-                <a class="dropdown-item" href="{{ path('work.projects.tasks.move', {'id': task.id}) }}">Move To Project&hellip;</a>
-                <a class="dropdown-item" href="{{ path('work.projects.tasks.child', {'id': task.id}) }}">Set As Child Of&hellip;</a>
-                <form class="dropdown-item" action="{{ path('work.projects.tasks.delete', {'id': task.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
-                    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
-                    <button type="submit" class="btn" style="padding: 0">Delete</button>
-                </form>
+                <a class="dropdown-item" href="{{ path('paseka.matkas.childmatkas.move', {'id': childmatka.id}) }}">Перейти к ПлемМатке&hellip;</a>
+{#                <a class="dropdown-item" href="{{ path('paseka.matkas.childmatkas.child', {'id': childmatka.id}) }}">Установлен как Дочерний элемент&hellip;</a>#}
+                Установлен как Дочерний элемент
+{#                <form class="dropdown-item" action="{{ path('paseka.matkas.childmatkas.delete', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
+{#                    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />#}
+{#                    <button type="submit" class="btn" style="padding: 0">Удалить</button>#}
+{#                </form>#}
+                <button type="submit" class="btn" style="padding: 0">Удалить</button>
             </div>
         </div>
     </div>
@@ -65,20 +67,20 @@
     {% if children %}
         <div class="card">
             <div class="card-header">
-                <a href="{{ path('work.projects.project.tasks.create', {'project_id': project.id}) }}?parent={{ task.id }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a>
+                <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id': plemmatka.id}) }}?parent={{ childmatka.id }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a>
                 Subtasks
             </div>
             <table class="table table-bordered table-hover mb-0">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Project</th>
-                        <th>Name</th>
-                        <th>Type</th>
+                        <th>Дата</th>
+                        <th>ПлемМатка</th>
+                        <th>Имя</th>
+                        <th>Состояние</th>
                         <th><span class="fa fa-fire"></span></th>
-                        <th>Executor</th>
-                        <th>Status</th>
-                        <th>Ready</th>
+                        <th>Исполнитель</th>
+                        <th>Статус</th>
+                        <th>Готов</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,26 +88,26 @@
                         <tr>
                             <td>{{ child.date|date('Y-m-d') }}</td>
                             <td>
-                                <a href="{{ path('work.projects.project.show', {'id': child.project_id}) }}">{{ child.project_name }}</a>
+                                <a href="{{ path('paseka.matkas.plemmatka.show', {'id': child.plemmatka_id}) }}">{{ child.plemmatka_name }}</a>
                             </td>
                             <td>
-                                <a href="{{ path('work.projects.tasks.show', {'id': child.id}) }}">{{ child.name }}</a>
+                                <a href="{{ path('paseka.matkas.childmatkas.show', {'id': child.id}) }}">{{ child.name }}</a>
                             </td>
                             <td>
                                 {% if child.type != 'none' %}
-                                    {{ work_projects_task_type(child.type) }}
+                                    {{ paseka_matkas_childmatka_type(child.type) }}
                                 {% endif %}
                             </td>
-                            <td>{{ work_projects_task_priority(child.priority) }}</td>
+                            <td>{{ paseka_matkas_childmatka_priority(child.priority) }}</td>
                             <td>
                                 {% for executor in child.executors %}
                                     <span class="badge badge-default" style="background: #eee">{{ executor.name }}</span>
                                 {% endfor %}
                             </td>
-                            <td>{{ work_projects_task_status(child.status) }}</td>
+                            <td>{{ paseka_matkas_childmatka_status(child.status) }}</td>
                             <td>
                                 {% if child.progress %}
-                                    {{ work_projects_task_progress(child.progress) }}
+                                    {{ paseka_matkas_childmatka_progress(child.progress) }}
                                 {% endif %}
                             </td>
                         </tr>
@@ -118,37 +120,38 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Task</div>
+                <div class="card-header">ДочьМатки</div>
                 <table class="table table-bordered mb-0">
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <td colspan="3">{{ task.id }}</td>
+                            <td colspan="3">{{ childmatka.id }}</td>
                         </tr>
                         <tr>
-                            <th>Create Date</th>
-                            <td>{{ task.date|date('Y-m-d H:i:s') }}</td>
+                            <th>Дата создания</th>
+                            <td>{{ childmatka.date|date('Y-m-d H:i:s') }}</td>
                             <th>Plan Date</th>
                             <td>
-                                {{ task.planDate ? task.planDate|date('Y-m-d') : '' }}
+                                {{ childmatka.planDate ? childmatka.planDate|date('Y-m-d') : '' }}
 
                                 <div class="controls pull-right" style="margin-bottom: 0">
-                                    <a href="{{ path('work.projects.tasks.plan', {'project_id': project.id, 'id': task.id}) }}" class="btn btn-sm py-0">
+                                    <a href="{{ path('paseka.matkas.childmatkas.plan', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" class="btn btn-sm py-0">
                                         <span class="fa fa-pencil"></span>
                                     </a>
-                                    {% if task.planDate %}
-                                        <form action="{{ path('work.projects.tasks.plan.remove', {'project_id': project.id, 'id': task.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
-                                            <input type="hidden" name="token" value="{{ csrf_token('remove-plan') }}" />
-                                            <button type="submit" class="btn btn-sm py-0">
-                                                <span class="fa fa-times"></span>
-                                            </button>
-                                        </form>
+                                    {% if childmatka.planDate %}
+                                        ................
+{#                                        <form action="{{ path('paseka.matkas.childmatkas.plan.remove', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
+{#                                            <input type="hidden" name="token" value="{{ csrf_token('remove-plan') }}" />#}
+{#                                            <button type="submit" class="btn btn-sm py-0">#}
+{#                                                <span class="fa fa-times"></span>#}
+{#                                            </button>#}
+{#                                        </form>#}
                                     {% endif %}
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th>Type</th>
+                            <th>Состояние</th>
                             <td>
                                 {{ form_start(typeForm) }}
                                 <div class="row">
@@ -161,7 +164,7 @@
                                 </div>
                                 {{ form_end(typeForm) }}
                             </td>
-                            <th>Status</th>
+                            <th>Статус</th>
                             <td>
                                 {{ form_start(statusForm) }}
                                 <div class="row">
@@ -175,7 +178,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Priority</th>
+                            <th>Приоритет</th>
                             <td>
                                 {{ form_start(priorityForm) }}
                                 <div class="row">
@@ -206,39 +209,49 @@
 
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ path('work.projects.tasks.files', {'id': task.id}) }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a>
+{#                    <a href="{{ path('paseka.matkas.childmatkas.files', {'id': childmatka.id}) }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a>#}
                     Files
                 </div>
                 <table class="table mb-0">
                     <tbody>
-                        {% for file in task.files %}
+{#                        {% for file in childmatka.files %}#}
                             <tr>
                                 <td>
-                                    <a href="{{ storage_path(file.info.path ~ '/' ~ file.info.name) }}" target="_blank">{{ file.info.name }}</a>
+                                    ??????
+{#                                    <a href="{{ storage_path(file.info.path ~ '/' ~ file.info.name) }}" target="_blank">{{ file.info.name }}</a>#}
                                 </td>
-                                <td>{{ (file.info.size / 1024)|number_format(2, '.', ',') }} KB</td>
-                                <td>{{ file.date|date('Y-m-d H:i:s') }}</td>
                                 <td>
-                                    <a href="{{ path('work.members.show', {'id': file.member.id}) }}">{{ file.member.name.full }}</a>
+                                    ????????
+{#                                    {{ (file.info.size / 1024)|number_format(2, '.', ',') }} KB#}
+                                </td>
+                                <td>
+                                    ==============================
+{#                                    {{ file.date|date('Y-m-d H:i:s') }}#}
+                                </td>
+                                <td>
+                                    --------------------------
+{#                                    <a href="{{ path('paseka.uchasties.show', {'id': file.uchastie.id}) }}">{{ file.uchastie.name.full }}</a>#}
                                 </td>
                                 <td style="width: 27px; box-sizing: content-box">
-                                    <form action="{{ path('work.projects.tasks.files.delete', {'id': task.id, 'file_id': file.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
-                                        <input type="hidden" name="token" value="{{ csrf_token('delete-file') }}" />
-                                        <button type="submit" class="btn btn-sm btn-default">
-                                            <span class="fa fa-times"></span>
-                                        </button>
-                                    </form>
+{#                                    <form action="{{ path('paseka.matkas.childmatkas.files.delete', {'id': childmatka.id, 'file_id': file.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
+{#                                        <input type="hidden" name="token" value="{{ csrf_token('delete-file') }}" />#}
+{#                                        <button type="submit" class="btn btn-sm btn-default">#}
+{#                                            <span class="fa fa-times"></span>#}
+{#                                        </button>#}
+{#                                    </form>#}
+                                    //////////////////
                                 </td>
                             </tr>
-                        {% endfor %}
+{#                        {% endfor %}#}
                     </tbody>
                 </table>
             </div>
 
-            {% if task.content %}
+            {% if childmatka.content %}
                 <div class="card mb-3">
                     <div class="card-body pb-0">
-                        {{ task.content|markdown|purify|work_processor }}
+                        1111111111111111111111111
+{#                        {{ childmatka.content|markdown|purify|work_processor }}#}
                     </div>
                 </div>
             {% endif %}
@@ -248,64 +261,68 @@
                 <div class="card-body">
                     <div class="direct-chat">
                         <div class="direct-chat-messages">
-                            {% for item in feed.items %}
-                                {% set comment = item.comment %}
-                                {% if comment %}
-                                    <div class="direct-chat-msg">
-                                        <div class="direct-chat-info clearfix">
-                                            <span class="direct-chat-name pull-left">{{ comment.author_name }}</span>
-                                            <span class="direct-chat-timestamp pull-right">{{ comment.date|date('Y-m-d H:i:s') }}</span>
-                                        </div>
-                                        <img class="direct-chat-img" src="{{ gravatar(comment.author_email, 40) }}" alt="">
-                                        <div class="direct-chat-text">
-                                            {{ comment.text|markdown|purify|work_processor }}
-                                            {% if is_granted('manage', comment) %}
-                                                <div class="controls mb-0">
-                                                    <a href="{{ path('work.projects.tasks.comments.edit', {'task_id': task.id, 'id': comment.id}) }}" class="btn btn-sm btn-outline-secondary">
-                                                        <span class="fa fa-pencil"></span>
-                                                    </a>
-                                                    <form action="{{ path('work.projects.tasks.comments.delete', {'task_id': task.id, 'id': comment.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
-                                                        <input type="hidden" name="token" value="{{ csrf_token('delete-comment') }}" />
-                                                        <button type="submit" class="btn btn-sm btn-outline-secondary">
-                                                            <span class="fa fa-times"></span>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                                {% set action = item.action %}
-                                {% if action %}
-                                    <div class="direct-chat-action">
-                                        {{ action.date|date('Y-m-d H:i') }}
-                                        {{ work_projects_action_row(action) }}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+{#                            {% for item in feed.items %}#}
+{#                                {% set comment = item.comment %}#}
+{#                                {% if comment %}#}
+{#                                    <div class="direct-chat-msg">#}
+{#                                        <div class="direct-chat-info clearfix">#}
+{#                                            <span class="direct-chat-name pull-left">{{ comment.author_name }}</span>#}
+{#                                            <span class="direct-chat-timestamp pull-right">{{ comment.date|date('Y-m-d H:i:s') }}</span>#}
+{#                                        </div>#}
+{#                                        222222222222222222222222222#}
+{#                                        <img class="direct-chat-img" src="{{ gravatar(comment.author_email, 40) }}" alt="">#}
+{#                                        <div class="direct-chat-text">#}
+{#                                            333333333333333333333333#}
+{#                                            {{ comment.text|markdown|purify|work_processor }}#}
+{#                                            {% if is_granted('manage', comment) %}#}
+{#                                                <div class="controls mb-0">#}
+{#                                                    <a href="{{ path('paseka.matkas.childmatkas.comments.edit', {'childmatka_id': childmatka.id, 'id': comment.id}) }}" class="btn btn-sm btn-outline-secondary">#}
+{#                                                        <span class="fa fa-pencil"></span>#}
+{#                                                    </a>#}
+{#                                                    <form action="{{ path('paseka.matkas.childmatkas.comments.delete', {'childmatka_id': childmatka.id, 'id': comment.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
+{#                                                        <input type="hidden" name="token" value="{{ csrf_token('delete-comment') }}" />#}
+{#                                                        <button type="submit" class="btn btn-sm btn-outline-secondary">#}
+{#                                                            <span class="fa fa-times"></span>#}
+{#                                                        </button>#}
+{#                                                    </form>#}
+{#                                                </div>#}
+{#                                            {% endif %}#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{#                                {% set action = item.action %}#}
+{#                                {% if action %}#}
+{#                                    <div class="direct-chat-action">#}
+{#                                        {{ action.date|date('Y-m-d H:i') }}#}
+{#                                        555555555555#}
+{#                                        {{ paseka_matkas_action_row(action) }}#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
                         </div>
                     </div>
                 </div>
                 <div class="card-body border-top border-light">
-                    {{ form_start(commentForm) }}
-                    {{ form_widget(commentForm) }}
-                    <button type="submit" class="btn btn-primary">Send</button>
-                    {{ form_end(commentForm) }}
+{#                    {{ form_start(commentForm) }}#}
+{#                    {{ form_widget(commentForm) }}#}
+{#                    <button type="submit" class="btn btn-primary">Отправить</button>#}
+{#                    {{ form_end(commentForm) }}#}
                 </div>
             </div>
 
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">Author</div>
+                <div class="card-header">Автор</div>
                 <table class="table mb-0">
                     <tbody>
                         <tr>
                             <td style="width: 24px; box-sizing: content-box">
-                                <img src="{{ gravatar(task.author.email.value, 24) }}" class="img-circle" width="24" height="24" alt="" />
+                                666666666
+{#                                <img src="{{ gravatar(childmatka.author.email.value, 24) }}" class="img-circle" width="24" height="24" alt="" />#}
                             </td>
                             <td>
-                                <a href="{{ path('work.members.show', {'id': task.author.id}) }}">{{ task.author.name.full }}</a>
+                                <a href="{{ path('paseka.uchasties.show', {'id': childmatka.author.id}) }}">{{ childmatka.author.name.full }}</a>
                             </td>
                         </tr>
                     </tbody>
@@ -314,22 +331,23 @@
 
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ path('work.projects.tasks.assign', {'project_id': project.id, 'id': task.id}) }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a>
+                    <a href="{{ path('paseka.matkas.childmatkas.assign', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a>
                     Executors
                 </div>
-                {% if task.executors %}
+                {% if childmatka.executors %}
                     <table class="table mb-0">
                         <tbody>
                             {% for executor in task.executors %}
                                 <tr>
                                     <td style="width: 24px; box-sizing: content-box">
-                                        <img src="{{ gravatar(executor.email.value, 24) }}" class="img-circle" width="24" height="24" alt="" />
+                                        777777
+{#                                        <img src="{{ gravatar(executor.email.value, 24) }}" class="img-circle" width="24" height="24" alt="" />#}
                                     </td>
                                     <td>
-                                        <a href="{{ path('work.members.show', {'id': executor.id}) }}">{{ executor.name.full }}</a>
+                                        <a href="{{ path('paseka.uchasties.show', {'id': executor.id}) }}">{{ executor.name.full }}</a>
                                     </td>
                                     <td style="width: 22px">
-                                        <form action="{{ path('work.projects.tasks.revoke', {'project_id': project.id, 'id': task.id, 'member_id': executor.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                        <form action="{{ path('paseka.matkas.childmatkas.revoke', {'plemmatka_id': plemmatka.id, 'id': childmatka.id, 'member_id': executor.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                                             <input type="hidden" name="token" value="{{ csrf_token('revoke') }}" />
                                             <button type="submit" class="btn btn-sm btn-default">
                                                 <span class="fa fa-times"></span>

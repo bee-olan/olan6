@@ -49,14 +49,22 @@ class ChildMatkasController extends AbstractController
         $filter = Filter\Filter::forPlemMatka($plemmatka->getId()->getValue());
 
         $form = $this->createForm(Filter\Form::class, $filter);
+
         $form->handleRequest($request);
 
-        $pagination = $this->childmatkas->all(
+//        $pagination = $this->childmatkas->allChildMat(
+//            $filter,
+//            $request->query->getInt('page', 1),
+//            self::PER_PAGE,
+//            $request->query->get('sort'),
+//            $request->query->get('direction', 'desc')
+//        );
+        $pagination = $this->childmatkas->allChildMat(
             $filter,
             $request->query->getInt('page', 1),
             self::PER_PAGE,
-            $request->query->get('sort'),
-            $request->query->get('direction')
+            $request->query->get('sort', 't.date'),
+            $request->query->get('direction', 'desc')
         );
 
         return $this->render('app/paseka/matkas/childmatkas/index.html.twig', [
@@ -156,7 +164,7 @@ class ChildMatkasController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('app/paseka/matkas/plemmatka/childmatkas', ['plemmatka_id' => $plemmatka->getId()]);
+                return $this->redirectToRoute('paseka.matkas.childmatkas');
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());

@@ -23,7 +23,7 @@ class Command
         $this->id = $id;
     }
 
-    public static function fromTask(ChildMatka $childmatka): self
+    public static function fromChildMatka(ChildMatka $childmatka): self
     {
         $command = new self($childmatka->getId()->getValue());
         $command->status = $childmatka->getStatus()->getName();

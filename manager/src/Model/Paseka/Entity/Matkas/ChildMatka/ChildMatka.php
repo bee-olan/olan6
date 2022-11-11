@@ -11,6 +11,7 @@ use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Webmozart\Assert\Assert;
 
 /**
  * @ORM\Entity()

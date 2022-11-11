@@ -119,6 +119,7 @@ class UchastieFetcher
 
     public function activeDepartmentListForPlemMatka(string $plemmatka): array
     {
+
         $stmt = $this->connection->createQueryBuilder()
             ->select([
                 'm.id',
