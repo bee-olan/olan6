@@ -13,8 +13,7 @@
 {% block body %}
 
     <div class="controls">
-{#        <a href="{{ path('paseka.matkas.create') }}" class="btn btn-success">Добавить Племенную матку</a>#}
-        Добавить Племенную матку
+        <a href="{{ path('paseka.matkas.plemmatka') }}" class="btn btn-success">Добавить Племенную матку</a>
     </div>
 
     <div class="card">
@@ -52,12 +51,11 @@
                     {# <td>  {{ plemmatka.name }}</td> #}
                     <td>{{ plemmatka.persona }}</td>
                     <td>{{ plemmatka_status(plemmatka.status) }}</td>
-                    <td >
-                        <form action="{{ path('paseka.matkas.delete', {'id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Подтверждаете - удалить?')">
-                            <input type="hidden" name="token" value="{{ token }}" />
-                            <button type="submit" class="btn-my btn-my--smm "><span class="fa fa-trash"></span></button>
-                        </form>
+                    <td>
+                        <a href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}"
+                           class="btn-my "><span class="fa fa-pencil"></span></a>
                     </td>
+
                 </tr>
             {% endfor %}
             </tbody>

@@ -157,7 +157,7 @@ class ChildMatkasController extends AbstractController
         if ($parent = $request->query->get('parent')) {
             $command->parent = $parent;
         }
-
+        $command->name = "hhh";
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
 //dd($plemmatka);

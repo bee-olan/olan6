@@ -16,7 +16,7 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', Type\TextType::class)
+//            ->add('name', Type\TextType::class)
             ->add('content', Type\TextareaType::class, ['required' => false, 'attr' => ['rows' => 10]])
            // ->add('parent', Type\IntegerType::class, ['required' => false])
             ->add('plan', Type\DateType::class, ['required' => false, 'widget' => 'single_text', 'input' => 'datetime_immutable'])

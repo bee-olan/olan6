@@ -53,5 +53,6 @@ class Command
         $this->uchastie = $uchastie;
         $this->type = Type::MESTN;
         $this->priority = 2;
+
     }
 }

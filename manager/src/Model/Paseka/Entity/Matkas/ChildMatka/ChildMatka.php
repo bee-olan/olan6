@@ -29,7 +29,7 @@ class ChildMatka
      * @ORM\Id
      */
     private $id;
-
+//SEQUENCE  -- NONE
     /**
      * @var PlemMatka
      * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka")

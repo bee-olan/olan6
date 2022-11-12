@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Matkas\PlemMatka\Redaktors;
 
+use App\Annotation\Guid;
+
 use  App\Model\Paseka\UseCase\Matkas\PlemMatka\Edit;
 use App\Model\Paseka\UseCase\Matkas\PlemMatka\Archive;
 
@@ -26,6 +28,18 @@ class RedaktorController extends AbstractController
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
+    }
+
+    /**
+     * @Route("", name="", requirements={"id"=Guid::PATTERN})
+     * @param PlemMatka $plemmatka
+     * @return Response
+     */
+    public function show(PlemMatka $plemmatka): Response
+    {
+        //$this->denyAccessUnlessGranted(ProjectAccess::EDIT, $project);
+
+        return $this->render('app/paseka/matkas/plemmatka/redaktors/show.html.twig', compact('plemmatka'));
     }
 
     /**

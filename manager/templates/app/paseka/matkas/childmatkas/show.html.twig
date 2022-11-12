@@ -5,7 +5,7 @@
 {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">На главную</a></li>
-{#        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Пасека</a></li>#}
+        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Пасека</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.childmatkas', {'plemmatka_id': plemmatka.id}) }}">ДочьМатки</a></li>

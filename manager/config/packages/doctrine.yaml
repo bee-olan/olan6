@@ -20,6 +20,9 @@ doctrine:
             paseka_matkas_plemmatka_id: 'App\Model\Paseka\Entity\Matkas\PlemMatka\IdType'
             paseka_matkas_sparing_id: 'App\Model\Paseka\Entity\Matkas\Sparings\IdType'
             paseka_matkas_plemmatka_status: 'App\Model\Paseka\Entity\Matkas\PlemMatka\StatusType'
+            paseka_matkas_plemmatka_department_id: 'App\Model\Paseka\Entity\Matkas\PlemMatka\Department\IdType'
+            paseka_matkas_role_id: 'App\Model\Paseka\Entity\Matkas\Role\IdType'
+            paseka_matkas_role_permissions: 'App\Model\Paseka\Entity\Matkas\Role\PermissionsType'
 
             paseka_matkas_childmatka_status: 'App\Model\Paseka\Entity\Matkas\ChildMatka\StatusType'
             paseka_matkas_childmatka_id: 'App\Model\Paseka\Entity\Matkas\ChildMatka\IdType'

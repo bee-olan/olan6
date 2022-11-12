@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Matkas\PlemMatka;
 
+use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Department;
+use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Id as DepartmentId;
+
+use Doctrine\Common\Collections\ArrayCollection;
 use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -75,6 +79,22 @@ class PlemMatka
      */
     private $sparing;
 
+    /**
+     * @var ArrayCollection|Department[]
+     * @ORM\OneToMany(
+     *     targetEntity="App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Department",
+     *     mappedBy="plemmatka", orphanRemoval=true, cascade={"all"}
+     * )
+     * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private $departments;
+
+    /**
+     * @var ArrayCollection|Uchastnik[]
+     * @ORM\OneToMany(targetEntity="Uchastnik", mappedBy="plemmatka", orphanRemoval=true, cascade={"all"})
+     */
+    private $uchastnik;
+
     public function __construct( Id $id,
                                  string $name,
                                  int $sort,
@@ -96,30 +116,44 @@ class PlemMatka
         $this->persona = $persona;
         $this->rasaNomId = $rasaNomId;
         $this->title = $title;
-
+        $this->departments = new ArrayCollection();
+        $this->uchastniks = new ArrayCollection();
 
 
     }
-//    public function addMatka(MatkaId $id,
-//                             string $name,
-//                             string $nameStar,
-//                             string $title,
-//                             int $sortLinia): void
-//    {
-//        foreach ($this->linias as $linia) {
-//            if ($linia->isNameStarEqual($nameStar)) {
-//                throw new \DomainException('Линия уже существует. Попробуйте для
-//                этой линии добавить свой номер');
-//            }
-//        }
-//
-//        $this->linias->add(new Linia($this,
-//            $id,
-//            $name,
-//            $nameStar,
-//            $title,
-//            $sortLinia));
-//    }
+    ////////////////
+    public function addDepartment(DepartmentId $id, string $name): void
+    {
+        foreach ($this->departments as $department) {
+            if ($department->isNameEqual($name)) {
+                throw new \DomainException('Отдел уже существует.');
+            }
+        }
+        $this->departments->add(new Department($this, $id, $name));
+    }
+
+    public function editDepartment(DepartmentId $id, string $name): void
+    {
+        foreach ($this->departments as $current) {
+            if ($current->getId()->isEqual($id)) {
+                $current->edit($name);
+                return;
+            }
+        }
+        throw new \DomainException('Отдел не найден.');
+    }
+
+    public function removeDepartment(DepartmentId $id): void
+    {
+        foreach ($this->departments as $department) {
+            if ($department->getId()->isEqual($id)) {
+                $this->departments->removeElement($department);
+                return;
+            }
+        }
+        throw new \DomainException('Отдел не найден.');
+    }
+    ///////
     public function edit( string $title): void
     {
         //$this->sparing = $sparing;
@@ -205,5 +239,21 @@ class PlemMatka
     public function getStatus(): Status
     {
         return $this->status;
+    }
+
+    public function getDepartments()
+    {
+        return $this->departments->toArray();
+    }
+
+
+    public function getDepartment(DepartmentId $id): Department
+    {
+        foreach ($this->departments as $department) {
+            if ($department->getId()->isEqual($id)) {
+                return $department;
+            }
+        }
+        throw new \DomainException('Department is not found.');
     }
 }
