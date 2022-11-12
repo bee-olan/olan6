@@ -144,9 +144,9 @@ class ChildMatka
         $this->executors = new ArrayCollection();
     }
 
-    public function edit(string $name, ?string $content): void
+    public function edit( ?string $content): void
     {
-        $this->name = $name;
+
         $this->content = $content;
     }
 

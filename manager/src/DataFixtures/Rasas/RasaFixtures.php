@@ -12,28 +12,35 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class RasaFixtures extends Fixture
 {
+    public const REFERENCE_SREDRUSS= 'rasas_rasa_sredruss';
+    public const REFERENCE_KARNIK= 'rasas_rasa_karnik';
+    public const REFERENCE_ITALL= 'rasas_rasa_itall';
+
     public function load(ObjectManager $manager): void
     {
-        $rasa = new Rasa(
+        $sredruss = new Rasa(
             Id::next(),
             'Ср',
             'Среднерусская'
         );
-    $manager->persist($rasa);
+        $manager->persist($sredruss);
+        $this->setReference(self::REFERENCE_SREDRUSS, $sredruss);
 
-        $rasa = new Rasa(
+        $karnik = new Rasa(
             Id::next(),
             'Кр',
             'Карника'
         );
-        $manager->persist($rasa);
+        $manager->persist($karnik);
+        $this->setReference(self::REFERENCE_KARNIK, $karnik);
 
-        $rasa = new Rasa(
+        $itall = new Rasa(
             Id::next(),
             'Ит',
             'Итальянка'
         );
-        $manager->persist($rasa);
+        $manager->persist($itall);
+        $this->setReference(self::REFERENCE_ITALL, $itall);
 
     $manager->flush();
     }

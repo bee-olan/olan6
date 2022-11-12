@@ -15,10 +15,10 @@ class Form extends AbstractType
     {
         $builder
             ->add('priority', Type\ChoiceType::class, ['choices' => [
-                'Low' => 1,
-                'Normal' => 2,
-                'High' => 3,
-                'Extra' => 4
+                'Низкий' => 1,
+                'Обычный' => 2,
+                'Высокий' => 3,
+                'Срочный' => 4
             ], 'attr' => ['onchange' => 'this.form.submit()']]);
     }
 

@@ -9,6 +9,7 @@ use Webmozart\Assert\Assert;
 class Status
 {
     public const NEW = 'новая';
+    public const ZAKAZ = 'Заказана';
     public const WORKING = 'в работе';
     public const HELP = 'вопрос';
     public const REJECTED = 'отклонена';
@@ -20,6 +21,7 @@ class Status
     {
         Assert::oneOf($name, [
             self::NEW,
+            self::ZAKAZ,
             self::WORKING,
             self::HELP,
             self::REJECTED,

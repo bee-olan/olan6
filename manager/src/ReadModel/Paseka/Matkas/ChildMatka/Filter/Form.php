@@ -40,16 +40,17 @@ class Form extends AbstractType
             ], 'required' => false, 'placeholder' => 'Категории', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('status', Type\ChoiceType::class, ['choices' => [
                 'новая' => Status::NEW,
+                'Заказана' => Status::ZAKAZ ,
                 'в работе' => Status::WORKING,
                 'вопрос' => Status::HELP,
                 'отклонена' => Status::REJECTED,
                 'завершено' => Status::DONE,
             ], 'required' => false, 'placeholder' => 'Статусы', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('priority', Type\ChoiceType::class, ['choices' => [
-                'Low' => 1,
-                'Normal' => 2,
-                'High' => 3,
-                'Extra' => 4
+                'Низкий' => 1,
+                'Обычный' => 2,
+                'Высокий' => 3,
+                'Срочный' => 4
             ], 'required' => false, 'placeholder' => 'Приоритеты', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('author', Type\ChoiceType::class, [
                 'choices' => $uchasties,

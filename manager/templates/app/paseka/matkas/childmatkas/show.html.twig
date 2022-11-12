@@ -151,7 +151,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Состояние</th>
+                            <th>Категория</th>
                             <td>
                                 {{ form_start(typeForm) }}
                                 <div class="row">
@@ -257,7 +257,7 @@
             {% endif %}
 
             <div class="card">
-                <div class="card-header">Work</div>
+                <div class="card-header">Выполненные действия</div>
                 <div class="card-body">
                     <div class="direct-chat">
                         <div class="direct-chat-messages">
@@ -318,7 +318,7 @@
                     <tbody>
                         <tr>
                             <td style="width: 24px; box-sizing: content-box">
-                                666666666
+                                88888
 {#                                <img src="{{ gravatar(childmatka.author.email.value, 24) }}" class="img-circle" width="24" height="24" alt="" />#}
                             </td>
                             <td>
@@ -332,12 +332,12 @@
             <div class="card">
                 <div class="card-header">
                     <a href="{{ path('paseka.matkas.childmatkas.assign', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a>
-                    Executors
+                    Исполнитель
                 </div>
                 {% if childmatka.executors %}
                     <table class="table mb-0">
                         <tbody>
-                            {% for executor in task.executors %}
+                            {% for executor in childmatka.executors %}
                                 <tr>
                                     <td style="width: 24px; box-sizing: content-box">
                                         777777
@@ -347,7 +347,7 @@
                                         <a href="{{ path('paseka.uchasties.show', {'id': executor.id}) }}">{{ executor.name.full }}</a>
                                     </td>
                                     <td style="width: 22px">
-                                        <form action="{{ path('paseka.matkas.childmatkas.revoke', {'plemmatka_id': plemmatka.id, 'id': childmatka.id, 'member_id': executor.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                        <form action="{{ path('paseka.matkas.childmatkas.revoke', {'plemmatka_id': plemmatka.id, 'id': childmatka.id, 'uchastie_id': executor.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                                             <input type="hidden" name="token" value="{{ csrf_token('revoke') }}" />
                                             <button type="submit" class="btn btn-sm btn-default">
                                                 <span class="fa fa-times"></span>

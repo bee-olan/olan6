@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Controller\Paseka\Matkas;
 
 // use App\Model\Work\Entity\Members\Member\Member;
-use App\Model\Paseka\UseCase\Matkas\ChildMatka\Task;
+
+//use App\Model\Paseka\UseCase\Matkas\ChildMatka\Task;
+use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\UseCase\Matkas\ChildMatka\ChildOf;
 use App\Model\Paseka\UseCase\Matkas\ChildMatka\Edit;
 use App\Model\Paseka\UseCase\Matkas\ChildMatka\Executor;
@@ -26,7 +28,7 @@ use App\ReadModel\Paseka\Matkas\ChildMatka\Filter;
 use App\ReadModel\Paseka\Matkas\ChildMatka\ChildMatkaFetcher;
 
 use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
-use App\ReadModel\Paseka\Uchasties\Uchastie\Uchastie;
+
 
 use App\Controller\ErrorHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -150,6 +152,39 @@ class ChildMatkasController extends AbstractController
             'childmatka' => $childmatka,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/revoke/{uchastie_id}", name=".revoke", methods={"POST"})
+     * @ParamConverter("uchastie", options={"id" = "uchastie_id"})
+     * @param ChildMatka $childmatka
+     * @param Uchastie $uchastie
+     * @param Request $request
+     * @param Executor\Revoke\Handler $handler
+     * @return Response
+     */
+    public function revoke(ChildMatka $childmatka, Uchastie $uchastie, Request $request, Executor\Revoke\Handler $handler): Response
+    {
+        if (!$this->isCsrfTokenValid('revoke', $request->request->get('token'))) {
+            return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
+        }
+
+       // $this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+
+        $command = new Executor\Revoke\Command(
+            $this->getUser()->getId(),
+            $childmatka->getId()->getValue(),
+            $uchastie->getId()->getValue()
+        );
+
+        try {
+            $handler->handle($command);
+        } catch (\DomainException $e) {
+            $this->errors->handle($e);
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
     }
 
     /**

@@ -17,6 +17,7 @@ class Form extends AbstractType
         $builder
             ->add('status', Type\ChoiceType::class, ['choices' => [
                 'новая' => Status::NEW,
+                'Заказана' => Status::ZAKAZ ,
                 'в работе' => Status::WORKING,
                 'вопрос' => Status::HELP,
                 'отклонена' => Status::REJECTED,

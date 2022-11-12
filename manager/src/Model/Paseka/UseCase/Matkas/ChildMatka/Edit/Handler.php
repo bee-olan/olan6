@@ -25,7 +25,7 @@ class Handler
         $childmatka = $this->childmatkas->get(new Id($command->id));
 
         $childmatka->edit(
-            $command->name,
+//            $command->name,
             $command->content
         );
 

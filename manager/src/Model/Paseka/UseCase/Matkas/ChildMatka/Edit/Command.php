@@ -18,26 +18,24 @@ class Command
      * @Assert\NotBlank()
      */
     public $id;
-    /**
-     * @Assert\NotBlank()
-     */
-    public $name;
+//
+//    /**
+//     * @Assert\NotBlank()
+//     */
+//    public $name;
 
     public $content;
 
-    public function __construct(
-        //string $actor,
-                            int $id)
+    public function __construct(string $actor, int $id)
     {
-        //$this->actor = $actor;
+        $this->actor = $actor;
         $this->id = $id;
     }
 
     public static function fromChildMatka(string $actor, ChildMatka $childmatka): self
     {
-        //$command = new self($actor, $childmatka->getId()->getValue());
-        $command = new self($childmatka->getId()->getValue());
-        $command->name = $childmatka->getName();
+        $command = new self($actor, $childmatka->getId()->getValue());
+
         $command->content = $childmatka->getContent();
         return $command;
     }
