@@ -7,6 +7,10 @@ namespace App\Model\Paseka\Entity\Matkas\PlemMatka;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Department;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Id as DepartmentId;
 
+use App\Model\Paseka\Entity\Matkas\Role\Role;
+use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
+use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
 use Doctrine\ORM\Mapping as ORM;
@@ -147,6 +151,11 @@ class PlemMatka
     {
         foreach ($this->departments as $department) {
             if ($department->getId()->isEqual($id)) {
+                foreach ($this->uchastniks as $uchastnik) {
+                    if ($uchastnik->isForDepartment($id)) {
+                        throw new \DomainException('Unable to remove department with uchasties.');
+                    }
+                }
                 $this->departments->removeElement($department);
                 return;
             }
@@ -179,6 +188,51 @@ class PlemMatka
             throw new \DomainException('ПлемМатка уже активена.');
         }
         $this->status = Status::active();
+    }
+
+    /**
+     * @param Uchastie $uchastie
+     * @param DepartmentId[] $departmentIds
+     * @param Role[] $roles
+     * @throws \Exception
+     */
+    public function addUchastie(Uchastie $uchastie, array $departmentIds, array $roles): void
+    {
+        foreach ($this->uchastniks as $uchastnik) {
+            if ($uchastnik->isForUchastie($uchastie->getId())) {
+                throw new \DomainException('Uchastie already exists.');
+            }
+        }
+        $departments = array_map([$this, 'getDepartment'], $departmentIds);
+        $this->uchastniks->add(new Uchastnik($this, $uchastie, $departments, $roles));
+    }
+
+    /**
+     * @param UchastieId $uchastie
+     * @param DepartmentId[] $departmentIds
+     * @param Role[] $roles
+     */
+    public function editUchastie(UchastieId $uchastie, array $departmentIds, array $roles): void
+    {
+        foreach ($this->uchastniks as $uchastnik) {
+            if ($uchastnik->isForUchastie($uchastie)) {
+                $uchastnik->changeDepartments(array_map([$this, 'getDepartment'], $departmentIds));
+                $uchastnik->changeRoles($roles);
+                return;
+            }
+        }
+        throw new \DomainException('Uchastie is not found.');
+    }
+
+    public function removeUchastie(UchastieId $uchastie): void
+    {
+        foreach ($this->uchastniks as $uchastnik) {
+            if ($uchastnik->isForUchastie($uchastie)) {
+                $this->uchastniks->removeElement($$this->uchastnik);
+                return;
+            }
+        }
+        throw new \DomainException('Uchastie is not found.');
     }
 
     public function isArchived(): bool
@@ -255,5 +309,10 @@ class PlemMatka
             }
         }
         throw new \DomainException('Department is not found.');
+    }
+
+    public function getUchastniks()
+    {
+        return $this->uchastniks->toArray();
     }
 }

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ plemmatka.name }}{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Пасека</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}">Редактирование</a></li>
+        <li class="breadcrumb-item active">Участие</li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+
+    {% include 'app/work/plemmatkas/plemmatka/_tabs.html.twig' %}
+
+    {% include 'app/work/plemmatkas/plemmatka/settings/_tabs.html.twig' %}
+
+    <div class="controls">
+        <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.assign', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-success">Assign Member</a>
+        <a href="{{ path('paseka.matkas.roles') }}" class="btn btn-primary">Роли</a>
+    </div>
+
+    <div class="box">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Сообщество</th>
+                <th>Роли</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set token = csrf_token('revoke') %}
+            {% for uchastnik in uchastniks %}
+                <tr>
+                    <td>
+                        <a href="{{ path('work.uchasties.show', {'id': uchastnik.uchastie.id}) }}" target="_blank" class="pull-right"><span class="fa fa-external-link"></span></a>
+                        {{ uchastnik.uchastie.name.full }}
+                    </td>
+                    <td>
+                        <ul class="list-unstyled my-0">
+                            {% for department in uchastnik.departments %}
+                                <li>{{ department.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled my-0">
+                            {% for role in uchastnik.roles %}
+                                <li>{{ role.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-row">
+                            <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.edit', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
+                            <form action="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.revoke', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                <input type="hidden" name="token" value="{{ token }}" />
+                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

@@ -110,8 +110,8 @@ class UchastieFetcher
             ])
             ->from('paseka_uchasties_uchasties', 'm')
             ->leftJoin('m', 'paseka_uchasties_groups', 'g', 'g.id = m.group_id')
-            // ->andWhere('m.status = :status')
-            // ->setParameter(':status', Status::ACTIVE)
+             ->andWhere('m.status = :status')
+             ->setParameter(':status', Status::ACTIVE)
             ->orderBy('g.name')->addOrderBy('name')
             ->execute();
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
@@ -138,4 +138,5 @@ class UchastieFetcher
             ->execute();
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
     }
+
 }
