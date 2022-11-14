@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Paseka\Matkas\PlemMatka;
 
+use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
+
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 
@@ -18,6 +20,7 @@ class DepartmentFetcher
 
     public function listOfPlemMatka(string $plemmatka): array
     {
+
         $stmt = $this->connection->createQueryBuilder()
             ->select(
                 'id',
@@ -28,7 +31,6 @@ class DepartmentFetcher
             ->setParameter(':plemmatka', $plemmatka)
             ->orderBy('name')
             ->execute();
-
         return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
     }
 
@@ -38,13 +40,13 @@ class DepartmentFetcher
             ->select(
                 'd.id',
                 'd.name'
-                //,
+//                ,
 //                '(
-//                    SELECT COUNT(ms.member_id)
-//                    FROM paseka_matkas_plemmatka_memberships ms
-//                    INNER JOIN paseka_matkas_plemmatka_membership_departments md ON ms.id = md.membership_id
+//                    SELECT COUNT(ms.uchastie_id)
+//                    FROM paseka_matkas_plemmatka_uchasniks ms
+//                    INNER JOIN paseka_matkas_plemmatka_uchasnik_departments md ON ms.id = md.uchasnik_id
 //                    WHERE md.department_id = d.id AND ms.plemmatka_id = :plemmatka
-//                ) AS members_count'
+//                ) AS uchasties_count'
             )
             ->from('paseka_matkas_plemmatka_departments', 'd')
             ->andWhere('plemmatka_id = :plemmatka')
@@ -55,7 +57,7 @@ class DepartmentFetcher
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
     }
 
-    public function allOfMember(string $member): array
+    public function allOfUchastnik(string $uchastie): array
     {
         $stmt = $this->connection->createQueryBuilder()
             ->select(
@@ -64,12 +66,12 @@ class DepartmentFetcher
                 'd.id AS department_id',
                 'd.name AS department_name'
             )
-            ->from('paseka_matkas_plemmatka_memberships', 'ms')
-//            ->innerJoin('ms', 'paseka_matkas_plemmatka_membership_departments', 'msd', 'ms.id = msd.membership_id')
+         //   ->from('paseka_matkas_plemmatka_uchasniks', 'ms')
+//            ->innerJoin('ms', 'paseka_matkas_plemmatka_uchasnik_departments', 'msd', 'ms.id = msd.uchasnik_id')
             ->innerJoin('msd', 'paseka_matkas_plemmatka_departments', 'd', 'msd.department_id = d.id')
             ->innerJoin('d', 'paseka_matkas_plemmatkas', 'p', 'd.plemmatka_id = p.id')
-            ->andWhere('ms.member_id = :member')
-            ->setParameter(':member', $member)
+            ->andWhere('ms.uchastie_id = :uchastie')
+            ->setParameter(':uchastie', $uchastie)
             ->orderBy('p.sort')->addOrderBy('d.name')
             ->execute();
 

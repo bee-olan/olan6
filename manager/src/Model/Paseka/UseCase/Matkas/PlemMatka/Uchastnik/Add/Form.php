@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\UseCase\Matkas\PlemMatka\Uchastnik\Add;
 
-
 use App\ReadModel\Paseka\Matkas\PlemMatka\DepartmentFetcher;
 use App\ReadModel\Paseka\Matkas\RoleFetcher;
 use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
@@ -28,6 +27,8 @@ class Form extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        dd($options);
+
         $uchasties = [];
         foreach ($this->uchasties->activeGroupedList() as $item) {
             $uchasties[$item['group']][$item['name']] = $item['id'];
@@ -55,5 +56,6 @@ class Form extends AbstractType
             'data_class' => Command::class,
         ));
         $resolver->setRequired(['plemmatka']);
+        dd($resolver);
     }
 }

@@ -28,7 +28,7 @@ class Handler
         $role = $this->roles->get(new Id($command->id));
 
         if ($this->plemmatkas->hasUchastiesWithRole($role->getId())) {
-            throw new \DomainException('Role contains members.');
+            throw new \DomainException('Роль содержит участников.');
         }
 
         $this->roles->remove($role);

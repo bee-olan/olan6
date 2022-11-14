@@ -97,7 +97,7 @@ class PlemMatka
      * @var ArrayCollection|Uchastnik[]
      * @ORM\OneToMany(targetEntity="Uchastnik", mappedBy="plemmatka", orphanRemoval=true, cascade={"all"})
      */
-    private $uchastnik;
+    private $uchastniks;
 
     public function __construct( Id $id,
                                  string $name,

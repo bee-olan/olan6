@@ -7,5 +7,17 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:54322/olan6</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="olan6@localhost [2]" uuid="19f77dc1-c514-47a5-ac36-1a869f79f59a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:54321/olan6</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="olan6@localhost [3]" uuid="edf1b807-173d-400c-8d25-4670004d8c5c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:54322/olan6</jdbc-url>
+    </data-source>
   </component>
 </project>
