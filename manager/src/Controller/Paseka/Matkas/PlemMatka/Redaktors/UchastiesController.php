@@ -58,7 +58,7 @@ class UchastiesController extends AbstractController
 //Проверка на : Если попытается привязать сотрудника, но еще нет департ-сообщества, то соотв. сообщение
         if (!$plemmatka->getDepartments()) {
             $this->addFlash('error', 'Добавьте отделы перед добавлением участников.');
-            return $this->redirectToRoute('app/paseka/matkas/plemmatka/redaktors/uchasties', ['plemmatka_id' => $plemmatka->getId()]);
+            return $this->redirectToRoute('paseka.matkas.plemmatka.redaktors.uchasties', ['plemmatka_id' => $plemmatka->getId()]);
         }
 
         $command = new Uchastnik\Add\Command($plemmatka->getId()->getValue());
@@ -69,7 +69,7 @@ class UchastiesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('app/paseka/matkas/plemmatka/redaktors/uchasties', ['plemmatka_id' => $plemmatka->getId()]);
+                return $this->redirectToRoute('paseka.matkas.plemmatka.redaktors.uchasties', ['plemmatka_id' => $plemmatka->getId()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());

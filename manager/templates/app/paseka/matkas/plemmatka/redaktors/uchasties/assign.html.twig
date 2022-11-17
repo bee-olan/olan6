@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ project.name }}{% endblock %}
+{% block title %}{{ plemmatka.name }}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
@@ -9,7 +9,7 @@
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}">Редактирование</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.redaktors.members', {'plemmatka_id': plemmatka.id}) }}">Участие</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties', {'plemmatka_id': plemmatka.id}) }}">Участие</a></li>
         <li class="breadcrumb-item active">Назначить</li>
     </ol>
 {% endblock %}

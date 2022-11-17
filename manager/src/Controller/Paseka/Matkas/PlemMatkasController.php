@@ -104,7 +104,6 @@ class PlemMatkasController extends AbstractController
         $persona = $personas->get(new PersonaId($uchastieId));
         $mestonomer = $mestonomers->get(new MestoNomerId($uchastieId));
 
-
         $command = new Create\Command();
 
         $command->rasaNomId = $id;

@@ -47,9 +47,14 @@ class Command
      */
     public $persona;
 
+//    /**
+//     * @var string
+//     * @Assert\NotBlank()
+//     */
+//    public $nameKateg;
+
     /**
-     * @var string
      * @Assert\NotBlank()
      */
-    public $sparing;
+    public $kategoria;
 }

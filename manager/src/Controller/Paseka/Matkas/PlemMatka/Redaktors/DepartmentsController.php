@@ -42,8 +42,7 @@ class DepartmentsController extends AbstractController
     public function index(PlemMatka $plemmatka, DepartmentFetcher $departments): Response
     {
        // $this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_MEMBERS, $plemmatka);
- //dd($plemmatka->getId()->getValue());
-        $department = $departments->allOfPlemMatka($plemmatka->getId()->getValue());
+
 
         return $this->render('app/paseka/matkas/plemmatka/redaktors/departments/index.html.twig', [
             'plemmatka' => $plemmatka,

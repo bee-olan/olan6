@@ -27,6 +27,7 @@ services:
     App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository: ~
     App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository: ~
     App\Model\Paseka\Entity\Matkas\Role\RoleRepository: ~
+    App\Model\Paseka\Entity\Matkas\Kategoria\KategoriaRepository: ~
 
 
     App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatkaRepository: ~

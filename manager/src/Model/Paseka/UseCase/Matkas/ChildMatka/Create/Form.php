@@ -20,12 +20,16 @@ class Form extends AbstractType
             ->add('content', Type\TextareaType::class, ['required' => false, 'attr' => ['rows' => 10]])
            // ->add('parent', Type\IntegerType::class, ['required' => false])
             ->add('plan', Type\DateType::class, ['required' => false, 'widget' => 'single_text', 'input' => 'datetime_immutable'])
-            ->add('type', Type\ChoiceType::class, ['choices' => [
+            ->add('type', Type\ChoiceType::class, [
+                'choices' => [
                 'Эли-тная' => ChildMatkaType::ELIT,
                 'Бре-ндовая' => ChildMatkaType::BREND,
                 'Ада-птированная' => ChildMatkaType::ADAPT,
                 'Мес-тная' => ChildMatkaType::MESTN,
-            ]])
+            ],
+                'expanded' => true,
+                'multiple' => false,
+            ])
             ->add('priority', Type\ChoiceType::class, ['choices' => [
                 'Low' => 1,
                 'Normal' => 2,

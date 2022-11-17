@@ -15,9 +15,9 @@
 
 {% block body %}
 
-    {% include 'app/work/plemmatkas/plemmatka/_tabs.html.twig' %}
+{#    {% include 'app/work/plemmatkas/plemmatka/_tabs.html.twig' %}#}
 
-    {% include 'app/work/plemmatkas/plemmatka/settings/_tabs.html.twig' %}
+{#    {% include 'app/paseka/plemmatkas/plemmatka/settings/_tabs.html.twig' %}#}
 
     <div class="controls">
         <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.assign', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-success">Прикрепить участника</a>
@@ -39,7 +39,7 @@
             {% for uchastnik in uchastniks %}
                 <tr>
                     <td>
-                        <a href="{{ path('work.uchasties.show', {'id': uchastnik.uchastie.id}) }}" target="_blank" class="pull-right"><span class="fa fa-external-link"></span></a>
+                        <a href="{{ path('paseka.uchasties.show', {'id': uchastnik.uchastie.id}) }}" target="_blank" class="pull-right"><span class="fa fa-external-link"></span></a>
                         {{ uchastnik.uchastie.name.full }}
                     </td>
                     <td>
@@ -58,11 +58,11 @@
                     </td>
                     <td>
                         <div class="d-flex flex-row">
-                            <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.edit', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
-                            <form action="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.revoke', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
-                                <input type="hidden" name="token" value="{{ token }}" />
-                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>
-                            </form>
+{#                            <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.edit', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>#}
+{#                            <form action="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.revoke', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
+{#                                <input type="hidden" name="token" value="{{ token }}" />#}
+{#                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>#}
+{#                            </form>#}
                         </div>
                     </td>
                 </tr>

@@ -27,7 +27,6 @@ class Form extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        dd($options);
 
         $uchasties = [];
         foreach ($this->uchasties->activeGroupedList() as $item) {
@@ -56,6 +55,6 @@ class Form extends AbstractType
             'data_class' => Command::class,
         ));
         $resolver->setRequired(['plemmatka']);
-        dd($resolver);
+
     }
 }

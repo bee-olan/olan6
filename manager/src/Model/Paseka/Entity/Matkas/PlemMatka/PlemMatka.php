@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Matkas\PlemMatka;
 
+use App\Model\Paseka\Entity\Matkas\Kategoria\Kategoria;
+use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
+
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Department;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Id as DepartmentId;
 
@@ -12,7 +15,6 @@ use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -77,11 +79,17 @@ class PlemMatka
     private $status;
 
     /**
-     * @var Sparing
-     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Matkas\Sparings\Sparing")
-     * @ORM\JoinColumn(name="sparing_id", referencedColumnName="id", nullable=false)
+     * @var string
+     * @ORM\Column(type="string")
      */
-    private $sparing;
+    private $nameKateg;
+
+    /**
+     * @var Kategoria
+     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Matkas\Kategoria\Kategoria")
+     * @ORM\JoinColumn(name="kategoria_id", referencedColumnName="id", nullable=false)
+     */
+    private $kategoria;
 
     /**
      * @var ArrayCollection|Department[]
@@ -102,12 +110,14 @@ class PlemMatka
     public function __construct( Id $id,
                                  string $name,
                                  int $sort,
-                                 Sparing $sparing,
+//                                 Sparing $sparing,
                                  string $uchastieId,
                                  string  $mesto,
                                  int  $persona,
                                  string $rasaNomId,
-                                 string $title
+                                 string $title,
+                                 string $nameKateg,
+                                 Kategoria $kategoria
                                   )
     {
         $this->id = $id;
@@ -115,11 +125,12 @@ class PlemMatka
         $this->sort = $sort;
         $this->status = Status::active();
         $this->uchastieId = $uchastieId;
-        $this->sparing = $sparing;
         $this->mesto = $mesto;
         $this->persona = $persona;
         $this->rasaNomId = $rasaNomId;
         $this->title = $title;
+        $this->nameKateg = $nameKateg;
+        $this->kategoria = $kategoria;
         $this->departments = new ArrayCollection();
         $this->uchastniks = new ArrayCollection();
 
@@ -250,9 +261,14 @@ class PlemMatka
         return $this->id;
     }
 
-    public function getSparing(): Sparing
+    public function getNameKateg(): string
     {
-        return $this->sparing;
+        return $this->nameKateg;
+    }
+
+    public function getKategoria(): Kategoria
+    {
+        return $this->kategoria;
     }
 
     public function getName(): string

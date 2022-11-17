@@ -25,8 +25,8 @@
         </div>
 
         <div class="matka__header" >
-            <h1 class="matka__title  ">Данные ПлемМатки взятые за основу :</h1>
-            <h1 class="matka__title  ">{{ plemmatka.name }} -------- статус -{{ plemmatka_status(plemmatka.status.name) }} </h1>
+            <h1 class="matka__title  "> </h1>
+            <h1 class="matka__title  ">{{ plemmatka.name }} :  данные ПлемМатки берём за основу</h1>
        
             <ul class="matka__data"> 
                 <li class="matka__name" >Раса</li>
@@ -53,9 +53,40 @@
                 <li class="matka__name matka__name--wid200" >--<strong class="stro stro--kras"> {{ plemmatka.title}} </strong>  --  внутренняя нумерация или название маточки  и комментарий  </li>
             </ul>
             <ul class="matka__data"> 
-                <li class="matka__name" >{{ infaSparing[0].name}}</li>
-                <li class="matka__name matka__name--wid200" >-- {{ infaSparing[0].title}} --  вид облёта (спаринг)  </li>
+                <li class="matka__name" >{{ plemmatka_status(plemmatka.status.name) }}  </li>
+                <li class="matka__name matka__name--wid200" >-- статус ПлемМатки на данный момент  </li>
             </ul>       
+        </div>
+        <div class="matka__header">
+            <div style="overflow: auto">
+                <table class="table table-bordered table-hover mb-0 ">
+                    <thead>
+                    <tr >
+                        {% for kategoria in kategorias %}
+                            <th style="text-align: center; color: white">
+                                {{ kategoria.name }}
+                            </th>
+                        {% endfor %}
+                        <th style="text-align: center; color: white" >Характеристики категорий</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for permission in permissions %}
+                        <tr>
+                            {% for kategoria in kategorias %}
+                                <td style="text-align: center; color: white">
+                                    {% if permission in kategoria.permissions %}
+                                        <span class="fa fa-check"></span>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                            <td class="matka__kateg">{{ permission|trans({}, 'paseka_permissions') }}</td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </article>
 

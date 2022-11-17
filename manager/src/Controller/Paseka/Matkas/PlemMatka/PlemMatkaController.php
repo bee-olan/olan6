@@ -6,6 +6,7 @@ namespace App\Controller\Paseka\Matkas\PlemMatka;
 
 use App\Annotation\Guid;
 
+use App\Model\Paseka\Entity\Matkas\Kategoria\Permission;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
 use App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository;
 use App\Model\Paseka\Entity\Matkas\Sparings\Id as SparingId;
@@ -16,6 +17,7 @@ use App\Model\Paseka\Entity\Rasas\Linias\Nomers\Id as NomerId;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\UchastieRepository;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id;
 use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
+use App\ReadModel\Paseka\Matkas\KategoriaFetcher;
 use App\ReadModel\Paseka\Matkas\PlemMatka\PlemMatkaFetcher;
 use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -103,24 +105,27 @@ class PlemMatkaController extends AbstractController
     * @param   string $plem_id
     * @param PlemMatkaFetcher $fetchers
     * @param UchastieRepository $uchasties
-    * @param SparingRepository $sparings
+    * @param KategoriaFetcher $kategoria
     * @return Response
     */
    public function show( string $plem_id, PlemMatkaFetcher $fetchers,
                         UchastieRepository $uchasties ,
-                       SparingRepository $sparings ): Response
+                         KategoriaFetcher $kategoria ): Response
    {
 
       $plemmatka = $fetchers->find($plem_id);
+     // dd( $plemmatka);
+
        $uchastie = $uchasties->get(new Id($plemmatka->getUchastieId()));
 
-       $infaSparing = $fetchers->infaSparing($plemmatka->getSparing()->getId()->getValue());
+       $kategorias = $kategoria->all();
+       $permissions = Permission::names();
 
        $infaRasaNom = $fetchers->infaRasaNom($plemmatka->getRasaNomId());
 
       $infaMesto = $fetchers->infaMesto($plemmatka->getMesto());
 
        return $this->render('app/paseka/matkas/plemmatka/show.html.twig',
-           compact('plemmatka', 'infaRasaNom', 'infaMesto', 'uchastie','infaSparing'));
+           compact('plemmatka', 'infaRasaNom', 'infaMesto', 'uchastie','kategorias', 'permissions'));
    }
 }

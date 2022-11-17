@@ -65,6 +65,13 @@
     &--wid200 {
       width: 180.0rem;
     }
-    
   }
+.matka__kateg{
+  color: $mat-col-text;
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+  color: $mat-fon-ul;
+  }
+}
   

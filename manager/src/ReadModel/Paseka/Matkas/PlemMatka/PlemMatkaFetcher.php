@@ -107,22 +107,22 @@ class PlemMatkaFetcher
                 ->execute()->fetchColumn() > 0;
     }
 
-    public function infaSparing(string $sparingId): array
-    {
-        $stmt = $this->connection->createQueryBuilder()
-            ->select(
-                's.title ',
-                's.name'
-            )
-            ->from('paseka_matkas_sparings', 's')
-            //->innerJoin('p', 'paseka_uchasties_uchasties', 'u', 'p.id = u.id')
-            ->andWhere('s.id = :sparingId')
-            ->setParameter(':sparingId', $sparingId)
-            // ->orderBy('p.sort')->addOrderBy('d.name')
-            ->execute();
-
-        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
-    }
+//    public function infaSparing(string $sparingId): array
+//    {
+//        $stmt = $this->connection->createQueryBuilder()
+//            ->select(
+//                's.title ',
+//                's.name'
+//            )
+//            ->from('paseka_matkas_sparings', 's')
+//            //->innerJoin('p', 'paseka_uchasties_uchasties', 'u', 'p.id = u.id')
+//            ->andWhere('s.id = :sparingId')
+//            ->setParameter(':sparingId', $sparingId)
+//            // ->orderBy('p.sort')->addOrderBy('d.name')
+//            ->execute();
+//
+//        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
+//    }
 
     public function infaRasaNom(string $rasaNomId): array
     {
@@ -180,12 +180,12 @@ class PlemMatkaFetcher
                 'p.persona',
                 'p.status',
                 'p.rasa_nom_id',
-                's.title AS sparing'
+                's.name AS kategoria'
                 //,
               //  'm.nomer as mestonomer'
             )
             ->from('paseka_matkas_plemmatkas', 'p')
-            ->innerJoin('p', 'paseka_matkas_sparings', 's', 'p.sparing_id = s.id')
+            ->innerJoin('p', 'paseka_matkas_kategorias', 's', 'p.kategoria_id = s.id')
         ;
 
         if ($filter->name) {
@@ -197,6 +197,12 @@ class PlemMatkaFetcher
             $qb->andWhere('p.status = :status');
             $qb->setParameter(':status', $filter->status);
         }
+//
+//        if ($filter->kategoria) {
+//            $qb->andWhere('p.kategoria = :kategoria');
+//            $qb->setParameter(':kategoria', $filter->kategoria);
+//        }
+
         if ($filter->persona) {
             $qb->andWhere('p.persona = :persona');
             $qb->setParameter(':persona', $filter->persona);
