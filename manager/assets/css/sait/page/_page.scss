@@ -1,0 +1,18 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+
+  background: linear-gradient($grad1, $grad2);
+  background-attachment: fixed; // фиксирую фон
+  overflow: hidden;
+  // скрываем элементы выходящие за граниы
+  // что бы элементы не выходили за размерные рамки создавая горизонт. скролинг
+
+  @include breakpoint($tablet-bp) {
+    .show-sidebar & {
+      position: relative;
+    }
+  }
+}
