@@ -1,0 +1,65 @@
+
+// display: inline-block;  по умолч будут блочными
+//font-family: inherit;  шрифт наследуется у родителя
+// box-shadow: 0 7px 17px -10px rgba($blue, .3);  тень для кнопки
+.btn-sait {
+    display: inline-block; // чтобы падинги корректно работали
+    vertical-align: top;
+    padding: 1.1em 1.6em;
+    // падинги сделаем в em -эначит будут зависить от шрифта
+    // меняем size шрифта - автоматом изменится падинги
+
+   // background: linear-gradient( $grad1, $grad2);
+   border: 3px solid $kroxi-sait-b;
+  // border: none; // убираем бордер
+    cursor: pointer;
+     border-radius: 3em; // скругляем
+
+    font-family: inherit; //шрифт наследуется у родителя
+    font-size: 1.3rem;
+    line-height: 1.1; // 
+    font-weight: 500;
+    color: $white;
+    text-decoration: none; //убираем подчеркивание
+    // плавное изменение цвета
+    transition: background-color .3s linear;
+
+    &:hover {
+         background: linear-gradient( $grad1-o, $grad2-o);
+        text-decoration: none;
+    }
+// модификаторы &--red и &--blue
+     &--red {
+         //background-color: $red;
+         background: linear-gradient( $grad1, $grad2 );
+         box-shadow: 0 7px 17px -10px rgba($red, .6); // тень у кнопки
+
+         &:hover,
+         &:focus {
+ //darken  затемнение цвета при наведении 
+            background: linear-gradient($grad1-o, $grad2-o);          
+            //background-color: darken($red, 5%);
+        }
+    }
+
+     &--blue {
+        background-color: $blue;
+        box-shadow: 0 7px 17px -10px rgba($blue, .3);
+
+        &:hover,
+        &:focus {
+            background-color: darken($blue, 15%);
+        }
+    }
+// скругление в form
+     &--rounded {
+         border-radius: 0.41em;
+     }
+// уменьшаем кнопку
+    &--sm {
+        padding: 0.5em 1.25em;
+    }
+    &--smm {
+        padding: 0.4em 1.25em;
+    }
+}

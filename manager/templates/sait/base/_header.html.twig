@@ -1,0 +1,125 @@
+<header class="header">
+	<div class="header__left">
+		<nav class="nav">
+			<ul class="nav__list">
+				<li class="nav__item" >
+					<a class="nav__link has-subnav" href="/">Главная</a>
+					<ul class="subnav">
+						<li>
+							<a class="subnav__link " href="#">Список зарегистрированных</a>
+						</li>
+						 <li>
+							<a class="subnav__link" href="#">Участники по месту</a>
+						</li>
+						<li>
+							<a class="subnav__link" href="#">.......</a>
+						</li>
+					</ul>
+				</li>
+{#	 для поднавиг отслеживаем наведение на li эл-т#}
+				<li class="nav__item" >
+					<a class="nav__link has-subnav" href="# ">Место</a>
+{#					has-subnav имеет под  навигацию#}
+					<ul class="subnav">
+						<li>
+							<a class="subnav__link" href="#">Номер места</a>
+						</li>
+						<li>
+							<a class="subnav__link" href="#">Номер места-S</a>
+						</li>
+						<li>
+							<a class="subnav__link" href="#">.......</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav__item">
+						<a class="nav__link has-subnav" href="#">Участники</a>
+						<ul class="subnav">
+							<li>
+								<a class="subnav__link" href="# ">Персональный номер</a>
+							</li>
+							<li>
+								<a class="subnav__link" href="#">Группы</a>
+							</li>
+							<li>
+								<a class="subnav__link" href="#">Группы -- s</a>
+							</li>
+
+							<li>
+								<a class="subnav__link" href="#">Регистрация S wse</a>
+							</li>
+							<li>
+								<a class="subnav__link" href="#">Регистрация !!! участие</a>
+							</li>
+							<li>
+								<a class="subnav__link" href="#">Регистрация участника</a>
+							</li>
+							<li>
+								<a class="subnav__link" href="#">Участники по группам</a>
+							</li>
+							<li>
+								<a class="subnav__link" href="#">Участники -S</a>
+							</li>
+							<li>
+								<a class="subnav__link" href="#">.......</a>
+							</li>
+						</ul>
+				</li>
+				<li class="nav__item">
+					<a class="nav__link has-subnav" href="#">Матки</a>
+					<ul class="subnav">
+						<li>
+							<a class="subnav__link " href="#">Матери-маток</a>
+						</li>
+						<li>
+							<a class="subnav__link" href="#">Категории</a>
+						</li>
+						<li>
+							<a class="subnav__link" href="#">.......</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav__item">
+               <a class="nav__link has-subnav" href="#">Навигация</a>
+               <ul class="subnav">
+						<li>
+							<a class="subnav__link" href="{{ path('home') }}">Админочка</a>
+						</li>
+						<li>
+							<a class="subnav__link" href="{{ path('sait') }}">Сайт</a>
+						</li>
+					</ul>
+            </li>
+			</ul>
+		</nav>
+
+		<button class="burger " type="button" id="sidebarTog" >
+			<span>Открыть навигацию</span>
+		</button>
+	</div>
+
+	<div class="header__right">
+		<nav class="nav">
+			<ul class="nav__list">
+				<li class="nav__item">
+					<a class="nav__link" href="#">Профиль</a>
+				</li>
+				<li class="nav__item">
+                  <a class="nav__link" href="#">войти</a>
+            </li>
+			</ul>
+		</nav>
+{# <div class="sidebar__header">
+      <img src="{{ asset('assets/images/sait/logo_sot.jpg') }}" alt="">
+    </div> #}
+<div class=" poisk__item" data-modal="poisk-modal" >
+            <img class="poisk__preview" src="{{ asset('assets/images/sait/logo_sot.jpg') }}" alt="">
+            {# <div class="poisk__title">Поиск по блогу</div> #}
+            <form class="search poisk__item" action="/" method= "post">
+				<input class="search__input" type="text" placeholder="Поиск по блогу">
+			</form>
+        </div>
+
+		
+	</div>
+</header>

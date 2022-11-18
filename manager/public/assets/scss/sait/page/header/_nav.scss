@@ -1,0 +1,104 @@
+.nav {
+    
+    &--mobile {
+        display: none;
+        margin: 3rem 0;
+    }
+    
+    @include breakpoint($tablet-bp) {
+        display: none;
+        
+        &--mobile {
+            display: block;
+        }
+    }
+}
+
+.nav__list {
+    display: flex;
+
+    @include breakpoint($tablet-bp) {
+        flex-direction: column; // что бы навигация шла друг под другом
+    }
+}
+
+.nav__item {
+     position: relative; // позиционирование для
+ //возможности позиционирования subnav относительно этого эл-та   
+//если есть наведение на li эл-т - 
+// меняем цвет nav__link
+     &:hover {
+         .nav__link {
+            background-color: $header-color;
+            text-decoration: none; 
+            color: $white
+         }
+//если есть наведение на li эл-т - 
+// показываем дочерний эл-т subnav
+         > .subnav {
+            display: block;
+        }
+     }
+
+     @include breakpoint($tablet-bp) {
+        &:hover {
+            .nav__link {
+                background: none;
+            }
+        }
+    }
+}
+
+// стилизация ссылок
+ .nav__link {
+    display: block; // ссылки - блочные
+    padding: 1.35rem;
+     // это border сверху\снизу у текста
+    //border-bottom: 2px solid $border-linia;
+
+     font-size: 1.2rem; // шрифт - размер
+     line-height: 1.2;
+     text-transform: uppercase;// буквы- большие
+     color: $header-color;
+    //  color: $white;// цвет
+     text-decoration: none;
+
+     transition: background-color .2s linear;
+     
+ // стрелочка - имеет под  навигацию
+     &.has-subnav {
+        position: relative;
+        padding-right: 3.5rem;
+
+         &:after {
+             content: "";
+             display: block;
+             margin-top: 2px;
+
+             border-style: solid;
+            border-width: 6px 5px 0 5px;
+            border-color: $white transparent transparent transparent;
+
+            position: absolute;
+            top: 50%;
+            right: 1.35rem;
+            transform: translateY(-50%); //по центру по вертикали
+         }
+     }
+     
+     @include breakpoint($tablet-bp) {
+        padding-left: 0;
+        padding-right: 0;
+        
+        font-size: 1.6rem;
+    }
+}
+
+
+
+
+
+
+
+
+

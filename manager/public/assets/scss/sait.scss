@@ -41,6 +41,32 @@ a {
     opacity: 1;
   }
 }
+@import "sait/kroxi-sait";
+@import "sait/btn-sait";
+@import "sait/filters";
 // страница
 @import "sait/page/page";
+
+// header - заголовок
+@import "sait/page/header/header";
+@import "sait/page/header/nav";
+@import "sait/page/header/subnav";
+@import "sait/page/header/burger";
+@import "sait/page/header/search";
+@import "sait/page/header/poisk";
+
+//sidebar  боковая панель
+@import "sait/page/sidebar/sidebar";
+@import "sait/page/sidebar/profile";
+@import "sait/page/sidebar/social";
+@import "sait/page/sidebar/footer";
+@import "sait/page/sidebar/fon-img";
+
+//главный  -- main
+@import "sait/page/main/main";
+@import "sait/page/main/add-post";
+@import "sait/page/main/container";
+@import "sait/page/main/stories";
+@import "sait/page/main/embed"; //встроить
+
 

@@ -1,0 +1,25 @@
+.embed,
+.fr-video {
+    display: block;
+    position: relative;
+    overflow: hidden; //чтобы скрыть то, что будет вылезать
+
+    &:before {
+        content: "";
+        display: block;
+        padding-top: 56.25%; // для получния прямоугольника 16х9
+    }
+
+    iframe,
+    video,
+    object,
+    embed {
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+}

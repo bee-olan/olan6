@@ -5,31 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    
     <title>{% block title %}САЙТ{% endblock %}</title>
-    <!-- Custom styles for this template -->
+    <!-- Пользовательские стили для этого шаблона -->
      {% block stylesheets %}
-         <link rel="stylesheet" href="assets/css/sait.scss">
-{#       <link rel="stylesheet" href="{{ asset('assets/scss/astyle.css') }}">#}
+{#         {{ encore_entry_link_tags('sait') }}#}
+{#         <link rel="stylesheet" href="./assets/css/sait.scss">#}
+       <link rel="stylesheet" href="{{ asset('assets/scss/sait.css') }}">
      {% endblock %} 
     
 </head>
 <body >
     <div class="page" >
 
-        {% block header %}  
-{#            {{ include('sait/base/_header.html.twig') }}#}
+        {% block header %}
+           {{ include('sait/base/_header.html.twig') }}
         {% endblock %}
 
         {% block sidebar %}              
-{#            {% include('sait/base/_sidebar.html.twig') %}#}
+           {% include('sait/base/_sidebar.html.twig') %}
         {% endblock %}
 
   
 
         <!-- Main -->
         <main class="main">
-            <div class="kroxi info-gradien">
-                <div class="kroxi-xl">
-                    {% block kroxi %} {% endblock %}
+            <div class="kroxi-sait info-gradien">
+                <div class="kroxi-sait-xl">
+                    {% block kroxiSait %} {% endblock %}
                 </div>
             </div>
 
@@ -39,10 +40,10 @@
 
                 {% block bodyMain %}
 
-{#                    {% include('sait/main/_stories.html.twig') %} #}
-{#                    {% include('sait/main/_add-post.html.twig') %}#}
-{#                    {% include('sait/main/_post.html.twig') %}#}
-{#                    {% include('sait/main/_pagination.html.twig') %}#}
+                   {% include('sait/main/_stories.html.twig') %} 
+                   {% include('sait/main/_add-post.html.twig') %}
+                   {% include('sait/main/_post.html.twig') %}
+                    {% include('sait/main/_pagination.html.twig') %}
                     <h1>main</h1>
                     <h2>Куда перейти?</h2>
                     <a  href="{{ path('home') }}"><h2> Админка</h2></a>
@@ -59,10 +60,12 @@
 {#            {% include('sait/base/_share-modal.html.twig') %}#}
 {#    {% endblock %}#}
 
-{#    {% block javascripts %}#}
-{#        <script src="{{ asset('assets/js/modal.js') }}"></script>#}
+    {% block javascripts %}
+{#        {{ encore_entry_script_tags('sait') }}#}
+        {# <script src="{{ asset('assets/js/sait.js') }}"></script> #}
+
 {#        <script src="{{ asset('assets/js/mmodal.js') }}"></script>#}
-{#        #}
-{#    {% endblock %} #}
+
+    {% endblock %}
 </body>
 </html>
