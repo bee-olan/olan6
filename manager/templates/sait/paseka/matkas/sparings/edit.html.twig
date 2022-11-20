@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groups{% endblock %}
+
+    {% block kroxi %}  
+       
+                <a href="{{ path('home') }}">Главная</a>
+               <a href="{{ path('paseka.matkas.sparings') }}">Облет | спаринг</a>
+                <span class="aktiv ">Редактировать</span> 
+           
+    {% endblock %}
+
+{% block body %}
+
+	<article class="sparing">
+    <h1 class="rasa__title  ">Редактировать данные </h1>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn--sm">Сохранить изменения</button>
+            {{ form_end(form) }}
+
+</article><!-- sparing -->
+
+{% endblock %}

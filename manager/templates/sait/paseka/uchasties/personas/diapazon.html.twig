@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Персональный номер{% endblock %}
+
+{#{% block kroxi %}   #}
+{#            <a href="{{ path('home') }}">Главная</a>#}
+{#            #}{# <a href="{{ path('sait.mestos.inform') }}">Год участия в проекте</a> #}
+{#            <span class="aktiv ">Персональный номер !!!!!</span> #}
+{#{% endblock %}#}
+
+{% block body %}
+
+ <h2 class = "page__title ">Персональные номера участников проекта </h2>   
+ <div class="persona">
+
+	{% for persona in personas %}
+        <div class = "persona-nomer">		
+		    {{ persona.nomer  }}
+        </div>
+	{% endfor %}
+</div>
+<h2 class = "page__title ">Выбираем подходящий  диапазон для персонНомера  </h2>
+    <div class="card">
+        <div class="group-form">
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+{#            <button type="submit" class="btn-my btn-my--sm">Смотрим  </button>#}
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

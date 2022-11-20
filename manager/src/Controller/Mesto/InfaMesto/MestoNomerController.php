@@ -6,12 +6,13 @@ namespace App\Controller\Mesto\InfaMesto;
 
 use App\Model\Mesto\Entity\InfaMesto\Id;
 use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
+use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
 
 use App\Model\User\Entity\User\User;
 use App\Model\Mesto\UseCase\InfaMesto\Create;
 
 use App\Annotation\Guid;
-use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
+
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

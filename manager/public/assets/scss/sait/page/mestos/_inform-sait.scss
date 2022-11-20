@@ -1,0 +1,66 @@
+.inform-sait {
+   display: grid; //
+   grid-template-columns: auto auto;// делаем 4-е одинаковых кол-ки
+   grid-column-gap: 23px; // отступ между кол-ми
+   grid-template-rows: 195px; // высота колонок
+  // margin-bottom: 3rem;
+  
+}
+
+.inform-sait__item {
+   // padding: 1rem;
+   margin: 1rem 0;
+  // background-color: silver;
+   overflow: hidden; // скрываем все что выходит за пределы ячейки
+   position: relative;// относительно этого будем делать
+   //абсолютное позиционирование дочернего блока stories__preview
+
+   border-radius: 5px; //скруляескартинку
+   box-shadow: 0 5px 15px rgba($black, .2);// эффект тень
+   cursor: pointer;
+// эффект - поверх фото градиент - маска затемнения\тумана
+
+   &:after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      background-image: linear-gradient(
+         to bottom,
+         rgba($gradien, 0),
+         rgba($gradien, .1) 25%,
+         rgba($gradien, .2) 50%,
+         rgba($gradien, .1) 75%,
+         rgba($gradien, 0)
+      );
+// линейный градиент
+// to bottom -- т.е. вниз
+// начинаем с черного цвета непрозрачность 80%
+// до полностью прозвачный на 50% т.е. до середины
+//конец - черного цвета непрозрачность 80%
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+   }
+
+   // &:hover {
+   //     .stories__preview {
+   //         transform: scale(1.3);
+   //         transition-duration: 2s;
+   //     }
+   // }
+}
+
+.inform-sait__tuman {
+   display: block;
+   //     width: 100%;
+   //     height: 100%;
+   //     object-fit: cover;
+   
+   position: absolute;
+   top: 0; // начальная позиция
+   left: 0;
+   z-index: 1;
+}

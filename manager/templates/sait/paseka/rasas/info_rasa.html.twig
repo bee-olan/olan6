@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Раса{% endblock %}
+
+{# {% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+       
+        <li class="breadcrumb-item active">Раса</li>
+    </ol>
+{% endblock %} #}
+ 
+{#    {% block kroxi %}  #}
+{#       #}
+{#                <a href="{{ path('home') }}">Главная</a>#}
+{#                #}
+{#                <span class="aktiv ">Информация о расах</span> #}
+{#           #}
+{#    {% endblock %}#}
+
+{% block body %}     	
+	
+<article class="info_rasa">
+	
+   <div class="info_rasa__header  ">
+      <h1 class="info_rasa__title  ">Информация о структуре данных <strong class="stro stro--ras"><i> Раса_Линия_Номер </i></strong>  в БД</h1>
+              
+		{% for keyR, rasa in rasaLsNs %}           
+         <ul class="info_rasa__ul info-ul-flex">                      
+            <li class="rasa__li ">
+					<strong class="stro stro--ras">Раса : </strong>{{ keyR }}</li>
+				<div class="info_linia ">
+					{% for keyL, rasaLs in rasa %}
+						<ul class="info_rasa__ul">
+							<li class="linia__li"> 
+								<strong class="stro stro--lin">Линия : </strong>
+							 {{ keyL }}.......</li>
+								
+
+							<div class="info_nomer ">
+								{% for keyN, rasaLsN in rasaLs %}
+									<ul class="info_rasa__ul ">
+										<li class="nomer__li">
+											<strong class="stro stro--nom"> Номер : </strong> 
+											{{ keyN }}  <strong class="stro--lin"></strong> 
+										</li>
+										<li class="nomer__li ">
+											<strong class="stro stro--nom"> Итог : </strong> {{rasaLsN }}
+										</li>
+										<li class="nomer__li ">
+{#											<a href="{{ path('paseka.matkas.create', { 'id': nomer.id}) }}"#}
+{#											   class="btn-my btn-my--sm">Добавить как<strong class="stro stro--kras"> ПлемМатку</strong>#}
+{#											</a>#}
+											Добавить как<strong class="stro stro--kras"> ПлемМатку</strong>
+										</li>
+									</ul>
+								{% endfor %}
+							</div>
+						</ul>
+					{% endfor %}
+				</div>
+         </ul>  
+      {% endfor %} 
+    </div>
+
+
+</article><!-- rasas -->
+
+<article class="info_rasa">
+	
+   <div >
+      <h1 class="info_rasa__title  ">Информация о структуре данных <strong class="stro--ras"> Раса_Линия_Номер </strong>  в БД</h1>
+              
+	 <ul >	
+	 	{% for keyR, rasa in rasaLsNs %}           
+                              
+         <li > Раса:  {{ keyR }}--></li>
+				<div class="info-sdvig" >
+					{% for keyL, rasaLs in rasa %}
+						<ul >
+							<li > Линия:  {{ keyL }}
+								.............................................
+								
+							</li>
+
+							<div class="info-sdvig" >
+								{% for keyN, rasaLsN in rasaLs %}
+									<ul >
+										<li >Номер: {{ keyN }}  </li>
+										<div class="info-sdvig10" >
+												<li >Добавить как ПлемМатку: {{ rasaLsN }}  </li>
+										</div>
+									</ul>
+								{% endfor %}
+							</div>
+						</ul>
+					{% endfor %}
+				</div>
+           
+      	{% endfor %} 
+		</ul>
+    </div>
+
+
+</article><!-- rasas -->
+{% endblock %}

@@ -14,7 +14,7 @@
     
 </head>
 <body >
-    <div class="page" >
+    <div class="page-sait" >
 
         {% block header %}
            {{ include('sait/base/_header.html.twig') }}
@@ -27,8 +27,13 @@
   
 
         <!-- Main -->
-        <main class="main">
-            <div class="kroxi-sait info-gradien">
+        <main class="main-sait">
+
+            <header class="header-container ">
+                {% block includemenu %}{% endblock %}
+            </header>
+
+            <div class="kroxi-sait kroxi-gradien ">
                 <div class="kroxi-sait-xl">
                     {% block kroxiSait %} {% endblock %}
                 </div>
@@ -39,9 +44,11 @@
             <div class="container-sait">
 
                 {% block bodyMain %}
-
+{% include '_flashes.html.twig' %}
                    {% include('sait/main/_stories.html.twig') %} 
+                   {# красивые картинки #}
                    {% include('sait/main/_add-post.html.twig') %}
+                   {# отправить письмо #}
                    {% include('sait/main/_post.html.twig') %}
                     {% include('sait/main/_pagination.html.twig') %}
                     <h1>main</h1>

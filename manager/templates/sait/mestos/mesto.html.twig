@@ -1,0 +1,86 @@
+{% extends 'sait/base.html.twig' %}
+
+{% block title %}Место-округ{% endblock %}
+
+{% block kroxiSait %}   
+            <a href="{{ path('home') }}">Главная</a>
+            <a href="{{ path('sait.mestos.inform') }}">Место</a>
+            <a href="{{ path('sait.mestos.okrugs') }}">Номера Округов</a>
+            <a href="#">Номера Областей</a>
+            <a href="#link">Номера Районов</a>
+           {#  <a href="#link">...</a>  #}
+            <span class="aktiv">Номер места расположения </span> 
+{% endblock %}
+
+{% block includemenu %}
+     {% include('sait/mestos/_mesto-includ.html.twig') %}
+{% endblock %}
+
+{% block bodyMain %}
+
+
+    <div class="name-sait marg-bot-2">       
+        <ul class="mesto-sait__title">
+            <li class="mesto-sait__title-item "> {{ name_ok }}</li>           
+        </ul>
+       
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </div>
+
+    <div class="name-sait mar-lef marg-bot-2">          
+        <ul class="mesto-sait__title ">
+            {# <li class="mesto-sait__title-item nomer">{{ oblast.nomer }}</li> #}
+            <li class="mesto-sait__title-item "> {{ name_ob }}</li>           
+        </ul>
+
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+        </svg>       
+    </div>
+  
+    <div class="name-sait mar-lef2  marg-bot-2">
+            <ul class="mesto-sait__title">
+                <li class="mesto-sait__title-item nomer-sait-red">{{ raion.mesto }} </li>
+                <li class="mesto-sait__title-item ">{{ raion.name }}  </li>           
+            </ul> 
+
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2-all" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                            d="M12.354 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                    <path d="M6.25 8.043l-.896-.897a.5.5 0 1 0-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 0 0 .708 0l7-7a.5.5 0 0 0-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
+            </svg> 
+    </div>
+    
+    <div class="mesto-sait  marg-bot-2 ">       
+        <div class="mesto-sait__raspol ">     
+            <ul class="mesto-sait__title ">
+                <li class="mesto-sait__title-item ">
+                        Номер места расположения Вашей пасеки 
+                </li>  
+                <li class="mesto-sait__title-item nomer-sait">{{ raion.mesto }}</li>
+                <li class="mesto-sait__title-item ">
+                    <a class="mesto-sait__read" href="{{ path('mesto.infamesto.create', {'raion_id': raion.id , 'mestonomer': raion.mesto }) }}">
+                        Сохранить  
+                    </a>     
+                </li>                        
+            </ul>           
+        </div>    
+    </div>
+    <div class="mesto-sait  linia-top">
+        <div class="mesto-sait__raspol ">     
+            <ul class="mesto-sait__title nomer-text">
+                <li class="mesto-sait__title-item ">
+                    Если Вы не нашли название Республики/Края/Области/Района - напишите.
+                </li>                      
+            </ul>
+            <button class="btn-sait  btn--mesto btn--skruglen btn--sm" type="button" 
+                data-modal="mesto-sait-modal">
+                Написать
+            </button> {# комментарий в modal.js  #}           
+        </div>       
+   </div>
+
+ {% endblock %}

@@ -1,0 +1,10 @@
+{% for message in sait.flashes('success') %}
+    <div class="alert-sait alert-success-sait">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in sait.flashes('error') %}
+    <div class="alert-sait alert-danger-sait">
+        {{ message }}
+    </div>
+{% endfor %}

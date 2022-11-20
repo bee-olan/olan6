@@ -1,0 +1,32 @@
+.iconn {
+    display: block;
+    width: 4.4rem;
+    height: 4.4rem; // основа для лейбла открытия выбора файлов
+    box-shadow: 0 5px 25px rgba($black, .45); //тень
+// или прозрачныйфон 
+background-color: transparent;
+    border: 2px $border-foto solid;
+    border-radius: 50%;
+    cursor: pointer;
+
+    transition: background-color .2s linear;
+}
+.iconn {
+margin-left: 1.5rem;
+//background-color: $blue;
+
+font-size: 0;
+color: transparent;
+
+background: url("../images/sait/iconn/pencil.svg ") center no-repeat;
+
+&:hover {
+   background-color: darken($blue, 5%);
+    }
+}
+
+// display: inline-block;  по умолч будут блочными
+//font-family: inherit;  шрифт наследуется у родителя
+// box-shadow: 0 7px 17px -10px rgba($blue, .3);  тень для кнопки
+
+// =========================

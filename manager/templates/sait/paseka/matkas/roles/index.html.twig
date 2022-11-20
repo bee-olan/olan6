@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Roles{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Пасека</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
+        <li class="breadcrumb-item active">Roles</li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+
+{#    {{ include('app/work/_tabs.html.twig') }}#}
+
+    <div class="controls">
+        <a href="{{ path('paseka.matkas.roles.create') }}" class="btn btn-success">Добавить роль</a>
+    </div>
+
+    <div class="box">
+        <div style="overflow: auto">
+            <table class="table table-bordered table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th></th>
+                        {% for role in roles %}
+                            <th style="text-align: center">
+                                <a href="{{ path('paseka.matkas.roles.show', {'id': role.id}) }}">{{ role.name }}</a>
+{#                                ({{ role.memberships_count }})#}
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for permission in permissions %}
+                        <tr>
+                            <td>{{ permission|trans({}, 'paseka_permissions') }}</td>
+                            {% for role in roles %}
+                                <td style="text-align: center">
+                                    {% if permission in role.permissions %}
+                                        <span class="fa fa-check"></span>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

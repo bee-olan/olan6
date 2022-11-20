@@ -1,0 +1,44 @@
+.related {
+     padding-bottom: .5rem; // вутренний отступ сверху\снизу
+
+    border-bottom: 2px solid $border-linia; // linia
+}
+
+.related__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include breakpoint($mobile-bp) {
+        flex-direction: column;
+    }
+}
+
+.related__list-item {
+     width: 50%;
+     margin-bottom: 2.5rem; //
+
+     @include breakpoint($mobile-bp) {
+        width: 100%;
+    }
+}
+
+.related__list-title {
+    font-size: 1.4rem;
+    color: #F3EBA2;
+    font-weight: 500;
+    text-overflow: ellipsis; // показывает точки при скрытии текста
+    overflow: hidden; // скрываем то, что выходит за пределы блока
+    white-space: nowrap; // запрет переноса текста на новую строку
+
+    a {
+        color: inherit;
+    }
+}
+
+.related__list-date {
+    font-size: 1.2rem;
+    color: #828282;
+}
+
+
+

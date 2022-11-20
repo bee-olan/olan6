@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ linia.name }}{% endblock %}
+
+{# {% block kroxi %}  #}
+{#       #}
+{#                <a href="{{ path('home') }}">Главная</a>#}
+{#                <a href="{{ path('paseka.rasas') }}">Расы </a>#}
+{#				<a href="{{ path('paseka.rasas.linias',{'id': rasa.id}) }}" >Линии в {{ rasa.title }}</a>#}
+{#                <span class="aktiv ">Редактировать  линию</span> #}
+{#           #}
+{#    {% endblock %}#}
+
+{% block body %}
+<article class="rasa">
+<h1 	class="rasa__title  "><strong> Раса </strong>:  {{ rasa.name }} | {{ rasa.title }}</h1>
+	<div class="linia ">
+		<h1 class="rasa__title  ">Редактировать <strong>линию</strong> : {{ linia.name }} | {{linia.nameStar }}</h1>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn-my btn-my--sm">Добавить измения в БД</button>
+            {{ form_end(form) }}
+	</div>
+</article>
+
+{% endblock %}

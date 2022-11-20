@@ -1,0 +1,99 @@
+.includ-menu{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.includ-menu__ul{
+    display: flex; // добавляем т.к добаилась li-шка
+
+    line-height: 1.8;
+    font-size: 1.8rem;
+   
+    align-items: center; // выравнивание по вертикали
+
+}
+.includ-menu__li{
+
+    color: $white;
+
+    &--paddin{
+        padding-left: 2rem ;
+        padding-right: 1.5rem ;
+    }
+
+    box-shadow: 0 5px 22px rgba($white, .35); 
+    //  стилизация тени - не прозрачность 100%
+}
+.includ-stories {
+    display: grid; //
+    grid-template-columns: 65px ;// делаем 4-е одинаковых кол-ки
+    grid-template-rows: 60px; // высота колонок
+}
+
+.includ-stories__item {
+   background-color: silver;
+    overflow: hidden; // скрываем все что выходит за пределы ячейки
+    position: relative;// относительно этого будем делать
+    //абсолютное позиционирование дочернего блока stories__preview
+
+    border-radius: 3px; //скруляескартинку
+    box-shadow: 0 5px 15px rgba($blue, .2);// эффект тень
+    cursor: pointer;
+// эффект - поверх фото градиент - маска затемнения\тумана
+    &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        background-image: linear-gradient( 
+           to bottom, 
+           rgba($blue, .6),
+           rgba($blue, 0) 50%, 
+           rgba($blue, .6) 
+        );
+//            //или так
+//            // rgba($grad1, .8),
+//            // rgba($black, 0) 50%, 
+//            // rgba($grad2, .8) 
+//         // линейный градиент
+//         // to bottom -- т.е. вниз
+//         // начинаем с черного цвета непрозрачность 80%
+//         // до полностью прозвачный на 50% т.е. до середины
+//         //конец - черного цвета непрозрачность 80%
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+// // при наведении картинка приближается
+    &:hover {
+       .includ-stories__preview {
+           transform: scale(1.3);
+           transition-duration: 2s; //  замедление на 2 сек
+       }
+   }
+}
+
+.includ-stories__preview {
+   display: block;
+   // растягивает\сжимает картину по размерам блока
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+
+   position: absolute;
+   top: 0; // начальная позиция
+   left: 0;
+   z-index: 1;
+
+//     transform: scale(1.05);
+    transition: transform 1s ease-in-out;
+}
+
+
+
+
+
+

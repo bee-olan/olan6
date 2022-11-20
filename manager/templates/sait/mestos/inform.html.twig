@@ -1,0 +1,33 @@
+{% extends 'sait/base.html.twig' %}
+
+{% block title %}Место{% endblock %}
+
+{% block kroxiSait %}
+            <a href="{{ path('home') }}">Главная</a>
+             {# <a href="{{ path('work') }}">Work</a> #}
+            {# <a href="#link">...</a>
+            <a href="#link">...</a>
+            <a href="#link">...</a>  #}
+            <span class="aktiv">Место</span>   
+{% endblock %}
+
+{% block includemenu %}
+     {% include('sait/mestos/_mesto-includ.html.twig') %}
+{% endblock %}
+
+{% block bodyMain %}
+
+	<div class="inform " >
+        <div class="inform__item">
+		  		<img class="inform__tuman" src="{{ asset('assets/images/stories/p4ela1.jpg') }}" alt="">
+            <div class="inform__title">p4ela1</div>
+            <time class="inform__date" datetime="2021-03-21 19:21">21.03.2021</time>
+		  </div>
+       
+        <div class="inform__item">
+            <div class="inform__title">p4ela1</div>
+            <time class="inform__date" datetime="2021-03-21 19:21">21.03.2021</time>
+		  </div>
+        <div class="inform__item">4</div>
+    </div>
+{% endblock %}

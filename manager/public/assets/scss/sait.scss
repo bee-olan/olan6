@@ -41,11 +41,19 @@ a {
     opacity: 1;
   }
 }
+
+@import "sait/alert-sait";
+@import "sait/includ-menu";
 @import "sait/kroxi-sait";
 @import "sait/btn-sait";
 @import "sait/filters";
 // страница
 @import "sait/page/page";
+@import "sait/page/pagination";
+
+//
+@import "sait/page/mestos/inform-sait";
+@import "sait/page/mestos/mesto-sait";
 
 // header - заголовок
 @import "sait/page/header/header";
@@ -68,5 +76,16 @@ a {
 @import "sait/page/main/container";
 @import "sait/page/main/stories";
 @import "sait/page/main/embed"; //встроить
+
+// post
+@import "sait/page/post/post";
+@import "sait/page/post/comments";
+@import "sait/page/post/form";
+@import "sait/page/post/related";  //связанные с
+
+// работы
+@import "sait/page/works/work";
+
+@import "sait/page/works/tags";
 
 

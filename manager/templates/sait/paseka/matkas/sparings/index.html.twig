@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Облет | спаринг{% endblock %}
+
+    {% block kroxi %}  
+       
+                <a href="{{ path('home') }}">Главная</a>
+                
+                <span class="aktiv ">Облет | спаринг</span> 
+           
+    {% endblock %}
+
+{% block body %}
+
+<article class="sparing">
+	
+      <div class="rasa__header  ">
+         <h1 class="rasa__title  ">Виды облета/спаринга зарегистрированные в БД</h1>
+          {% set token = csrf_token('delete') %}
+                {% for sparing in sparings %}
+                      
+           
+                <ul class="sparing__data">  
+                   <li class="sparing__name">{{ sparing.name }}  {#  ( {{ sparing.nomers }} )#}
+                    </li>
+                    <li class="sparing__name sparing__name--wi25">  {{ sparing.title }}  </li>               
+                    <li class="sparing__name sparing__name--wi10">
+                        <a href="{{ path('paseka.matkas.sparings.edit', {'id': sparing.id}) }}" class="btn btn-sm "><span class="fa fa-pencil"></span></a>
+                    </li>
+                    <li class="sparing__name ">
+                       
+                        <form action="{{ path('paseka.matkas.sparings.delete', {'id': sparing.id}) }}" method="post" onsubmit="return confirm('Удалить? Вы уверены?')">
+                                <input type="hidden" name="token" value="{{ token }}" />
+                                <button type="submit" class="btn btn--smm"><span class="fa fa-trash"></span></button>
+                        </form>
+                    </li>
+                                          
+                </ul>  
+         {% endfor %}                
+    </div>
+
+		<div class = "rasa__content"  >
+			<a href="{{ path('paseka.matkas.sparings.create') }}"
+				class="btn btn--sm">Добавить другой вид облета в БД</a>
+		</div>
+	</div>		
+</div>
+</article><!-- sparing -->
+
+{% endblock %}

@@ -16,7 +16,6 @@
 
 .nav__list {
     display: flex;
-
     @include breakpoint($tablet-bp) {
         flex-direction: column; // что бы навигация шла друг под другом
     }
@@ -52,13 +51,13 @@
 // стилизация ссылок
  .nav__link {
     display: block; // ссылки - блочные
-    padding: 1.35rem;
+    padding: .8rem 1.35rem .8rem 1.35rem;
      // это border сверху\снизу у текста
     //border-bottom: 2px solid $border-linia;
 
-     font-size: 1.2rem; // шрифт - размер
-     line-height: 1.2;
-     text-transform: uppercase;// буквы- большие
+     font-size: 1.6rem; // шрифт - размер
+     line-height: 1.6;
+    // text-transform: uppercase;// буквы- большие
      color: $header-color;
     //  color: $white;// цвет
      text-decoration: none;

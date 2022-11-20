@@ -1,0 +1,46 @@
+{% extends 'sait/base.html.twig' %}
+
+{% block title %}Место-округ{% endblock %}
+
+ {% block includemenu %}
+     {% include('sait/mestos/_mesto-includ.html.twig') %}
+ {% endblock %}
+
+
+{% block kroxiSait %}
+            <a href="{{ path('sait') }}">Главная</a>
+            <a href="{{ path('sait.mestos.inform') }}">Место</a>
+            <span class="aktiv ">Номера Округов</span> 
+{% endblock %}
+
+{% block bodyMain %}
+
+    {# <div class="mesto-sait  info-sait-gradien">
+        <div class="mesto-sait__raspol ">
+            <ul class="mesto-sait__title">
+                <li class="mesto-sait__title-item ">
+                                            
+                </li>
+                <li class="mesto-sait__title-item ">
+                        Выбираем свой Округ                      
+                </li>                       
+            </ul>            
+        </div>    
+    </div> #}
+    <h2 class = "page__title ">Выбираем свой Округ </h2>
+  
+    {% for okrug in okrugs %}	  
+        <div class="mesto-sait mesto-sait-h">
+            <div class="mesto-sait__raspol">
+                <ul class="mesto-sait__title">
+                    <li class="mesto-sait__title-item nomer-sait-red">
+                        <a href="{{ path('sait.mestos.oblasts', {'okrug_id': okrug.id}) }}">{{ okrug.nomer }} </a>
+                    </li>   
+                    <li class="mesto-sait__title-item ">
+                        <a href="{{ path('sait.mestos.oblasts', {'okrug_id': okrug.id}) }}">{{ okrug.name }} </a>
+                    </li>        
+                </ul>               
+            </div>    
+        </div>
+    {% endfor %}
+ {% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ plemmatka.name }}{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Пасека</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
+        <li class="breadcrumb-item active">{{ plemmatka.name }}</li>
+    </ol>
+{% endblock %}
+
+{% block body %} 
+
+    <article class="matka" >
+
+        <div class="controls">
+            <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemmatka.id}  ) }}"
+               class="btn-my btn-my--sm">Перейти к регистрации  <strong class="stro stro--kras">ДочьМатки  </strong>
+            </a>
+            <a href="{{ path('paseka.matkas.plemmatka.childmatkas', {'plemmatka_id' : plemmatka.id}  ) }}"
+               class="btn-my btn-my--sm">Смотреть всех <strong class="stro stro--kras">ДочьМаток</strong> этой <strong class="stro stro--kras">ПлемМатки</strong>
+            </a>
+        </div>
+
+        <div class="matka__header" >
+            <h1 class="matka__title  "> </h1>
+            <h1 class="matka__title  ">{{ plemmatka.name }} :  данные ПлемМатки берём за основу</h1>
+       
+            <ul class="matka__data"> 
+                <li class="matka__name" >Раса</li>
+                <li class="matka__name matka__name--wid200">{{ infaRasaNom[0].rasa }}</li>
+            </ul>
+             <ul class="matka__data"> 
+                <li class="matka__name" >л-линия</li>
+                <li class="matka__name matka__name--wid200" >{{ infaRasaNom[0].linia }}</li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" >н-номер</li>
+                <li class="matka__name matka__name--wid200" >{{ infaRasaNom[0].nomer }}</li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" >{{ plemmatka.mesto }}</li>
+                <li class="matka__name matka__name--wid200" >{{ infaMesto[0].okrug }} - {{ infaMesto[0].oblast }} - {{ infaMesto[0].raion }}</li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" >пН-{{ plemmatka.persona }}</li>
+                <li class="matka__name matka__name--wid200" >персональный номер матковода с ником: {{ uchastie.name.nike}} ( {{ uchastie.name.last }} , {{ uchastie.name.first }}) ,</li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" > №{{plemmatka.sort}}</li>
+                <li class="matka__name matka__name--wid200" >--<strong class="stro stro--kras"> {{ plemmatka.title}} </strong>  --  внутренняя нумерация или название маточки  и комментарий  </li>
+            </ul>
+            <ul class="matka__data"> 
+                <li class="matka__name" >{{ plemmatka_status(plemmatka.status.name) }}  </li>
+                <li class="matka__name matka__name--wid200" >-- статус ПлемМатки на данный момент  </li>
+            </ul>       
+        </div>
+        <div class="matka__header">
+            <div style="overflow: auto">
+                <table class="table table-bordered table-hover mb-0 ">
+                    <thead>
+                    <tr >
+                        {% for kategoria in kategorias %}
+                            <th style="text-align: center; color: white">
+                                {{ kategoria.name }}
+                            </th>
+                        {% endfor %}
+                        <th style="text-align: center; color: white" >Характеристики категорий</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for permission in permissions %}
+                        <tr>
+                            {% for kategoria in kategorias %}
+                                <td style="text-align: center; color: white">
+                                    {% if permission in kategoria.permissions %}
+                                        <span class="fa fa-check"></span>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                            <td class="matka__kateg">{{ permission|trans({}, 'paseka_permissions') }}</td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}

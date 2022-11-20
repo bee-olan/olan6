@@ -3,7 +3,7 @@
 		<nav class="nav">
 			<ul class="nav__list">
 				<li class="nav__item" >
-					<a class="nav__link has-subnav" href="/">Главная</a>
+					<a class="nav__link has-subnav" href="/sait">Главная</a>
 					<ul class="subnav">
 						<li>
 							<a class="subnav__link " href="#">Список зарегистрированных</a>
@@ -18,14 +18,14 @@
 				</li>
 {#	 для поднавиг отслеживаем наведение на li эл-т#}
 				<li class="nav__item" >
-					<a class="nav__link has-subnav" href="# ">Место</a>
+					<a class="nav__link has-subnav" href="{{ path('sait.mestos.inform') }} ">Место</a>
 {#					has-subnav имеет под  навигацию#}
 					<ul class="subnav">
 						<li>
-							<a class="subnav__link" href="#">Номер места</a>
+							<a class="subnav__link" href="{{ path('sait.mestos.okrugs') }}">Номер места</a>
 						</li>
 						<li>
-							<a class="subnav__link" href="#">Номер места-S</a>
+{#							<a class="subnav__link" href="{{ path('sait.u4astniks.mestos.okrugs') }}">Номер места-S</a>#}
 						</li>
 						<li>
 							<a class="subnav__link" href="#">.......</a>
@@ -36,7 +36,7 @@
 						<a class="nav__link has-subnav" href="#">Участники</a>
 						<ul class="subnav">
 							<li>
-								<a class="subnav__link" href="# ">Персональный номер</a>
+								<a class="subnav__link" href="{{ path('paseka.uchasties.uchastie') }} ">Стать участником</a>
 							</li>
 							<li>
 								<a class="subnav__link" href="#">Группы</a>

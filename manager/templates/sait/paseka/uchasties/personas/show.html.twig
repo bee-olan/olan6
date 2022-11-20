@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Персональный номер{% endblock %}
+
+{#{% block kroxi %}   #}
+{#            <a href="{{ path('home') }}">Главная</a>#}
+{#            #}{# <a href="{{ path('sait.mestos.inform') }}">Год участия в проекте</a> #}
+{#            <span class="aktiv ">Персональный номер !!!!!</span> #}
+{#{% endblock %}#}
+
+{% block body %}
+
+ <h2 class = "page__title ">Персональные   номера участников проекта !!!!!!!!</h2>
+ <div class="persona">
+
+	{% for persona in fetcher %}
+        <div class = "persona-nomer">		
+		    {{ persona.nomer  }} 
+        </div>
+	{% endfor %}
+</div>
+    <h2 class = "page__title ">Ваш персональный   номер участника </h2>
+    <div class = "persona-nomer">
+        {{ persona.nomer }}
+    </div>
+{% endblock %}

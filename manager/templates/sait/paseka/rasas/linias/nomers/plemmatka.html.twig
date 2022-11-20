@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nomer{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Расы </a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Линия -- {{ linia.name }}</a></li>
+        <li class="breadcrumb-item active">Номера зарегистрированные</li>
+    </ol>
+{% endblock %}
+
+
+{% block body %}
+
+    <article class="rasa">
+        <h1 class="rasa__title  "><strong> Раса </strong> :   {{ linia.title }}
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">#}
+                <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </h1>
+        <div class="linia ">
+            <h1 class="rasa__title  "><strong> Линия </strong> :  {{ linia.name }} - {{ linia.nameStar }}
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">#}
+                    <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                </svg>
+            </h1>
+            <div class="nomer ">
+                <div class="rasa__header  ">
+                    <h1 class="rasa__title  "><strong> Номера </strong> зарегистрированные в БД
+                        <strong> для </strong> линии <strong> {{ linia.name }} </strong></h1>
+
+                    {% for nomer in nomers %}
+                        <ul class="rasa__data">
+
+                            <li >
+                                <a href="{{ path('paseka.matkas.plemmatka.plemmatka', { 'id': nomer.id}) }}" class="btn-my btn-my--sm" >
+                                    <strong class="stro stro--kras">  н-{{ nomer.sort_nomer }} </strong>
+                                </a>
+                            </li>
+
+                            <li class="rasa__name">{{ nomer.name_star }}</li>
+
+
+
+                            <li class="rasa__name rasa__name--wid15 b-color ">{{ nomer.title }}</li>
+
+                        </ul>
+                    {% endfor %}
+                </div>
+
+{#                <div class = "rasa__content"  >#}
+{#                    <a href="{{ path('paseka.rasas.linias.nomers.create', {'linia_id': linia.id}) }}"#}
+{#                       class="btn-my btn-my--sm">Добавить другой#}
+{#                        <strong class="stro stro--kras"> номер </strong> в БД</a>#}
+{#                </div>#}
+            </div>
+        </div>
+    </article><!-- rasas -->
+{% endblock %}
