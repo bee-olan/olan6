@@ -11,6 +11,7 @@ namespace App\Controller\Sait\Mestos;
 //use App\ReadModel\Rabota\U4astniki\Mesto\OkrugFetcher;
 
 
+use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
 use App\ReadModel\Mesto\OkrugFetcher;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -34,10 +35,15 @@ class OkrugsController extends AbstractController
     /**
      * @Route("", name="")
      * @param OkrugFetcher $fetcher
+     * @param MestoNomerFetcher $mestonomers
      * @return Response
      */
-    public function okrugs(OkrugFetcher $fetcher): Response
+    public function okrugs(OkrugFetcher $fetcher, MestoNomerFetcher $mestonomers): Response
     {
+        if ($mestonomers->exists($this->getUser()->getId())) {
+            $this->addFlash('error', 'Ваш номер места расположения пасеки уже записан в БД');
+            return $this->redirectToRoute('sait.mestos.inform');
+        }
         $okrugs = $fetcher->all();
         return $this->render('sait/mestos/okrugs.html.twig', compact('okrugs'));
     }

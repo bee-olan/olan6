@@ -1,9 +1,7 @@
 @import "variabsait";
 @import "mixins";
 @import "vendor/reset";
-//@import "~@coreui/coreui/scss/coreui";
-//@import "~simple-line-icons/scss/simple-line-icons";
-//@import "~font-awesome/scss/font-awesome";
+
 
 html {
   font-size: 62.5%;
@@ -42,7 +40,7 @@ a {
   }
 }
 
-@import "sait/alert-sait";
+@import "sait/strong-sait";
 @import "sait/includ-menu";
 @import "sait/kroxi-sait";
 @import "sait/btn-sait";

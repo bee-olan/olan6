@@ -35,37 +35,43 @@ class InformController extends AbstractController
 
 
 	/**
-     * @Route("/", name=".inform")
+     * @Route("/inform", name=".inform")
      * @return Response
      * @param MestoNomerFetcher $fetcher
+     * @param MestoNomerFetcher $mestonomers
      */
-    public function inform(MestoNomerFetcher $fetcher): Response
+    public function inform(MestoNomerFetcher $fetchers, MestoNomerFetcher $mestonomers): Response
     {
-        if ($fetcher->exists($this->getUser()->getId())) {
-            $this->addFlash('error', 'Ваш номер места расположения пасеки уже записан в БД');
-            return $this->redirectToRoute('sait.mestos.show');
-        }
+       
 
-        return $this->render('sait/mestos/inform.html.twig');
-    }
-
-        /**
-     * @Route("/show", name=".show")
-     * @param MestoNomerFetcher $fetchers
-     * @param MestoNomerRepository $mestonomers
-     * @return Response
-     */
-    public function show(MestoNomerFetcher $fetchers, MestoNomerRepository $mestonomers,
-                         Request $request ): Response
-    {
         $fetcher = $fetchers->allMestNom();
 
-        $mestonomer = $mestonomers ->get(new Id($this->getUser()->getId()));
+        //$mestonomer = $mestonomers ->get(new Id($this->getUser()->getId()));
+
+        $mestonomer = $mestonomers ->find($this->getUser()->getId());
 
 
-        return $this->render('sait/mestos/show.html.twig',
-            compact('fetcher', 'mestonomer'));
-
+        return $this->render('sait/mestos/inform.html.twig',
+                                compact('fetcher', 'mestonomer'));
     }
+
+    //     /**
+    //  * @Route("/show", name=".show")
+    //  * @param MestoNomerFetcher $fetchers
+    //  * @param MestoNomerRepository $mestonomers
+    //  * @return Response
+    //  */
+    // public function show(MestoNomerFetcher $fetchers, MestoNomerRepository $mestonomers,
+    //                      Request $request ): Response
+    // {
+    //     $fetcher = $fetchers->allMestNom();
+
+    //     $mestonomer = $mestonomers ->get(new Id($this->getUser()->getId()));
+
+
+    //     return $this->render('sait/mestos/show.html.twig',
+    //         compact('fetcher', 'mestonomer'));
+
+    // }
 
 }

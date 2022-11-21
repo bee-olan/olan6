@@ -367,40 +367,25 @@ a:hover {
   opacity: 1;
 }
 
-.alert-success-sait {
-  color: #28623c;
-  background-color: #dbf2e3;
-  border-color: #cdedd8;
+.stro-sait {
+  color: #155799;
 }
-
-.alert-success-sait hr {
-  border-top-color: #bae6c9;
+.stro-sait--krox {
+  font-size: 1.8rem;
+  color: #ccb44b;
 }
-
-.alert-success-sait .alert-link {
-  color: #193e26;
+.stro-sait--kras {
+  color: #ED3024;
+  font-size: 1.6rem;
 }
-
-.alert-sait {
-  position: relative;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
+.stro-sait--ras {
+  font-size: 1.6rem;
 }
-
-.alert-danger-sait {
-  color: #7b1913;
-  background-color: #fbd6d3;
-  border-color: #fac5c2;
+.stro-sait--lin {
+  font-size: 1.4rem;
 }
-
-.alert-danger-sait hr {
-  border-top-color: #f8afaa;
-}
-
-.alert-danger-sait .alert-link {
-  color: #4f100c;
+.stro-sait--nom {
+  font-size: 1.2rem;
 }
 
 .includ-menu {
@@ -865,6 +850,30 @@ a:hover {
 .mesto-sait__read {
   font-size: 1.2rem;
   color: #a78c16;
+}
+
+.mesto-ramka {
+  background-color: #588557;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  background: transparent;
+  padding: 5px;
+}
+
+.mesto-ramka__nomer {
+  width: 8rem;
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgb(255, 255, 255);
+  background: transparent;
+  font-size: 1.6rem;
+  color: #fff;
+  margin: 10px;
+  padding: 0.5rem 0.5rem 0.5rem 1.7rem;
+  transition: box-shadow 0.2s linear;
 }
 
 .header {

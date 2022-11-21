@@ -3,31 +3,50 @@
 {% block title %}Место{% endblock %}
 
 {% block kroxiSait %}
-            <a href="{{ path('home') }}">Главная</a>
-             {# <a href="{{ path('work') }}">Work</a> #}
-            {# <a href="#link">...</a>
-            <a href="#link">...</a>
-            <a href="#link">...</a>  #}
+            <a href="{{ path('sait') }}">Главная</a>
             <span class="aktiv">Место</span>   
 {% endblock %}
 
 {% block includemenu %}
-     {% include('sait/mestos/_mesto-includ.html.twig') %}
+    <div class="includ-menu ">
+        <ul class="includ-menu__ul " >
+            <li class="includ-menu__li " >
+                <div class="includ-stories" >
+                    <div class="includ-stories__item" data-modal="story-modal" >
+                        <img class="includ-stories__preview" src="{{ asset('assets/images/mestos/mesto_.png') }}"  alt="Место">
+                    </div>
+                </div>         
+            </li>
+            <li class="includ-menu__li includ-menu__li--paddin" >
+                Номера мест расположения пасек участников проекта                   
+            </li>                       
+        </ul>            
+</div> 
 {% endblock %}
 
 {% block bodyMain %}
+<div class="mesto-ramka">
 
-	<div class="inform " >
-        <div class="inform__item">
-		  		<img class="inform__tuman" src="{{ asset('assets/images/stories/p4ela1.jpg') }}" alt="">
-            <div class="inform__title">p4ela1</div>
-            <time class="inform__date" datetime="2021-03-21 19:21">21.03.2021</time>
-		  </div>
-       
-        <div class="inform__item">
-            <div class="inform__title">p4ela1</div>
-            <time class="inform__date" datetime="2021-03-21 19:21">21.03.2021</time>
-		  </div>
-        <div class="inform__item">4</div>
-    </div>
+	{% for mestonom in fetcher %}
+        <div class = "mesto-ramka__nomer">		
+		    {{ mestonom.mestonomer  }}
+        </div>
+	{% endfor %}
+</div>
+
+{% if mestonomer %} 
+    <h2 class = "page__title ">Ваш номер места расположения пасеки  </h2>
+    <div class="mesto-ramka">
+        <div class = "mesto-ramka__nomer">
+            {{ mestonomer.nomer }}
+        </div>
+    </div>    
+{% else %} 
+<h2 class = "page__title ">Вам, для участия в проекте,  надо определиться  
+с номером места нахождения Вашей пасеки.<br> Можно отсюда 
+<a href="{{ path('sait.mestos.okrugs') }}">перейти по ссылке </a> 
+или <br>
+в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >Место -> Номер места.</strong>
+</h2>
+{% endif %}
 {% endblock %}

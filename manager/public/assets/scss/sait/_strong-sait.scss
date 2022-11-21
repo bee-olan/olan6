@@ -1,0 +1,30 @@
+//strong-sait
+
+.stro-sait {
+   // font-weight: 500; это о толщине шрифта
+    color: $kroxi-sait;
+    //font-style: italic; //наклонный шрифт
+
+    &--krox {
+        font-size: 1.8rem;
+        color: $kroxi-sait-b;
+    }
+
+    &--kras {
+        color: $red;
+        font-size: 1.6rem;
+    }
+
+    &--ras {
+        font-size: 1.6rem;
+    }
+
+    &--lin {
+        font-size: 1.4rem;
+
+    }
+
+    &--nom {
+        font-size: 1.2rem;
+    }
+}
