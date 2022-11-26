@@ -24,7 +24,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/sait/profile", name="sait_profile")
+     * @Route("/sait/profile", name="sait.profile")
      * @return Response
      */
     public function index(): Response

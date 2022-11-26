@@ -1,0 +1,38 @@
+{% extends 'sait/base.html.twig' %}
+
+{% block title %}Персональный номер{% endblock %}
+
+
+{% block kroxiSait %}
+    <a href="{{ path('sait') }}">Главная</a>
+    <span class="aktiv">ПевсонНомер</span>
+    <span class="aktiv">Диапазон</span>
+{% endblock %}
+
+{% block bodyMain %}
+
+    <div  class="saits">
+    {% include('sait/uchastiess/personass/_personas-includ.html.twig') %}
+ {# <h2 class = "person__title ">Персональные номера участников проекта </h2> #}
+
+ <h2 class = "person__title ">Для выбора ПерсонНомера участника - жмите на выбранную цифру</h2>
+
+<div class="person">
+ 
+	{% for person in persons %}
+        <div class = "person-vibor">
+            <a  href= "{{ path('sait.uchastiess.personass.create', { 'person': person, 'itogo': itogo}) }}">
+            {{ person  }} </a>
+        </div>
+	{% endfor %}
+
+</div>
+
+    <div class="person">
+        <h3 class = "person__title ">Если выбрали не тот диапазон - можно</h3>
+            <a  href= "{{ path('sait.uchastiess.personass.diapazon') }}" class="btn-sait btn-sait--mb0">
+                    Изменить диапазон
+            </a>
+    </div>
+</div>
+ {% endblock %}

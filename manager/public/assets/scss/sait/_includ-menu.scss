@@ -1,21 +1,53 @@
+.wstawka {
+    display: flex;
+    //line-height: 1.8;
+    //max-height: 60px;
+    font-size: 1.8rem;
+    text-align: center; 
+    align-items: center;
+    box-shadow: 0 5px 22px rgba($white, .35); 
+
+}
+
+.wstawka__title {
+    width: 100%;
+    //padding-left: 11rem;
+
+}
+
+.wstawka__kartinka {
+    flex-grow: 1;
+    // padding-left: 11rem;
+
+    img {
+        display: block;
+        margin-bottom: 1.5rem;
+    }
+}
+
+
+
 .includ-menu{
     display: flex;
     justify-content: space-between;
     
+   
 }
 .includ-menu__ul{
     display: flex; // добавляем т.к добаилась li-шка
-
+    
+    margin: 0 0 2rem 0;
+    padding: 0;
     line-height: 1.8;
     font-size: 1.8rem;
-   
+    text-align: center; 
     align-items: center; // выравнивание по вертикали
 
 }
 .includ-menu__li{
 
     color: $white;
-
+   
     &--paddin{
         padding-left: 2rem ;
         padding-right: 1.5rem ;
@@ -26,7 +58,7 @@
 }
 .includ-stories {
     display: grid; //
-    grid-template-columns: 65px ;// делаем 4-е одинаковых кол-ки
+    grid-template-columns: 80px ;// делаем 4-е одинаковых кол-ки
     grid-template-rows: 60px; // высота колонок
 }
 

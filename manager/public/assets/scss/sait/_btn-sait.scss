@@ -10,23 +10,29 @@
     // меняем size шрифта - автоматом изменится падинги
 
    // background: linear-gradient( $grad1, $grad2);
-   border: 3px solid $kroxi-sait-b;
+   border: 1px solid $border-kroxi;
   // border: none; // убираем бордер
     cursor: pointer;
      border-radius: 3em; // скругляем
-
+     background-color: $primary;
     font-family: inherit; //шрифт наследуется у родителя
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     line-height: 1.1; // 
     font-weight: 500;
-    color: $white;
+    color: $border-kroxi;
     text-decoration: none; //убираем подчеркивание
     // плавное изменение цвета
     transition: background-color .3s linear;
+    margin-bottom: 3rem;
+    margin-left: 2rem;
+
+    margin-top: .5rem;
+    padding: 0.5em 1.25em;
 
     &:hover {
          background: linear-gradient( $grad1-o, $grad2-o);
         text-decoration: none;
+        color: $grad2;
     }
 // модификаторы &--red и &--blue
      &--red {
@@ -56,8 +62,8 @@
          border-radius: 0.41em;
      }
 // уменьшаем кнопку
-    &--sm {
-        padding: 0.5em 1.25em;
+    &--mb0 {
+        margin-bottom: -1rem;
     }
     &--smm {
         padding: 0.4em 1.25em;

@@ -55,6 +55,17 @@
     align-items: center; // выравнивание по вертикали
     
 }
+.mestos__title {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  padding-left: 2rem;
+    font-size: 2.1rem;
+    color: $white;
+  
+    &--center {
+        text-align: center;
+    }
+  }
 
 .mesto-sait__title {
     display: flex; // добавляем т.к добаилась li-шка
@@ -149,5 +160,9 @@
       padding: .5rem .5rem  .5rem  1.7rem;
   
       transition: box-shadow .2s linear;
+
+      &--persona {
+        width: 4rem;
+    }
   
   }

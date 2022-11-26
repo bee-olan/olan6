@@ -7,7 +7,7 @@
             <span class="aktiv">Место</span>   
 {% endblock %}
 
-{% block includemenu %}
+{# {% block includemenu %}
     <div class="includ-menu ">
         <ul class="includ-menu__ul " >
             <li class="includ-menu__li " >
@@ -22,31 +22,49 @@
             </li>                       
         </ul>            
 </div> 
-{% endblock %}
+{% endblock %} #}
 
 {% block bodyMain %}
-<div class="mesto-ramka">
+<div  class="saits">
+    <div class="wstawka">
 
-	{% for mestonom in fetcher %}
-        <div class = "mesto-ramka__nomer">		
-		    {{ mestonom.mestonomer  }}
+        <div class="wstawka__kartinka">
+            <div class="includ-stories" >
+                <div class="includ-stories__item" data-modal="story-modal" >
+                    <img class="includ-stories__preview" src="{{ asset('assets/images/mestos/mesto_.png') }}"  alt="Место">
+                </div>
+            </div>
         </div>
-	{% endfor %}
-</div>
 
-{% if mestonomer %} 
-    <h2 class = "page__title ">Ваш номер места расположения пасеки  </h2>
+        <div class="wstawka__title">
+            Номера мест расположения пасек участников проекта 
+        </div> 
+    </div>
+
+
     <div class="mesto-ramka">
-        <div class = "mesto-ramka__nomer">
-            {{ mestonomer.nomer }}
-        </div>
-    </div>    
-{% else %} 
-<h2 class = "page__title ">Вам, для участия в проекте,  надо определиться  
-с номером места нахождения Вашей пасеки.<br> Можно отсюда 
-<a href="{{ path('sait.mestos.okrugs') }}">перейти по ссылке </a> 
-или <br>
-в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >Место -> Номер места.</strong>
-</h2>
-{% endif %}
+
+        {% for mestonom in fetcher %}
+            <div class = "mesto-ramka__nomer">		
+                {{ mestonom.mestonomer  }}
+            </div>
+        {% endfor %}
+    </div>
+
+        {% if mestonomer %} 
+            <h2 class = "page__title ">Ваш номер места расположения пасеки  </h2>
+            <div class="mesto-ramka">
+                <div class = "mesto-ramka__nomer">
+                    {{ mestonomer.nomer }}
+                </div>
+            </div>    
+        {% else %} 
+            <h2 class = "page__title ">Вам, для участия в проекте,  надо определиться  
+            с номером места нахождения Вашей пасеки.<br> Можно отсюда 
+            <a href="{{ path('sait.mestos.okrugs') }}">перейти по ссылке </a> 
+            или <br>
+            в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >Место -> Номер места.</strong>
+            </h2>
+        {% endif %}
+</div>        
 {% endblock %}

@@ -33,14 +33,14 @@
 					</ul>
 				</li>
 				<li class="nav__item">
-						<a class="nav__link has-subnav" href="#">Участники</a>
+						<a class="nav__link has-subnav" href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>
 						<ul class="subnav">
 							<li>
 								<a class="subnav__link" href="{{ path('paseka.uchasties.uchastie') }} ">Стать участником</a>
 							</li>
 							
 							<li>
-								<a class="subnav__link" href="#">Группы</a>
+								<a class="subnav__link" href="{{ path('sait.uchastiess.personass.diapazon') }} ">ПерсонНомер</a>
 							</li>
 							<li>
 								<a class="subnav__link" href="#">Группы -- s</a>
@@ -103,10 +103,10 @@
 		<nav class="nav">
 			<ul class="nav__list">
 				<li class="nav__item">
-					<a class="nav__link" href="#">Профиль</a>
+					<a class="nav__link" href="{{ path('sait.profile') }}">Профиль</a>
 				</li>
 				<li class="nav__item">
-                  <a class="nav__link" href="#">войти</a>
+                  <a class="nav__link" href="{{ path('sait.auths.signin') }}">войти</a>
             </li>
 			</ul>
 		</nav>

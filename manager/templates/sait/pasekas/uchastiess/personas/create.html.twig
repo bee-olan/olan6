@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'sait/base.html.twig' %}
 
 {% block title %}Персональный номер{% endblock %}
 
@@ -8,7 +8,7 @@
 {#            <span class="aktiv">персональный номер</span> #}
 {#{% endblock %}#}
 
-{% block body %}
+{% block bodyMain %}
 
     <h2 class = "page__title ">Вы выбрали персональный номер :  {{person }} </h2>
 
@@ -26,7 +26,7 @@
 {#    </div>#}
 
     <div class="persona">
-        <a href="{{ path('paseka.uchasties.personas.diapazon') }}"  >
+        <a href="{{ path('sait.uchastiess.personas.diapazon') }}"  >
             <h2> Если ошиблись - вернитель на  страничку выбора персонального номера </h2>
         </a>
     </div>

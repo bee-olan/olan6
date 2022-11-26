@@ -49,9 +49,14 @@ a {
 @import "sait/page/page";
 @import "sait/page/pagination";
 
+@import "sait/page/saits/saits";
 //
 @import "sait/page/mestos/inform-sait";
 @import "sait/page/mestos/mesto-sait";
+
+// Персональный номер
+@import "sait/page/person/person";
+@import "sait/page/person/person-form";
 
 // header - заголовок
 @import "sait/page/header/header";

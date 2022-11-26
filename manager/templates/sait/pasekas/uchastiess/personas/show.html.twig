@@ -1,14 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'sait/base.html.twig' %}
 
 {% block title %}Персональный номер{% endblock %}
 
-{#{% block kroxi %}   #}
-{#            <a href="{{ path('home') }}">Главная</a>#}
-{#            #}{# <a href="{{ path('sait.mestos.inform') }}">Год участия в проекте</a> #}
-{#            <span class="aktiv ">Персональный номер !!!!!</span> #}
-{#{% endblock %}#}
+{% block kroxiSait %}
+    <a href="{{ path('sait') }}">Главная</a>
+    <span class="aktiv">ПерсонНомер</span>
+    <span class="aktiv">Диапозон</span>
+{% endblock %}
 
-{% block body %}
+{% block bodyMain %}
 
  <h2 class = "page__title ">Персональные   номера участников проекта !!!!!!!!</h2>
  <div class="persona">

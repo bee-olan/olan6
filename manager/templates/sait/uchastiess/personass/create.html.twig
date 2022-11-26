@@ -1,0 +1,34 @@
+{% extends 'sait/base.html.twig' %}
+
+{% block title %}Персональный номер{% endblock %}
+
+{% block kroxiSait %}
+    <a href="{{ path('sait') }}">Главная</a>
+    <span class="aktiv">ПевсонНомер</span>
+    <span class="aktiv">Диапозон</span>
+{% endblock %}
+
+{% block bodyMain %}
+
+    <div  class="saits">
+        {% include('sait/uchastiess/personass/_personas-includ.html.twig') %}
+        <div class="person">
+            <h2 class = "person__title ">Вы выбрали персональный номер : </h2> 
+            <div class = "person-nomer">
+                {{person }} 
+            </div>
+        </div>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn-sait">Записать в БД</button>
+            {{ form_end(form) }}
+
+        <div class="person">
+            <h2 class = "person__title"> Если ошиблись - вернитель на  страничку  
+                <a href="{{ path('sait.uchastiess.personass', { 'itogo': itogo} ) }}"  >
+                    выбор ПерсонНомера
+                </a>
+            </h2>
+        </div>
+    </div>
+{% endblock %}

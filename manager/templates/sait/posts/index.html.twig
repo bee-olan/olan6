@@ -8,7 +8,7 @@
 <!-- post статья-->
 <article class="post">
       <div class="post__actions">
-         <a href="\">вернуться назад</a>
+         <a href="{{ path('sait') }}">вернуться назад</a>
          <a href="#">
                поделиться<img class="post__actions-icon" src="{{ asset('assets/images/share.svg') }}" alt="поделиться">
          </a>
@@ -21,9 +21,9 @@
                   <time datetime="2020-06-21 19:20">21.06.2020</time>
                </li>
                <li class="post__data-item">
-                  <a href="#">конференции</a>
+                  <a href="post.html">КОНФЕРЕНЦИЯ</a>
                </li>
-         </ul>         
+         </ul>
       </div>
 
    <div class="post__content">
@@ -36,8 +36,8 @@
 
             <h4>Title h4</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi neque provident consectetur esse obcaecati facere fugit vel necessitatibus, rerum quod sint laudantium voluptates architecto. Doloribus, nobis animi perspiciatis amet in.</p>
-      
-            <p> 
+
+            <p>
                 <img src="{{ asset('assets/images/post/image.jpg') }}" alt="">
             </p>
 
@@ -63,8 +63,8 @@
 
             <p>
                 <span class="fr-video">
-                    <iframe src="https://www.youtube.com/CvEttNvty0U" frameborder="0" 
-                                 allow="accelerometer; autoplay; clipboard-write; 
+                    <iframe src="https://www.youtube.com/CvEttNvty0U" frameborder="0"
+                                 allow="accelerometer; autoplay; clipboard-write;
                                  encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                     </iframe>
                 </span>
@@ -77,19 +77,19 @@
          <ul class="related__list">
             <li class="related__list-item">
                <h4 class="related__list-title">
-                  <a href="#">Интересно почитать 1</a>
+                  <a href="post.html">Интересно почитать 1</a>
                </h4>
                <time class="related__list-date" datetime="2020-06-21 19:21">21.06.2020</time>
             </li>
             <li class="related__list-item">
                <h4 class="related__list-title">
-                  <a href="#">Интересно почитать 2</a>
+                  <a href="post.html">Интересно почитать 2</a>
                </h4>
                <time class="related__list-date" datetime="2020-06-21 19:21">21.06.2020</time>
             </li>
             <li class="related__list-item">
                <h4 class="related__list-title">
-                  <a href="#">Интересно почитать 3</a>
+                  <a href="post.html">Интересно почитать 3</a>
                </h4>
                <time class="related__list-date" datetime="2020-06-21 19:21">21.06.2020</time>
             </li>
@@ -101,7 +101,7 @@
             </li>
 
          </ul>
-      
+
       </div>
 
       <h3 class="post__subtitle">Обсуждение</h3>
@@ -109,7 +109,7 @@
       <form class="form" action="/" method="post">
          <div class="form__group">
                <textarea class="form__control  form__control--textarea" name="comment-text" placeholder="Текст комментария"></textarea>
-               <span class="form__line"></span> 
+               <span class="form__line"></span>
                {# пустой спан для эффекта фокус-линия #}
          </div>
          <button class="btn  btn--blue  btn--rounded  btn--sm" type="submit">Отправить</button>
@@ -126,9 +126,9 @@
                     </div>
                 </div>
 
-                <div class="comments__text">Lorem ipsum dolor sit amet, 
-                     consectetur adipisicing elit. Sed, suscipit accusantium aut culpa 
-                     eius esse architecto nobis sit excepturi expedita, repellendus 
+                <div class="comments__text">Lorem ipsum dolor sit amet,
+                     consectetur adipisicing elit. Sed, suscipit accusantium aut culpa
+                     eius esse architecto nobis sit excepturi expedita, repellendus
                      quae praesentium rerum earum molestias ullam a doloribus at.
 				   </div>
                 <button class="comments__reply" type="button">ответить</button>
@@ -165,7 +165,7 @@
          </li>
 
       </ul>
-        
+
    </div> <!-- post__content -->
 
 </article><!-- post post-->
