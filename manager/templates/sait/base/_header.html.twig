@@ -16,32 +16,33 @@
 						</li>
 					</ul>
 				</li>
-{#	 для поднавиг отслеживаем наведение на li эл-т#}
+
 				<li class="nav__item" >
 					<a class="nav__link has-subnav" href="{{ path('sait.mestos.inform') }} ">Место</a>
-{#					has-subnav имеет под  навигацию#}
 					<ul class="subnav">
 						<li>
 							<a class="subnav__link" href="{{ path('sait.mestos.okrugs') }}">Номер места</a>
 						</li>
+						
+					</ul>
+				</li>
+				<li class="nav__item" >
+					<a class="nav__link has-subnav" href="{{ path('sait.uchastiess.personass.inform') }} ">ПерсонНомер</a>
+					<ul class="subnav">
 						<li>
-{#							<a class="subnav__link" href="{{ path('sait.u4astniks.mestos.okrugs') }}">Номер места-S</a>#}
+							<a class="subnav__link" href="{{ path('sait.uchastiess.personass.diapazon') }}">Выбор ПерсонНомера</a>
 						</li>
-						<li>
-							<a class="subnav__link" href="#">.......</a>
-						</li>
+						
 					</ul>
 				</li>
 				<li class="nav__item">
-						<a class="nav__link has-subnav" href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>
+						<a class="nav__link has-subnav" href="{{ path('sait.uchastiess.inform') }}">Участники</a>
 						<ul class="subnav">
 							<li>
-								<a class="subnav__link" href="{{ path('paseka.uchasties.uchastie') }} ">Стать участником</a>
+								<a class="subnav__link" href="{{ path('sait.uchastiess.uchastie') }} ">Стать участником</a>
 							</li>
 							
-							<li>
-								<a class="subnav__link" href="{{ path('sait.uchastiess.personass.diapazon') }} ">ПерсонНомер</a>
-							</li>
+							
 							<li>
 								<a class="subnav__link" href="#">Группы -- s</a>
 							</li>
@@ -59,7 +60,7 @@
 								<a class="subnav__link" href="#">Участники по группам</a>
 							</li>
 							<li>
-								<a class="subnav__link" href="#">Участники -S</a>
+								<a class="subnav__link" href="{{ path('sait.uchastiess') }}">Участники список</a>
 							</li>
 							<li>
 								<a class="subnav__link" href="#">.......</a>
@@ -81,8 +82,8 @@
 					</ul>
 				</li>
 				<li class="nav__item">
-               <a class="nav__link has-subnav" href="#">Навигация</a>
-               <ul class="subnav">
+               		<a class="nav__link has-subnav" href="#">Навигация</a>
+               		<ul class="subnav">
 						<li>
 							<a class="subnav__link" href="{{ path('home') }}">Админочка</a>
 						</li>
@@ -90,7 +91,7 @@
 							<a class="subnav__link" href="{{ path('sait') }}">Сайт</a>
 						</li>
 					</ul>
-            </li>
+            	</li>
 			</ul>
 		</nav>
 
@@ -107,13 +108,13 @@
 				</li>
 				<li class="nav__item">
                   <a class="nav__link" href="{{ path('sait.auths.signin') }}">войти</a>
-            </li>
+            	</li>
 			</ul>
 		</nav>
-{# <div class="sidebar__header">
-      <img src="{{ asset('assets/images/sait/logo_sot.jpg') }}" alt="">
-    </div> #}
-<div class=" poisk__item" data-modal="poisk-modal" >
+		{# <div class="sidebar__header">
+			<img src="{{ asset('assets/images/sait/logo_sot.jpg') }}" alt="">
+			</div> #}
+		<div class=" poisk__item" data-modal="poisk-modal" >
             <img class="poisk__preview" src="{{ asset('assets/images/sait/logo_sot.jpg') }}" alt="">
             {# <div class="poisk__title">Поиск по блогу</div> #}
             <form class="search poisk__item" action="/" method= "post">

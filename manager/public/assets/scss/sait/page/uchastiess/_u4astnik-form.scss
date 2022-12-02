@@ -1,0 +1,47 @@
+
+.u4astnik-form {
+	div {
+		
+		div {
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline; // выравнивание по вертикали
+			margin-right: 10rem;
+
+			&:hover {					
+				background-color: rgba($white, .1);			
+				z-index: 1;
+				transition: border-bottom .2s linear;
+			}
+
+			label {
+					width: 20%;					
+					font-size: 1.3rem;
+					color: $color-text;
+				}
+			input {
+					display: block;
+					width: 80%;
+					padding:  .8rem  0;
+
+					background: none;
+					border: none;
+					border-bottom: 1px solid $border-linia;
+					border-radius: 0;
+					box-shadow: none;
+
+					font-family: inherit;
+					font-size: 1.4rem;
+					color: rgba($white, .5);
+					
+					&:focus {						
+						border-bottom: 1px solid $red;
+						z-index: 2;
+						transition: border-bottom .2s linear;
+					}						
+				}	
+		}
+	}
+}
+
+

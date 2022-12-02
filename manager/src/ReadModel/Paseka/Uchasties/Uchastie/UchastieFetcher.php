@@ -59,10 +59,10 @@ class UchastieFetcher
             $qb->setParameter(':name', '%' . mb_strtolower($filter->name) . '%');
         }
 
-         if ($filter->email) {
-             $qb->andWhere($qb->expr()->like('LOWER(m.email)', ':email'));
-             $qb->setParameter(':email', '%' . mb_strtolower($filter->email) . '%');
-         }
+        if ($filter->email) {
+            $qb->andWhere($qb->expr()->like('LOWER(m.email)', ':email'));
+            $qb->setParameter(':email', '%' . mb_strtolower($filter->email) . '%');
+        }
 
          if ($filter->status) {
              $qb->andWhere('m.status = :status');

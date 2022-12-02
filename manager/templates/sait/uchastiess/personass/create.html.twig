@@ -3,9 +3,12 @@
 {% block title %}Персональный номер{% endblock %}
 
 {% block kroxiSait %}
-    <a href="{{ path('sait') }}">Главная</a>
-    <span class="aktiv">ПевсонНомер</span>
-    <span class="aktiv">Диапозон</span>
+  <a href="{{ path('sait') }}">Главная</a>
+    <a href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>
+    <a href="{{ path('sait.uchastiess.personass.diapazon') }}">Диапазон</a>
+     <a href="{{ path('sait.uchastiess.personass', { 'itogo': itogo}) }}">ПерсонНомера</a>
+    <span class="aktiv">ПерсонНомер</span>
+ 
 {% endblock %}
 
 {% block bodyMain %}

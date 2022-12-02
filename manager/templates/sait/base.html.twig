@@ -29,9 +29,6 @@
         <!-- Main -->
         <main class="main-sait">
 
-            <header class="header-container ">
-                {% block includemenu %}{% endblock %}
-            </header>
 
             <div class="kroxi-sait kroxi-gradien ">
                 <div class="kroxi-sait-xl">
@@ -41,7 +38,7 @@
 
             {% block filter %} {% endblock %}
 
-            <div class="container-sait">
+            {# <div class="container-sait"> #}
 
                 {% block bodyMain %}
                    {% include('sait/main/_stories.html.twig') %} 
@@ -55,7 +52,7 @@
                     <a  href="{{ path('home') }}"><h2> Админка</h2></a>
 {#                    <a  href="{{ path('show') }}"><h2> Сайт</h2></a>#}
                 {% endblock %}
-            </div>   {#контент               #}
+            {# </div>   контент               #}
         </main>
     </div>
 

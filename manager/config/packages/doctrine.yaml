@@ -86,3 +86,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Model/Sait/Entity'
                 prefix: 'App\Model\Sait\Entity'
                 alias: Sait
+            Proekt:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Model/Proekt/Entity'
+                prefix: 'App\Model\Proekt\Entity'
+                alias: Proekt

@@ -1,0 +1,45 @@
+
+// .card {
+.uchast {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   
+   min-width: 0;
+  // width: calc(100% - #{80px});
+    max-width: 100%;
+   word-wrap: break-word;
+  // background-color: #fff;
+   background-clip: border-box;
+  // border: 1px solid #e6e6e6;
+   border-radius: .25rem;
+}
+// .uchast-body {
+//    flex: 1 1 1 1 1;
+//    padding: .7rem;
+// }
+.uchast-row{
+   display: flex;
+   justify-content: space-between; 
+  // flex-wrap: wrap;
+//    margin-right:-15px;
+//    margin-left:-15px
+ }
+.col-md-2{
+   position: relative;
+
+ padding-right: 15px;
+ padding-left: 15px;
+   flex: 0 0 16.66667%;
+   max-width: 16.66667%;
+
+   &--pl0 {
+    padding-left: 0;
+    margin-right: 1.5rem;
+    max-width: 12%;
+    }
+    &--pr0 {
+        padding-right: 0;
+        max-width: 12%;
+    }
+}

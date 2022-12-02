@@ -14,7 +14,7 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('uchkak', Type\ChoiceType::class, ['label' => 'Участие как', 'choices' => [
+            ->add('uchkak', Type\ChoiceType::class, ['label' => 'Участие как??', 'choices' => [
                 'Матковод' => UchKak::MATKO,
                 'Пчеловод' => UchKak::PCHEL,
                 'Пчеловод - Матковод' => UchKak::PCHMAT,

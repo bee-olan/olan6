@@ -1,0 +1,122 @@
+<header class="headerr">
+    <div class="headerr__left">
+		<nav class="navv">
+			<ul class="navv__list">
+				<li class="navv__item" >
+					<a class="navv__link has-subnavv" href="/sait">Главная</a>
+					<ul class="subnavv">
+						<li>
+							<a class="subnavv__link " href="#">Список зарегистрированных</a>
+						</li>
+						 <li>
+							<a class="subnavv__link" href="#">Участники по месту</a>
+						</li>
+						<li>
+							<a class="subnavv__link" href="#">.......</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="navv__item" >
+					<a class="navv__link has-subnavv" href="{{ path('sait.mestos.inform') }} ">Место</a>
+					<ul class="subnavv">
+						<li>
+							<a class="subnavv__link" href="{{ path('sait.mestos.okrugs') }}">Номер места</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li class="navv__item" >
+					<a class="navv__link has-subnavv" href="{{ path('sait.uchastiess.personass.inform') }} ">ПерсонНомер</a>
+					<ul class="subnavv">
+						<li>
+							<a class="subnavv__link" href="{{ path('sait.uchastiess.personass.diapazon') }}">Выбор ПерсонНомера</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li class="navv__item">
+						<a class="navv__link has-subnavv" href="{{ path('sait.uchastiess.inform') }}">Участники</a>
+						<ul class="subnavv">
+							<li>
+								<a class="subnavv__link" href="{{ path('sait.uchastiess.uchastie') }} ">Стать участником</a>
+							</li>
+							
+							
+							<li>
+								<a class="subnavv__link" href="#">Группы -- s</a>
+							</li>
+
+							<li>
+								<a class="subnavv__link" href="#">Регистрация S wse</a>
+							</li>
+							<li>
+								<a class="subnavv__link" href="#">Регистрация !!! участие</a>
+							</li>
+							<li>
+								<a class="subnavv__link" href="#">Регистрация участника</a>
+							</li>
+							<li>
+								<a class="subnavv__link" href="#">Участники по группам</a>
+							</li>
+							<li>
+								<a class="subnavv__link" href="{{ path('sait.uchastiess') }}">Участники список</a>
+							</li>
+							<li>
+								<a class="subnavv__link" href="#">.......</a>
+							</li>
+						</ul>
+				</li>
+				<li class="navv__item">
+					<a class="navv__link has-subnavv" href="#">Матки</a>
+					<ul class="subnavv">
+						<li>
+							<a class="subnavv__link " href="#">Матери-маток</a>
+						</li>
+						<li>
+							<a class="subnavv__link" href="#">Категории</a>
+						</li>
+						<li>
+							<a class="subnavv__link" href="#">.......</a>
+						</li>
+					</ul>
+				</li>
+				<li class="navv__item">
+               		<a class="navv__link has-subnavv" href="#">Навигация</a>
+               		<ul class="subnavv">
+						<li>
+							<a class="subnavv__link" href="{{ path('home') }}">Админочка</a>
+						</li>
+						<li>
+							<a class="subnavv__link" href="{{ path('sait') }}">Сайт</a>
+						</li>
+					</ul>
+            	</li>
+			</ul>
+		</nav>
+
+		<button class="burger " type="button" id="sidebarTog" >
+			<span>Открыть навигацию</span>
+		</button>
+	</div>
+
+    <div class="headerr__right">
+		<nav class="navv">
+			<ul class="navv__list">
+				<li class="navv__item">
+					<a class="navv__link" href="{{ path('sait.profile') }}">Профиль</a>
+				</li>
+				<li class="navv__item">
+                  <a class="navv__link" href="{{ path('sait.auths.signin') }}">войти</a>
+            	</li>
+			</ul>
+		</nav>
+{# action="search.html" #}
+		<form class="searchh"  method="get">
+			<input class="searchh__input" type="text" placeholder="Поиск по блогу">
+		</form>
+
+		
+	</div>
+
+</header>

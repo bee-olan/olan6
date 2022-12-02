@@ -62,10 +62,18 @@
          border-radius: 0.41em;
      }
 // уменьшаем кнопку
+  &--mb1 {
+    margin-bottom: 1rem;
+  }
     &--mb0 {
-        margin-bottom: -1rem;
+        margin-bottom: 0rem;
+        margin-left: 0;
     }
-    &--smm {
-        padding: 0.4em 1.25em;
+    &--mb-1 {
+      margin-bottom: -1rem;
     }
+    &--pt {
+        padding: 0.2rem 1rem 0.3rem 1rem;
+    }
+  
 }

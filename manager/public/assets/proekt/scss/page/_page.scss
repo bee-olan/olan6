@@ -1,0 +1,11 @@
+.pagee {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    min-height: 100vh;
+
+    background: linear-gradient($grad1, $grad2);
+    background-attachment: fixed; // фиксирую фон
+    overflow: hidden;
+ 
+}

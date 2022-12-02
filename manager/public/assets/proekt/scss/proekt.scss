@@ -1,0 +1,58 @@
+@import "variabproekt";
+@import "mixins";
+@import "vendor/reset";
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+
+  font-family: -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue",
+  Arial, "Noto Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.4rem;
+  line-height: 1.5 ;
+  color: $white;
+
+  &.no-scroll,// скрываем скролл для body при модальном о.
+  &.show-sidebar {
+    overflow: hidden;
+  }
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box; // включение длины отступов в общую ширину
+}
+a {
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity .2s linear;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@import "page/page";
+@import "page/btnn";
+//
+@import "page/header/header";
+@import "page/header/nav";
+@import "page/header/subnav";
+@import "page/header/search";
+
+//
+@import "page/sidebar/sidebar";
+
+@import "page/profile/profile";
+
+
+//
+@import "page/main/mainn";
+
+//
+@import "page/container/container";

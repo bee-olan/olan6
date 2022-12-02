@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% block head %}
+        {{ include('proekt/base/_head.html.twig') }}
+    {% endblock %}
+</head>
+<body>
+
+<div class="pagee">
+    <!-- Header -->
+    {% block header %}
+        {{ include('proekt/base/_header.html.twig') }}
+    {% endblock %}
+
+    <!-- Sidebar -->
+{#    {{ sidebar }}#}
+    {% block sidebar %}
+        {{ include('proekt/base/_sidebar.html.twig') }}
+    {% endblock %}
+
+    <!-- Main -->
+    <main class="mainn">
+        <div class="containerr">
+{#            {{ body }}#}
+            {% block bodyy %}
+                Main
+{#                {{ include('proekt/base/main/_body.html.twig') }}#}
+            {% endblock %}
+        </div>
+    </main>
+</div>
+
+
+<!-- JS -->
+<script src="assets/proekt/js/proekt.js"></script>
+</body>
+</html>
+
+{#<!DOCTYPE html>#}
+{#<html lang="ru" >#}
+{#<head>#}
+{#    <meta charset="utf-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#}
+
+{#    <title>{% block title %}Проект{% endblock %}</title>#}
+{#    <!-- Пользовательские стили для этого шаблона -->#}
+{#    {% block stylesheets %}#}
+{#        <link rel="stylesheet" href="{{ asset('assets/proekt/scss/proekt.css') }}">#}
+{#    {% endblock %}#}
+
+{#</head>#}
+{#<body >#}
+{#<div class="page-sait" >#}
+
+{#    {% block header %}#}
+{#        {{ include('sait/base/_header.html.twig') }}#}
+{#    {% endblock %}#}
+
+{#    {% block sidebar %}#}
+{#        {% include('sait/base/_sidebar.html.twig') %}#}
+{#    {% endblock %}#}
+
+
+
+{#    <!-- Main -->#}
+{#    <main class="main-sait">#}
+
+
+{#        <div class="kroxi-sait kroxi-gradien ">#}
+{#            <div class="kroxi-sait-xl">#}
+{#                {% block kroxiSait %} {% endblock %}#}
+{#            </div>#}
+{#        </div>#}
+
+{#        {% block filter %} {% endblock %}#}
+
+{#        #}{# <div class="container-sait"> #}
+
+{#        {% block bodyMain %}#}
+{#            {% include('sait/main/_stories.html.twig') %}#}
+{#            #}{# красивые картинки #}
+{#            {% include('sait/main/_add-post.html.twig') %}#}
+{#            #}{# отправить письмо #}
+{#            {% include('sait/main/_post.html.twig') %}#}
+{#            {% include('sait/main/_pagination.html.twig') %}#}
+{#            <h1>main</h1>#}
+{#            <h2>Куда перейти?</h2>#}
+{#            <a  href="{{ path('home') }}"><h2> Админка</h2></a>#}
+{#            #}{#                    <a  href="{{ path('show') }}"><h2> Сайт</h2></a>#}
+{#        {% endblock %}#}
+{#        #}{# </div>   контент               #}
+{#    </main>#}
+{#</div>#}
+
+{#    {% block modal %}#}
+{#            {% include('sait/mestos/_mesto-modal.html.twig') %}#}
+{#            {% include('sait/base/_contact-modal.html.twig') %} #}
+{#            {% include('sait/base/_story-modal.html.twig') %}#}
+{#            {% include('sait/base/_share-modal.html.twig') %}#}
+{#    {% endblock %}#}
+
+{#{% block javascripts %}#}
+{#    #}{#        {{ encore_entry_script_tags('sait') }}#}
+{#    #}{# <script src="{{ asset('assets/js/sait.js') }}"></script> #}
+
+{#    #}{#        <script src="{{ asset('assets/js/mmodal.js') }}"></script>#}
+
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}

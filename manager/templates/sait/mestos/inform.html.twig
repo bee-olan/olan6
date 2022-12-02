@@ -7,23 +7,6 @@
             <span class="aktiv">Место</span>   
 {% endblock %}
 
-{# {% block includemenu %}
-    <div class="includ-menu ">
-        <ul class="includ-menu__ul " >
-            <li class="includ-menu__li " >
-                <div class="includ-stories" >
-                    <div class="includ-stories__item" data-modal="story-modal" >
-                        <img class="includ-stories__preview" src="{{ asset('assets/images/mestos/mesto_.png') }}"  alt="Место">
-                    </div>
-                </div>         
-            </li>
-            <li class="includ-menu__li includ-menu__li--paddin" >
-                Номера мест расположения пасек участников проекта                   
-            </li>                       
-        </ul>            
-</div> 
-{% endblock %} #}
-
 {% block bodyMain %}
 <div  class="saits">
     <div class="wstawka">
@@ -59,10 +42,10 @@
                 </div>
             </div>    
         {% else %} 
-            <h2 class = "page__title ">Вам, для участия в проекте,  надо определиться  
+            <h2 class = "page__title ">Вам, для участия в проекте,  нужно определиться  
             с номером места нахождения Вашей пасеки.<br> Можно отсюда 
             <a href="{{ path('sait.mestos.okrugs') }}">перейти по ссылке </a> 
-            или <br>
+              или <br>
             в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >Место -> Номер места.</strong>
             </h2>
         {% endif %}

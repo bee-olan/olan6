@@ -1,0 +1,52 @@
+.headerr {
+    display: flex;
+    width: calc(100% - #{$sidebar-width});
+
+    background-color: $grad1;
+    //height: 30px; убираем, чтобы шапка растягивалась по содержимому
+    //background-color: darken($header-color, 5%); //darken  затемнение цвета
+    box-shadow: 0 5px 22px rgba($white, .25);
+    //  стилизация тени - не прозрачность 25%
+
+    position: fixed; // фиксированное позиционирование
+    top: 0;
+    right: 0;
+    z-index: $z-index-header;
+    // меняем ширину шабки на 100%
+    @include breakpoint($tablet-bp) {
+        width: 100%;
+    }
+}
+
+
+.headerr__left {
+    width: 60%;
+
+    @include breakpoint($tablet-bp) {
+        width: 40%;
+    }
+}
+
+.headerr__right {
+    width: 40%;
+    display: flex; // оба эл-ты в header__right -в линию
+    justify-content: flex-end; // прижали к правой стороне
+
+    @include breakpoint($tablet-bp) {
+        width: 60%;
+    }
+}
+
+.headerr-container {
+    max-width: 100%;
+   // max-width: 80rem;
+    margin: 1rem 19rem 5rem 0rem;
+    //padding-left: 5rem;
+    // padding-right: 5rem;
+    
+  
+    @include breakpoint($mobile-bp) {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }

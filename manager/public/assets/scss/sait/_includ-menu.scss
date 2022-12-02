@@ -1,16 +1,19 @@
 .wstawka {
     display: flex;
-    //line-height: 1.8;
-    //max-height: 60px;
+   
     font-size: 1.8rem;
     text-align: center; 
     align-items: center;
     box-shadow: 0 5px 22px rgba($white, .35); 
 
+    &--uch{
+        box-shadow: 0 5px 22px rgba($black, .35);
+    }
 }
 
 .wstawka__title {
-    width: 100%;
+    width: calc(100% - #{80px});
+    //width: 100%;
     //padding-left: 11rem;
 
 }
@@ -59,7 +62,7 @@
 .includ-stories {
     display: grid; //
     grid-template-columns: 80px ;// делаем 4-е одинаковых кол-ки
-    grid-template-rows: 60px; // высота колонок
+    grid-template-rows: 64px; // высота колонок
 }
 
 .includ-stories__item {

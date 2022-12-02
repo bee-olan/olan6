@@ -31,7 +31,6 @@ body {
 }
 a {
   color: inherit;
-
   opacity: 0.6;
   transition: opacity .2s linear;
 
@@ -54,6 +53,18 @@ a {
 @import "sait/page/mestos/inform-sait";
 @import "sait/page/mestos/mesto-sait";
 
+//
+@import "sait/page/uchastiess/uchastie/uchastie";
+
+@import "sait/page/uchastiess/uchast";
+@import "sait/page/uchastiess/u4astnik-form";
+@import "sait/page/uchastiess/u4astnik";
+@import "sait/page/uchastiess/u4astniki";
+
+//
+ @import "sait/page/uchastok/uchastok";
+ @import "sait/page/uchastok/uchastok-form";
+
 // Персональный номер
 @import "sait/page/person/person";
 @import "sait/page/person/person-form";
@@ -72,6 +83,8 @@ a {
 @import "sait/page/sidebar/social";
 @import "sait/page/sidebar/footer";
 @import "sait/page/sidebar/fon-img";
+
+@import "sait/page/sidefiltr/sidefiltr";
 
 //главный  -- main
 @import "sait/page/main/main";

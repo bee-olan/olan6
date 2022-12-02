@@ -1,0 +1,37 @@
+<aside class="side" >
+    <div class="side__header">
+      <img src="{{ asset('assets/images/sait/logo-sait.jpg') }}" alt="">
+    </div>
+
+  <div class="sidefiltr">
+    {{ form_start(form) }}
+        <ul class="sidefiltr__ul">
+            <li class="sidefiltr__li sidefiltr__li--wid100 sidefiltr__li--flex">
+              <div >
+                <button type="submit" class=" btn-sait btn-sait--mb0 btn-sait--pt" >Фильтр</button>
+              </div>
+              <div class="side__lupa">
+                <img src="{{ asset('assets/images/sait/lupa.png') }}" alt="">
+              </div>
+              <div >
+                <a  class=" btn-sait btn-sait--mb0 btn-sait--pt" href="{{ path('sait.uchastiess') }}" >Сбросить</a>
+              </div>
+            </li>
+            <li class="sidefiltr__li sidefiltr__li--wid100"">
+              <a class="sidefiltr__link " > {{ form_widget(form.name) }}</a> 
+            </li>
+            <li class="sidefiltr__li">
+              <a class="sidefiltr__link ">{{ form_widget(form.uchkak) }}</a>
+            </li>
+            <li class="sidefiltr__li">
+              <a class="sidefiltr__link ">{{ form_widget(form.group) }}</a>
+            </li>
+            <li class="sidefiltr__li">
+              <a class="sidefiltr__link ">{{ form_widget(form.status) }}</a>
+            </li>
+          
+          </ul>
+      {{ form_end(form) }}
+  </div>
+
+</aside>

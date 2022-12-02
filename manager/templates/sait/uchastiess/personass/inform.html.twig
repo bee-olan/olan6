@@ -4,7 +4,8 @@
 
 {% block kroxiSait %}
             <a href="{{ path('sait') }}">Главная</a>
-            <span class="aktiv">Информация участия</span>   
+            <a href="{{ path('sait.uchastiess.personass.inform') }}">ПерсонНомер</a>
+            <span class="aktiv">Информация о ПерсонНомерах</span>   
 {% endblock %}
 
 
@@ -16,7 +17,7 @@
         <div class="wstawka__kartinka">
             <div class="includ-stories" >
                 <div class="includ-stories__item" data-modal="story-modal" >
-                    <img class="includ-stories__preview" src="{{ asset('assets/images/mestos/uchastie.png') }}"  alt="Участие">
+                    <img class="includ-stories__preview" src="{{ asset('assets/images/mestos/person_.png') }}"  alt="Участие">
                 </div>
             </div>
         </div>
@@ -25,19 +26,18 @@
             Персональные Номера  участников проекта
         </div> 
     </div>
-
+{% if personas %}
     <h2 class = "person__title ">Все выбраные ПерсонНомера </h2>
-    <div class="person">
-
-        {% if personanom %}
-        {% else %}
-        {% endif %}
+    <div class="person">        
         {% for persona in personas %}
             <div class = "person-nomer" >		
                 {{ persona.nomer  }}
             </div>
         {% endfor %}
     </div>
+        {# {% else %} #}
+        {% endif %}
+ 
 
         {% if personanom %} 
             <h2 class = "person__title">Ваш ПерсонНомер   </h2>
@@ -47,10 +47,10 @@
                 </div>
             </div>    
         {% else %} 
-            <h2 class = "person__title ">Вам, для участия в проекте,  надо выбрать ПерсонНомер <br>
-            <a href="{{ path('sait.uchastiess.personass.diapazon') }}">перейти по ссылке </a>
-            или <br>
-            в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >Участники -> ПерсонНомер.</strong>
+            <h2 class = "person__title ">Вам, для участия в проекте,  нужно выбрать ПерсонНомер. <br>
+            Можно отсюда <a href="{{ path('sait.uchastiess.personass.diapazon') }}">перейти по ссылке </a>
+              или <br>
+            в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >ПерсонНомер ->Выбор ПерсонНомера</strong>
             </h2>
         {% endif %}
 </div>        

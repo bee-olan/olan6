@@ -1,7 +1,7 @@
 .page-sait {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   min-height: 100vh;
 
   background: linear-gradient($grad1, $grad2);
@@ -9,10 +9,11 @@
   overflow: hidden;
   // скрываем элементы выходящие за граниы
   // что бы элементы не выходили за размерные рамки создавая горизонт. скролинг
-background-color: #0d5c8c;
+//background-color: #0d5c8c;
+
   @include breakpoint($tablet-bp) {
     .show-sidebar & {
-      position: relative;
+      position: relative;      
     }
   }
 }

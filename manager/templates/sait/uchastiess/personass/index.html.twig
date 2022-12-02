@@ -5,8 +5,11 @@
 
 {% block kroxiSait %}
     <a href="{{ path('sait') }}">Главная</a>
-    <span class="aktiv">ПевсонНомер</span>
-    <span class="aktiv">Диапазон</span>
+    <a href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>
+    <a href="{{ path('sait.uchastiess.personass.diapazon') }}">Диапазон</a>
+    
+     <span class="aktiv">ПерсонНомера</span>
+   
 {% endblock %}
 
 {% block bodyMain %}
@@ -22,7 +25,8 @@
 	{% for person in persons %}
         <div class = "person-vibor">
             <a  href= "{{ path('sait.uchastiess.personass.create', { 'person': person, 'itogo': itogo}) }}">
-            {{ person  }} </a>
+                {{ person  }} 
+            </a>
         </div>
 	{% endfor %}
 

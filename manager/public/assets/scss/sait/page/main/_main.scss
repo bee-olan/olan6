@@ -1,7 +1,9 @@
 
 // $sidebar-width сдвиг, чтобы main не заезжал под sidebar
 .main-sait {
-    padding: 10rem 0 8rem $sidebar-width;
+    max-width: 100%;
+    padding: 10.7rem 0 8rem $sidebar-width;
+    //margin-top: 2rem;
   
  // добавляем миксин  - убираемпадинг слева
     @include breakpoint($tablet-bp) {
