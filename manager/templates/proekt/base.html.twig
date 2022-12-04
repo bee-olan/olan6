@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    {% block head %}
-        {{ include('proekt/base/_head.html.twig') }}
-    {% endblock %}
+<meta charset="UTF-8">
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/proekt/scss/proekt.css') }}">
+ {% endblock %} 
+<!-- Useful meta tags -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<meta name="google" content="notranslate">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="">
+
+<title>Привер Проект</title>
 </head>
 <body>
 
 <div class="pagee">
-    <!-- Header -->
+  
     {% block header %}
         {{ include('proekt/base/_header.html.twig') }}
     {% endblock %}
 
-    <!-- Sidebar -->
-{#    {{ sidebar }}#}
     {% block sidebar %}
         {{ include('proekt/base/_sidebar.html.twig') }}
     {% endblock %}
 
     <!-- Main -->
     <main class="mainn">
+
+        <div class="kroxii kroxii-gradien ">
+            <div class="kroxii-xl">
+              {% block kroxii %} {% endblock %}
+            </div>
+        </div>
+
         <div class="containerr">
-{#            {{ body }}#}
+
             {% block bodyy %}
-                Main
-{#                {{ include('proekt/base/main/_body.html.twig') }}#}
+    
             {% endblock %}
         </div>
     </main>

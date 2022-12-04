@@ -1,0 +1,39 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Место-округ{% endblock %}
+
+{% block kroxii %}
+            <a href="{{ path('proekt') }}">Главная</a>
+            <a href="{{ path('proekt.mestoo.inform') }}">Место</a>
+            <span class="aktiv ">Номера Округов</span> 
+{% endblock %}
+
+
+{% block bodyy %}
+
+<div  class="proekts">
+
+    {% include('proekt/mestoo/_mesto-includ.html.twig') %}
+    {# <div class="proekts-plr"> #}
+        <h2 class = "pagee__title ">Выбираем свой Округ </h2>
+    {# </div>       #}
+        {# <div class="saits__content"> #}
+            {% for okrug in okrugs %}
+                <div class="mestoo ">
+                    <div class="mestoo__raspol">
+                        <ul class="mestoo__title">
+                            <li class="mestoo__title-item mestoo__nomer-red">
+                                <a href="{{ path('proekt.mestoo.oblasts', {'okrug_id': okrug.id}) }}">{{ okrug.nomer }} </a>
+                            </li>
+                            <li class="mestoo__title-item ">
+                                <a href="{{ path('proekt.mestoo.oblasts', {'okrug_id': okrug.id}) }}">{{ okrug.name }} </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        {# </div> #}
+      
+</div>
+
+{% endblock %}

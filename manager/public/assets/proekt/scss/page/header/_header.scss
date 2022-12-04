@@ -7,20 +7,24 @@
     //background-color: darken($header-color, 5%); //darken  затемнение цвета
     box-shadow: 0 5px 22px rgba($white, .25);
     //  стилизация тени - не прозрачность 25%
+    border-bottom: 2px solid $border-lin-nav; // linia
 
     position: fixed; // фиксированное позиционирование
     top: 0;
     right: 0;
     z-index: $z-index-header;
+
+
     // меняем ширину шабки на 100%
     @include breakpoint($tablet-bp) {
         width: 100%;
     }
+    
 }
 
 
 .headerr__left {
-    width: 60%;
+    width: 75%;
 
     @include breakpoint($tablet-bp) {
         width: 40%;
@@ -28,9 +32,10 @@
 }
 
 .headerr__right {
-    width: 40%;
+    width: 25%;
     display: flex; // оба эл-ты в header__right -в линию
     justify-content: flex-end; // прижали к правой стороне
+    margin-right: 1rem;
 
     @include breakpoint($tablet-bp) {
         width: 60%;

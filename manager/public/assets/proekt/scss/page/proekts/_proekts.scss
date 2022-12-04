@@ -1,0 +1,17 @@
+.proekts {
+    margin-bottom: 6rem;
+    padding-bottom: 6rem;
+    max-width: 100%;
+    overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+  
+    background-color: transparent;
+    box-shadow: 0 15px 25px rgba($white, .35);
+    border-radius: 5px;
+  
+    @include breakpoint($mobile-bp) {
+      padding: 1.5rem;
+    }
+  }
+  .proekts-plr {
+    padding: 0 3rem;
+  }

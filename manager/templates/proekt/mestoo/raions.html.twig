@@ -1,0 +1,94 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Место-округ{% endblock %}
+
+{% block kroxii %}
+            <a href="{{ path('home') }}">Главная</a>
+            <a href="{{ path('sait.mestos.inform') }}">Место</a>
+            <a href="{{ path('sait.mestos.okrugs') }}">Номера Округов</a>
+            <a  href="#">Номера Областей</a>
+        
+            <span class="aktiv" >Номера Районов</span> 
+{% endblock %}
+
+
+{% block bodyy %}
+
+<div  class="proekts">
+
+    {% include('proekt/mestoo/_mesto-includ.html.twig') %}
+
+        <h2 class = "pagee__title ">Выбрали  Округ </h2>
+    <div class="mestoo">
+        <div class="mestoo__raspol">
+            <ul class="mestoo__title">
+                
+                {# <li class="mestoo__title-item mestoo__nomer-text">{{ okrug.nomer }}</li> #}
+                <li class="mestoo__title-item "> {{ name_ok }}</li>
+                <li>
+                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </li>
+            </ul>
+        </div>
+    </div>
+ <div class = "mestoo__linia-top"></div>
+
+  <h2 class = "pagee__title pagee__title--obla ">
+    Определились с названием </h2>                     
+       <div class="mestoo mestoo--obla ">
+            <div class="mestoo__raspol">
+                <ul class="mestoo__title">
+                    <li class="mestoo__title-item mestoo__nomer-text">{{ oblast.nomer }}</li>
+                    <li class="mestoo__title-item ">{{ oblast.name }} </li>           
+                
+                    <li>
+                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2-all" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M12.354 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path d="M6.25 8.043l-.896-.897a.5.5 0 1 0-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 0 0 .708 0l7-7a.5.5 0 0 0-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
+                        </svg>
+                    </li>      
+                </ul>
+            </div>    
+        </div>
+
+<div class = "mestoo__linia-top"></div>
+
+  <h2 class = "pagee__title pagee__title--raio ">
+    Название Вашего района  -  выбираем </h2> 
+    {# <div class="mestoo  mestoo--raio">
+        <div class="mestoo__raspol ">
+            <ul class="mestoo__title">
+                <li class="mestoo__title-item ">
+                    Название Вашего района  -  выбираем                      
+                </li>                       
+            </ul>            
+        </div>    
+    </div> #}
+
+    {% for raion in raions %}  
+        <div class="mestoo  mestoo--raio">
+            <div class="mestoo__raspol">
+                <ul class="mestoo__title">
+                    <li class="mestoo__title-item mestoo__nomer-red">
+                    <a href="{{ path('proekt.mestoo.mesto', {'raion_id': raion.id , 'name_ok':  name_ok , 'name_ob':  oblast.name }) }}"> 
+                            {{ raion.mesto }}
+                    </a> 
+                    
+                    </li>
+                    <li class="mestoo__title-item ">
+                        <a href="{{ path('proekt.mestoo.mesto', {'raion_id': raion.id , 'name_ok':  name_ok , 'name_ob':  oblast.name }) }}"> 
+                            {{ raion.name }} 
+                        </a>  
+                    </li>           
+                </ul>
+            </div>    
+        </div>
+    {% endfor %}
+
+ </div>
+
+ {% endblock %}

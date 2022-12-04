@@ -1,0 +1,29 @@
+.pagee {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    min-height: 100vh;
+
+    background: linear-gradient($grad1, $grad2);
+    background-attachment: fixed; // фиксирую фон
+    overflow: hidden;
+ 
+}
+
+.pagee__title {
+    // margin-bottom: 1rem;
+    padding-left: 3rem;
+    font-size: 1.8rem;
+    color: $white;
+  
+    &--center {
+        text-align: center;
+    }
+    &--obla {
+        padding-left: 20rem;
+    }
+    &--raio {
+        padding-left: 40rem;
+    }
+
+  }

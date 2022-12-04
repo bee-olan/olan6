@@ -1,8 +1,8 @@
 .searchh {
     width: 100%;
-    max-width: 21rem;
-   
-     background-color: $sidebar-color;
+    max-width: 17rem;
+
+  background-color: $primary;
     // background-image: url("./assets/images/sait/logo_sot.jpg") center no-repeat;
 }
 
@@ -13,9 +13,9 @@
 
      background: transparent; // прозрачный фон
      border: none;
-     z-index: $z-index-input;
+
      font-family: inherit; // наследуем шрифт -заменяя тот по умочан
-     font-size: 1.2rem;
+     font-size: 1.6rem;
      color: $white;
      
 // цвет белый с непрозрачностью 40%

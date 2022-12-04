@@ -3,7 +3,7 @@
 		<nav class="navv">
 			<ul class="navv__list">
 				<li class="navv__item" >
-					<a class="navv__link has-subnavv" href="/sait">Главная</a>
+					<a class="navv__link has-subnavv" href="/proekt">Главная</a>
 					<ul class="subnavv">
 						<li>
 							<a class="subnavv__link " href="#">Список зарегистрированных</a>
@@ -18,10 +18,10 @@
 				</li>
 
 				<li class="navv__item" >
-					<a class="navv__link has-subnavv" href="{{ path('sait.mestos.inform') }} ">Место</a>
+					<a class="navv__link has-subnavv" href="{{ path('proekt.mestoo.inform') }} ">Место</a>
 					<ul class="subnavv">
 						<li>
-							<a class="subnavv__link" href="{{ path('sait.mestos.okrugs') }}">Номер места</a>
+							<a class="subnavv__link" href="{{ path('proekt.mestoo.okrugs') }}">Номер места</a>
 						</li>
 						
 					</ul>
@@ -95,7 +95,7 @@
 			</ul>
 		</nav>
 
-		<button class="burger " type="button" id="sidebarTog" >
+		<button class="burgerr " type="button" id="sidebarTog" >
 			<span>Открыть навигацию</span>
 		</button>
 	</div>
@@ -104,17 +104,15 @@
 		<nav class="navv">
 			<ul class="navv__list">
 				<li class="navv__item">
-					<a class="navv__link" href="{{ path('sait.profile') }}">Профиль</a>
+					<a class="navv__link" href="#">Профиль</a>
 				</li>
 				<li class="navv__item">
-                  <a class="navv__link" href="{{ path('sait.auths.signin') }}">войти</a>
-            	</li>
+                 <a class="navv__link" href="#">войти</a>
+            	</li> 
 			</ul>
 		</nav>
 {# action="search.html" #}
-		<form class="searchh"  method="get">
-			<input class="searchh__input" type="text" placeholder="Поиск по блогу">
-		</form>
+
 
 		
 	</div>

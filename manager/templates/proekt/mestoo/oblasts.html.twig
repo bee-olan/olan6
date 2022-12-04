@@ -1,0 +1,61 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Место-область{% endblock %}
+
+{% block kroxii %}
+            <a href="{{ path('proekt') }}">Главная</a>
+            <a href="{{ path('proekt.mestoo.inform') }}">Место</a>
+            <a href="{{ path('proekt.mestoo.okrugs') }}">Номера Округов</a>
+           
+            <span class="aktiv">Номера Регионов/Областей</span> 
+{% endblock %}
+
+
+{% block bodyy %}
+
+<div  class="proekts">
+
+    {% include('proekt/mestoo/_mesto-includ.html.twig') %}
+    <h2 class = "pagee__title ">Выбрали  Округ </h2>
+    <div class="mestoo">
+        <div class="mestoo__raspol">
+            <ul class="mestoo__title">
+                
+                <li class="mestoo__title-item mestoo__nomer-text">{{ okrug.nomer }}</li>
+                <li class="mestoo__title-item "> {{ okrug.name }}</li>
+                <li>
+                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </li>
+            </ul>
+        </div>
+    </div>
+ <div class = "mestoo__linia-top"></div>
+    <h2 class = "pagee__title pagee__title--center ">
+    Выбираем название : Республики / Края / Области </h2>                     
+
+    
+
+    {% for oblast in oblasts %}	
+
+        <div class="mestoo mestoo--obla ">
+            <div class="mestoo__raspol">
+                <ul class="mestoo__title">
+                    <li class="mestoo__title-item mestoo__nomer-red">
+                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id , 'name_ok':  okrug.name }) }}">
+                            {{ okrug.nomer }} - {{ oblast.nomer }}
+                        </a>     
+                    </li>
+                    <li class="mestoo__title-item ">
+                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id , 'name_ok': okrug.name }) }}">
+                            {{ oblast.name }} 
+                        </a> 
+                    </li>           
+                </ul>
+                
+            </div>    
+        </div>
+    {% endfor %}
+</div>
+ {% endblock %}

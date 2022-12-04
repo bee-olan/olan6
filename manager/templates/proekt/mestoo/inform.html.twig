@@ -1,0 +1,55 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Место{% endblock %}
+
+{% block kroxii %}
+            <a href="{{ path('proekt') }}">Главная</a>
+            <span class="aktiv">Место</span>   
+{% endblock %}
+
+{% block bodyy %}
+
+<div  class="proekts">
+    <div class="wstavka">
+
+        <div class="wstavka__kartinka">
+            <div class="wstavka-stories" >
+                <div class="wstavka-stories__item" >
+                    <img class="wstavka-stories__preview" src="{{ asset('assets/proekt/images/mestos/mesto_.png') }}"  alt="Место">
+                </div>
+            </div>
+        </div>
+
+       <div class = "wstavka__title ">
+            Номера мест расположения пасек участников проекта 
+        </div> 
+    </div>
+
+    <div class="proekts-plr">
+        <div class="ramka">
+
+            {% for mestonom in fetcher %}
+                <div class = "ramka__mesto-nomer">		
+                    {{ mestonom.mestonomer  }}
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if mestonomer %} 
+            <h2 class = "pagee__title ">Ваш номер места расположения пасеки  </h2>
+            <div class="ramka">
+                <div class = "ramka__mesto-nomer">
+                    {{ mestonomer.nomer }}
+                </div>
+            </div>    
+        {% else %} 
+            <h2 class = "pagee__title ">Вам, для участия в проекте,  нужно определиться  
+            с номером места нахождения Вашей пасеки.<br> Можно отсюда 
+            <a href="{{ path('proekt.mestoo.okrugs') }}">перейти по ссылке </a> 
+              или <br>
+            в верхнем меню выбрать:  <strong class = "strongo strongo--krox"  >Место -> Номер места.</strong>
+            </h2>
+        {% endif %}
+    </div>
+</div>        
+{% endblock %}

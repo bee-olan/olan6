@@ -18,7 +18,7 @@
 
      border: 2px solid $border-foto;
      box-shadow: 0 7px 20px rgba(0, 0, 0, .25);
-     border-radius: 40%;
+     border-radius: 10%;
 
      @include breakpoint($tablet-bp) {
         width: 6rem;
@@ -73,8 +73,8 @@
      font-size: 1.2rem;
      text-align: center; 
 // это border сверху\снизу у текста
-    border-top: 2px solid $border-linia;
-    border-bottom: 2px solid $border-linia;
+    border-top: 2px solid $border-lin-nav;
+    border-bottom: 2px solid $border-lin-nav;
 
     @include breakpoint($tablet-bp) {
         display: none;

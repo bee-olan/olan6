@@ -37,22 +37,36 @@ a {
   }
 }
 
-@import "page/page";
+@import "page/pagee";
 @import "page/btnn";
+@import "page/kroxii";
+@import "page/strongo";
 //
 @import "page/header/header";
-@import "page/header/nav";
+
 @import "page/header/subnav";
 @import "page/header/search";
+@import "page/header/burger";
+@import "page/header/nav";
 
 //
 @import "page/sidebar/sidebar";
 
 @import "page/profile/profile";
 
-
 //
 @import "page/main/mainn";
 
 //
 @import "page/container/container";
+
+//
+@import "page/proekts/proekts";
+
+@import "page/wstavka/wstavka";
+@import "page/ramka/ramka";
+
+//
+@import "page/mestoss/mestoo";
+@import "page/mestoss/informm";
+
