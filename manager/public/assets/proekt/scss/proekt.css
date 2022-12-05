@@ -434,7 +434,8 @@ a:hover {
   border-radius: 0.41em;
 }
 .btnn--mb1 {
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
+  margin-left: 0;
 }
 .btnn--mb0 {
   margin-bottom: 0rem;
@@ -533,7 +534,12 @@ a:hover {
 /*==============================================*/
 .strongo {
   font-weight: normal;
-  color: #155799;
+  color: #a78c16;
+}
+.strongo--name-nike {
+  font-weight: 600;
+  font-size: 2rem;
+  color: rgb(175, 169, 112);
 }
 .strongo--krox {
   font-size: 1.8rem;
@@ -989,6 +995,54 @@ a:hover {
   padding: 0 3rem;
 }
 
+.proekt__text {
+  padding-bottom: 1rem;
+  font-size: 1.6rem;
+  color: #f6f6f6;
+  border-bottom: 2px solid rgb(175, 169, 112);
+}
+.proekt__text h2,
+.proekt__text h3,
+.proekt__text h4,
+.proekt__text h5,
+.proekt__text h6 {
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+.proekt__text h2 {
+  font-size: 2em;
+}
+.proekt__text h3 {
+  font-size: 1.25em;
+}
+.proekt__text h4 {
+  font-size: 1.15em;
+}
+.proekt__text h5,
+.proekt__text h6 {
+  font-size: 1em;
+}
+.proekt__text ul,
+.proekt__text ol {
+  margin-bottom: 2rem;
+}
+.proekt__text ol {
+  list-style: decimal;
+  list-style-position: inside;
+}
+.proekt__text p {
+  margin-bottom: 2rem;
+}
+.proekt__text table {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.proekt__text img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .wstavka {
   display: flex;
   font-size: 1.8rem;
@@ -1094,7 +1148,7 @@ a:hover {
 }
 
 .mestoo {
-  padding: 0.8rem 6rem;
+  padding: 0.8rem 3rem 0.8rem 5rem;
   overflow: hidden;
   position: relative;
   background-color: transparent;
@@ -1104,11 +1158,14 @@ a:hover {
 .mestoo:hover {
   box-shadow: 0 5px 22px rgba(246, 246, 246, 0.35);
 }
+.mestoo--okru {
+  padding-left: 6rem;
+}
 .mestoo--obla {
-  padding-left: 24rem;
+  padding-left: 18rem;
 }
 .mestoo--raio {
-  padding-left: 44rem;
+  padding-left: 36rem;
 }
 
 .mestoo__raspol {
@@ -1130,16 +1187,8 @@ a:hover {
   font-size: 1.8rem;
 }
 
-.mestoo__title-item:not(:last-child):after {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin: 0 1.5rem;
-  position: relative;
-  top: -2px;
-  border-radius: 50%;
-  background-color: #DEDEDE;
+.mestoo__title-item {
+  padding: 1rem;
 }
 
 .mestoo__nomer-red {
@@ -1152,6 +1201,11 @@ a:hover {
   color: #a78c16;
 }
 
+.mestoo__name-text {
+  font-size: 2.1rem;
+  color: rgb(175, 169, 112);
+}
+
 .mestoo__name {
   display: flex;
   align-items: center;
@@ -1161,6 +1215,16 @@ a:hover {
 }
 
 .mestoo__linia-top {
+  max-width: 34%;
   border-top: 1px solid #beba97;
+  margin-left: 0;
   padding-bottom: 2rem;
+}
+
+.mestoo-ml20 {
+  margin-left: 18rem;
+}
+
+.mestoo-ml40 {
+  margin-left: 42rem;
 }/*# sourceMappingURL=proekt.css.map */

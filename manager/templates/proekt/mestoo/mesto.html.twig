@@ -33,7 +33,7 @@
             </ul>
         </div>
     
-    {# <div class = "mestoo__linia-top"></div> #}
+    <div class = "mestoo__linia-top "></div>
                     
        <div class=" mestoo--obla ">
             <div class="mestoo__raspol">
@@ -50,15 +50,15 @@
             </div>    
         </div>
 
-    {# <div class = "mestoo__linia-top"></div> #}
+      <div class = "mestoo__linia-top mestoo-ml20"></div>
 
-  {# <h2 class = "pagee__title pagee__title--raio ">
-    Ваш район  </h2>  #}
+        {# <h2 class = "pagee__title pagee__title--raio ">
+            Ваш район  </h2>  #}
   
     <div class=" mestoo--raio">
         <div class="mestoo__raspol">
             <ul class="mestoo__title">
-                <li class="mestoo__title-item mestoo__nomer-red">{{ raion.mesto }} </li>
+                <li class="mestoo__title-item mestoo__nomer-text">{{ raion.mesto }} </li>
                 <li class="mestoo__title-item ">{{ raion.name }}  </li>           
                 <li class="mestoo__title-item" > 
                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2-all" fill="currentColor"
@@ -71,35 +71,41 @@
             </ul>
         </div>
     </div>
-</div>    
+</div> 
+    <div class = "mestoo__linia-top mestoo-ml40"></div>
+
     <div class="mestoo   ">       
-        <div class="mesto-sait__raspol ">     
-            <ul class="mesto-sait__title ">
-                <li class="mesto-sait__title-item ">
+        {# <div class="mestoo__raspol ">      #}
+            <ul class="mestoo__title ">
+                <li class="mestoo__title-item mestoo__name-text">
                         Номер места расположения Вашей пасеки 
                 </li>  
-                <li class="mesto-sait__title-item nomer-sait">{{ raion.mesto }}</li>
-                <li class="mesto-sait__title-item ">
-                    <a class="mesto-sait__read" href="{{ path('sait.mestos.create', {'raion_id': raion.id , 'mestonomer': raion.mesto }) }}">
-                        Сохранить  
+                <li class="mestoo__title-item mestoo__nomer-red">{{ raion.mesto }}</li>
+                <li class="mestoo__title-item ">
+                    <a class="mestoo__read  btnn btnn--mb1 btnn--pt" href="{{ path('sait.mestos.create', {'raion_id': raion.id , 'mestonomer': raion.mesto }) }}">
+                      Сохранить {# <div class = "btnn btnn--mb0 btnn--pt">  Сохранить  </div> #}
                     </a>     
                 </li>                        
             </ul>           
-        </div>    
+        {# </div>     #}
     </div>
-    <div class="mestoo  ">
-        <div class="mesto-sait__raspol ">     
-            <ul class="mesto-sait__title nomer-text">
-                <li class="mesto-sait__title-item ">
-                    Если Вы не нашли название Республики/Края/Области/Района - напишите.
-                </li>                      
-            </ul>
-            <button class="btn-sait  btn--mesto btn--skruglen btn--sm" type="button" 
-                data-modal="mesto-sait-modal">
-                Написать
-            </button>          
-        </div>       
-   </div>
+    <div class = "mestoo__linia-top"></div>
 
+    <div class="mestoo  ">
+        <div class="mestoo__raspol ">     
+            <ul class="mestoo__title nomer-text">
+                <li class="mestoo__title-item ">
+                     Вы не нашли название ?  Нужно
+                </li>
+                <li class="mestoo__title-item ">
+                    <button class="btnn  btnn--mb1 btnn--pt" type="button" 
+                        data-modal="mesto-sait-modal">
+                        написать мне
+                    </button>
+                </li>                       
+            </ul>                   
+        </div>               
+    </div>
+    <div class = "mestoo__linia-top"></div>
 </div>
  {% endblock %}

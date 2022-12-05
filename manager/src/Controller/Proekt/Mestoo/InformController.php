@@ -6,6 +6,7 @@ namespace App\Controller\Proekt\Mestoo;
 
 use App\Annotation\Guid;
 
+use App\ReadModel\User\UserFetcher;
 use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
 use App\Model\Mesto\Entity\InfaMesto\Id;
 use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
@@ -37,22 +38,24 @@ class InformController extends AbstractController
 	/**
      * @Route("/inform", name=".inform")
      * @return Response
-     * @param MestoNomerFetcher $fetcher
-     * @param MestoNomerFetcher $mestonomers
+     * @param MestoNomerFetcher $fetchers
+     * @param UserFetcher $users
      */
-    public function inform(MestoNomerFetcher $fetchers, MestoNomerFetcher $mestonomers): Response
+    public function inform(MestoNomerFetcher $fetchers, UserFetcher $users): Response
     {
        
-
+// dd($this->getUser());
+$user = $users->get($this->getUser()->getId());
+ $last = $user->getName()->getLast();
         $fetcher = $fetchers->allMestNom();
 
         //$mestonomer = $mestonomers ->get(new Id($this->getUser()->getId()));
 
-        $mestonomer = $mestonomers ->find($this->getUser()->getId());
+        $mestonomer = $fetchers ->find($this->getUser()->getId());
 
 
         return $this->render('proekt/mestoo/inform.html.twig',
-                                compact('fetcher', 'mestonomer'));
+                                compact('fetcher', 'mestonomer', 'last'));
     }
 
     //     /**

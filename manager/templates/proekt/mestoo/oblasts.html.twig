@@ -17,9 +17,9 @@
 
     {% include('proekt/mestoo/_mesto-includ.html.twig') %}
     <h2 class = "pagee__title ">Выбрали  Округ </h2>
-    <div class="mestoo">
-        <div class="mestoo__raspol">
-            <ul class="mestoo__title">
+    {# <div class=" mestoo--okru "> #}
+        {# <div class="mestoo__raspol"> #}
+            <ul class="mestoo__title mestoo--okru">
                 
                 <li class="mestoo__title-item mestoo__nomer-text">{{ okrug.nomer }}</li>
                 <li class="mestoo__title-item "> {{ okrug.name }}</li>
@@ -29,8 +29,8 @@
                     </svg>
                 </li>
             </ul>
-        </div>
-    </div>
+        {# </div> #}
+    {# </div> #}
  <div class = "mestoo__linia-top"></div>
     <h2 class = "pagee__title pagee__title--center ">
     Выбираем название : Республики / Края / Области </h2>                     

@@ -1,10 +1,16 @@
 //strong-sait
 
 .strongo {
-     font-weight: normal; //это о толщине шрифта
-     color: $kroxi-sait;
+     font-weight: normal ; //это о толщине шрифта 
+     color: $text;
      //font-style: italic; //наклонный шрифт
- 
+     
+     &--name-nike {
+        font-weight: 600 ;
+        font-size: 2rem;
+        color: $name-nike;
+    }
+
      &--krox {
          font-size: 1.8rem;
          color: $kroxii-b;

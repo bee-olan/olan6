@@ -35,7 +35,7 @@ class OkrugsController extends AbstractController
     {
         if ($mestonomers->exists($this->getUser()->getId())) {
             $this->addFlash('error', 'Ваш номер места расположения пасеки уже записан в БД');
-            return $this->redirectToRoute('sait.mestos.inform');
+            return $this->redirectToRoute('proekt.mestoo.inform');
         }
         $okrugs = $fetcher->all();
         return $this->render('proekt/mestoo/okrugs.html.twig', compact('okrugs'));

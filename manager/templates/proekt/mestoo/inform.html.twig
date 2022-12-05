@@ -2,6 +2,10 @@
 
 {% block title %}Место{% endblock %}
 
+{% block sidebar %}
+    {{ include('proekt/mestoo/_sidemesto.html.twig') }}
+{% endblock %}
+
 {% block kroxii %}
             <a href="{{ path('proekt') }}">Главная</a>
             <span class="aktiv">Место</span>   
@@ -36,9 +40,9 @@
         </div>
 
         {% if mestonomer %} 
-            <h2 class = "pagee__title ">Ваш номер места расположения пасеки  </h2>
+            <h2 class = "pagee__title "><strong class = "strongo--name-nike">{{ last }},</strong>  Вы определились с НомерМестом - номер места расположения Вашей пасеки  </h2>
             <div class="ramka">
-                <div class = "ramka__mesto-nomer">
+                <div class = "ramka__mesto-nomer mestoo__nomer-text">
                     {{ mestonomer.nomer }}
                 </div>
             </div>    

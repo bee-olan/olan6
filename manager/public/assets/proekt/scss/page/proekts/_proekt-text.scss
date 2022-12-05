@@ -1,0 +1,71 @@
+.proekt__text {
+    padding-bottom: 1rem; // добавили
+
+     font-size: 1.6rem;
+     color: $white;
+
+     border-bottom: 2px solid $border-lin-nav; // linia
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: 2rem;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    h3 {
+        font-size: 1.25em;
+    }
+
+    h4 {
+        font-size: 1.15em;
+    }
+
+    h5,
+    h6 {
+        font-size: 1em;
+    }
+
+    ul,
+    ol {
+        margin-bottom: 2rem;
+    }
+
+    ol {
+        list-style: decimal;
+        list-style-position: inside;
+    }
+
+    p {
+        margin-bottom: 2rem;
+    }
+
+    // a { // перенесла стилизацию в родительский astyle
+    //     color: inherit;
+
+    //     opacity: 0.6;
+    //     transition: opacity .2s linear;
+
+    //     &:hover {
+    //         opacity: 1;
+    //     }
+    //  }
+
+
+    table {
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+// делаем картинки адаптивные под размер блока
+     img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+     }
+ }

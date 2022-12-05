@@ -19,9 +19,9 @@
     {% include('proekt/mestoo/_mesto-includ.html.twig') %}
 
         <h2 class = "pagee__title ">Выбрали  Округ </h2>
-    <div class="mestoo">
-        <div class="mestoo__raspol">
-            <ul class="mestoo__title">
+    {# <div class="mestoo">
+        <div class="mestoo__raspol"> #}
+            <ul class="mestoo__title mestoo--okru">
                 
                 {# <li class="mestoo__title-item mestoo__nomer-text">{{ okrug.nomer }}</li> #}
                 <li class="mestoo__title-item "> {{ name_ok }}</li>
@@ -31,15 +31,15 @@
                     </svg>
                 </li>
             </ul>
-        </div>
-    </div>
- <div class = "mestoo__linia-top"></div>
+        {# </div>
+    </div> #}
+ <div class = "mestoo__linia-top "></div>
 
   <h2 class = "pagee__title pagee__title--obla ">
     Определились с названием </h2>                     
-       <div class="mestoo mestoo--obla ">
-            <div class="mestoo__raspol">
-                <ul class="mestoo__title">
+       {# <div class="mestoo mestoo--obla ">
+            <div class="mestoo__raspol"> #}
+                <ul class="mestoo__title mestoo--obla">
                     <li class="mestoo__title-item mestoo__nomer-text">{{ oblast.nomer }}</li>
                     <li class="mestoo__title-item ">{{ oblast.name }} </li>           
                 
@@ -52,10 +52,10 @@
                         </svg>
                     </li>      
                 </ul>
-            </div>    
-        </div>
+            {# </div>    
+        </div> #}
 
-<div class = "mestoo__linia-top"></div>
+<div class = "mestoo__linia-top mestoo-ml"></div>
 
   <h2 class = "pagee__title pagee__title--raio ">
     Название Вашего района  -  выбираем </h2> 
