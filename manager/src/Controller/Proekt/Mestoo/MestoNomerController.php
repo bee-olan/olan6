@@ -46,7 +46,7 @@ class MestoNomerController  extends AbstractController
 
         if ($fetcher->exists($this->getUser()->getId())) {
             $this->addFlash('error', 'Ваш номер места расположения пасеки уже записан в БД');
-            return $this->redirectToRoute('sait.mestos.inform');
+            return $this->redirectToRoute('proekt.mestoo.inform');
         }
 
         $command = new Create\Command($this->getUser()->getId() );
@@ -55,7 +55,7 @@ class MestoNomerController  extends AbstractController
 
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('sait.mestos.inform');
+                return $this->redirectToRoute('proekt.mestoo.inform');
             } catch (\DomainException $e) {
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());

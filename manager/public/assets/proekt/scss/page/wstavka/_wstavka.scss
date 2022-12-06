@@ -6,7 +6,8 @@
 
     margin-bottom: 2rem;
 
-    box-shadow: 0 5px 22px rgba($white, .35); 
+    box-shadow: 0 5px 22px rgba($white, .25); 
+    border-bottom: 2px solid $border-lin-nav; // linia
 
     &--uch{
         box-shadow: 0 5px 22px rgba($black, .35);
@@ -35,6 +36,10 @@
     display: grid; //
     grid-template-columns: 80px ;// делаем 4-е одинаковых кол-ки
     grid-template-rows: 64px; // высота колонок
+
+    &--person{
+        grid-template-columns: 64px ;
+    }
 }
 
 .wstavka-stories__item {

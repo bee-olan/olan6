@@ -1,0 +1,57 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Информация участия{% endblock %}
+
+{% block kroxii %}
+            <a href="{{ path('sait') }}">Главная</a>
+            <a href="{{ path('sait.uchastiess.personass.inform') }}">ПерсонНомер</a>
+            <span class="aktiv">Информация о ПерсонНомерах</span>   
+{% endblock %}
+
+
+{% block bodyy %}
+
+<div  class="proekts">
+    <div class="wstavka">
+
+        <div class="wstavka__kartinka">
+            <div class="wstavka-stories" >
+                <div class="wstavka-stories__item" data-modal="story-modal" >
+                    <img class="wstavka-stories__preview" src="{{ asset('assets/proekt/images/persona/person_.png') }}"  alt="Участие">
+                </div>
+            </div>
+        </div>
+
+        <div class="wstawka__title">
+            Персональные Номера  участников проекта
+        </div> 
+    </div>
+{% if personas %}
+    <h2 class = "person__title ">Все выбраные ПерсонНомера </h2>
+    <div class="person">        
+        {% for persona in personas %}
+            <div class = "person-nomer" >		
+                {{ persona.nomer  }}
+            </div>
+        {% endfor %}
+    </div>
+        {# {% else %} #}
+        {% endif %}
+ 
+
+        {% if personanom %} 
+            <h2 class = "person__title">Ваш ПерсонНомер   </h2>
+            <div class="mesto-ramka">
+                <div  class = "person-nomer" >
+                    {{ personanom.nomer }}
+                </div>
+            </div>    
+        {% else %} 
+            <h2 class = "person__title ">Вам, для участия в проекте,  нужно выбрать ПерсонНомер. <br>
+            Можно отсюда <a href="{{ path('sait.uchastiess.personass.diapazon') }}">перейти по ссылке </a>
+              или <br>
+            в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >ПерсонНомер ->Выбор ПерсонНомера</strong>
+            </h2>
+        {% endif %}
+</div>        
+{% endblock %}

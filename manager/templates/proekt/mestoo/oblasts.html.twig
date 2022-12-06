@@ -1,11 +1,15 @@
 {% extends 'proekt/base.html.twig' %}
 
-{% block title %}Место-область{% endblock %}
+{% block title %}Регионы/Области{% endblock %}
+
+{% block sidebar %}
+    {{ include('proekt/mestoo/side/_sideoblast.html.twig') }}
+{% endblock %}
 
 {% block kroxii %}
             <a href="{{ path('proekt') }}">Главная</a>
-            <a href="{{ path('proekt.mestoo.inform') }}">Место</a>
-            <a href="{{ path('proekt.mestoo.okrugs') }}">Номера Округов</a>
+            <a href="{{ path('proekt.mestoo.inform') }}">НомерМеста</a>
+            <a href="{{ path('proekt.mestoo.okrugs', {'okrug_id': okrug.id} ) }}">Номера Округов</a>
            
             <span class="aktiv">Номера Регионов/Областей</span> 
 {% endblock %}
@@ -43,12 +47,12 @@
             <div class="mestoo__raspol">
                 <ul class="mestoo__title">
                     <li class="mestoo__title-item mestoo__nomer-red">
-                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id , 'name_ok':  okrug.name }) }}">
+                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id, 'okrug_id': okrug.id , 'name_ok':  okrug.name }) }}">
                             {{ okrug.nomer }} - {{ oblast.nomer }}
                         </a>     
                     </li>
                     <li class="mestoo__title-item ">
-                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id , 'name_ok': okrug.name }) }}">
+                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id , 'okrug_id': okrug.id, 'name_ok': okrug.name }) }}">
                             {{ oblast.name }} 
                         </a> 
                     </li>           

@@ -1,0 +1,26 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Персональный номер{% endblock %}
+
+{#{% block kroxiSait %}#}
+{#    <a href="{{ path('sait') }}">Главная</a>#}
+{#    <a href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>#}
+{#    <span class="aktiv">Диапазон</span>#}
+{#{% endblock %}#}
+
+{% block bodyy %}
+
+    <div  class="proekts">
+
+        {% include('proekt/personaa/_personas-includ.html.twig') %}
+
+        <h2 class = "pagee__title ">Выбираем подходящий  диапазон для ПерсонНомера  </h2>
+        <div class="personaa-form">
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btnn  ">Смотрим  ПерсонНомера</button>
+                {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

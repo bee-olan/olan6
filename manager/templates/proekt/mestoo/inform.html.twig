@@ -1,14 +1,15 @@
 {% extends 'proekt/base.html.twig' %}
 
-{% block title %}Место{% endblock %}
+{% block title %}Информация{% endblock %}
 
 {% block sidebar %}
-    {{ include('proekt/mestoo/_sidemesto.html.twig') }}
+    {{ include('proekt/mestoo/side/_sideinform.html.twig') }}
 {% endblock %}
 
 {% block kroxii %}
             <a href="{{ path('proekt') }}">Главная</a>
-            <span class="aktiv">Место</span>   
+            <a href="{{ path('proekt.mestoo.inform') }}">НомерМеста</a>
+            <span class="aktiv">Информация</span>   
 {% endblock %}
 
 {% block bodyy %}
@@ -51,7 +52,7 @@
             с номером места нахождения Вашей пасеки.<br> Можно отсюда 
             <a href="{{ path('proekt.mestoo.okrugs') }}">перейти по ссылке </a> 
               или <br>
-            в верхнем меню выбрать:  <strong class = "strongo strongo--krox"  >Место -> Номер места.</strong>
+            в верхнем меню выбрать:  <strong class = "strongo strongo--krox"  >НомерМеста ->Найти НомерМеста.</strong>
             </h2>
         {% endif %}
     </div>

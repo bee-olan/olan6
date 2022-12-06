@@ -1,0 +1,43 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Персональный номер{% endblock %}
+
+
+{% block kroxii %}
+    {# <a href="{{ path('sait') }}">Главная</a>
+    <a href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>
+    <a href="{{ path('sait.uchastiess.personass.diapazon') }}">Диапазон</a>
+     #}
+     <span class="aktiv">ПерсонНомера</span>
+   
+{% endblock %}
+
+{% block bodyy %}
+
+   <div  class="proekts">
+
+    {% include('proekt/personaa/_personas-includ.html.twig') %}
+
+        <h2 class = "pagee__title ">Для выбора ПерсонНомера участника - жмите на выбранную цифру</h2>
+
+        <div class="proekts-plr">
+            <div class="ramka">
+        
+                {% for person in persons %}
+                    <div class = "personaa-vibor">
+                        <a  href= "{{ path('proekt.personaa.create', { 'person': person, 'itogo': itogo}) }}">
+                            {{ person  }} 
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    <div class="person">
+        <h2 class = "pagee__title ">Если выбрали не тот диапазон - можно</h2>
+            <a  href= "{{ path('proekt.personaa.diapazon') }}" class="btnn btnn--mb0">
+                    Изменить диапазон
+            </a>
+    </div>
+</div>
+ {% endblock %}

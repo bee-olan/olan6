@@ -1,0 +1,86 @@
+.personaa {
+  background-color: #588557;
+	margin-bottom: 2rem;
+
+	display: flex;
+	//justify-content: space-around;
+	justify-content: flex-start;
+	align-items: center;
+
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	width: 100%;
+	background: transparent;
+	padding-left: 5px;
+
+}
+// .personaa-nomer {
+// 	width: 5rem;
+// 	box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+// 	background: transparent;
+// 	font-size: 1.7rem;
+// 	color: #fff;
+// 	margin:   15px 0 0 15px; 
+// 	padding: .5rem .8rem  .5rem  1.5rem;
+
+// 	transition: box-shadow .2s linear;
+
+// }
+
+// .personaa__title {
+// 	margin-top: 2.5rem;
+// 	margin-bottom: 1rem;
+// 	padding-left: 2rem;
+// 	font-size: 2.1rem;
+// 	color: $white;
+
+// 	&--center {
+// 		text-align: center;
+// 	}
+// }
+
+// .personaa-ramka {
+//     background-color: #588557;
+//       margin-bottom: 2rem;
+  
+//       display: flex;
+//       //justify-content: space-around;
+//       justify-content: flex-start;
+//       align-items: center;
+  
+//       flex-direction: row;
+//       flex-wrap: wrap;
+  
+//       width: 100%;
+//       background: transparent;
+//       padding: 0 5px;
+  
+//   }
+
+.personaa-vibor {
+	width: 5rem;
+	box-shadow: 5px 0 15px rgba(65, 60, 31, 0.3);
+
+	background: transparent;
+	font-size: 1.7rem;
+	color: #fff;
+	margin: 10px;
+	padding: .5rem .5rem  .5rem  1.7rem;
+
+	transition: box-shadow .2s linear;
+
+	&:hover {
+		box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+  }
+}
+
+
+// legend {
+// 	padding: 0 2rem;
+// 	font-size: 1.8rem;
+// 	margin-bottom: 1.5rem;	
+// 	color: $border-kroxi;
+// }
+
+

@@ -29,19 +29,21 @@ class RaionsController extends AbstractController
     }
 
     /**
-     * @Route("/raions/{name_ok}", name=".raions")
+     * @Route("/raions/{okrug_id},{name_ok}", name=".raions")
+     * @param string $okrug_id
      * @param string $name_ok
      * @param Oblast $oblast
      * @param RaionFetcher $raions
      * @return Response
      */
-    public function raions(string $name_ok, Oblast $oblast, RaionFetcher $raions): Response
+    public function raions(string $okrug_id, string $name_ok, Oblast $oblast, RaionFetcher $raions): Response
     {
         //$this->denyAccessUnlessGranted(OkrugAccess::MANAGE_MEMBERS, $okrug);
 
        
 
         return $this->render('proekt/mestoo/raions.html.twig', [
+            'okrug_id' => $okrug_id,
             'name_ok' => $name_ok,
             'oblast' => $oblast,
             'raions' => $raions->allOfOblast($oblast->getId()->getValue()),

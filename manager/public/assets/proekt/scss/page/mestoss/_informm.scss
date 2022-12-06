@@ -1,3 +1,26 @@
+.inform__avatar {
+    display: block; // блочная
+    width: 24.6rem;  // 70х60
+    height: 1.9rem;
+    margin: 2rem auto 2rem;// выравниваем по центру
+    position: relative; //чтобы бордер не исчезал  под картинкой
+
+    border: 2px solid $border-foto;
+    box-shadow: 0 7px 20px rgba(0, 0, 0, .25);
+    border-radius: 10%;
+
+    @include breakpoint($tablet-bp) {
+       width: 6rem;
+       height: 5.5rem;
+
+       border: 1px solid $border-foto;
+       
+       margin-left: 0;
+       position: absolute; /// ---1 что бы фото и надпись были не в столбик
+       left: 0;
+   }
+}
+
 // .informm {
 //    display: grid; //
 //    grid-template-columns: auto auto;// делаем 4-е одинаковых кол-ки

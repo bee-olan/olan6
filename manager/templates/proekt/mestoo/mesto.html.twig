@@ -2,12 +2,17 @@
 
 {% block title %}Место-округ{% endblock %}
 
+{% block sidebar %}
+    {{ include('proekt/mestoo/side/_sidemesto.html.twig') }}
+{% endblock %}
+
 {% block kroxii %}   
             <a href="{{ path('proekt') }}">Главная</a>
-            <a href="{{ path('proekt.mestoo.inform') }}">Место</a>
-            <a href="{{ path('proekt.mestoo.okrugs') }}">Номера Округов</a>
-            <a href="{{ path('proekt.mestoo.okrugs') }}">Номера Областей</a>
-            <a href="{{ path('proekt.mestoo.okrugs') }}">Номера Районов</a>
+            <a href="{{ path('proekt.mestoo.inform') }}">НомерМеста</a>
+            <a href="{{ path('proekt.mestoo.okrugs', {'okrug_id': okrug_id} ) }}">Номера Округов</a>
+            <a href="{{ path('proekt.mestoo.oblasts', { 'oblast_id': oblast_id, 'okrug_id': okrug_id} ) }}">Номера Регионов/Областей</a>
+        
+             <a href="{{ path('proekt.mestoo.raions', {'raion_id': raion.id, 'oblast_id': oblast_id, 'okrug_id': okrug_id, 'name_ok': name_ok  } ) }}">Номера Районов</a>
            
             <span class="aktiv">Номер места расположения </span> 
 {% endblock %}
@@ -82,7 +87,7 @@
                 </li>  
                 <li class="mestoo__title-item mestoo__nomer-red">{{ raion.mesto }}</li>
                 <li class="mestoo__title-item ">
-                    <a class="mestoo__read  btnn btnn--mb1 btnn--pt" href="{{ path('sait.mestos.create', {'raion_id': raion.id , 'mestonomer': raion.mesto }) }}">
+                    <a class="mestoo__read  btnn btnn--mb1 btnn--pt" href="{{ path('proekt.mestoo.create', {'raion_id': raion.id , 'mestonomer': raion.mesto }) }}">
                       Сохранить {# <div class = "btnn btnn--mb0 btnn--pt">  Сохранить  </div> #}
                     </a>     
                 </li>                        

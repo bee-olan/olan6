@@ -1,11 +1,13 @@
 {% extends 'proekt/base.html.twig' %}
 
-{# {% block title %}Номер места{% endblock %}
+{% block title %}Номер места{% endblock %}
 
-{% block kroxii %}  
-           <a href="{{ path('home') }}">Главная</a>
-           <a href="{{ path('sait.u4astniks.groups') }}">Года</a>         
-           <span class="aktiv">персональный номер</span>
+{% block kroxii %}
+            <a href="{{ path('home') }}">Главная</a>
+            <a href="{{ path('sait.mestos.inform') }}">НомерМеста</a>
+            <a href="{{ path('sait.mestos.okrugs') }}">Номера Округов</a>
+            <a  href="#">Номера Областей</a>       
+            <span class="aktiv" >Номера Районов</span> 
 {% endblock %}
 
 {% block bodyy %}
@@ -25,4 +27,4 @@
         </div>
     </div>
 
-{% endblock %} #}
+{% endblock %}

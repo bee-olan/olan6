@@ -45,8 +45,8 @@ class InformController extends AbstractController
     {
        
 // dd($this->getUser());
-$user = $users->get($this->getUser()->getId());
- $last = $user->getName()->getLast();
+        $user = $users->get($this->getUser()->getId());
+        $last = $user->getName()->getLast();
         $fetcher = $fetchers->allMestNom();
 
         //$mestonomer = $mestonomers ->get(new Id($this->getUser()->getId()));
