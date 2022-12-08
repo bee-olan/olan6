@@ -1,10 +1,13 @@
 {% extends 'proekt/base.html.twig' %}
 
-{% block title %}Информация участия{% endblock %}
+{% block title %}Информация {% endblock %}
+
+{% block sidebar %}
+    {{ include('proekt/personaa/side/_sideinform.html.twig') }}
+{% endblock %}
 
 {% block kroxii %}
-            <a href="{{ path('sait') }}">Главная</a>
-            <a href="{{ path('sait.uchastiess.personass.inform') }}">ПерсонНомер</a>
+            <a href="{{ path('proekt') }}">Главная</a>
             <span class="aktiv">Информация о ПерсонНомерах</span>   
 {% endblock %}
 
@@ -15,43 +18,48 @@
     <div class="wstavka">
 
         <div class="wstavka__kartinka">
-            <div class="wstavka-stories" >
+            <div class="wstavka-stories wstavka-stories--person" >
                 <div class="wstavka-stories__item" data-modal="story-modal" >
-                    <img class="wstavka-stories__preview" src="{{ asset('assets/proekt/images/persona/person_.png') }}"  alt="Участие">
+                    <img class="wstavka-stories__preview" src="{{ asset('assets/proekt/images/persona/personaa.png) }}"  alt="Участие">
                 </div>
             </div>
         </div>
 
-        <div class="wstawka__title">
+        <div class="wstavka__title">
             Персональные Номера  участников проекта
         </div> 
     </div>
 {% if personas %}
-    <h2 class = "person__title ">Все выбраные ПерсонНомера </h2>
-    <div class="person">        
-        {% for persona in personas %}
-            <div class = "person-nomer" >		
-                {{ persona.nomer  }}
-            </div>
-        {% endfor %}
-    </div>
-        {# {% else %} #}
-        {% endif %}
- 
+    <h2 class = "pagee__title ">Все выбраные ПерсонНомера </h2>
 
-        {% if personanom %} 
-            <h2 class = "person__title">Ваш ПерсонНомер   </h2>
-            <div class="mesto-ramka">
-                <div  class = "person-nomer" >
-                    {{ personanom.nomer }}
+    <div class="proekts-plr">
+        <div class="ramka">      
+            {% for persona in personas %}
+                <div class = "personaa-nomer" >		
+                    {{ persona.nomer  }}
                 </div>
-            </div>    
-        {% else %} 
-            <h2 class = "person__title ">Вам, для участия в проекте,  нужно выбрать ПерсонНомер. <br>
-            Можно отсюда <a href="{{ path('sait.uchastiess.personass.diapazon') }}">перейти по ссылке </a>
-              или <br>
-            в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >ПерсонНомер ->Выбор ПерсонНомера</strong>
-            </h2>
-        {% endif %}
+            {% endfor %}
+        </div>    
+    </div>
+
+{% endif %}
+ 
+<div class = "mestoo__linia-top"></div>
+    {% if personanom %}
+        <div class="proekts-plr">
+            <div class="ramka">  
+                <h2 class = "personaa__title "><strong class = "strongo--name-nike">{{ last }}, </strong> Ваш ПерсонНомер   </h2>       
+                <div  class = "personaa-nomer" >
+                    <strong class = "strongo--name-nike">{{ personanom.nomer }}</strong>
+                </div>
+            </div> 
+        </div>           
+    {% else %} 
+        <h2 class = "pagee__title ">Вам, для участия в проекте,  нужно выбрать ПерсонНомер. <br>
+        Можно отсюда <a href="{{ path('proekt.personaa.diapazon') }}">перейти по ссылке </a>
+            или <br>
+        в верхнем меню выбрать:  <strong class = "strongo">ПерсонНомер ->Выбор ПерсонНомера</strong>
+        </h2>
+    {% endif %}
 </div>        
 {% endblock %}

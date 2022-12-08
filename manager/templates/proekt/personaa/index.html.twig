@@ -2,12 +2,15 @@
 
 {% block title %}Персональный номер{% endblock %}
 
+{% block sidebar %}
+    {{ include('proekt/personaa/side/_sideindex.html.twig') }}
+{% endblock %}
 
 {% block kroxii %}
-    {# <a href="{{ path('sait') }}">Главная</a>
-    <a href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>
-    <a href="{{ path('sait.uchastiess.personass.diapazon') }}">Диапазон</a>
-     #}
+    <a href="{{ path('proekt') }}">Главная</a>
+    <a href="{{ path('proekt.personaa.inform') }}">Информация о ПерсонНомерах</a>
+    {# <a href="{{ path('proekt.personaa.diapazon') }}">Выбор Диапазона</a> #}
+    
      <span class="aktiv">ПерсонНомера</span>
    
 {% endblock %}
@@ -32,10 +35,11 @@
                 {% endfor %}
             </div>
         </div>
+         <div class = "mestoo__linia-top"></div>
 
-    <div class="person">
-        <h2 class = "pagee__title ">Если выбрали не тот диапазон - можно</h2>
-            <a  href= "{{ path('proekt.personaa.diapazon') }}" class="btnn btnn--mb0">
+    <div class="personaa">
+        <h2 class = "personaa__title ">Если выбрали не тот диапазон - можно  </h2>
+            <a  href= "{{ path('proekt.personaa.diapazon') }}" class="btnn btnn--ml btnn--pt ">
                     Изменить диапазон
             </a>
     </div>

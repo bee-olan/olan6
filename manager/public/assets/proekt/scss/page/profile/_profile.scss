@@ -20,6 +20,11 @@
      box-shadow: 0 7px 20px rgba(0, 0, 0, .25);
      border-radius: 10%;
 
+     &--persona{
+       
+        height: 7rem;
+    }
+
      @include breakpoint($tablet-bp) {
         width: 6rem;
         height: 5.5rem;
@@ -28,7 +33,7 @@
         
         margin-left: 0;
         position: absolute; /// ---1 что бы фото и надпись были не в столбик
-        left: 0;
+        left: 0;       
     }
 }
 

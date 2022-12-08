@@ -416,6 +416,24 @@ a:hover {
   text-decoration: none;
   color: #159957;
 }
+.btnn--ml {
+  margin-left: 3rem;
+  margin-bottom: -1.5rem;
+}
+.btnn--mb1 {
+  margin-bottom: 0.6rem;
+  margin-left: 0;
+}
+.btnn--mb0 {
+  margin-bottom: 0rem;
+  margin-left: 0;
+}
+.btnn--mb-1 {
+  margin-bottom: -1rem;
+}
+.btnn--pt {
+  padding: 0.3rem 1rem 0.3rem 1rem;
+}
 .btnn--red {
   background: linear-gradient(#155799, #159957);
   box-shadow: 0 7px 17px -10px rgba(237, 48, 36, 0.6);
@@ -432,20 +450,6 @@ a:hover {
 }
 .btnn--rounded {
   border-radius: 0.41em;
-}
-.btnn--mb1 {
-  margin-bottom: 0.6rem;
-  margin-left: 0;
-}
-.btnn--mb0 {
-  margin-bottom: 0rem;
-  margin-left: 0;
-}
-.btnn--mb-1 {
-  margin-bottom: -1rem;
-}
-.btnn--pt {
-  padding: 0.2rem 1rem 0.3rem 1rem;
 }
 
 /*=====хлебные крошки ======================*/
@@ -905,6 +909,9 @@ a:hover {
   box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
   border-radius: 10%;
 }
+.profilee__avatar--persona {
+  height: 7rem;
+}
 @media screen and (max-width: 991px) {
   .profilee__avatar {
     width: 6rem;
@@ -1284,6 +1291,62 @@ a:hover {
   padding-left: 5px;
 }
 
+.person__avatar {
+  display: block;
+  width: 6rem;
+  height: 7rem;
+  margin: 2rem auto 2rem;
+  position: relative;
+  border: 2px solid rgb(190, 186, 151);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 10%;
+}
+@media screen and (max-width: 991px) {
+  .person__avatar {
+    width: 6rem;
+    height: 5.5rem;
+    border: 1px solid rgb(190, 186, 151);
+    margin-left: 0;
+    position: absolute;
+    left: 0;
+  }
+}
+
+.personaa-nomer {
+  width: 5rem;
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgb(255, 255, 255);
+  background: transparent;
+  font-size: 1.7rem;
+  color: #fff;
+  margin: 15px 0 0 15px;
+  padding: 0.5rem 0.8rem 0.5rem 1.5rem;
+  transition: box-shadow 0.2s linear;
+}
+
+.personaa__title {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  font-size: 2.1rem;
+  color: #f6f6f6;
+}
+.personaa__title--center {
+  text-align: center;
+}
+
+.personaa-ramka {
+  background-color: #588557;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  background: transparent;
+  padding: 0 5px;
+}
+
 .personaa-vibor {
   width: 5rem;
   box-shadow: 5px 0 15px rgba(65, 60, 31, 0.3);
@@ -1296,4 +1359,11 @@ a:hover {
 }
 .personaa-vibor:hover {
   box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgb(255, 255, 255);
+}
+
+legend {
+  padding: 0 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #a78c16;
 }/*# sourceMappingURL=proekt.css.map */

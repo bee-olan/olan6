@@ -6,10 +6,7 @@ namespace App\Controller\Proekt\Personaa;
 
 use App\Annotation\Guid;
 
-// use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
-// use App\Model\Mesto\Entity\InfaMesto\Id;
-// use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
-
+use App\ReadModel\User\UserFetcher;
 
 use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
 use Psr\Log\LoggerInterface;
@@ -38,11 +35,14 @@ class InformController extends AbstractController
 	/**
      * @Route("/inform", name=".inform")
      * @return Response
+     * @return UserFetcher $users
      * @param PersonaFetcher $uchasties
      */
-    public function inform(PersonaFetcher $uchasties): Response
+    public function inform(PersonaFetcher $uchasties, UserFetcher $users): Response
     {
        
+        $user = $users->get($this->getUser()->getId());
+        $last = $user->getName()->getLast();
 
         $personas = $uchasties->allPers();
 
@@ -50,6 +50,6 @@ class InformController extends AbstractController
 
 
         return $this->render('proekt/personaa/inform.html.twig',
-                                compact('personas', 'personanom'));
+                                compact('personas', 'personanom', 'last'));
     }
 }

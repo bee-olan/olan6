@@ -1,12 +1,16 @@
 {% extends 'proekt/base.html.twig' %}
 
-{% block title %}Персональный номер{% endblock %}
+{% block title %}Диапазон{% endblock %}
 
-{#{% block kroxiSait %}#}
-{#    <a href="{{ path('sait') }}">Главная</a>#}
-{#    <a href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>#}
-{#    <span class="aktiv">Диапазон</span>#}
-{#{% endblock %}#}
+{% block sidebar %}
+    {{ include('proekt/personaa/side/_sidediapaz.html.twig') }}
+{% endblock %}
+
+{% block kroxii %}
+            <a href="{{ path('proekt') }}">Главная</a>
+            <a href="{{ path('proekt.personaa.inform') }}">Информация о ПерсонНомерах</a>
+            <span class="aktiv">Выбор Диапазона</span>   
+{% endblock %}
 
 {% block bodyy %}
 
@@ -19,7 +23,7 @@
 
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
-                <button type="submit" class="btnn  ">Смотрим  ПерсонНомера</button>
+                <button type="submit" class="btnn  btnn--pt">Смотрим  ПерсонНомерА</button>
                 {{ form_end(form) }}
         </div>
     </div>
