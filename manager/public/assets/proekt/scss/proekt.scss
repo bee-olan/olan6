@@ -41,6 +41,7 @@ a {
 @import "page/btnn";
 @import "page/kroxii";
 @import "page/strongo";
+@import "page/filters";
 //
 @import "page/header/header";
 
@@ -50,7 +51,9 @@ a {
 @import "page/header/nav";
 
 //
-@import "page/sidebar/sidebar";
+@import "page/side/sidebar";
+@import "page/side/sidefiltr";
+
 
 @import "page/profile/profile";
 
@@ -73,3 +76,12 @@ a {
 
 @import "page/personaa/personaa-form";
 @import "page/personaa/personaa";
+
+//Пасека
+
+@import "paseka/matkas/matkaa";
+@import "paseka/rasas/rasaa";
+@import "paseka/rasas/sparingg";
+
+@import "paseka/uchasties/uchasties";
+

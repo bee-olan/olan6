@@ -1,0 +1,54 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Информация участия{% endblock %}
+
+{% block kroxii %}
+            <a href="{{ path('sait') }}">Главная</a>
+            <span class="aktiv">Информация участия</span>   
+{% endblock %}
+
+
+{% block bodyy %}
+
+<div class="proekts">
+    <div class="wstavka">
+
+        <div class="wstavka__kartinka">
+            <div class="wstavka-stories" >
+                <div class="wstavka-stories__item" data-modal="story-modal" >
+                    <img class="wstavka-stories__preview" src="{{ asset('assets/proekt/images/uchasties/uchastie.png') }}"  alt="Участие">
+                </div>
+            </div>
+        </div>
+
+        <div class="wstavka__title">
+            Номера мест расположения пасек участников проекта 
+        </div> 
+    </div>
+
+
+    <div class="mesto-ramka">
+
+        {% for persona in personas %}
+            <div class = "mesto-ramka__nomer mesto-ramka__nomer--persona">		
+                {{ persona.nomer  }}
+            </div>
+        {% endfor %}
+    </div>
+
+        {% if personanom %} 
+            <h2 class = "page__title ">Ваш ПерсонНомер   </h2>
+            <div class="mesto-ramka">
+                <div class = "mesto-ramka__nomer mesto-ramka__nomer--persona">
+                    {{ personanom.nomer }}
+                </div>
+            </div>    
+        {% else %} 
+            <h2 class = "page__title ">Вам, для участия в проекте,  нужно ................
+            <a href="{{ path('sait.mestos.okrugs') }}">перейти по ссылке </a> 
+            или <br>
+            в верхнем меню выбрать:  <strong class = "stro-sait stro-sait--krox"  >Место -> Номер места.</strong>
+            </h2>
+        {% endif %}
+</div>        
+{% endblock %}

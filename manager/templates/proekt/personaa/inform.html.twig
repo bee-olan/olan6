@@ -20,7 +20,7 @@
         <div class="wstavka__kartinka">
             <div class="wstavka-stories wstavka-stories--person" >
                 <div class="wstavka-stories__item" data-modal="story-modal" >
-                    <img class="wstavka-stories__preview" src="{{ asset('assets/proekt/images/persona/personaa.png) }}"  alt="Участие">
+                    <img class="wstavka-stories__preview" src="{{ asset('assets/proekt/images/persona/personaa.png') }}"  alt="Участие">
                 </div>
             </div>
         </div>
@@ -55,8 +55,9 @@
             </div> 
         </div>           
     {% else %} 
+   
         <h2 class = "pagee__title ">Вам, для участия в проекте,  нужно выбрать ПерсонНомер. <br>
-        Можно отсюда <a href="{{ path('proekt.personaa.diapazon') }}">перейти по ссылке </a>
+        Можно отсюда <a href="#">перейти по ссылке </a>
             или <br>
         в верхнем меню выбрать:  <strong class = "strongo">ПерсонНомер ->Выбор ПерсонНомера</strong>
         </h2>

@@ -1,0 +1,77 @@
+
+.filters {
+   display: flex;
+   position: fixed; // фиксированное позиционирование
+	
+	width: 75%;
+	 top: 11.5rem;	 
+	// left:  $sidebar-width;
+	 padding-left: 2rem;
+    z-index: $z-index-kroxii;
+	// position: relative;
+	background-color: transparent;
+}
+.filters__blok {
+	display: block;
+	width: 100%;
+}
+
+.filters__list {
+   display: flex; // оба эл-ты в header__right -в линию
+	
+	padding-left: 1rem;
+
+	//justify-content: flex-end; // прижали к правой стороне
+ 
+	font-family: inherit; // наследуем шрифт -заменяя тот по умочан
+	
+}
+
+.filters__left {
+   display: flex; // оба эл-ты в header__right -в линию
+   width: 80%; 
+}
+
+.filters__right {
+   display: flex; // оба эл-ты в header__right -в линию
+   //justify-content: flex-end; // прижали к правой стороне
+   width: 20%;
+   a {
+		font-size: 1.3rem;
+		color: inherit; // что бы изменить цвет ссылки - на родительский post__title
+		text-decoration: none;
+
+		transition: box-shadow .2s linear;
+
+		 &:hover {
+			box-shadow: 0 15px 25px rgba($black, .45);
+		}
+	}
+}
+
+.filters__itemm {
+   display: block;// ссылки - блочные
+	padding: .5rem 1rem ; // отступы вокруг текста/ ссылки
+	margin-right: 1rem;
+
+	box-shadow: 0 5px 15px rgba($black, .45);
+
+	// это border сверху\снизу у текста
+	border-bottom: 1px solid $border-linia;
+	border-top: 1px solid $border-linia;
+	border-radius: 4px;
+
+	font-size: 1.2rem; // шрифт - размер
+	line-height: 1.2;
+	color: $color-text;   
+}
+
+.form-control {
+	
+   color: $color-text;;
+   background-color: $input-bg;
+   border: none;
+
+   //margin-bottom: 2rem;
+}
+

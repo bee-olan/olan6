@@ -1,0 +1,77 @@
+///////////Matkas ==========
+// .matkaa {
+//     margin: 1rem -1rem 2rem -1rem;
+//     padding: 1.5rem 1.5rem;
+//     overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+//     background-color: $mat-fon;
+//     //background-color: transparent;
+//     box-shadow: 0 15px 25px rgba($black, .35);
+//     border-radius: 5px;
+//   }
+//   .matkaa__header{
+//     margin: 0 0 2.5rem;
+   
+//   }
+//   .matkaa__title{
+//     margin-bottom: 1.5rem;
+//     font-size: 1.8rem;
+//     color: $col-text;
+//     //font-weight: 500;
+//     a {
+//       color: inherit; // что бы изменить цвет ссылки - на родительский post__title
+//       text-decoration: none;
+//       //  &:hover {
+//       //     text-decoration: underline; // при наведении вернуться к подчеркиванию
+//       // }
+//     }
+//     &--mb0 {
+//       margin-bottom: 0;
+//     }
+//   }
+//   .matkaa__data{
+//     display: flex; // добавляем т.к добаилась li-шка
+//     //justify-content: center;
+//     justify-content:  start;  // space-between;
+//     align-items: center; // выравнивание по вертикали
+//     list-style: none; // убрала точку у li
+//     width: 100%;
+//     color: $mat-col-text;
+//     background-color: $mat-fon-ul;
+//     line-height: 2.0;
+  
+//     a {
+//       padding: .6rem 1.6rem;
+//       color: inherit;
+  
+//       opacity: 0.6;
+//       transition: opacity .2s linear;
+  
+//       &:hover {
+//         opacity: 1;
+//         text-decoration: none;
+//         background-color: $mat-fon-a;
+//       }
+//     }
+//   }
+//   .matkaa__name{
+//     width: 20.0rem;
+//     color: $mat-col-text;
+//     padding: .6rem;
+   
+  
+//     &--linia {
+//         border-bottom: 1px solid $mat-col-text; // linia
+//     }
+//     &--wid200 {
+//       width: 180.0rem;
+//     }
+//   }
+// .matkaa__kateg{
+//   color: $mat-col-text;
+//   &:hover {
+//     opacity: 1;
+//     text-decoration: none;
+//   color: $mat-fon-ul;
+//   }
+// }
+  

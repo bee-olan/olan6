@@ -2,18 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Sait\Uchastiess;
+namespace App\Controller\Proekt\Pasekas\Uchasties;
 
 use App\Annotation\Guid;
 
 // use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
 // use App\Model\Mesto\Entity\InfaMesto\Id;
 // use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
-
+//use App\ReadModel\Proekt\Pasekas\Uchasties\Side\Filter;
+//use App\ReadModel\Proekt\Pasekas\Uchasties\Side\SideFilterFetcher;
 
 use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
 use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
-use App\ReadModel\Paseka\Uchasties\Uchastie\Filter;
+
+use App\ReadModel\Proekt\Pasekas\Uchasties\Side\SideFilterFetcher;
+use App\ReadModel\Proekt\Pasekas\Uchasties\Side\Filter;
+
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +29,7 @@ use App\Controller\ErrorHandler;
 
 
 /**
- * @Route("/sait/uchastiess", name="sait.uchastiess")
+ * @Route("/proekt/pasekas/uchasties", name="proekt.pasekas.uchasties")
  */
 class InformController extends AbstractController
 {
@@ -38,7 +42,34 @@ class InformController extends AbstractController
         $this->logger = $logger;
     }
 
-
+  /**
+    * @Route("", name="")
+    * @param Request $request
+    * @param SideFilterFetcher $fetcher
+    * @return Response
+    */
+    public function index(Request $request, SideFilterFetcher $fetcher): Response
+    {
+ 
+        $filter = new Filter\Filter;
+ 
+        $form = $this->createForm(Filter\Form::class, $filter);
+        $form->handleRequest($request);
+ //dd($form);
+        $pagination = $fetcher->all(
+            $filter,
+            $request->query->getInt('page', 1),
+            self::PER_PAGE,
+            $request->query->get('sort', 'name'),
+            $request->query->get('direction', 'asc')
+        );
+ //dd($pagination);
+        return $this->render('proekt/pasekas/uchasties/index.html.twig', [
+            'pagination' => $pagination,
+            'form' => $form->createView(),
+        ]);
+    }
+ 
 	/**
     * @Route("/inform", name=".inform")
     * @return Response
@@ -53,7 +84,7 @@ class InformController extends AbstractController
        $personanom = $uchasties ->find($this->getUser()->getId());
 
 
-       return $this->render('sait/uchastiess/inform.html.twig',
+       return $this->render('proekt/pasekas/uchasties/inform.html.twig',
                                compact('personas', 'personanom'));
    }
 
@@ -78,7 +109,7 @@ class InformController extends AbstractController
 //             $request->query->get('direction', 'asc')
 //         );
 // //dd($pagination);
-//         return $this->render('sait/uchastiess/inform.html.twig', [
+//         return $this->render('proekt/pasekas/uchasties/inform.html.twig', [
 //             'pagination' => $pagination,
 //             'forms' => $forms->createView(),
 //         ]);

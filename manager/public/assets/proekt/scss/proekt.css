@@ -432,7 +432,7 @@ a:hover {
   margin-bottom: -1rem;
 }
 .btnn--pt {
-  padding: 0.3rem 1rem 0.3rem 1rem;
+  padding: 0.2rem 1rem 0.3rem 1rem;
 }
 .btnn--red {
   background: linear-gradient(#155799, #159957);
@@ -561,6 +561,65 @@ a:hover {
 }
 .strongo--nom {
   font-size: 1.2rem;
+}
+
+.filters {
+  display: flex;
+  position: fixed;
+  width: 75%;
+  top: 11.5rem;
+  padding-left: 2rem;
+  z-index: 900;
+  background-color: transparent;
+}
+
+.filters__blok {
+  display: block;
+  width: 100%;
+}
+
+.filters__list {
+  display: flex;
+  padding-left: 1rem;
+  font-family: inherit;
+}
+
+.filters__left {
+  display: flex;
+  width: 80%;
+}
+
+.filters__right {
+  display: flex;
+  width: 20%;
+}
+.filters__right a {
+  font-size: 1.3rem;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.2s linear;
+}
+.filters__right a:hover {
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.45);
+}
+
+.filters__itemm {
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid rgb(190, 186, 151);
+  border-top: 1px solid rgb(190, 186, 151);
+  border-radius: 4px;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: #DEDEDE;
+}
+
+.form-control {
+  color: #DEDEDE;
+  background-color: transparent;
+  border: none;
 }
 
 .headerr {
@@ -874,18 +933,120 @@ a:hover {
   }
 }
 
-.sidebarr__lupa {
+.sidee {
+  width: 270px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+@media screen and (max-width: 991px) {
+  .sidee {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 4rem);
+    padding-bottom: 1.5rem;
+    overflow: auto;
+    top: 4rem;
+    transform: translateX(-100%);
+    transition: transform 0.2s linear;
+  }
+  .show-sidebar .sidee {
+    transform: translateX(0);
+  }
+}
+
+.sidee__header {
+  height: 4.5rem;
+  margin-bottom: 2rem;
+}
+.sidee__header img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.2rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media screen and (max-width: 991px) {
+  .sidee__header {
+    height: 4.6rem;
+  }
+}
+
+.sidee__lupa {
   height: 2.6rem;
   width: 2.6rem;
-  margin-right: 2rem;
-  margin-top: 1rem;
 }
-.sidebarr__lupa img {
+.sidee__lupa img {
   display: flex;
   width: 100%;
   height: 100%;
+  margin-top: 0.4rem;
+  margin-left: 0.4;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.sideefiltr {
+  display: block;
+}
+
+.sideefiltr__ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sideefiltr__li {
+  position: relative;
+  padding-right: 10px;
+  padding-left: 6px;
+  height: 15.5rem;
+  width: calc(270px - 4rem);
+  box-shadow: 0 5px 22px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+}
+.sideefiltr__li--wid100 {
+  height: 5rem;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-align: center;
+}
+.sideefiltr__li--flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.sideefiltr__li--mr07 {
+  margin-right: 0.7rem;
+}
+.sideefiltr__li--pl0-pr0 {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 11%;
+}
+.sideefiltr__li--pr0 {
+  padding-right: 0;
+  max-width: 11%;
+}
+.sideefiltr__li:hover .uch-nav__link {
+  background-color: rgb(155, 144, 74);
+  text-decoration: none;
+  color: #f6f6f6;
+}
+
+.sideefiltr__link {
+  display: block;
+  padding: 0.8rem 1.35rem 0.8rem 1.35rem;
+  border-bottom: 2px solid rgb(190, 186, 151);
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #a78c16;
+  text-decoration: none;
+  transition: background-color 0.2s linear;
 }
 
 .profilee {
@@ -986,7 +1147,10 @@ a:hover {
 .proekts {
   margin-bottom: 6rem;
   padding-bottom: 6rem;
-  max-width: 100%;
+  max-width: 90rem;
+  margin-left: 3rem;
+  margin-right: 5rem;
+  padding-top: 0.5rem;
   overflow: hidden;
   background-color: transparent;
   box-shadow: 0 15px 25px rgba(246, 246, 246, 0.35);
@@ -1000,6 +1164,20 @@ a:hover {
 
 .proekts-plr {
   padding: 0 3rem;
+}
+
+.proekts-uch {
+  margin-bottom: 3rem;
+  max-width: 100%;
+  overflow: hidden;
+  background-color: transparent;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 5px;
+}
+@media screen and (max-width: 575px) {
+  .proekts-uch {
+    padding: 1.5rem;
+  }
 }
 
 .proekt__text {
@@ -1365,5 +1543,103 @@ legend {
   padding: 0 2rem;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
+  color: #a78c16;
+}
+
+.sparingg {
+  margin: 6rem -1rem 2rem -1rem;
+  padding: 1.5rem 1.5rem;
+  overflow: hidden;
+  background-color: #4362a3;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 5px;
+}
+
+.sparing__data {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  line-height: 2;
+}
+.sparing__data a {
+  padding: 0.6rem 1.6rem;
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity 0.2s linear;
+}
+.sparing__data a:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: sandybrown;
+}
+
+.sparing__name {
+  width: 7rem;
+  padding: 0.6rem;
+}
+.sparing__name--wi10 {
+  width: 10rem;
+}
+.sparing__name--wi25 {
+  width: 25rem;
+}
+
+.uchasties {
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+}
+
+.uchasties__left {
+  width: 100%;
+}
+
+.uch-tabl__list {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+.uch-tabl__list a {
+  font-size: 1.4rem;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.2s linear;
+}
+.uch-tabl__list a:hover {
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.45);
+}
+
+.uch-tabl__list-li {
+  width: 25%;
+  text-align: center;
+}
+
+.uch-tabl__link {
+  display: block;
+  padding: 1rem;
+  margin-right: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid rgb(190, 186, 151);
+  border-top: 1px solid rgb(190, 186, 151);
+  border-radius: 4px;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.uch-tabl__linia {
+  display: block;
+  padding-top: 1rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgb(175, 169, 112);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.uch-color {
+  color: #a78c16;
+}
+.uch-color--colorr {
   color: #a78c16;
 }/*# sourceMappingURL=proekt.css.map */

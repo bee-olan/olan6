@@ -1,7 +1,12 @@
 .proekts {
     margin-bottom: 6rem;
     padding-bottom: 6rem;
-    max-width: 100%;
+    max-width: 90rem;
+    margin-left: 3rem;
+    margin-right: 5rem;
+    padding-top: .5rem;
+
+    // max-width: 100%;
     overflow: hidden; // в рамках размера -все лишнее скрылось overflow
   
     background-color: transparent;
@@ -14,4 +19,18 @@
   }
   .proekts-plr {
     padding: 0 3rem;
+  }
+
+  .proekts-uch {
+    margin-bottom: 3rem;
+    max-width: 100%;
+    overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+  
+    background-color: transparent;
+    box-shadow: 0 15px 25px rgba($black, .35);
+    border-radius: 5px;
+  
+    @include breakpoint($mobile-bp) {
+      padding: 1.5rem;
+    }
   }
