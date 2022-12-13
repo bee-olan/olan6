@@ -1,0 +1,178 @@
+
+.uchastiee-form{
+    margin-right: 4rem;
+
+    form {
+        div {
+            fieldset {
+                // display: block; //это все линия
+                padding-top: 1rem;
+                margin-bottom: 2rem;
+
+                // background: none;
+                // border: none;
+                border-bottom: 1px solid $border-lin-nav;
+                // border-radius: 0;
+                // box-shadow: none;
+                    div {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: baseline; // выравнивание по вертикали
+                            margin-bottom: .6rem;
+
+                            div {
+                                    // form-group{
+                                    
+                                    input{
+                                        margin-left: 4rem;
+                                        box-sizing: border-box;
+                                        height: 16px; 
+                                        width: 16px;
+
+                                        // &:focus  { 
+                                        //     margin-left: -4rem;
+                                        //     box-sizing: border-box;
+                                        //     height: 16px; 
+                                        //     width: 16px; 
+                                        // }
+                                    }
+                                    label{
+                                        // margin-left: 2rem;
+                                        // margin-right: 1.5rem;
+                                        font-size: 1.6rem;
+                                        color: inherit;
+                                    }
+                            }    
+                        }
+            }    
+            div {
+                // form-group 
+                display: flex;
+                justify-content: flex-start;
+                align-items: baseline; // выравнивание по вертикали
+                margin-bottom: .6rem;
+
+                margin-bottom: 1.5rem;
+                position: relative; // относительно этого будем позиционировать form__line                
+
+                    label{
+                        min-width: 12rem;
+                        margin-left: 2rem;
+                        font-size: 1.8rem;                            
+                        color: $border-kroxi;                   
+                    }
+                    
+                    input{
+                        // form-control
+                        margin-left: 2rem;
+                        padding-left: 2rem;
+
+                        display: block;
+                        // width: 100%;
+                        padding: .5rem 0 .75rem;
+                    
+                        background: none;// убираем цвет
+                        
+                        border: none;
+                        border-bottom: 1px solid $border-linia; //этот цвет полоски меняется при фокусе
+                        border-radius: 0;
+                        box-shadow: none;
+                    
+                        font-family: inherit;// наследуемся
+                        font-size: 1.4rem;
+                        color: $white;
+                    
+                        &::placeholder {
+                            color: rgba( $text-uchastie, .7);// непрозрачность
+                        }
+                    
+                        & > :focus  {  //когда фокус на полоске формы - длину увеличиваем
+                            width: 60%;
+                           // width: 0; // если фокус не на вводе - полоска скывается т.е. длина ==0
+                            //height: 3.4rem;
+                        
+                            background-color: $grad1;
+                        
+                            position: absolute;
+                            left: 14rem;
+                            top: 0;
+                            //bottom: 2rem;
+                            z-index: 1;
+                        
+                            transition: width .2s linear;
+                        }
+                    
+                        &--textarea {
+                            height: 30px; // уменьшаем текстовое поле по высоте
+                            overflow: hidden;
+                            resize: none;
+                        }
+
+                        //.form__line {
+                            // width: 0; // если фокус не на вводе - полоска скывается т.е. длина ==0
+                            // height: 1px;
+                        
+                            // background-color: $grad1;
+                        
+                            // position: absolute;
+                            // left: 0;
+                            // bottom: 0;
+                            // z-index: 1;
+                        
+                            // transition: width .2s linear;
+                        //}
+                    }                    
+            }
+        }                
+    }       
+}
+
+//////////////////////////////////////
+
+
+
+//.form-control{
+    // display: block;
+    // width: 100%;
+    // padding: .5rem 0 .75rem;
+
+    // background: none;// убираем цвет
+    
+    // border: none;
+    // border-bottom: 1px solid $border-linia; //этот цвет полоски меняется при фокусе
+    // border-radius: 0;
+    // box-shadow: none;
+
+    // font-family: inherit;// наследуемся
+    // font-size: 1.4rem;
+    // color: $white;
+
+    // &::placeholder {
+    //     color: rgba( $text-uchastie, .7);// непрозрачность
+    // }
+
+    // &:focus + .form__line {  //когда фокус на полоске формы - длину увеличиваем
+    //     width: 100%;
+    // }
+
+    // &--textarea {
+    //     height: 30px; // уменьшаем текстовое поле по высоте
+    //     overflow: hidden;
+    //     resize: none;
+    //  }
+    
+//}
+
+// .form__line {
+//     width: 0; // если фокус не на вводе - полоска скывается т.е. длина ==0
+//     height: 1px;
+
+//     background-color: $grad1;
+
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     z-index: 1;
+
+//     transition: width .2s linear;
+// }

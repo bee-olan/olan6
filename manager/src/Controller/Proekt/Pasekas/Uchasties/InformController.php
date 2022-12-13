@@ -12,6 +12,8 @@ use App\Annotation\Guid;
 //use App\ReadModel\Proekt\Pasekas\Uchasties\Side\Filter;
 //use App\ReadModel\Proekt\Pasekas\Uchasties\Side\SideFilterFetcher;
 
+use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
+
 use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
 use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
 
@@ -87,6 +89,16 @@ class InformController extends AbstractController
        return $this->render('proekt/pasekas/uchasties/inform.html.twig',
                                compact('personas', 'personanom'));
    }
+
+    /**
+     * @Route("/show/{id}", name=".show", requirements={"id"=Guid::PATTERN})
+     * @param Uchastie $uchastie
+     * @return Response
+     */
+    public function show(Uchastie $uchastie): Response
+    {
+        return $this->render('proekt/pasekas/uchasties/show.html.twig', compact('uchastie'));
+    }
 
 //     /**
 //      * @Route("/inform", name=".inform")

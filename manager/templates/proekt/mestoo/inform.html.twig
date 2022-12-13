@@ -46,7 +46,14 @@
                 <div class = "ramka__mesto-nomer mestoo__nomer-text">
                     {{ mestonomer.nomer }}
                 </div>
-            </div>    
+            </div> 
+            <div class="ramka">
+                <h2 class = "personaa__title ">Перейти на страничку               
+                    <a  href= "{{ path('proekt.pasekas.uchasties.uchastiee') }}">
+                           Стать участником 
+                    </a>  
+                </h2>
+            </div>        
         {% else %} 
             <h2 class = "pagee__title ">Вам, для участия в проекте,  нужно определиться  
             с номером места нахождения Вашей пасеки.<br> Можно отсюда 

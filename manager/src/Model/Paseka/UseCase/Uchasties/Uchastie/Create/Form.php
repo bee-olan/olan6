@@ -24,16 +24,18 @@ class Form extends AbstractType
         $builder
             ->add('group', Type\ChoiceType::class, [
                 'label' => 'Выбрать группу участников  ',
-                'choices' => array_flip($this->groups->assoc())])
-            ->add('firstName', Type\TextType::class, ['label' => 'Имя'])
-            ->add('lastName', Type\TextType::class, ['label' => 'Фамилия'])
-
+                'choices' => array_flip($this->groups->assoc()),
+                'expanded' => true,
+                'multiple' => false
+                ])
             ->add('nikeName', Type\TextType::class, array(
                 'label' => 'Ваш ник',
                 'attr' => [
                     'placeholder' => 'Введите ник'
                 ]
-            ))
+            ))    
+            ->add('firstName', Type\TextType::class, ['label' => 'Имя'])
+            ->add('lastName', Type\TextType::class, ['label' => 'Фамилия'])
             ->add('email', Type\EmailType::class);
     }
 

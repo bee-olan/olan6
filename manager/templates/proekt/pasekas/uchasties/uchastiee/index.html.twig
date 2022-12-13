@@ -16,83 +16,92 @@
 
 
 {% block bodyy %}
-    <article class="saits">
-        {% include('sait/uchastiess/uchastie/_uchastie-includ.html.twig') %}
-        <div class="uchastie__header  ">
 
-            {% if uchastie and  persona and mestoNomer %}
-                <h1 class="uchastie__title  "> {{ uchastie.name.full}}, Вы участник проекта и, по желанию,
-                можете принять участие в предстоящих сезонах как: матковод, пчеловод, пчелоМатковод или наблюдатель.</h1>
-            {% else %}
-                <h1 class="uchastie__title  "> Чтобы стать участником проекта, надо заполнить пункты 1 - 3 </h1>
-            {% endif %}
+    <div class="proekts proekts--uhastiee">
 
-            <ul class="uchastie__data">
-                {% if persona %}
-                    <li>
-                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                        </svg>
-                    </li>
-                    <li class="uchastie__name  ">Ваш ПерсонНомер</li>
-                    <li><div class = "uchastie-nomer uchastie-nomer__wid8">
-                            {{ persona.nomer }}
-                        </div></li>
-                    <li></li>
+    {% include('proekt/pasekas/uchasties/uchastiee/_uchastie-includ.html.twig') %}
+        {# <div class="uchastiee">     #}
+            <div class="uchastiee__header  ">
+
+                {% if uchastie and  persona and mestoNomer %}
+                    <h2 class = "pagee__title "><strong class = "strongo--name-nike"> {{ uchastie.name.full}} </strong> , по умолчанию Вы зарегистрированны в проекте как <strong class = "strongo strongo--text">Наблюдатель  </strong>,
+                    <br>но, по желанию,
+                    можете изменить статус участия (участвовать как) в предстоящих сезонах на: <strong class = "strongo strongo--text"><br>Матковод, Пчеловод или ПчелоМатковод.</strong> </h2>
                 {% else %}
-                    <li class="uchastie__name" >1. Выбрать для себя персональный номер </li>
-                    <li>
-                        <a href="{{ path('sait.uchastiess.personass.diapazon') }}"
-                           class="btn-my btn-my--sm">Выбрать <strong class="stro stro--kras">ПерсонНомер  </strong>
-                        </a>
-                    </li>
+                    <h2 class = "pagee__title "> Чтобы стать участником проекта, нужно заполнить пункты 1 - 3  -  в любой последовательности  </h2>
                 {% endif %}
-            </ul>
 
-            <ul class="uchastie__data">
-                {% if mestoNomer %}
-                    <li>
-                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                        </svg>
-                    </li>
-                    <li class="uchastie__name  ">Номер места распол.</li>
-                    <li><div class = "uchastie-nomer uchastie-nomer__wid12">
-                            {{ mestoNomer.nomer }}
-                        </div></li>
-                    <li></li>
-                {% else %}
-                    <li class="uchastie__name" >2. Определиться с номером места расположения пасеки </li>
-                    <li>
-                        <a href="{{ path('mesto.infamesto.okrugs') }}"
-                           class="btn-my btn-my--sm">Найти <strong class="stro stro--kras">номер  </strong> места расположения
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-            <ul class="uchastie__data">
-                {% if uchastie %}
-                    <li>
-                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                        </svg>
-                    </li>
-                    <li class="uchastie__name  ">{{ uchastie.name.nike }}, данные о Вашем участии записаны в БД.</li>
-                    <li></li>
-                    <li></li>
-                {% else %}
-                    <li class="uchastie__name" >3. Подтвердить Ваше участие с заполнением доп. данных</li>
-                    <li>
-                        <a href="{{ path('sait.uchastiess.uchastie.create') }}"
-                           class="btn-my btn-my--sm">Подтвердить <strong class="stro stro--kras">участие  </strong> в проекте
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
+                <ul class="uchastiee__data">
+                    {% if persona %}
+                        <li class="uchastiee__galka">
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        </li>
+                        <li class="uchastiee__name  uch-tabl__linia">Ваш ПерсонНомер</li>
+                        <li><div class = "uchastiee-nomer uchastiee-nomer__wid8">
+                                {{ persona.nomer }}
+                            </div></li>
+                        <li></li>
+                    {% else %}
+                        <li class="uchastiee__name uch-tabl__linia" >1. Выбрать для себя персональный номер </li>
+                        <li>
+                            <a href="{{ path('proekt.personaa.diapazon') }}"
+                            class="btn-my btn-my--sm">Выбрать <strong class="stro stro--kras">ПерсонНомер  </strong>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="uchastiee__data">
+                    {% if mestoNomer %}
+                        <li class="uchastiee__galka" >
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        </li>
+                        <li class="uchastiee__name uch-tabl__linia ">Номер места распол.</li>
+                        <li><div class = "uchastiee-nomer uchastiee-nomer__wid12">
+                                {{ mestoNomer.nomer }}
+                            </div></li>
+                        <li></li>
+                    {% else %}
+                        <li class="uchastiee__name  uch-tabl__linia" >2. Определиться с номером места расположения пасеки </li>
+                        <li>
+                            <a href="{{ path('proekt.mestoo.okrugs') }}"
+                            class="btn-my btn-my--sm">Найти <strong class="stro stro--kras">номер  </strong> места расположения
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <ul class="uchastiee__data">
+                    {% if uchastie %}
+                        {# <li></li>
+                        <li></li> #}
+                        <li class="uchastiee__galka">
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        </li>
+                        <li class="uchastiee__name uch-tabl__linia ">
+                               <strong class = "strongo--name-nike"> {{ uchastie.name.nike }}</strong>
+                                , данные о Вашем участии записаны в БД.
+                        </li>
+                        <li></li>
+                        <li></li>
+                    {% else %}
+                        <li class="uchastiee__name  uch-tabl__linia" >3. Подтвердить Ваше участие с заполнением доп. данных</li>
+                        <li>
+                            <a href="{{ path('proekt.pasekas.uchasties.uchastiee.create') }}"
+                            class="btnn btnn--mb-1">Подтвердить <strong class="strongo strongo--kras">участие  </strong> в проекте
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
 
 
-        </div>
-
-    </article><!-- uchastie -->
+            </div>
+        {# </div> #}
+    </div><!-- uchastie -->
 
 {% endblock %}

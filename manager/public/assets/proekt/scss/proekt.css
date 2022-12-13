@@ -416,6 +416,9 @@ a:hover {
   text-decoration: none;
   color: #159957;
 }
+.btnn--mt {
+  margin-top: 2rem;
+}
 .btnn--ml {
   margin-left: 3rem;
   margin-bottom: -1.5rem;
@@ -542,6 +545,10 @@ a:hover {
 }
 .strongo--name-nike {
   font-weight: 600;
+  font-size: 2rem;
+  color: rgb(175, 169, 112);
+}
+.strongo--text {
   font-size: 2rem;
   color: rgb(175, 169, 112);
 }
@@ -1156,6 +1163,9 @@ a:hover {
   box-shadow: 0 15px 25px rgba(246, 246, 246, 0.35);
   border-radius: 5px;
 }
+.proekts--uhastiee {
+  background-color: #8e39c6;
+}
 @media screen and (max-width: 575px) {
   .proekts {
     padding: 1.5rem;
@@ -1625,6 +1635,11 @@ legend {
   font-size: 1.2rem;
   line-height: 1.2;
   text-decoration: none;
+  transition: background-color 0.2s linear;
+}
+.uch-tabl__link:hover {
+  background-color: #159957;
+  text-decoration: none;
 }
 
 .uch-tabl__linia {
@@ -1642,4 +1657,157 @@ legend {
 }
 .uch-color--colorr {
   color: #a78c16;
+}
+
+.uchastiee {
+  overflow: hidden;
+  background-color: #8e39c6;
+}
+
+.uchastiee__header {
+  margin: 0 0 2.5rem 2.5rem;
+  padding-left: 2.5rem;
+}
+
+.uchastiee__title {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+.uchastiee__title a {
+  color: inherit;
+  text-decoration: none;
+}
+.uchastiee__title--mb0 {
+  margin-bottom: 0;
+}
+
+.uchastiee__data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  max-width: 75rem;
+  color: rgb(224, 231, 231);
+  line-height: 2;
+}
+.uchastiee__data a {
+  padding: 0.6rem 1.6rem;
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity 0.2s linear;
+}
+.uchastiee__data a:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: sandybrown;
+}
+
+.uchastiee__galka {
+  margin-top: 1.6rem;
+}
+
+.uchastiee__name {
+  font-size: 1.6rem;
+  padding: 1.6rem 0.5rem 0.3rem 0.5rem;
+}
+.uchastiee__name--wid25 {
+  width: 25rem;
+}
+.uchastiee__name--wid15 {
+  width: 15rem;
+}
+.uchastiee__name--wid5 {
+  width: 5rem;
+}
+
+.uchastiee-nomer {
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgb(255, 255, 255);
+  background: transparent;
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 10px;
+  padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+  transition: box-shadow 0.2s linear;
+}
+.uchastiee-nomer--wid8 {
+  width: 8rem;
+}
+.uchastiee-nomer--wid12 {
+  width: 12rem;
+}
+
+.uchastiee-form {
+  margin-right: 4rem;
+}
+.uchastiee-form form div fieldset {
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgb(175, 169, 112);
+}
+.uchastiee-form form div fieldset div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+.uchastiee-form form div fieldset div div input {
+  margin-left: 4rem;
+  box-sizing: border-box;
+  height: 16px;
+  width: 16px;
+}
+.uchastiee-form form div fieldset div div label {
+  font-size: 1.6rem;
+  color: inherit;
+}
+.uchastiee-form form div div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.uchastiee-form form div div label {
+  min-width: 12rem;
+  margin-left: 2rem;
+  font-size: 1.8rem;
+  color: #a78c16;
+}
+.uchastiee-form form div div input {
+  margin-left: 2rem;
+  padding-left: 2rem;
+  display: block;
+  padding: 0.5rem 0 0.75rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgb(190, 186, 151);
+  border-radius: 0;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: 1.4rem;
+  color: #f6f6f6;
+}
+.uchastiee-form form div div input::-moz-placeholder {
+  color: rgba(224, 231, 231, 0.7);
+}
+.uchastiee-form form div div input:-ms-input-placeholder {
+  color: rgba(224, 231, 231, 0.7);
+}
+.uchastiee-form form div div input::placeholder {
+  color: rgba(224, 231, 231, 0.7);
+}
+.uchastiee-form form div div input > :focus {
+  width: 60%;
+  background-color: #155799;
+  position: absolute;
+  left: 14rem;
+  top: 0;
+  z-index: 1;
+  transition: width 0.2s linear;
+}
+.uchastiee-form form div div input--textarea {
+  height: 30px;
+  overflow: hidden;
+  resize: none;
 }/*# sourceMappingURL=proekt.css.map */

@@ -5,8 +5,14 @@
      color: $text;
      //font-style: italic; //наклонный шрифт
      
-     &--name-nike {
+    &--name-nike {
         font-weight: 600 ;
+        font-size: 2rem;
+        color: $name-nike;
+    }
+
+    &--text {
+        // font-weight: 600 ;
         font-size: 2rem;
         color: $name-nike;
     }

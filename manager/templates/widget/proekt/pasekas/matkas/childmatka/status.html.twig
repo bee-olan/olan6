@@ -1,0 +1,15 @@
+{% if status == 'новая' %}
+    <span class="badge badge-secondary">Новая</span>
+{% elseif status == 'Заказана' %}
+    <span class="badge badge-info">Заказана</span>
+{% elseif status == 'в работе' %}
+    <span class="badge badge-primary">В работе</span>
+{% elseif status == 'вопрос' %}
+    <span class="badge badge-warning">Вопрос</span>
+{% elseif status == 'отклонена' %}
+    <span class="badge badge-danger">Отклонена</span>
+{% elseif status == 'завершено' %}
+    <span class="badge badge-success">Завершено</span>
+{% elseif status == 'archived' %}
+    <span class="badge badge-dark">Архивирована</span>
+{% endif %}
