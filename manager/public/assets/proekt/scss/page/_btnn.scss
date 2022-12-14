@@ -5,7 +5,8 @@
 .btnn {
     display: inline-block; // чтобы падинги корректно работали
     vertical-align: top;
-    padding: 1.1em 1.6em;
+     padding: 1.1em 1.6em;
+   
     // падинги сделаем в em -эначит будут зависить от шрифта
     // меняем size шрифта - автоматом изменится падинги
 
@@ -27,7 +28,8 @@
     margin-left: 2rem;
 
     margin-top: .5rem;
-    padding: 0.5em 1.25em;
+
+    padding: 0.2rem 1rem 0.3rem 1rem;
 
     &:hover {
         background: linear-gradient( $grad1-o, $grad2-o);
@@ -35,6 +37,14 @@
         color: $grad2;
     }
 
+    &--col {
+       
+        border: 1px solid $plem-color;
+    }
+    &--col-ras {
+       
+        border: 1px solid $rasa-color;
+    }
         &--mt {
             margin-top: 2rem;
             // margin-left: 3rem;

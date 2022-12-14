@@ -23,6 +23,7 @@ $grad1-o:  #ccb44b;
 $grad2-o:   #d4ca9a;
 //
 $red:       #ED3024;
+$red_:       red;
 $blue:     #155799;
 //
 //// =======================
@@ -43,14 +44,11 @@ $name-nike:  rgb(175, 169, 112);
 //
 // nav - навигация
 $header-color: rgb(155, 144, 74);
-//
-////sidebar  боковая панель
-//$sidebar-width: 270px;
-//$sidebar-color: rgb(136, 127, 66);
-//
-//// uchastie
-//$col-uchastie: #8e39c6;
-//$text-uchastie: rgb(224, 231, 231);
+
+//ПлемМатка
+// $plem-color: #565656; цветкрасивыйно не сейчас
+$plem-color: #155799;      //$grad1
+$rasa-color:  green ;
 //
 $z-index-sidebar: 1000;
 $z-index-header:  1000;

@@ -1,36 +1,41 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
 {% block title %}Линия{% endblock %}
 
 
-{% block breadcrumbs %}
+{# {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Раса -- {{ rasa.title }}</a></li>
         <li class="breadcrumb-item active">Добавить линию или добавить номер к линии</li>
     </ol>
-{% endblock %}
+{% endblock %} #}
 
-{% block body %}
+{% block bodyy %}
 
-<article class="rasa">
-    <h1 class="rasa__title  "><strong> Раса  </strong>:  {{ rasa.name }} - {{ rasa.title }}
+<div  class="proekts proekts--rasa">
+
+    {% include('proekt/pasekas/rasas/_rasa-includ.html.twig') %}
+
+   
+
+    <h1 class="ras__title  "><strong> Раса  </strong>:  {{ rasa.name }} - {{ rasa.title }}
         <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">#}
             <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
         </svg>
     </h1>
                 <div class="linia ">
-                    <div class="rasa__header  ">
-                        <h1 class="rasa__title "> <strong>  Линии </strong> зарегистрированные в БД <strong> для </strong> расы : <strong> {{ rasa.title }} </strong></h1>
+                     <div class="proekts-plr  ">
+                        <h1 class="ras__title "> <strong>  Линии </strong> зарегистрированные в БД <strong> для </strong> расы : <strong> {{ rasa.title }} </strong></h1>
 
                         {% for linia in linias %}
-                            <ul class="rasa__data">
+                            <ul class="ras__data">
                                 <li >
                                     <a href="{{ path('paseka.rasas.linias.nomers.plemmatka', {'linia_id': linia.id}) }}" class="btn-my btn-my--sm" >
                                         <strong class="stro stro--kras">  {{ linia.name }} </strong>
                                     </a>
                                 </li>
-                                    <li  class="rasa__name  ">  {{ linia.name_star }} </li>
+                                    <li  class="ras__name  ">  {{ linia.name_star }} </li>
                                 <li></li>
                                 <li></li>
                             </ul>
@@ -43,7 +48,7 @@
 {#                <strong class="stro stro--kras"> линию </strong> в БД</a>#}
 {#        </div>#}
     </div>
-
-</article><!-- rasas -->
+    
+</div><!-- rasas -->
 
 {% endblock %}

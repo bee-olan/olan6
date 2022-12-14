@@ -1,0 +1,46 @@
+.ras__title {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    
+    &--mb0 {
+      margin-bottom: 0;
+    }
+  }
+
+  .ras__data{
+    display: flex; // добавляем т.к добаилась li-шка
+    //justify-content: center;
+    justify-content: space-between;
+    align-items: center; // выравнивание по вертикали
+    list-style: none; // убрала точку у li
+    max-width: 50%;
+    font-size: 1.6rem;
+    line-height: 2.0;
+  
+    a {
+      padding: .6rem 1.6rem;
+      color: $text;
+  
+      opacity: 0.6;
+      transition: opacity .2s linear;
+  
+      &:hover {
+        opacity: 1;
+        text-decoration: none;
+        color: $white;
+        
+      }
+    }
+  }
+
+  .ras__name{
+    // display: flex; // добавляем т.к добаилась li-шка
+    width: 15.0rem;
+    // color: $text-uchastie;
+    padding: .6rem;
+    border-bottom: 1px solid  $rasa-color; // linia
+  
+   padding-left: 2rem;
+  } 
+
+

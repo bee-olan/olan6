@@ -2,9 +2,9 @@
     margin-bottom: 6rem;
     padding-bottom: 6rem;
     max-width: 90rem;
-    margin-left: 3rem;
+    margin-left: 5rem;
     margin-right: 5rem;
-    padding-top: .5rem;
+    // padding-top: .5rem;
 
     // max-width: 100%;
     overflow: hidden; // в рамках размера -все лишнее скрылось overflow
@@ -16,7 +16,17 @@
     &--uhastiee{
       background-color: $col-uchastie;
     }
+
+    &--plemmatka{
+      color: $plem-color;
+      background-color: $white;
+    }
   
+    &--rasa{
+      color: $rasa-color;
+      background-color: $white;
+    }
+
     @include breakpoint($mobile-bp) {
       padding: 1.5rem;
     }

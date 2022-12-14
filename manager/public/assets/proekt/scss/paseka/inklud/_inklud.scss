@@ -1,0 +1,55 @@
+.inklud {
+    display: flex;   
+    // font-size: 1.8rem;
+    text-align: center; 
+    align-items: center;
+
+    margin-bottom: 2rem;
+    box-shadow: inset 0px 0px 10px rgba($plem-color,0.9); //тень внутри
+    // box-shadow: 0 5px 22px rgba($white, .25); 
+    border-bottom: 2px solid $plem-color; // linia
+
+    &--rasa{
+        box-shadow: inset 0px 0px 10px rgba($rasa-color,0.9); //тень внутри
+        border-bottom: 2px solid $rasa-color; // linia
+    } 
+}
+
+.inklud__img {
+    height: 7rem;
+    width: 8rem ;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: .5rem  0 .5rem 1.5rem;
+        object-fit: cover; // если картинка не по размеру
+    }
+
+    
+
+    @include breakpoint($tablet-bp) {
+        height: 4.6rem;
+    }
+}
+
+.inklud__title {
+    width: calc(100% - #{70px});
+    font-size: 2.2rem;
+    margin-right: 7rem;
+    // color: $border-lin-nav;
+    }
+
+.teni {
+    background-color: $plem-color;
+    color: transparent;
+    text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+    -webkit-background-clip: text;
+        -moz-background-clip: text;
+            background-clip: text;
+    
+    &--rasa{
+        background-color: $rasa-color;
+    }        
+}

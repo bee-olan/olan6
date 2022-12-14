@@ -1,0 +1,52 @@
+.plem__title {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    
+    &--mb0 {
+      margin-bottom: 0;
+    }
+  }
+
+  .plem__data{
+    display: flex; // добавляем т.к добаилась li-шка
+    //justify-content: center;
+    justify-content: space-between;
+    align-items: center; // выравнивание по вертикали
+    list-style: none; // убрала точку у li
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2.0;
+  
+    a {
+      padding: .6rem 1.6rem;
+      color: $text;
+  
+      opacity: 0.6;
+      transition: opacity .2s linear;
+  
+      &:hover {
+        opacity: 1;
+        text-decoration: none;
+        color: $white;
+        
+      }
+    }
+  }
+
+  .plem__name{
+    // display: flex; // добавляем т.к добаилась li-шка
+   // width: 60.0rem;
+    // color: $text-uchastie;
+    padding: .6rem;
+    border-bottom: 1px solid  $plem-color; // linia
+  
+    &--wid25 {
+      width: 25.0rem;
+    }
+    &--wid15 {
+      width: 15.0rem;
+    }
+    &--wid5 {
+      width: 5.0rem;
+    }
+  }

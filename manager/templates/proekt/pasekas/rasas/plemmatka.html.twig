@@ -1,0 +1,40 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Раса{% endblock %}
+
+
+{# {% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+        <li class="breadcrumb-item active">Расы зарегистрированные</li>
+    </ol>
+{% endblock %} #}
+
+{% block bodyy %}
+
+
+    <div  class="proekts proekts--rasa">
+
+    {% include('proekt/pasekas/rasas/_rasa-includ.html.twig') %}
+
+        <div class="proekts-plr  ">
+
+            <h1 class="ras__title  ">Расы зарегистрированные в БД, жмём на нужное сокращенное название</h1>
+
+            {% for rasa in rasas %}
+
+                <ul class="ras__data">
+                    <li class="ras__name  ">  {{ rasa.title }}  </li>
+                    <li >
+                        <a href="{{ path('proekt.pasekas.rasas.linias.plemmatka',{'id': rasa.id}) }}" class="btnn btnn--pt btnn--mb0 btnn--col-ras" >
+                         раса   <strong class="strongo strongo--kras">{{ rasa.name }} </strong>
+                        </a>
+                    </li>    
+                                    
+                    
+                </ul>
+            {% endfor %}
+        </div>
+    </div><!-- rasas -->
+
+{% endblock %}
