@@ -17,7 +17,7 @@
 
 .inklud__img {
     height: 7rem;
-    width: 8rem ;
+    width: 9rem ;
 
     img {
         display: block;
@@ -25,6 +25,11 @@
         height: 100%;
         padding: .5rem  0 .5rem 1.5rem;
         object-fit: cover; // если картинка не по размеру
+
+        // &--rasa{
+        //     //padding: .2rem ;
+        //     padding: .4rem  0 .2rem .8rem;
+        // }
     }
 
     
@@ -35,7 +40,7 @@
 }
 
 .inklud__title {
-    width: calc(100% - #{70px});
+    width: calc(100% - #{80px});
     font-size: 2.2rem;
     margin-right: 7rem;
     // color: $border-lin-nav;

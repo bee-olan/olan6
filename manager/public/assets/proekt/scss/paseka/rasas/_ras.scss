@@ -10,7 +10,8 @@
   .ras__data{
     display: flex; // добавляем т.к добаилась li-шка
     //justify-content: center;
-    justify-content: space-between;
+    //justify-content: space-between;
+    justify-content: start;
     align-items: center; // выравнивание по вертикали
     list-style: none; // убрала точку у li
     max-width: 50%;
@@ -35,12 +36,50 @@
 
   .ras__name{
     // display: flex; // добавляем т.к добаилась li-шка
-    width: 15.0rem;
+    //width: 20.0rem;
     // color: $text-uchastie;
-    padding: .6rem;
+    
     border-bottom: 1px solid  $rasa-color; // linia
   
-   padding-left: 2rem;
+    padding: .6rem  2rem;
+
+    &--widt {
+      width: 20.0rem;
+    }
+
+   
   } 
 
+  .lini {
+   // margin: 1rem ;
+    width: 98%;
+    margin-left: 20rem;
+    padding: 1.5rem 1.5rem;
+    overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+   // background-color: #70a370;
+    //background-color: transparent;
+    //box-shadow: 0 15px 25px rgba($black, .35);
+    //border-radius: 5px;
+  }
+
+  .nome {
+    margin: 1rem;
+    width: 98%;
+    padding: 1rem 1rem;
+    overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+    background-color: #7eb47e;
+    //background-color: transparent;
+    box-shadow: 0 15px 25px rgba($black, .35);
+    border-radius: 5px;
+  }
+  
+  .ras-color {
+    padding: 0 1rem;
+    // padding-left: 1rem;
+    background-color: #588557;
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+  }
+  
+
+  
 

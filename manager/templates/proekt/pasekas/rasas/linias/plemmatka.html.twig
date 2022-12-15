@@ -17,30 +17,35 @@
 
     {% include('proekt/pasekas/rasas/_rasa-includ.html.twig') %}
 
-   
-
-    <h1 class="ras__title  "><strong> Раса  </strong>:  {{ rasa.name }} - {{ rasa.title }}
-        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">#}
-            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-        </svg>
-    </h1>
-                <div class="linia ">
-                     <div class="proekts-plr  ">
-                        <h1 class="ras__title "> <strong>  Линии </strong> зарегистрированные в БД <strong> для </strong> расы : <strong> {{ rasa.title }} </strong></h1>
+ <div class="proekts-plr  "> 
+    <ul class="ras__data">
+        <li >
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </li>
+        <li class="ras__name   ">
+            <strong class="strongo strongo--kras">{{ rasa.name }}_</strong> -- раса {{ rasa.title }}
+        </li>
+    </ul>    
+    
+</div>    
+                <div class="lini ">
+                    
+                        <h1 class="ras__title ">  Линии  зарегистрированные в БД  для   <strong class="strongo strongo--kras" >  {{ rasa.name }}_ </strong></h1>
 
                         {% for linia in linias %}
                             <ul class="ras__data">
+                                <li  class="ras__name  ">  {{ linia.name_star }} </li>
                                 <li >
-                                    <a href="{{ path('paseka.rasas.linias.nomers.plemmatka', {'linia_id': linia.id}) }}" class="btn-my btn-my--sm" >
-                                        <strong class="stro stro--kras">  {{ linia.name }} </strong>
+                                    <a href="{{ path('proekt.pasekas.rasas.linias.nomers.plemmatka', {'linia_id': linia.id}) }}" class="btnn btnn--pt btnn--ml3 btnn--col-ras"  >
+                                       линия  <strong class="strongo strongo--kras">  {{ linia.name }} </strong>
                                     </a>
                                 </li>
-                                    <li  class="ras__name  ">  {{ linia.name_star }} </li>
-                                <li></li>
-                                <li></li>
+                               
                             </ul>
                         {% endfor %}
-                    </div>
+                 
 
             {#        <div class = "rasa__content"  >#}
 {#            <a href="{{ path('paseka.rasas.linias.create', {'id': rasa.id}) }}"#}

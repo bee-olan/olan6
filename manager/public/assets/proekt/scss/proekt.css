@@ -425,6 +425,10 @@ a:hover {
 .btnn--mt {
   margin-top: 2rem;
 }
+.btnn--ml3 {
+  margin-bottom: 0rem;
+  margin-left: 3rem;
+}
 .btnn--ml {
   margin-left: 3rem;
   margin-bottom: -1.5rem;
@@ -1622,7 +1626,7 @@ legend {
 
 .ras__data {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   list-style: none;
   max-width: 50%;
@@ -1642,10 +1646,34 @@ legend {
 }
 
 .ras__name {
-  width: 15rem;
-  padding: 0.6rem;
   border-bottom: 1px solid green;
-  padding-left: 2rem;
+  padding: 0.6rem 2rem;
+}
+.ras__name--widt {
+  width: 20rem;
+}
+
+.lini {
+  width: 98%;
+  margin-left: 20rem;
+  padding: 1.5rem 1.5rem;
+  overflow: hidden;
+}
+
+.nome {
+  margin: 1rem;
+  width: 98%;
+  padding: 1rem 1rem;
+  overflow: hidden;
+  background-color: #7eb47e;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 5px;
+}
+
+.ras-color {
+  padding: 0 1rem;
+  background-color: #588557;
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgb(255, 255, 255);
 }
 
 .sparingg {
@@ -1919,7 +1947,7 @@ legend {
 
 .inklud__img {
   height: 7rem;
-  width: 8rem;
+  width: 9rem;
 }
 .inklud__img img {
   display: block;
@@ -1936,7 +1964,7 @@ legend {
 }
 
 .inklud__title {
-  width: calc(100% - 70px);
+  width: calc(100% - 80px);
   font-size: 2.2rem;
   margin-right: 7rem;
 }

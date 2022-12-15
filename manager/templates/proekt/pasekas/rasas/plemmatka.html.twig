@@ -24,7 +24,7 @@
             {% for rasa in rasas %}
 
                 <ul class="ras__data">
-                    <li class="ras__name  ">  {{ rasa.title }}  </li>
+                    <li class="ras__name  ras__name--widt">  {{ rasa.title }}  </li>
                     <li >
                         <a href="{{ path('proekt.pasekas.rasas.linias.plemmatka',{'id': rasa.id}) }}" class="btnn btnn--pt btnn--mb0 btnn--col-ras" >
                          раса   <strong class="strongo strongo--kras">{{ rasa.name }} </strong>
