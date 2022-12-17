@@ -51,20 +51,22 @@
             </ul> 
 
             <div class="nome ">
-                <div class="rasa__header  ">
+                <div class="lini-margin ">
                     <h1 class="ras__title  "><strong> Номера </strong> зарегистрированные в БД
                         <strong> для </strong> линии <strong> {{ linia.name }} </strong></h1>
 
                     {% for nomer in nomers %}
-                        <ul class="ras__data">
-
-                            <li class="ras__name">{{ nomer.name_star }}</li>
-
-                            <li class="ras__name rasa__name--wid15 ras-color ">{{ nomer.title }}</li>
-
+                        <ul class="ras__data ras__data--ras">
                             <li >
-                                <a href="{{ path('paseka.matkas.plemmatka.plemmatka', { 'id': nomer.id}) }}" class="btn-my btn-my--sm" >
-                                    <strong class="stro stro--kras">  н-{{ nomer.sort_nomer }} </strong>
+                                <div class = "ras-nomer ras-nomer--wid12">{{nomer.title}}</div>
+
+                            </li>
+
+                            <li class="ras__name  ">{{ nomer.name_star }}</li>
+
+                            <li class="  ras__name--widt10" > 
+                                <a href="{{ path('proekt.pasekas.matkas.plemmatkas.plemmatka', { 'id': nomer.id}) }}" class="btnn btnn--pt btnn--mb0 btnn--col-ras" >
+                                   номер  <strong class="strongo strongo--kras">  н-{{ nomer.sort_nomer }} </strong>
                                 </a>
                             </li>
                         </ul>

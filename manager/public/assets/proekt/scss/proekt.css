@@ -1162,8 +1162,8 @@ a:hover {
 }
 
 .proekts {
-  margin-bottom: 6rem;
-  padding-bottom: 6rem;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
   max-width: 90rem;
   margin-left: 5rem;
   margin-right: 5rem;
@@ -1180,8 +1180,13 @@ a:hover {
   background-color: #f6f6f6;
 }
 .proekts--rasa {
+  max-width: 100%;
+  margin-left: 2rem;
+  margin-right: 2rem;
   color: green;
   background-color: #f6f6f6;
+  box-shadow: inset 0px 0px 10px rgba(0, 128, 0, 0.9), 0 15px 25px rgba(246, 246, 246, 0.35);
+  border-bottom: 2px solid green;
 }
 @media screen and (max-width: 575px) {
   .proekts {
@@ -1573,6 +1578,11 @@ legend {
   color: #a78c16;
 }
 
+.plem__header {
+  margin: 0 0 2.5rem 2.5rem;
+  padding-left: 2.5rem;
+}
+
 .plem__title {
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
@@ -1616,6 +1626,101 @@ legend {
   width: 5rem;
 }
 
+.plem-nomer {
+  box-shadow: inset 0px 0px 10px rgba(21, 87, 153, 0.9);
+  background: transparent;
+  font-size: 1.5rem;
+  color: #155799;
+  margin: 10px;
+  padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+  transition: box-shadow 0.2s linear;
+}
+.plem-nomer--wid8 {
+  width: 8rem;
+}
+.plem-nomer--wid10 {
+  width: 10rem;
+}
+.plem-nomer--wid12 {
+  width: 12rem;
+}
+
+.plem-form {
+  margin-right: 4rem;
+}
+.plem-form form div fieldset {
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgb(175, 169, 112);
+}
+.plem-form form div fieldset div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+.plem-form form div fieldset div div input {
+  margin-left: 4rem;
+  box-sizing: border-box;
+  height: 16px;
+  width: 16px;
+}
+.plem-form form div fieldset div div label {
+  font-size: 1.6rem;
+  color: inherit;
+}
+.plem-form form div div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.plem-form form div div label {
+  min-width: 12rem;
+  margin-left: 2rem;
+  font-size: 1.8rem;
+  color: #a78c16;
+}
+.plem-form form div div input {
+  margin-left: 2rem;
+  padding-left: 2rem;
+  display: block;
+  padding: 0.5rem 0 0.75rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgb(190, 186, 151);
+  border-radius: 0;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: 1.4rem;
+  color: #155799;
+}
+.plem-form form div div input::-moz-placeholder {
+  color: rgba(21, 87, 153, 0.7);
+}
+.plem-form form div div input:-ms-input-placeholder {
+  color: rgba(21, 87, 153, 0.7);
+}
+.plem-form form div div input::placeholder {
+  color: rgba(21, 87, 153, 0.7);
+}
+.plem-form form div div input > :focus {
+  width: 60%;
+  background-color: #155799;
+  position: absolute;
+  left: 14rem;
+  top: 0;
+  z-index: 1;
+  transition: width 0.2s linear;
+}
+.plem-form form div div input--textarea {
+  height: 30px;
+  overflow: hidden;
+  resize: none;
+}
+
 .ras__title {
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
@@ -1629,9 +1734,13 @@ legend {
   justify-content: start;
   align-items: center;
   list-style: none;
-  max-width: 50%;
+  max-width: 65%;
   font-size: 1.6rem;
   line-height: 2;
+}
+.ras__data--ras {
+  max-width: 100%;
+  justify-content: space-between;
 }
 .ras__data a {
   padding: 0.6rem 1.6rem;
@@ -1652,22 +1761,47 @@ legend {
 .ras__name--widt {
   width: 20rem;
 }
+.ras__name--widt10 {
+  width: 15rem;
+}
+
+.ras-nomer {
+  box-shadow: inset 0px 0px 10px rgba(0, 128, 0, 0.9);
+  background: transparent;
+  width: 8rem;
+  font-size: 1.5rem;
+  color: green;
+  margin: 10px;
+  padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+  transition: box-shadow 0.2s linear;
+}
+.ras-nomer--wid8 {
+  width: 8rem;
+}
+.ras-nomer--wid12 {
+  width: 10rem;
+}
 
 .lini {
-  width: 98%;
-  margin-left: 20rem;
-  padding: 1.5rem 1.5rem;
+  width: 80%;
+  margin-left: 18rem;
+  padding: 1.5rem 1.5rem 2.5rem 1.5rem;
   overflow: hidden;
+  box-shadow: inset 0px 0px 10px rgba(0, 128, 0, 0.9);
+  border-bottom: 2px solid green;
+}
+
+.lini-margin {
+  margin-bottom: 2rem;
 }
 
 .nome {
-  margin: 1rem;
-  width: 98%;
-  padding: 1rem 1rem;
+  width: 81%;
+  margin-left: 14rem;
+  padding: 1.5rem;
   overflow: hidden;
-  background-color: #7eb47e;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
-  border-radius: 5px;
+  box-shadow: inset 0px 0px 10px rgba(0, 128, 0, 0.9);
+  border-bottom: 2px solid green;
 }
 
 .ras-color {

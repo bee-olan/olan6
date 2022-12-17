@@ -1,18 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
 {% block title %}Участники{% endblock %}
 
-{% block breadcrumbs %}
+{# {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-        {#        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Работа</a></li>#}
         <li class="breadcrumb-item active">Участники</li>
     </ol>
-{% endblock %}
+{% endblock %} #}
 
 
-{% block body %}
-    <article class="uchastie">
+{% block bodyy %}
+
+    <div class="proekts proekts--uhastiee">
+
+    {% include('proekt/pasekas/uchasties/uchastiee/_uchastie-includ.html.twig') %}
+
         <div class="uchastie__header  ">
 
             {#            {% if uchastie and  persona and mestoNomer %}#}
@@ -74,7 +77,9 @@
                     </li>
                     <li >
                         <div class = "uchastie-nomer uchastie-nomer__wid12">
-                            {{ plemmatka_kategoria(plemmatka.name_kateg) }}{{ plemmatka }}
+                            {# {{ plem_kategoria(kategoria) }}... #}
+                            {# {{kategoria}}_{{ plemmatka }} #}
+                            
                         </div> 
                     </li>
                     <li class="uchastie__name  ">эти данные берём за основу при регистрации ДочьМатки!  </li>
@@ -82,7 +87,7 @@
                 {% else %}
                 <li class="uchastie__name" >3. И Вам надо будет заполнить еще пару позиций:</li>
                 <li>
-                    <a href="{{ path('paseka.matkas.plemmatka-create',{'id' : nomer.id}  ) }}"
+                    <a href="{{ path('paseka.matkas.create',{'id' : nomer.id}  ) }}"
                        class="btn-my btn-my--sm">Продолжить регистрацию <strong class="stro stro--kras">ПлемМатки  </strong>
                     </a>
                 </li>
@@ -93,9 +98,9 @@
             </ul>
             <ul class="uchastie__data">
                 <li>
-                    <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemId.id}  ) }}"
+                    {# <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemId.id}  ) }}"
                        class="btn-my btn-my--sm">Перейти к регистрации  <strong class="stro stro--kras">ДочьМатки  </strong>
-                    </a>
+                    </a> #}
                 </li>
                 <li> 
                     <a href="{{ path('paseka.matkas'  ) }}"
@@ -105,6 +110,6 @@
             </ul>
         </div>
 
-    </article><!-- uchastie -->
+    </div><!-- uchastie -->
 
 {% endblock %}

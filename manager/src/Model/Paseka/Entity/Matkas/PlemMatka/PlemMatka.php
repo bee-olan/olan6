@@ -158,21 +158,21 @@ class PlemMatka
         throw new \DomainException('Отдел не найден.');
     }
 
-    public function removeDepartment(DepartmentId $id): void
-    {
-        foreach ($this->departments as $department) {
-            if ($department->getId()->isEqual($id)) {
-                foreach ($this->uchastniks as $uchastnik) {
-                    if ($uchastnik->isForDepartment($id)) {
-                        throw new \DomainException('Unable to remove department with uchasties.');
-                    }
-                }
-                $this->departments->removeElement($department);
-                return;
-            }
-        }
-        throw new \DomainException('Отдел не найден.');
-    }
+    // public function removeDepartment(DepartmentId $id): void
+    // {
+    //     foreach ($this->departments as $department) {
+    //         if ($department->getId()->isEqual($id)) {
+    //             foreach ($this->uchastniks as $uchastnik) {
+    //                 if ($uchastnik->isForDepartment($id)) {
+    //                     throw new \DomainException('Unable to remove department with uchasties.');
+    //                 }
+    //             }
+    //             $this->departments->removeElement($department);
+    //             return;
+    //         }
+    //     }
+    //     throw new \DomainException('Отдел не найден.');
+    // }
     ///////
     public function edit( string $title): void
     {

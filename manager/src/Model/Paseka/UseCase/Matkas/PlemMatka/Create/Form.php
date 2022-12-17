@@ -31,7 +31,7 @@ class Form extends AbstractType
                 'label' => 'Категория ПлемМатки',
                 'choices' => array_flip($this->kategorias->allList()),
                 'expanded' => true,
-                'multiple' => false,
+                'multiple' => false
             ])
 //            ->add('sparing', Type\ChoiceType::class, [
 //                'label' => 'Вид облёта (спаринг)',

@@ -128,9 +128,10 @@ class PlemMatkasController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-
+//dd($command);
                 return $this->redirectToRoute('paseka.matkas.plemmatka.sdelano',
-                    [ 'id_nom' => $id , 'plemmatka' => $command->name]);
+                    [ 'id_nom' => $id  , 'plemmatka' => $command->name]);
+                    
             } catch (\DomainException $e) {
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());

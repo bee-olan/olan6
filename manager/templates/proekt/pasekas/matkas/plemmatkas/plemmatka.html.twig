@@ -32,16 +32,17 @@
                             <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                         </svg>
                     </li>
-                    <li class="plem__name  ">Раса - Линия - Номер  -- базовые данные </li>
-                    <li><div class = "uchastie-nomer uchastie-nomer__wid8">
+                    <li class="plem__name  ">Как-то так! Получили такие: Раса_л-.._н-..  -  это будут базовые данные </li>
+                    <li><div class = "plem-nomer  plem-nomer__wid8">
                             {{ nomer.title }}
-                        </div></li>
+                        </div>
+                    </li>
                     <li></li>
                 {% else %}
                     <li class="plem__name" >1. Выбрать расу </li>
                     <li>
                         <a href="{{ path('paseka.rasas.plemmatka') }}"
-                           class="btn-my btn-my--sm">Выбрать <strong class="stro stro--kras">расу  </strong>
+                           class="btnn btnn--mb0 btnn--col">Выбрать <strong class="strongo strongo--kras">расу  </strong>
                         </a>
                     </li>
                 {% endif %}
@@ -55,15 +56,15 @@
                         </svg>
                     </li>
                     <li class="plem__name  ">С учетом Ваших данных: ПерсонНомера и НомерМеста.</li>
-                    <li><div class = "uchastie-nomer uchastie-nomer__wid12">
+                    <li><div class = "plem-nomer plem-nomer__wid12">
                             {{ nomer.title }} : {{ mestoNomer.nomer }}_Пн-{{ persona.nomer }}
                         </div></li>
                     <li></li>
                 {% else %}
                     <li class="plem__name" >Упс! Вы не выбрали  ПерсонНомера и НомерМеста ?</li>
                     <li>
-                        <a href="{{ path('paseka.uchasties.uchastie') }}"
-                           class="btn-my btn-my--sm"> Вернитесь к : <strong class="stro stro--kras">Стать участником </strong>
+                        <a href="{{ path('proekt.pasekas.uchasties.uchastiee') }}"
+                           class="btnn btnn--mb0 btnn--col"> Вернитесь к : <strong class="strongo trongo--kras">Стать участником </strong>
                         </a>
                     </li>
                 {% endif %}
@@ -81,8 +82,8 @@
 {#                {% else %}#}
                     <li class="plem__name" >3. И Вам надо будет заполнить еще пару позиций:</li>
                     <li>
-                        <a href="{{ path('paseka.matkas.plemmatka-create',{'id' : nomer.id}  ) }}"
-                           class="btn-my btn-my--sm">Продолжить регистрацию <strong class="stro stro--kras">ПлемМатки  </strong>
+                        <a href="{{ path('proekt.pasekas.matkas.create',{'id' : nomer.id}  ) }}"
+                           class="btnn btnn--mb0 btnn--col">Продолжить регистрацию <strong class="stro stro--kras">ПлемМатки  </strong>
                         </a>
                     </li>
 {#                {% endif %}#}

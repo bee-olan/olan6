@@ -1,85 +1,123 @@
 .ras__title {
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-    
-    &--mb0 {
-      margin-bottom: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+
+  &--mb0 {
+    margin-bottom: 0;
+  }
+}
+
+.ras__data {
+  display: flex; // добавляем т.к добаилась li-шка
+  //justify-content: center;
+  //justify-content: space-between;
+  justify-content: start;
+  align-items: center; // выравнивание по вертикали
+  list-style: none; // убрала точку у li
+  max-width: 65%;
+  font-size: 1.6rem;
+  line-height: 2.0;
+
+
+  &--ras {
+    max-width: 100%;
+    justify-content: space-between;
+    //margin-left: 2rem;
+  }
+
+  a {
+    padding: .6rem 1.6rem;
+    color: $text;
+
+    opacity: 0.6;
+    transition: opacity .2s linear;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+      color: $white;
+
     }
   }
+}
 
-  .ras__data{
-    display: flex; // добавляем т.к добаилась li-шка
-    //justify-content: center;
-    //justify-content: space-between;
-    justify-content: start;
-    align-items: center; // выравнивание по вертикали
-    list-style: none; // убрала точку у li
-    max-width: 50%;
-    font-size: 1.6rem;
-    line-height: 2.0;
-  
-    a {
-      padding: .6rem 1.6rem;
-      color: $text;
-  
-      opacity: 0.6;
-      transition: opacity .2s linear;
-  
-      &:hover {
-        opacity: 1;
-        text-decoration: none;
-        color: $white;
-        
-      }
-    }
+.ras__name {
+  // display: flex; // добавляем т.к добаилась li-шка
+  //width: 20.0rem;
+  // color: $text-uchastie;
+
+  border-bottom: 1px solid $rasa-color; // linia
+
+  padding: .6rem 2rem;
+
+  &--widt {
+    width: 20.0rem;
   }
 
-  .ras__name{
-    // display: flex; // добавляем т.к добаилась li-шка
-    //width: 20.0rem;
-    // color: $text-uchastie;
-    
-    border-bottom: 1px solid  $rasa-color; // linia
-  
-    padding: .6rem  2rem;
-
-    &--widt {
-      width: 20.0rem;
-    }
-
-   
-  } 
-
-  .lini {
-   // margin: 1rem ;
-    width: 98%;
-    margin-left: 20rem;
-    padding: 1.5rem 1.5rem;
-    overflow: hidden; // в рамках размера -все лишнее скрылось overflow
-   // background-color: #70a370;
-    //background-color: transparent;
-    //box-shadow: 0 15px 25px rgba($black, .35);
-    //border-radius: 5px;
+  &--widt10 {
+    width: 15.0rem;
   }
 
-  .nome {
-    margin: 1rem;
-    width: 98%;
-    padding: 1rem 1rem;
-    overflow: hidden; // в рамках размера -все лишнее скрылось overflow
-    background-color: #7eb47e;
-    //background-color: transparent;
-    box-shadow: 0 15px 25px rgba($black, .35);
-    border-radius: 5px;
-  }
-  
-  .ras-color {
-    padding: 0 1rem;
-    // padding-left: 1rem;
-    background-color: #588557;
-    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
-  }
-  
 
-  
+}
 
+.ras-nomer {
+
+  box-shadow: inset 0px 0px 10px rgba($rasa-color, 0.9);
+  background: transparent;
+  width: 8rem;
+  font-size: 1.5rem;
+  color: $rasa-color;
+  margin: 10px;
+  padding: .5rem 1.2rem .5rem 1.2rem;
+
+  transition: box-shadow .2s linear;
+
+  &--wid8 {
+    width: 8.0rem;
+  }
+
+  &--wid12 {
+    width: 10.0rem;
+  }
+
+}
+
+.lini {
+  // margin: 1rem ;
+  width: 80%;
+  margin-left: 18rem;
+
+  padding: 1.5rem 1.5rem 2.5rem 1.5rem;
+  overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+  // background-color: #70a370;
+  //background-color: transparent;
+  // box-shadow: 0 15px 25px rgba($black, .35);
+  // border-radius: 5px;
+  box-shadow: inset 0px 0px 10px rgba($rasa-color, 0.9); //тень внутри
+  border-bottom: 2px solid $rasa-color; // linia
+}
+
+.lini-margin {
+  margin-bottom: 2rem;
+}
+
+.nome {
+
+  width: 81%;
+  margin-left: 14rem;
+  // margin-right: 1rem;
+  padding: 1.5rem;
+  overflow: hidden; // в рамках размера -все лишнее скрылось overflow
+  //background-color: #7eb47e;
+  //background-color: transparent;
+  box-shadow: inset 0px 0px 10px rgba($rasa-color, 0.9); //тень внутри
+  border-bottom: 2px solid $rasa-color; // linia
+}
+
+.ras-color {
+  padding: 0 1rem;
+  // padding-left: 1rem;
+  background-color: #588557;
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+}

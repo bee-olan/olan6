@@ -69,17 +69,18 @@ class PlemMatkaController extends AbstractController
     }
 
     /**
-     * @Route("/sdelano/{id_nom}/{plemmatka}", name=".sdelano" , requirements={"id_nom"=Guid::PATTERN})
+     * @Route("/sdelano/{id_nom},{kategoria},{plemmatka}", name=".sdelano" , requirements={"id_nom"=Guid::PATTERN})
      * @param Request $request
      * @param NomerRepository $nomers
      * @param PersonaFetcher $personas
      * @param MestoNomerFetcher $mestoNomers
      * @param string $id_nom
      * @param string $plemmatka
+     * @param string $kategoria
      * @param PlemMatkaFetcher $plemmatkas
      * @return Response
      */
-    public function sdelano(string $id_nom, string $plemmatka, Request $request,
+    public function sdelano(string $id_nom, string $kategoria, string $plemmatka, Request $request,
                               PersonaFetcher $personas, MestoNomerFetcher $mestoNomers,
                               NomerRepository $nomers, PlemMatkaFetcher $plemmatkas): Response
     {
@@ -96,7 +97,7 @@ class PlemMatkaController extends AbstractController
 
 
         return $this->render('proekt/pasekas/matkas/plemmatkas/sdelano.html.twig',
-            compact('nomer', 'persona', 'mestoNomer', 'plemmatka', 'plemId') );
+            compact('kategoria', 'nomer', 'persona', 'mestoNomer', 'plemmatka', 'plemId') );
     }
 
    /**

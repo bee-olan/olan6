@@ -1,6 +1,6 @@
 .proekts {
-    margin-bottom: 6rem;
-    padding-bottom: 6rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
     max-width: 90rem;
     margin-left: 5rem;
     margin-right: 5rem;
@@ -23,8 +23,14 @@
     }
   
     &--rasa{
+      max-width: 100%;
+      margin-left: 2rem;
+      margin-right: 2rem;
       color: $rasa-color;
       background-color: $white;
+      box-shadow: inset 0px 0px 10px rgba($rasa-color,0.9), //тень внутри
+                  0 15px 25px rgba($white, .35);
+      border-bottom: 2px solid $rasa-color; // linia
     }
 
     @include breakpoint($mobile-bp) {
