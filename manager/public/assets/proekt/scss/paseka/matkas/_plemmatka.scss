@@ -1,7 +1,12 @@
 .plem__header{
   margin: 0 0 2.5rem 2.5rem;
   padding-left: 2.5rem;
+
+  &--col{
+    color: green;
+  }
 }
+
 
 .plem__title {
   margin-bottom: 1.5rem;
@@ -12,38 +17,108 @@
   }
 }
 
+.plem{
+    display: flex;
+   // justify-content: space-evenly;
+    align-items: center; // выравнивание по вертикали
+    list-style: none; // убрала точку у li
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2.0;
+    margin-bottom: 2rem;
+
+    &__jus-st{
+      justify-content: start;
+    }
+    &__jus-se{
+      justify-content: space-evenly;
+    }
+
+    a {
+      padding: .6rem 1.6rem;
+       color: $plem-color;
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity .2s linear;
+
+        &:hover {
+          opacity: 1;
+          text-decoration: none;
+          color: $text;          
+        }
+    }   
+}
 .plem__data {
-  display: flex; // добавляем т.к добаилась li-шка
-  //justify-content: center;
-  justify-content: space-between;
-  align-items: center; // выравнивание по вертикали
-  list-style: none; // убрала точку у li
-  width: 100%;
-  font-size: 1.6rem;
-  line-height: 2.0;
+    display: flex; // добавляем т.к добаилась li-шка
+    //justify-content: center;
+    justify-content: space-between;
+    align-items: center; // выравнивание по вертикали
+    list-style: none; // убрала точку у li
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2.0;
 
-  a {
-    padding: .6rem 1.6rem;
-    color: $text;
+      &--mt2{
+          margin-bottom: 2rem;     
+          padding-bottom: 2rem;
+      }
 
-    opacity: 0.6;
-    transition: opacity .2s linear;
+      &--col{
+        color: $text;    
+      }
+
+    a {
+      padding: .6rem 1.6rem;
+      color: $plem-color;
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity .2s linear;
+      // transition: box-shadow .2s linear;
+      // border-radius: 5px;
+
+        &:hover {
+          opacity: 1;
+          text-decoration: none;
+          color: $text;          
+        }
+    }
+}
+.ramka{
+  //padding: .6rem 1.6rem;
+  padding-top: 1.5rem;
+ // margin-top: 1.5rem;
+  transition: box-shadow .2s linear;
+  border-radius: 5px;
 
     &:hover {
-      opacity: 1;
+      // opacity: 1;
       text-decoration: none;
-      color: $white;
-
+      // color: $text;
+      box-shadow: inset 0px 0px 10px rgba($plem-color,0.9);
+      
     }
-  }
 }
+.plem__name-list{
+  display: flex;
+  padding: .6rem;
+  max-width: 15rem;
+    &--wid{
+    min-width: 31rem;
+    padding: 0;
+    }
 
+}
 .plem__name {
-  // display: flex; // добавляем т.к добаилась li-шка
-  // width: 60.0rem;
+   display: flex; // добавляем т.к добаилась li-шка
+  // max-width: 15.0rem;
   // color: $text-uchastie;
   padding: .6rem;
   border-bottom: 1px solid $plem-color; // linia
+
+  &--wid20 {
+   // width: 20.0rem;
+    padding: .6rem 0 .6rem 5rem;
+  }
 
   &--wid25 {
     width: 25.0rem;
@@ -56,6 +131,7 @@
   &--wid5 {
     width: 5.0rem;
   }
+
 }
 
 .plem-nomer {
@@ -80,5 +156,10 @@
   &--wid12 {
     width: 12.0rem;
   }
+
+  &--wid28 {
+    width: 28.0rem;
+  }
+  
 
 }

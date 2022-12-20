@@ -639,6 +639,43 @@ a:hover {
   border: none;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+}
+@media screen and (max-width: 991px) {
+  .pagination {
+    margin-top: 5rem;
+  }
+}
+
+.pagination__item {
+  margin: 0 0.5rem;
+}
+
+.pagination__link {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  background-color: #159957;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  font-size: 1.4rem;
+  line-height: 4rem;
+  color: #f6f6f6;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s linear;
+}
+.pagination__link:hover {
+  background-color: #16a25c;
+}
+.pagination__link.active {
+  background-color: #155799;
+  box-shadow: 0 0 10px rgba(21, 87, 153, 0.15);
+}
+
 .headerr {
   display: flex;
   width: calc(100% - 270px);
@@ -892,6 +929,18 @@ a:hover {
     padding-right: 0;
     font-size: 1.6rem;
   }
+}
+
+.karandash {
+  height: 2.2rem;
+  width: 2.2rem;
+}
+.karandash img {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .sidebarr {
@@ -1203,11 +1252,28 @@ a:hover {
   max-width: 100%;
   overflow: hidden;
   background-color: transparent;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 15px 25px rgba(246, 246, 246, 0.35);
   border-radius: 5px;
 }
 @media screen and (max-width: 575px) {
   .proekts-uch {
+    padding: 1.5rem;
+  }
+}
+
+.proekts-plem {
+  margin-bottom: 3rem;
+  max-width: 100%;
+  margin-left: 1rem;
+  margin-right: 2rem;
+  overflow: hidden;
+  box-shadow: 0 15px 25px rgba(246, 246, 246, 0.35);
+  border-radius: 5px;
+  color: #155799;
+  background-color: #f6f6f6;
+}
+@media screen and (max-width: 575px) {
+  .proekts-plem {
     padding: 1.5rem;
   }
 }
@@ -1582,6 +1648,9 @@ legend {
   margin: 0 0 2.5rem 2.5rem;
   padding-left: 2.5rem;
 }
+.plem__header--col {
+  color: green;
+}
 
 .plem__title {
   margin-bottom: 1.5rem;
@@ -1589,6 +1658,34 @@ legend {
 }
 .plem__title--mb0 {
   margin-bottom: 0;
+}
+
+.plem {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  font-size: 1.6rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+.plem__jus-st {
+  justify-content: start;
+}
+.plem__jus-se {
+  justify-content: space-evenly;
+}
+.plem a {
+  padding: 0.6rem 1.6rem;
+  color: #155799;
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s linear;
+}
+.plem a:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: #a78c16;
 }
 
 .plem__data {
@@ -1600,21 +1697,53 @@ legend {
   font-size: 1.6rem;
   line-height: 2;
 }
+.plem__data--mt2 {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+.plem__data--col {
+  color: #a78c16;
+}
 .plem__data a {
   padding: 0.6rem 1.6rem;
-  color: #a78c16;
+  color: #155799;
+  text-decoration: none;
   opacity: 0.6;
   transition: opacity 0.2s linear;
 }
 .plem__data a:hover {
   opacity: 1;
   text-decoration: none;
-  color: #f6f6f6;
+  color: #a78c16;
+}
+
+.ramka {
+  padding-top: 1.5rem;
+  transition: box-shadow 0.2s linear;
+  border-radius: 5px;
+}
+.ramka:hover {
+  text-decoration: none;
+  box-shadow: inset 0px 0px 10px rgba(21, 87, 153, 0.9);
+}
+
+.plem__name-list {
+  display: flex;
+  padding: 0.6rem;
+  max-width: 15rem;
+}
+.plem__name-list--wid {
+  min-width: 31rem;
+  padding: 0;
 }
 
 .plem__name {
+  display: flex;
   padding: 0.6rem;
   border-bottom: 1px solid #155799;
+}
+.plem__name--wid20 {
+  padding: 0.6rem 0 0.6rem 5rem;
 }
 .plem__name--wid25 {
   width: 25rem;
@@ -1643,6 +1772,9 @@ legend {
 }
 .plem-nomer--wid12 {
   width: 12rem;
+}
+.plem-nomer--wid28 {
+  width: 28rem;
 }
 
 .plem-form {
@@ -2083,6 +2215,9 @@ legend {
   height: 7rem;
   width: 9rem;
 }
+.inklud__img--plem {
+  width: 10rem;
+}
 .inklud__img img {
   display: block;
   width: 100%;
@@ -2102,6 +2237,9 @@ legend {
   font-size: 2.2rem;
   margin-right: 7rem;
 }
+.inklud__title--plem {
+  width: calc(100% - 100px);
+}
 
 .teni {
   background-color: #155799;
@@ -2113,4 +2251,39 @@ legend {
 }
 .teni--rasa {
   background-color: green;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.mb-0, .my-0 {
+  margin-bottom: 0 !important;
+}
+
+.tabl__header {
+  max-width: 100%;
+  margin: 3rem 2rem 3rem 1rem;
+  overflow: hidden;
+}
+
+.tabl-hover tbody tr:hover {
+  color: #f6f6f6;
+  background-color: rgba(246, 246, 246, 0.075);
+}
+
+.tabl {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #155799;
+}
+
+.tabl-bordered {
+  border: 1px solid rgba(246, 246, 246, 0.1);
+}
+
+.tabl__kateg:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: #f6f6f6;
 }/*# sourceMappingURL=proekt.css.map */

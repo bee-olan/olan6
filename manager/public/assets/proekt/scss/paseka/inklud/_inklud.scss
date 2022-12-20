@@ -18,21 +18,19 @@
 .inklud__img {
     height: 7rem;
     width: 9rem ;
+    
+    &--plem{
+            width: 10rem ;
+        }
 
     img {
         display: block;
         width: 100%;
         height: 100%;
         padding: .5rem  0 .5rem 1.5rem;
-        object-fit: cover; // если картинка не по размеру
-
-        // &--rasa{
-        //     //padding: .2rem ;
-        //     padding: .4rem  0 .2rem .8rem;
-        // }
+        object-fit: cover; // если картинка не по размеру       
     }
 
-    
 
     @include breakpoint($tablet-bp) {
         height: 4.6rem;
@@ -44,6 +42,10 @@
     font-size: 2.2rem;
     margin-right: 7rem;
     // color: $border-lin-nav;
+
+    &--plem{
+        width: calc(100% - #{100px});
+    }
     }
 
 .teni {

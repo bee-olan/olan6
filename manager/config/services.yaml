@@ -76,4 +76,6 @@ services:
  
     App\Widget\:
         resource: '../src/Widget'
-        tags: ['twig.extension']   
+        tags: ['twig.extension']
+        
+           

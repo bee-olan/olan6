@@ -3,41 +3,43 @@
   //margin: 3rem 1rem 2rem 5rem;
   //padding: 1.5rem 3rem;
   overflow: hidden; // в рамках размера -все лишнее скрылось overflow
-   background-color: $col-uchastie;
+  background-color: $col-uchastie;
   //background-color: transparent;
   //box-shadow: 0 15px 25px rgba($black, .35);
   //border-radius: 5px;
 }
 
-.uchastiee__header{
-    margin: 0 0 2.5rem 2.5rem;
-    padding-left: 2.5rem;
+.uchastiee__header {
+  margin: 0 0 2.5rem 2.5rem;
+  padding-left: 2.5rem;
 }
 
 .uchastiee__title {
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
+
   // color: $text-uchastie;
   //font-weight: 500;
   a {
     color: inherit; // что бы изменить цвет ссылки - на родительский post__title
     text-decoration: none;
   }
+
   &--mb0 {
     margin-bottom: 0;
   }
 }
 
-.uchastiee__data{
+.uchastiee__data {
   display: flex; // добавляем т.к добаилась li-шка
   //justify-content: center;
   justify-content: space-between;
   align-items: center; // выравнивание по вертикали
   list-style: none; // убрала точку у li
   max-width: 75rem;
-   color: $text-uchastie;
+  color: $text-uchastie;
   line-height: 2.0;
- 
+
 
   a {
     padding: .6rem 1.6rem;
@@ -53,57 +55,50 @@
     }
   }
 }
+
 .uchastiee__galka {
-  
+
   //padding: 2rem 0 0 5rem;
   //margin-left: -10rem;
   //padding-left: 10rem;
   margin-top: 1.6rem;
 }
 
-.uchastiee__name{
+.uchastiee__name {
   // display: flex; // добавляем т.к добаилась li-шка
   font-size: 1.6rem;
   padding: 1.6rem .5rem .3rem .5rem;
-  
+
 
   &--wid25 {
     width: 25.0rem;
   }
+
   &--wid15 {
     width: 15.0rem;
   }
+
   &--wid5 {
     width: 5.0rem;
   }
 }
 
-.uchastiee-nomer{
+.uchastiee-nomer {
   //width: 6rem;
   box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
   background: transparent;
   font-size: 1.5rem;
   color: #fff;
   margin: 10px;
-  padding: .5rem 1.2rem  .5rem  1.2rem;
+  padding: .5rem 1.2rem .5rem 1.2rem;
 
   transition: box-shadow .2s linear;
 
   &--wid8 {
     width: 8.0rem;
   }
+
   &--wid12 {
     width: 12.0rem;
   }
 }
-
-
-
-
-
-
-
-
-
-
-

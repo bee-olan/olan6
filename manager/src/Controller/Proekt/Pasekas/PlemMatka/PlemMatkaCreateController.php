@@ -18,9 +18,10 @@ use App\Model\Paseka\Entity\Uchasties\Personas\Id as PersonaId;
 
 use App\Model\Paseka\UseCase\Matkas\PlemMatka\Create;
 use App\Model\Paseka\UseCase\Matkas\PlemMatka\Remove;
-use App\ReadModel\Paseka\Matkas\PlemMatka\Filter;
 
-use App\ReadModel\Paseka\Matkas\PlemMatka\PlemMatkaFetcher;
+use App\ReadModel\Proekt\Pasekas\PlemMatka\Side\Filter;
+use App\ReadModel\Proekt\Pasekas\PlemMatka\Side\PlemSideFetcher;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +34,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PlemMatkaCreateController extends AbstractController
 {
-    private const PER_PAGE = 50;
+    private const PER_PAGE = 10;
 
     private $logger;
 
@@ -42,32 +43,32 @@ class PlemMatkaCreateController extends AbstractController
         $this->logger = $logger;
     }
 
-    // /**
-    //  * @Route("", name="")
-    //  * @param Request $request
-    //  * @param PlemMatkaFetcher $fetcher
-    //  * @return Response
-    //  */
-    // public function index(Request $request, PlemMatkaFetcher $fetcher): Response
-    // {
-    //     $filter = new Filter\Filter();
+    /**
+     * @Route("", name="")
+     * @param Request $request
+     * @param PlemSideFetcher $fetcher
+     * @return Response
+     */
+    public function index(Request $request, PlemSideFetcher $fetcher): Response
+    {
+        $filter = new Filter\Filter();
 
-    //     $form = $this->createForm(Filter\Form::class, $filter);
-    //     $form->handleRequest($request);
+        $form = $this->createForm(Filter\Form::class, $filter);
+        $form->handleRequest($request);
 
-    //     $pagination = $fetcher->all(
-    //         $filter,
-    //         $request->query->getInt('page', 1),
-    //         self::PER_PAGE,
-    //         $request->query->get('sort', 'name', 'persona'),
-    //         $request->query->get('direction', 'asc')
-    //     );
+        $pagination = $fetcher->all(
+            $filter,
+            $request->query->getInt('page', 1),
+            self::PER_PAGE,
+            $request->query->get('sort', 'name', 'persona'),
+            $request->query->get('direction', 'asc')
+        );
 
-    //     return $this->render('proekt/pasekas/matkas/index.html.twig', [
-    //         'pagination' => $pagination,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
+        return $this->render('proekt/pasekas/matkas/index.html.twig', [
+            'pagination' => $pagination,
+            'form' => $form->createView(),
+        ]);
+    }
 
     /**
      * @Route("/create/{id}", name=".create" , requirements={"id"=Guid::PATTERN})
@@ -76,17 +77,15 @@ class PlemMatkaCreateController extends AbstractController
      * @param PersonaRepository $personas
      * @param MestoNomerRepository $mestonomers
      * @param string $id
-     * @param PlemMatka $plemmatka
-     * @param PlemMatkaFetcher $plemmatkas
+     * @param PlemSideFetcher $plemmatkas
      * @param Create\Handler $handler
      * @return Response
      */
     public function create(string $id, Request $request,
-                           PlemMatkaFetcher $plemmatkas,
+                           PlemSideFetcher $plemmatkas,
                            PersonaRepository $personas,
                            MestoNomerRepository $mestonomers,
                            NomerRepository $nomers,
-                           PlemMatka $plemmatka,
                            Create\Handler $handler): Response
     {
 //        $this->denyAccessUnlessGranted('ROLE_WORK_MANAGE_PROJECTS');

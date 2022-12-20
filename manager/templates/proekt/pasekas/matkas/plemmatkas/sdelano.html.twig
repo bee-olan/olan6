@@ -12,33 +12,32 @@
 
 {% block bodyy %}
 
-    <div class="proekts proekts--uhastiee">
+     <div  class="proekts proekts--plemmatka">
 
-    {% include('proekt/pasekas/uchasties/uchastiee/_uchastie-includ.html.twig') %}
+    {% include('proekt/pasekas/matkas/plemmatkas/_plemmatka-includ.html.twig') %}
+        
+        <div class="proekts-plr  ">
 
-        <div class="uchastie__header  ">
+                       {% if plemId  %}
+                           <h1 class="plem__title  "> Всё получилось!     ................</h1>
+                       {% else %}
+            <h1 class="plem__title "> Для регистрации ПлемМатки, надо последовательно заполнить пункты: 1 - 3 </h1>
+                       {% endif %}
 
-            {#            {% if uchastie and  persona and mestoNomer %}#}
-            {#                <h1 class="uchastie__title  "> {{ uchastie.name.full}}, Вы участник проекта и, по желанию,#}
-            {#                    можете принять участие в предстоящих сезонах как: матковод, пчеловод, пчелоМатковод или наблюдатель.</h1>#}
-            {#            {% else %}#}
-            <h1 class="uchastie__title  "> Для регистрации ПлемМатки, надо последовательно заполнить пункты: 1 - 3 </h1>
-            {#            {% endif %}#}
-
-            <ul class="uchastie__data">
+            <ul class="plem__data">
                 {% if nomer %}
                     <li>
                         <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                         </svg>
                     </li>
-                    <li class="uchastie__name  ">Раса - Линия - Номер</li>
-                    <li><div class = "uchastie-nomer uchastie-nomer__wid8">
+                    <li class="plem__name  ">Раса - Линия - Номер</li>
+                    <li><div class = "plem-nomer  plem-nomer__wid8">
                             {{ nomer.title }}
                         </div></li>
                     <li></li>
                 {% else %}
-                    <li class="uchastie__name" >1. Выбрать расу </li>
+                    <li class="plem__name" >1. Выбрать расу </li>
                     <li>
                         <a href="{{ path('paseka.rasas.plemmatka') }}"
                            class="btn-my btn-my--sm">Выбрать <strong class="stro stro--kras">расу  </strong>
@@ -47,20 +46,20 @@
                 {% endif %}
             </ul>
 
-            <ul class="uchastie__data">
+            <ul class="plem__data">
                 {% if mestoNomer and persona %}
                     <li>
                         <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                         </svg>
                     </li>
-                    <li class="uchastie__name  ">С учетом Ваших данных: ПерсонНомера и НомерМеста.</li>
-                    <li><div class = "uchastie-nomer uchastie-nomer__wid12">
+                    <li class="plem__name  ">С учетом Ваших данных: ПерсонНомера и НомерМеста.</li>
+                    <li><div class = "plem-nomer plem-nomer__wid12">
                             {{ nomer.title }} : {{ mestoNomer.nomer }}_Пн-{{ persona.nomer }}
                         </div></li>
                     <li></li>
                 {% else %}
-                    <li class="uchastie__name" >Упс! Вы не выбрали  ПерсонНомера и НомерМеста ?</li>
+                    <li class="plem__name" >Упс! Вы не выбрали  ПерсонНомера и НомерМеста ?</li>
                     <li>
                         <a href="{{ path('paseka.uchasties.uchastie') }}"
                            class="btn-my btn-my--sm"> Вернитесь к : <strong class="stro stro--kras">Стать участником </strong>
@@ -68,43 +67,39 @@
                     </li>
                 {% endif %}
             </ul>
-            <ul class="uchastie__data">
+            <ul class="plem__data">
                 {% if plemmatka %}
                     <li>
                         <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                         </svg>
                     </li>
-                    <li >
-                        <div class = "uchastie-nomer uchastie-nomer__wid12">
-                            {# {{ plem_kategoria(kategoria) }}... #}
-                            {# {{kategoria}}_{{ plemmatka }} #}
-                            
-                        </div> 
+                    {# <li class="plem__name  ">Добавили категорию  {{kategoria}} и внутреннюю нумерацию</li> #}
+                    <li > <div class = "plem-nomer plem-nomer__wid12">     
+                                {{kategoria}}_{{ plemmatka }}  
+                            </div> 
                     </li>
-                    <li class="uchastie__name  ">эти данные берём за основу при регистрации ДочьМатки!  </li>
+                    <li class="plem__name  ">эти данные берём за основу при регистрации ДочьМатки!  </li>
                     <li></li>
                 {% else %}
-                <li class="uchastie__name" >3. И Вам надо будет заполнить еще пару позиций:</li>
+                <li class="plem__name" >3. И Вам надо будет заполнить еще пару позиций:</li>
                 <li>
                     <a href="{{ path('paseka.matkas.create',{'id' : nomer.id}  ) }}"
-                       class="btn-my btn-my--sm">Продолжить регистрацию <strong class="stro stro--kras">ПлемМатки  </strong>
+                       class="btnn btnn--mb0 btnn--col">Продолжить регистрацию <strong class="stro stro--kras">ПлемМатки  </strong>
                     </a>
                 </li>
                 {% endif %}
             </ul>
-            <ul class="uchastie__data"> 
-                <li> </li>
-            </ul>
-            <ul class="uchastie__data">
+            
+            <ul class="plem__data plem__data--mt2">
                 <li>
-                    {# <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemId.id}  ) }}"
-                       class="btn-my btn-my--sm">Перейти к регистрации  <strong class="stro stro--kras">ДочьМатки  </strong>
-                    </a> #}
+                    <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemId.id}  ) }}"
+                       class="btnn btnn--mb0 btnn--col">Перейти к регистрации  <strong class="stro stro--kras">ДочьМатки  </strong>
+                    </a>
                 </li>
                 <li> 
-                    <a href="{{ path('paseka.matkas'  ) }}"
-                       class="btn-my btn-my--sm">Список всех зарегистрированных  <strong class="stro stro--kras">ПлемМатки  </strong>
+                    <a href="{{ path('proekt.pasekas.matkas'  ) }}"
+                       class="btnn btnn--mb0 btnn--col">Список всех зарегистрированных  <strong class="stro stro--kras">ПлемМатки  </strong>
                     </a>
                 </li>
             </ul>

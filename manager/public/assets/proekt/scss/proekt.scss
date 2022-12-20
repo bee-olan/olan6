@@ -42,6 +42,7 @@ a {
 @import "page/kroxii";
 @import "page/strongo";
 @import "page/filters";
+@import "page/navigator";
 //
 @import "page/header/header";
 
@@ -49,6 +50,8 @@ a {
 @import "page/header/search";
 @import "page/header/burger";
 @import "page/header/nav";
+
+@import "page/wsem/karandash";
 
 //
 @import "page/side/sidebar";
@@ -92,3 +95,5 @@ a {
 @import "paseka/uchasties/uchastiee-form";
 
 @import "paseka/inklud/inklud";
+
+@import "paseka/tablle/tablle";

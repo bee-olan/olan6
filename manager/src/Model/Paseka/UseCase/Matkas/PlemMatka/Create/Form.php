@@ -40,7 +40,8 @@ class Form extends AbstractType
 //                'multiple' => false,
 //            ])
             ->add('title', Type\TextType::class, array(
-                'label' => 'Ваша внутренняя нумерация или название маточки  и комментарий',
+                'label' => ' Внутренняя нумерация или 
+                 название маточки,  или комментарий',
                 'attr' => [
                     'placeholder' => 'Пример: рыжая красотка )))'
                 ]

@@ -1,72 +1,85 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
 {% block title %}ПлемМатка{% endblock %}
 
-{% block breadcrumbs %}
+{% block sidebar %}              
+    {% include('proekt/pasekas/matkas/side/_sidefiltr.html.twig') %}
+{% endblock %}
+
+{# {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">Пасека</a></li>
         <li class="breadcrumb-item active">ПлемМатка</li>
     </ol>
-{% endblock %}
+{% endblock %} #}
 
-{% block body %}
+{% block bodyy %}
 
-    <div class="controls">
+    {# <div class="controls">
         <a href="{{ path('paseka.matkas.plemmatka') }}" class="btn btn-success">Добавить Племенную матку</a>
-    </div>
+    </div> #}
 
-    <div class="card">
-        <div class="card-body">
+<div  class="  proekts-plem">
 
-            {{ form_start(form) }}
-            <div class="row">
-                <div class="col-md-2">{{ form_widget(form.name) }}</div>
-                <div class="col-md-2">{{ form_widget(form.persona) }}</div>
-                <div class="col-md-2">{{ form_widget(form.status) }}</div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">Filter</button>
-                    <a href="{{ path('paseka.matkas') }}" class="btn btn-outline-secondary">Сброс</a>
-                </div>
-            </div>
-            {{ form_end(form) }}
+    <div class="inklud">
 
+        <div class="inklud__img  inklud__img--plem">
+            <img class="" src="{{ asset('assets/proekt/images/matkas/matkiM.png') }}" alt="">           
         </div>
-    </div>
 
-    <div class="box">
-        <table class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'ПерсонНомер', 'persona') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% set token = csrf_token('delete') %}
-            {% for plemmatka in pagination %}
-                <tr>
-                   <td>
-                       <a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">
-                           {{ plemmatka_kategoria(plemmatka.kategoria) }}{{ plemmatka.name }}
-                       </a>
-                   </td>
-                    <td>{{ plemmatka.persona }}</td>
-                    <td>{{ plemmatka_status(plemmatka.status) }}</td>
-                    <td>
-                        <a href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}"
-                           class="btn-my "><span class="fa fa-pencil"></span></a>
-                    </td>
-
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="inklud__title inklud__title--plem teni">
+           Список зарегистрированных  ПлемМаток
+        </div> 
     </div>
+        {# ------------------------- #}
+    <div class="proekts-plr  ">
+                <ul class = "plem__data plem__data--col">
+                    <li class = "plem__name  plem__name-list--wid" >
+                    ПлемМатка (по ссылке -расшифровка)
+                    </li> 
+                    <li class = "plem__name">Кат-рия</li>
+                    <li class = "plem__name">ПерсонНомер</li>
+                   
+                    <li class = "plem__name">
+                        Статус
+                        {# {{ member_status(u4astnik.status) }}  #}
+                    </li>
+                    <li class = "plem__name">
+                        Ред-вать
+                    </li>
+                </ul>
+                {% for plemmatka in pagination %}
 
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
+                <ul class = "plem__data">
+                    <li class = "plem__name-list plem__name-list--wid ramka" >
+                        <a class="" href="{{ path('proekt.pasekas.matkas.plemmatkas.show', {'plem_id': plemmatka.id}) }}">               
+                                {{ plemmatka.kategoria }}_{{ plemmatka.name }}              
+                        </a> 
+                    </li>
+                    <li class = "plem__name-list">  {{ plemmatka.kategoria }} </li>
+                    <li class = "plem__name-list"> {{ plemmatka.persona }} </li>
+                    <li class = "plem__name-list">{{  plemmatka_status(plemmatka.status) }}</li>
+                    <li class = "plem__name-list">
+                        <a   href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}"  class="btnn btnn--mb1 " >
+                            <div class="karandash">
+                                <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            
+
+                {% endfor %}
+
+
+       
+
     </div>
+</div>
+
+ {# <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>  #}
 
 {% endblock %}
