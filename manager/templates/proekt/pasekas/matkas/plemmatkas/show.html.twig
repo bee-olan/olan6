@@ -74,28 +74,33 @@
                     <thead>
                     <tr  >
                         {% for kategoria in kategorias %}
-                            <th style="text-align: center; color: white">
+                            <th class = "tabl-bordered tabl-th">
                                 {{ kategoria.name }}
                             </th>
                         {% endfor %}
-                        <th style="text-align: center; color: white" >Характеристики категорий</th>
+                        <th class = "tabl-th" >Характеристики категорий</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                     {% for permission in permissions %}
-                        <tr class="tablle__kateg ">
+                        <tr class="tablle__kateg  tabl-bordered" >
                             {% for kategoria in kategorias %}
-                                <td style="text-align: center;">
+                                <th  class = "tabl-bordered tabl-icon-td">
                                     {% if permission in kategoria.permissions %}
-                                        {# <span class="fa fa-check"></span> #}
-                                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                        </svg>
+                                   <div class="tabl-icon  " >
+                                            <svg width="2em" height="2em"   viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                            </svg>
+                                    </div>
                                     {% endif %}
-                                </td>
+                                </th>
                             {% endfor %}
-                            <td >{{ permission|trans({}, 'paseka_permissions') }}</td>
-
+                            <td style="position: relative;">
+                                <div style=" padding: 1rem 5rem .5rem 5rem" >
+                                    {{ permission|trans({}, 'paseka_permissions') }}
+                                </div>    
+                            </td>
+                                
                         </tr>
                     {% endfor %}
                     </tbody>
