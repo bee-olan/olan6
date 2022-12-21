@@ -1,13 +1,18 @@
 {% extends 'proekt/base.html.twig' %}
 
-{% block title %}Участники{% endblock %}
+{% block title %}....{% endblock %}
 
-{# {% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-        <li class="breadcrumb-item active">Участники</li>
-    </ol>
-{% endblock %} #}
+{% block kroxii %}
+            <a href="{{ path('proekt') }}">Главная</a>
+            <a href="#">Рег-ция ПлемМатки</a>
+            <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Пункты 1-3</a>
+             <a href="{{ path('proekt.pasekas.rasas.plemmatka') }}">Раса_</a>
+            <span class="aktiv ">Пункт 3</span> 
+            {% if plemId  %}
+            <span class="aktiv ">Катеория и внутреняя нумерация</span>
+            <span style= "color: red">Сделано!!!  </span>
+            {% endif %} 
+{% endblock %}
 
 
 {% block bodyy %}
@@ -76,7 +81,7 @@
                     </li>
                     {# <li class="plem__name  ">Добавили категорию  {{kategoria}} и внутреннюю нумерацию</li> #}
                     <li > <div class = "plem-nomer plem-nomer__wid12">     
-                                {{kategoria}}_{{ plemmatka }}  
+                               <strong class="strongo strongo--kras"> {{kategoria}}</strong>_{{ plemmatka }}  
                             </div> 
                     </li>
                     <li class="plem__name  ">эти данные берём за основу при регистрации ДочьМатки!  </li>
@@ -94,12 +99,12 @@
             <ul class="plem__data plem__data--mt2">
                 <li>
                     <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id' : plemId.id}  ) }}"
-                       class="btnn btnn--mb0 btnn--col">Перейти к регистрации  <strong class="stro stro--kras">ДочьМатки  </strong>
+                       class="btnn btnn--mb0 btnn--col">Перейти к регистрации  <strong class="strongo strongo--kras">ДочьМатки  </strong>
                     </a>
                 </li>
                 <li> 
                     <a href="{{ path('proekt.pasekas.matkas'  ) }}"
-                       class="btnn btnn--mb0 btnn--col">Список всех зарегистрированных  <strong class="stro stro--kras">ПлемМатки  </strong>
+                       class="btnn btnn--mb0 btnn--col">Список всех зарегистрированных  <strong class="strongo strongo--kras">ПлемМаток  </strong>
                     </a>
                 </li>
             </ul>

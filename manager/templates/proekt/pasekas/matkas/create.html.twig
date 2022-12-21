@@ -2,13 +2,22 @@
 
 {% block title %}ПлемМатка{% endblock %}
 
-    {% block kroxii %}  
+    {# {% block kroxii %}  
        
                 <a href="{{ path('home') }}">Главная</a>
                 <a href="{{ path('paseka.matkas') }}">Расы зарегистрированные</a>
                 <span class="aktiv ">Добавить новую ПлемМатку</span>
            
-    {% endblock %}
+    {% endblock %} #}
+
+ {% block kroxii %}
+            <a href="{{ path('proekt') }}">Главная</a>
+            <a href="#">Рег-ция ПлемМатки</a>
+            <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Пункты 1-3</a>
+             <a href="{{ path('proekt.pasekas.rasas.plemmatka') }}">Раса_</a>
+            <span class="aktiv ">Пункт 3</span> 
+            <span class="aktiv ">Катеория и внутреняя нумерация</span> 
+{% endblock %}   
 
 {% block bodyy %}
 
@@ -19,7 +28,7 @@
     <div class="proekts-plr  ">
 
         <h1 class="plem__title  ">Автоматически сформируется такое название новой ПлемМатки  : 
-        <strong class="strongo strongo--kras">{{ command.name }}</strong>
+        {{ command.name }} <strong class="strongo strongo--kras">_№-{{command.sort}}</strong>
         </h1>
 
         <h1 class="plem__title  ">Вам надо заполнить еще две позиции:</h1>
@@ -36,7 +45,7 @@
     </div>        
 
 </div><!-- rasas -->
-
+{% include('proekt/pasekas/matkas/kategor/_kategor-includ.html.twig') %}
 
 
 {% endblock %}

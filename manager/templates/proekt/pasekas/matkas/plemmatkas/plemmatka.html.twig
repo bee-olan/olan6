@@ -8,7 +8,13 @@
         <li class="breadcrumb-item active">Участники</li>
     </ol>
 {% endblock %} #}
-
+{% block kroxii %}
+            <a href="{{ path('proekt') }}">Главная</a>
+            <a href="#">Рег-ция ПлемМатки</a>
+            <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Пункты 1-3</a>
+             <a href="{{ path('proekt.pasekas.rasas.plemmatka') }}">Раса_</a>
+            <span class="aktiv ">Пункт 3</span> 
+{% endblock %}
 
 {% block bodyy %}
 
@@ -22,8 +28,9 @@
 {#                <h1 class="uchastie__title  "> {{ uchastie.name.full}}, Вы участник проекта и, по желанию,#}
 {#                    можете принять участие в предстоящих сезонах как: матковод, пчеловод, пчелоМатковод или наблюдатель.</h1>#}
 {#            {% else %}#}
-                <h1 class="plem__title  "> Последовательно заполняем пункты: 1 - 3 </h1>
-{#            {% endif %}#}
+                {# <h1 class="plem__title  "> Последовательно заполняем пункты: 1 - 3 </h1> #}
+                <h1 class="plem__title  ">Продолжаем регистрацию.  Пункт:  3 </h1>
+{#           {% endif %}#}
 
             <ul class="plem__data">
                 {% if nomer %}

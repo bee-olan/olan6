@@ -43,11 +43,10 @@ class NomerController extends AbstractController
      * @param NomerFetcher $nomers
      * @return Response
      */
-    public function index(Linia $linia, NomerFetcher $nomers): Response
+    public function index( Linia $linia, NomerFetcher $nomers): Response
     {
-
         // $this->denyAccessUnlessGranted(LiniaAccess::MANAGE_MEMBERS, $linia);
-//dd( $nomers->allOfLinia($linia->getId()->getValue()));
+
         return $this->render('proekt/pasekas/rasas/linias/nomers/index.html.twig', [
             'linia' => $linia,
             'nomers' => $nomers->allOfLinia($linia->getId()->getValue()),

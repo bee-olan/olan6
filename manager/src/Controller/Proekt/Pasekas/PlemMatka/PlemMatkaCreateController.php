@@ -6,6 +6,9 @@ namespace App\Controller\Proekt\Pasekas\PlemMatka;
 
 use App\Annotation\Guid;
 
+use App\Model\Paseka\Entity\Matkas\Kategoria\Permission;
+use App\ReadModel\Paseka\Matkas\KategoriaFetcher;
+
 use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
 use App\Model\Mesto\Entity\InfaMesto\Id as MestoNomerId;
 
@@ -79,6 +82,7 @@ class PlemMatkaCreateController extends AbstractController
      * @param string $id
      * @param PlemSideFetcher $plemmatkas
      * @param Create\Handler $handler
+     * @param KategoriaFetcher $kategoria
      * @return Response
      */
     public function create(string $id, Request $request,
@@ -86,7 +90,9 @@ class PlemMatkaCreateController extends AbstractController
                            PersonaRepository $personas,
                            MestoNomerRepository $mestonomers,
                            NomerRepository $nomers,
-                           Create\Handler $handler): Response
+                           Create\Handler $handler,
+                           KategoriaFetcher $kategoria
+                           ): Response
     {
 //        $this->denyAccessUnlessGranted('ROLE_WORK_MANAGE_PROJECTS');
 
@@ -118,6 +124,8 @@ class PlemMatkaCreateController extends AbstractController
 
         $command->mesto = $mestonomer->getNomer();
 
+        
+
         $command->name = $nomer->getTitle()." : ".$command->mesto."_пН-". $command->persona."_№-".$command->sort;
 
         // dd($command);
@@ -137,10 +145,14 @@ class PlemMatkaCreateController extends AbstractController
                 $this->addFlash('error', $e->getMessage());
             }
         }
+        $kategorias = $kategoria->all();
+        $permissions = Permission::names();
 
         return $this->render('proekt/pasekas/matkas/create.html.twig', [
             'form' => $form->createView(),
             'command' => $command,
+            'kategorias' => $kategorias, 
+            'permissions' => $permissions,
         ]);
     }
 

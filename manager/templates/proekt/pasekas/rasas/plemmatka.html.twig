@@ -2,7 +2,12 @@
 
 {% block title %}Раса{% endblock %}
 
-
+{% block kroxii %}
+    <a href="{{ path('proekt') }}">Главная</a>
+    <a href="#">Рег-ция ПлемМатки</a>
+    <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Пункты 1-3</a>
+    <span class="aktiv ">Выбoр Расы</span> 
+{% endblock %}
 {# {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>

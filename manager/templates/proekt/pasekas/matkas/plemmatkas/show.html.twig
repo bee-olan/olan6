@@ -67,46 +67,9 @@
                 <li class="plem__name plem__name--wid20" >-- статус ПлемМатки на данный момент  </li>
             </ul>       
         </div>
-</div>        
-        <div class="tabl__header ">
-            <div style="overflow: auto">
-                <table class="tabl tabl-bordered tabl-hover mb-0 ">
-                    <thead>
-                    <tr  >
-                        {% for kategoria in kategorias %}
-                            <th class = "tabl-bordered tabl-th">
-                                {{ kategoria.name }}
-                            </th>
-                        {% endfor %}
-                        <th class = "tabl-th" >Характеристики категорий</th>
-                    </tr>
-                    </thead>
-                    <tbody >
-                    {% for permission in permissions %}
-                        <tr class="tablle__kateg  tabl-bordered" >
-                            {% for kategoria in kategorias %}
-                                <th  class = "tabl-bordered tabl-icon-td">
-                                    {% if permission in kategoria.permissions %}
-                                   <div class="tabl-icon  " >
-                                            <svg width="2em" height="2em"   viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                            </svg>
-                                    </div>
-                                    {% endif %}
-                                </th>
-                            {% endfor %}
-                            <td style="position: relative;">
-                                <div style=" padding: 1rem 5rem .5rem 5rem" >
-                                    {{ permission|trans({}, 'paseka_permissions') }}
-                                </div>    
-                            </td>
-                                
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-{# </div> #}
+</div> 
+
+{% include('proekt/pasekas/matkas/kategor/_kategor-includ.html.twig') %}
+
 
 {% endblock %}
