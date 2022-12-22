@@ -1,3 +1,8 @@
+.plem-form__header{
+    margin: 0 0 2.5rem 0;
+    // padding-left: 2.5rem;
+
+  }
 .plem-form{
     margin-right: 4rem;
 
@@ -65,9 +70,9 @@
                         // form-control
                         margin-left: 2rem;
                         padding-left: 2rem;
-
+                        
                         display: block;
-                        // width: 100%;
+                        width: 50rem;
                         padding: .5rem 0 .75rem;
                     
                         background: none;// убираем цвет
@@ -82,7 +87,8 @@
                         color: $plem-color;
                     
                         &::placeholder {
-                            color: rgba( $plem-color, .7);// непрозрачность
+                            color: rgba( $plem-color, .5);// непрозрачность
+                            
                         }
                     
                         & > :focus  {  //когда фокус на полоске формы - длину увеличиваем

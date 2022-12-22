@@ -40,10 +40,9 @@ class Form extends AbstractType
 //                'multiple' => false,
 //            ])
             ->add('title', Type\TextType::class, array(
-                'label' => ' Внутренняя нумерация или 
-                 название маточки,  или комментарий',
+                'label' => ' Внутренняя нумерация',
                 'attr' => [
-                    'placeholder' => 'Пример: рыжая красотка )))'
+                    'placeholder' => 'Внутреняя нумрация или комментарий. Пример: рыжая красотка )))'
                 ]
             ));
 //            ->add('sort', Type\IntegerType::class);

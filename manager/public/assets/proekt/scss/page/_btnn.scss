@@ -37,9 +37,13 @@
         color: $grad2;
     }
 
-    &--col {
-       
+    &--col {      
         border: 1px solid $plem-color;
+        &:hover {
+            background: linear-gradient( $grad1-o, $grad2-o);
+            text-decoration: none;
+            color: $grad1;
+        }
     }
     &--col-ras {
        

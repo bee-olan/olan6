@@ -24,6 +24,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/proekt/pasekas/matkas/plemmatkas", name="proekt.pasekas.matkas.plemmatkas")
@@ -102,6 +103,7 @@ class PlemMatkaController extends AbstractController
 
    /**
     * @Route("/{plem_id}", name=".show", requirements={"plem_id"=Guid::PATTERN})
+    * @ParamConverter("plemmatka", options={"id" = "plem_id"})
     * @param PlemMatka $plemmatka
     * @param   string $plem_id
     * @param PlemMatkaFetcher $fetchers
@@ -109,21 +111,23 @@ class PlemMatkaController extends AbstractController
     * @param KategoriaFetcher $kategoria
     * @return Response
     */
-   public function show( string $plem_id, PlemMatkaFetcher $fetchers,
+   public function show( string $plem_id,
+                        PlemMatka $plemmatka,     
+                        PlemMatkaFetcher $fetchers,
                         UchastieRepository $uchasties ,
                          KategoriaFetcher $kategoria ): Response
    {
-
-      $plemmatka = $fetchers->find($plem_id);
-     // dd( $plemmatka);
+ 
+     // $plemmatka = $fetchers->find($plem_id);
+     
 
        $uchastie = $uchasties->get(new Id($plemmatka->getUchastieId()));
-
+       // dd( $plemmatka->getNameKateg());
        $kategorias = $kategoria->all();
        $permissions = Permission::names();
 
        $infaRasaNom = $fetchers->infaRasaNom($plemmatka->getRasaNomId());
-
+//dd($infaRasaNom);
       $infaMesto = $fetchers->infaMesto($plemmatka->getMesto());
 
        return $this->render('proekt/pasekas/matkas/plemmatkas/show.html.twig',

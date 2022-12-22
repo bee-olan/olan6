@@ -419,6 +419,11 @@ a:hover {
 .btnn--col {
   border: 1px solid #155799;
 }
+.btnn--col:hover {
+  background: linear-gradient(#ccb44b, #d4ca9a);
+  text-decoration: none;
+  color: #155799;
+}
 .btnn--col-ras {
   border: 1px solid green;
 }
@@ -556,6 +561,11 @@ a:hover {
 .strongo {
   font-weight: normal;
   color: #a78c16;
+}
+.strongo--sizee {
+  font-weight: 600;
+  font-size: 3.5rem;
+  color: #ED3024;
 }
 .strongo--name-nike {
   font-weight: 600;
@@ -1232,6 +1242,15 @@ a:hover {
   color: #155799;
   background-color: #f6f6f6;
 }
+.proekts--kategor {
+  max-width: 100%;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  color: #f6f6f6;
+  background-color: #b0b0b0;
+  box-shadow: inset 0px 0px 10px rgba(246, 246, 246, 0.9), 0 15px 25px rgba(176, 176, 176, 0.35);
+  border-bottom: 2px solid #f6f6f6;
+}
 .proekts--rasa {
   max-width: 100%;
   margin-left: 2rem;
@@ -1245,6 +1264,10 @@ a:hover {
   .proekts {
     padding: 1.5rem;
   }
+}
+
+.pb0 {
+  padding-bottom: 0;
 }
 
 .proekts-plr {
@@ -1414,6 +1437,10 @@ a:hover {
   width: 100%;
   background: transparent;
   padding: 5px;
+}
+
+.mb0 {
+  margin-bottom: 0;
 }
 
 .ramka__mesto-nomer {
@@ -1781,6 +1808,10 @@ legend {
   width: 28rem;
 }
 
+.plem-form__header {
+  margin: 0 0 2.5rem 0;
+}
+
 .plem-form {
   margin-right: 4rem;
 }
@@ -1823,6 +1854,7 @@ legend {
   margin-left: 2rem;
   padding-left: 2rem;
   display: block;
+  width: 50rem;
   padding: 0.5rem 0 0.75rem;
   background: none;
   border: none;
@@ -1834,13 +1866,13 @@ legend {
   color: #155799;
 }
 .plem-form form div div input::-moz-placeholder {
-  color: rgba(21, 87, 153, 0.7);
+  color: rgba(21, 87, 153, 0.5);
 }
 .plem-form form div div input:-ms-input-placeholder {
-  color: rgba(21, 87, 153, 0.7);
+  color: rgba(21, 87, 153, 0.5);
 }
 .plem-form form div div input::placeholder {
-  color: rgba(21, 87, 153, 0.7);
+  color: rgba(21, 87, 153, 0.5);
 }
 .plem-form form div div input > :focus {
   width: 60%;
@@ -2214,6 +2246,13 @@ legend {
   box-shadow: inset 0px 0px 10px rgba(0, 128, 0, 0.9);
   border-bottom: 2px solid green;
 }
+.inklud--kategor {
+  box-shadow: inset 0px 0px 10px rgba(246, 246, 246, 0.9);
+  border-bottom: 2px solid #f6f6f6;
+}
+.inklud--mb0 {
+  margin-bottom: 0;
+}
 
 .inklud__img {
   height: 7rem;
@@ -2256,6 +2295,9 @@ legend {
 .teni--rasa {
   background-color: green;
 }
+.teni--kategor {
+  background-color: #565656;
+}
 
 table {
   border-collapse: collapse;
@@ -2264,6 +2306,8 @@ table {
 .tabl-th {
   text-align: center;
   color: #f6f6f6;
+  font-size: 1.8rem;
+  font-weight: 550;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 

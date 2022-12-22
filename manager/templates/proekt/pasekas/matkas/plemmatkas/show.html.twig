@@ -36,31 +36,35 @@
         </div>
 
         <div class="proekts-plr" >
-            <h1 class="plem__title  ">{{ plemmatka.name }} :  данные ПлемМатки которые берём за основу</h1>
+            <h1 class="plem__title  ">{{plemmatka.nameKateg}} _{{ plemmatka.name }} :  названия данных ПлемМатки, которые берём за основу</h1>
        
             <ul class="plem plem__jus-st "> 
-                <li class="plem__name plem-nomer" >Раса</li>
-                <li class="plem__name plem__name--wid20">{{ infaRasaNom[0].rasa }}</li>
+                <li class="plem__name plem-nomer" >{{ plemmatka.nameKateg }}_</li>
+                <li class="plem__name plem__name--wid20"> Катеория -- пояснения внизу этой  странички</li>
+            </ul>
+            <ul class="plem plem__jus-st "> 
+                <li class="plem__name plem-nomer" >{{infaRasaNom[0].name}}_</li>
+                <li class="plem__name plem__name--wid20"> Раса : &nbsp; &nbsp;   <strong class="strongo "> {{ infaRasaNom[0].rasa }}</strong></li>
             </ul>
              <ul class="plem plem__jus-st"> 
-                <li class="plem__name plem-nomer" >л-линия</li>
-                <li class="plem__name plem__name--wid20" >{{ infaRasaNom[0].linia }}</li>
+                <li class="plem__name plem-nomer" >{{ infaRasaNom[0].linia_n }}_</li>
+                <li class="plem__name plem__name--wid20" >Линия : &nbsp; &nbsp;  <strong class="strongo "> {{ infaRasaNom[0].linia }} </strong></li>
             </ul>
             <ul class="plem plem__jus-st"> 
-                <li class="plem__name plem-nomer" >н-номер</li>
-                <li class="plem__name plem__name--wid20" >{{ infaRasaNom[0].nomer }}</li>
+                <li class="plem__name plem-nomer" >{{ infaRasaNom[0].nomer_n }}_</li>
+                <li class="plem__name plem__name--wid20" >Номер : &nbsp; &nbsp;  <strong class="strongo ">{{ infaRasaNom[0].nomer }} </strong></li>
             </ul>
             <ul class="plem plem__jus-st"> 
                 <li class="plem__name plem-nomer" >{{ plemmatka.mesto }}</li>
-                <li class="plem__name plem__name--wid20" >{{ infaMesto[0].okrug }} - {{ infaMesto[0].oblast }} - {{ infaMesto[0].raion }}</li>
+                <li class="plem__name plem__name--wid20" >Место пасеки : &nbsp; &nbsp;  <strong class="strongo "> {{ infaMesto[0].okrug }} - {{ infaMesto[0].oblast }} - {{ infaMesto[0].raion }} </strong></li>
             </ul>
             <ul class="plem plem__jus-st"> 
                 <li class="plem__name plem-nomer" >пН-{{ plemmatka.persona }}</li>
-                <li class="plem__name plem__name--wid20" >персональный номер матковода с ником: {{ uchastie.name.nike}} ( {{ uchastie.name.last }} , {{ uchastie.name.first }}) ,</li>
+                <li class="plem__name plem__name--wid20" >персональный номер матковода с ником : &nbsp; &nbsp; <strong class="strongo "> {{ uchastie.name.nike}} ( {{ uchastie.name.last }} , {{ uchastie.name.first }})  </strong></li>
             </ul>
             <ul class="plem plem__jus-st"> 
                 <li class="plem__name  plem-nomer" > №{{plemmatka.sort}}</li>
-                <li class="plem__name plem__name--wid20" >--<strong class="stro stro--kras"> {{ plemmatka.title}} </strong>  --  внутренняя нумерация или название маточки  и комментарий  </li>
+                <li class="plem__name plem__name--wid20" > <strong class="strongo  strongo--kras"> {{ plemmatka.title}} </strong>  : &nbsp; &nbsp;   внутренняя нумерация или название маточки  и комментарий  </li>
             </ul>
             <ul class="plem plem__jus-st"> 
                 <li class="plem__name plem-nomer" >{{ plemmatka_status(plemmatka.status.name) }}  </li>

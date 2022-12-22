@@ -5,14 +5,11 @@
 {% block sidebar %}              
     {% include('proekt/pasekas/matkas/side/_sidefiltr.html.twig') %}
 {% endblock %}
-
-{# {% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">Пасека</a></li>
-        <li class="breadcrumb-item active">ПлемМатка</li>
-    </ol>
-{% endblock %} #}
+    {% block kroxii %}
+        <a href="{{ path('proekt') }}">Главная</a>
+        <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Рег-ция ПлемМатки</a>             
+        <span class="aktiv ">Список ПлемМаток</span> 
+    {% endblock %}
 
 {% block bodyy %}
 
@@ -29,7 +26,11 @@
         </div>
 
         <div class="inklud__title inklud__title--plem teni">
-           Список зарегистрированных  ПлемМаток
+           Список зарегистрированных  ПлемМаток  &nbsp; &nbsp; 
+           <a href="{{ path('proekt.pasekas.matkas.plemmatkas'  ) }}"
+               class="btnn btnn--mb0 btnn--pt0" title="Добавить ПлемМатку"> 
+               <strong class="strongo strongo--sizee">+</strong>  
+            </a>
         </div> 
     </div>
         {# ------------------------- #}
@@ -52,9 +53,9 @@
                 {% for plemmatka in pagination %}
 
                 <ul class = "plem__data">
-                    <li class = "plem__name-list plem__name-list--wid ramka" >
+                    <li class = "plem__name-list plem__name-list--wid ramka mb0" >
                         <a class="" href="{{ path('proekt.pasekas.matkas.plemmatkas.show', {'plem_id': plemmatka.id}) }}">               
-                                {{ plemmatka.kategoria }}_{{ plemmatka.name }}              
+                            <strong class="strongo strongo--kras">{{ plemmatka.kategoria }}</strong>_{{ plemmatka.name }}              
                         </a> 
                     </li>
                     <li class = "plem__name-list">  {{ plemmatka.kategoria }} </li>

@@ -129,8 +129,11 @@ class PlemMatkaFetcher
         $stmt = $this->connection->createQueryBuilder()
             ->select(
                 'n.name_star AS nomer',
+                'n.name AS nomer_n',
                 'l.name_star AS linia',
-                'r.title AS rasa'
+                'l.name AS linia_n',
+                'r.title AS rasa',
+                'r.name AS name'
             )
             ->from('paseka_rasa_linia_nomers', 'n')
             ->innerJoin('n', 'paseka_rasa_linias', 'l', 'n.linia_id = l.id')

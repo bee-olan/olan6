@@ -18,14 +18,28 @@
   }
 
   &--plemmatka {
+    // padding-bottom: 3rem;
     color: $plem-color;
     background-color: $white;
   }
+
+  &--kategor {
+    max-width: 100%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    color: $white;
+    background-color:$col-kategor ;
+    box-shadow: inset 0px 0px 10px rgba($white, 0.9), //тень внутри
+      0 15px 25px rgba($col-kategor, .35);
+    border-bottom: 2px solid $white; // linia
+  }
+
 
   &--rasa {
     max-width: 100%;
     margin-left: 2rem;
     margin-right: 2rem;
+    // padding-bottom: 3rem;
     color: $rasa-color;
     background-color: $white;
     box-shadow: inset 0px 0px 10px rgba($rasa-color, 0.9), //тень внутри
@@ -37,7 +51,9 @@
     padding: 1.5rem;
   }
 }
-
+.pb0{
+  padding-bottom: 0;
+}
 .proekts-plr {
   padding: 0 3rem;
 }
