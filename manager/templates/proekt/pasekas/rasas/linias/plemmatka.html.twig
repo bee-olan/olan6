@@ -2,14 +2,10 @@
 
 {% block title %}Линия{% endblock %}
 
+{% block sidebar %}              
+    {% include('proekt/pasekas/matkas/side/_side_plem_linia.html.twig') %}
+{% endblock %}
 
-{# {% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Раса -- {{ rasa.title }}</a></li>
-        <li class="breadcrumb-item active">Добавить линию или добавить номер к линии</li>
-    </ol>
-{% endblock %} #}
 {% block kroxii %}
     <a href="{{ path('proekt') }}">Главная</a>
     <a href="#">Рег-ция ПлемМатки</a>

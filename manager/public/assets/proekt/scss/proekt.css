@@ -409,12 +409,16 @@ a:hover {
   margin-bottom: 3rem;
   margin-left: 2rem;
   margin-top: 0.5rem;
-  padding: 0.2rem 1rem 0.3rem 1rem;
 }
 .btnn:hover {
   background: linear-gradient(#ccb44b, #d4ca9a);
   text-decoration: none;
   color: #159957;
+}
+.btnn--plus {
+  line-height: 1;
+  padding: 0 0.7rem;
+  margin: 0;
 }
 .btnn--col {
   border: 1px solid #155799;
@@ -563,8 +567,7 @@ a:hover {
   color: #a78c16;
 }
 .strongo--sizee {
-  font-weight: 600;
-  font-size: 3.5rem;
+  font-size: 3rem;
   color: #ED3024;
 }
 .strongo--name-nike {
@@ -592,6 +595,16 @@ a:hover {
 }
 .strongo--nom {
   font-size: 1.2rem;
+}
+
+.st-plem {
+  font-size: 1.8rem;
+}
+.st-plem__kras {
+  color: rgba(255, 0, 0, 0.7);
+}
+.st-plem__wse {
+  color: rgba(246, 246, 246, 0.3);
 }
 
 .filters {
@@ -984,7 +997,7 @@ a:hover {
 }
 
 .sidebarr__content {
-  padding: 0 2rem;
+  padding: 0 0.2rem 0 0.6rem;
 }
 @media screen and (max-width: 991px) {
   .sidebarr__content {
@@ -1035,6 +1048,15 @@ a:hover {
   .show-sidebar .sidee {
     transform: translateX(0);
   }
+}
+
+.sid__header {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.mb_1 {
+  margin-bottom: 1rem;
 }
 
 .sidee__header {
@@ -1748,12 +1770,12 @@ legend {
   color: #a78c16;
 }
 
-.ramka {
+.plem-ramka {
   padding-top: 1.5rem;
   transition: box-shadow 0.2s linear;
   border-radius: 5px;
 }
-.ramka:hover {
+.plem-ramka:hover {
   text-decoration: none;
   box-shadow: inset 0px 0px 10px rgba(21, 87, 153, 0.9);
 }

@@ -28,7 +28,7 @@ class Form extends AbstractType
 //                'label' => 'Вид облёта (спаринг)',
 //                'choices' => array_flip($this->sparings->assoc())])
             ->add('title', Type\TextType::class, array(
-                'label' => 'Ваша внутренняя нумерация или название маточки  и комментарий',
+                'label' => 'В БД она - нумерация  маточки - записана так. Можно изменить!',
                 'attr' => [
                     'placeholder' => 'Пример: рыжая красотка )))'
                 ]

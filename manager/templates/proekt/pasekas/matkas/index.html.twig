@@ -28,7 +28,7 @@
         <div class="inklud__title inklud__title--plem teni">
            Список зарегистрированных  ПлемМаток  &nbsp; &nbsp; 
            <a href="{{ path('proekt.pasekas.matkas.plemmatkas'  ) }}"
-               class="btnn btnn--mb0 btnn--pt0" title="Добавить ПлемМатку"> 
+               class="btnn btnn--mb0 btnn--plus" title="Добавить ПлемМатку"> 
                <strong class="strongo strongo--sizee">+</strong>  
             </a>
         </div> 
@@ -53,7 +53,7 @@
                 {% for plemmatka in pagination %}
 
                 <ul class = "plem__data">
-                    <li class = "plem__name-list plem__name-list--wid ramka mb0" >
+                    <li class = "plem__name-list plem__name-list--wid plem-ramka mb0" >
                         <a class="" href="{{ path('proekt.pasekas.matkas.plemmatkas.show', {'plem_id': plemmatka.id}) }}">               
                             <strong class="strongo strongo--kras">{{ plemmatka.kategoria }}</strong>_{{ plemmatka.name }}              
                         </a> 
@@ -62,7 +62,7 @@
                     <li class = "plem__name-list"> {{ plemmatka.persona }} </li>
                     <li class = "plem__name-list">{{  plemmatka_status(plemmatka.status) }}</li>
                     <li class = "plem__name-list">
-                        <a   href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}"  class="btnn btnn--mb1 " >
+                        <a   href="{{ path('proekt.pasekas.matkas.plemmatkas.redaktorss.edit', {'plemmatka_id': plemmatka.id}) }}"  class="btnn btnn--mb1 " >
                             <div class="karandash">
                                 <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="">
                             </div>

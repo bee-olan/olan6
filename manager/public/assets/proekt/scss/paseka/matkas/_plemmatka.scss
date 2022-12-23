@@ -83,17 +83,14 @@
         }
     }
 }
-.ramka{
-  //padding: .6rem 1.6rem;
+.plem-ramka{
   padding-top: 1.5rem;
- // margin-top: 1.5rem;
   transition: box-shadow .2s linear;
   border-radius: 5px;
 
     &:hover {
-      // opacity: 1;
+
       text-decoration: none;
-      // color: $text;
       box-shadow: inset 0px 0px 10px rgba($plem-color,0.9);
       
     }

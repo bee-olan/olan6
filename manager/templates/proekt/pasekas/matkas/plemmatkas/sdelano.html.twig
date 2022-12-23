@@ -23,11 +23,11 @@
         
         <div class="proekts-plr  ">
 
-                       {% if plemId  %}
-                           <h1 class="plem__title  "> Всё получилось!     ................</h1>
-                       {% else %}
-            <h1 class="plem__title "> Для регистрации ПлемМатки, надо последовательно заполнить пункты: 1 - 3 </h1>
-                       {% endif %}
+            {% if plemId  %}
+                <h1 class="plem__title  "> Всё получилось!     ................</h1>
+            {% else %}
+                <h1 class="plem__title "> Для регистрации ПлемМатки, надо последовательно заполнить пункты: 1 - 3 </h1>
+            {% endif %}
 
             <ul class="plem__data">
                 {% if nomer %}

@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/paseka/matkas/plemmatka/{plemmatka_id}/redaktors", name="paseka.matkas.plemmatka.redaktors")
+ * @Route("/proekt/pasekas/matkas/plemmatkas/{plemmatka_id}/redaktorss", name="proekt.pasekas.matkas.plemmatkas.redaktorss")
  * @ParamConverter("plemmatka", options={"id" = "plemmatka_id"})
  */
 class RedaktorController extends AbstractController
@@ -61,14 +61,14 @@ class RedaktorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('paseka.matkas.plemmatka.show', ['plem_id' => $plemmatka->getId()]);
+                return $this->redirectToRoute('proekt.pasekas.matkas.plemmatkas.show', ['plem_id' => $plemmatka->getId()]);
             } catch (\DomainException $e) {
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
         }
 
-        return $this->render('app/paseka/matkas/plemmatka/redaktors/edit.html.twig', [
+        return $this->render('proekt/pasekas/matkas/plemmatkas/redaktorss/edit.html.twig', [
             'plemmatka' => $plemmatka,
             'form' => $form->createView(),
         ]);

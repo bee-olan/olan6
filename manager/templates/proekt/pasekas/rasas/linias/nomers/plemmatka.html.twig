@@ -1,17 +1,11 @@
 {% extends 'proekt/base.html.twig' %}
 
-{% block title %}
-  Nomer
+{% block title %}Nomer{% endblock %}
+
+{% block sidebar %}              
+    {% include('proekt/pasekas/matkas/side/_side_plem_nomer.html.twig') %}
 {% endblock %}
 
-{# {% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Расы </a></li>
-        <li class="breadcrumb-item"><a href="{{ path('paseka.rasas') }}">Линия -- {{ linia.name }}</a></li>
-        <li class="breadcrumb-item active">Номера зарегистрированные</li>
-    </ol>
-{% endblock %} #}
 {% block kroxii %}
   <a href="{{ path('proekt') }}">Главная</a>
   <a href="#">Рег-ция ПлемМатки</a>

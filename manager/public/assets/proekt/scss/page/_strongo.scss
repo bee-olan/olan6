@@ -1,17 +1,18 @@
 //strong-sait
 
 .strongo {
-     font-weight: normal ; //это о толщине шрифта 
-     color: $text;
-     //font-style: italic; //наклонный шрифт
-     
-    &--sizee{
-        font-weight: 600 ;
-        font-size: 3.5rem;
+    font-weight: normal; //это о толщине шрифта 
+    color: $text;
+    //font-style: italic; //наклонный шрифт
+
+    &--sizee {
+        // font-weight: 600 ;
+        font-size: 3rem;
         color: $red;
     }
-     &--name-nike {
-        font-weight: 600 ;
+
+    &--name-nike {
+        font-weight: 600;
         font-size: 2rem;
         color: $name-nike;
     }
@@ -22,25 +23,35 @@
         color: $name-nike;
     }
 
-     &--krox {
-         font-size: 1.8rem;
-         color: $kroxii-b;
-     }
- 
-     &--kras {
-         color: $red_;
-         font-size: 1.6rem;
-     }
- 
-     &--ras {
-         font-size: 1.6rem;
-     }
- 
-     &--lin {
-         font-size: 1.4rem;
-     }
- 
-     &--nom {
-         font-size: 1.2rem;
-     }
- }
+    &--krox {
+        font-size: 1.8rem;
+        color: $kroxii-b;
+    }
+
+    &--kras {
+        color: $red_;
+        font-size: 1.6rem;
+    }
+
+    &--ras {
+        font-size: 1.6rem;
+    }
+
+    &--lin {
+        font-size: 1.4rem;
+    }
+
+    &--nom {
+        font-size: 1.2rem;
+    }
+}
+.st-plem {
+    font-size: 1.8rem;
+
+    &__kras {
+        color: rgba($red_, 0.7);
+    }
+    &__wse {
+        color: rgba($white, 0.3);
+    }
+}    

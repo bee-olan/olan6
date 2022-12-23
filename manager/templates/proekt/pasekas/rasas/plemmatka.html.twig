@@ -2,6 +2,10 @@
 
 {% block title %}Раса{% endblock %}
 
+{% block sidebar %}              
+    {% include('proekt/pasekas/matkas/side/_side_plem_rasa.html.twig') %}
+{% endblock %}
+
 {% block kroxii %}
     <a href="{{ path('proekt') }}">Главная</a>
     <a href="#">Рег-ция ПлемМатки</a>

@@ -29,26 +29,30 @@
 
     margin-top: .5rem;
 
-    padding: 0.2rem 1rem 0.3rem 1rem;
-
-    &:hover {
-        background: linear-gradient( $grad1-o, $grad2-o);
-        text-decoration: none;
-        color: $grad2;
-    }
-
-    &--col {      
-        border: 1px solid $plem-color;
         &:hover {
             background: linear-gradient( $grad1-o, $grad2-o);
             text-decoration: none;
-            color: $grad1;
+            color: $grad2;
         }
-    }
-    &--col-ras {
-       
-        border: 1px solid $rasa-color;
-    }
+
+        &--plus{
+            line-height: 1.0;
+            padding: 0 .7rem;
+            margin: 0;
+        }
+
+        &--col {      
+            border: 1px solid $plem-color;
+            &:hover {
+                background: linear-gradient( $grad1-o, $grad2-o);
+                text-decoration: none;
+                color: $grad1;
+            }
+        }
+        &--col-ras {
+        
+            border: 1px solid $rasa-color;
+        }
         &--mt {
             margin-top: 2rem;
             // margin-left: 3rem;

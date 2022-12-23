@@ -2,13 +2,7 @@
 
 {% block title %}ПлемМатка{% endblock %}
 
-    {# {% block kroxii %}  
-       
-                <a href="{{ path('home') }}">Главная</a>
-                <a href="{{ path('paseka.matkas') }}">Расы зарегистрированные</a>
-                <span class="aktiv ">Добавить новую ПлемМатку</span>
-           
-    {% endblock %} #}
+
 
  {% block kroxii %}
             <a href="{{ path('proekt') }}">Главная</a>
@@ -30,7 +24,7 @@
         <h1 class="plem__title  ">Автоматически сформируется новое название   : 
         {{ command.name }},<br> 
         где под номером <strong class="strongo strongo--kras"> _№-{{command.sort}}</strong> -
-         внутренняя нумерация или то, что придумаете для идентификации ПлемМатки.
+         внутренняя нумерация или то, что придумаете для идентификации<br> этой ПлемМатки.
         </h1>
 
         <h1 class="plem__title  ">Заполняем еще две позиции:</h1>
@@ -41,7 +35,7 @@
 
                 <ul class="plem__data plem__data--mt2">
                     <li>    
-                        <button type="submit" class="btnn btnn--mb0 btnn--col">Добавить в БД</button>
+                        <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col">Добавить в БД</button>
                     </li>
                     <li> 
                         <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}"

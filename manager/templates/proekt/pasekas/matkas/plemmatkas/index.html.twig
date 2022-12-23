@@ -2,12 +2,10 @@
 
 {% block title %}Участники{% endblock %}
 
-{# {% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-        <li class="breadcrumb-item active">Участники</li>
-    </ol>
-{% endblock %} #}
+{% block sidebar %}              
+    {% include('proekt/pasekas/matkas/side/_side_plem_index.html.twig') %}
+{% endblock %}
+
 {% block kroxii %}
     <a href="{{ path('proekt') }}">Главная</a>
     <a href="#">Рег-ция ПлемМатки</a>

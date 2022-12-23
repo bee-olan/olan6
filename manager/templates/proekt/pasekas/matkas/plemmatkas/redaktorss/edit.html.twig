@@ -1,26 +1,33 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
 {% block title %}Редактирование. ПлемМатка{% endblock %}
 
-{% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">Пасека</a></li>
-        <li class="breadcrumb-item active">Редактирование</li>
-    </ol>
-{% endblock %}
+{% block kroxii %}
+        <a href="{{ path('proekt') }}">Главная</a>
+        <a href="{{ path('proekt.pasekas.matkas') }}">Список ПлемМаток</a>             
+        <span class="aktiv ">{{ plemmatka.name }}</span> 
+        <span class="aktiv ">Редактировать внутреннюю нумерацию</span> 
+    {% endblock %}
 
-{% block body %}
+{% block bodyy %}
 
-    <div class="card">
-        <div class="card-body">
+<div  class="proekts proekts--plemmatka pb0">
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button type="submit" class="btn-my btn-primary">Сохранить</button>
-            {{ form_end(form) }}
+    {% include('proekt/pasekas/matkas/plemmatkas/_plemmatka-includ.html.twig') %}
 
+    <div class="proekts-plr  ">
+    <h1 class="plem__title  ">Есть возможность отредактировать представленную 
+    внутреннюю нумерацию.</h1>
+        <div class="plem-form__header  "> 
+            <div class="plem-form ">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn-my btn-primary">Сохранить</button>
+                {{ form_end(form) }}
+
+            </div>
         </div>
     </div>
+</div>
 
 {% endblock %}
