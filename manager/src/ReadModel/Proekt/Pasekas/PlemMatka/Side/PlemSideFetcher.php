@@ -180,16 +180,16 @@ class PlemSideFetcher
                 'p.persona',
                 'p.status',
                 'p.rasa_nom_id',
-                's.name AS kategoria'
+                'p.name_kateg'
                 //,
               //  'm.nomer as mestonomer'
             )
             ->from('paseka_matkas_plemmatkas', 'p')
-            ->innerJoin('p', 'paseka_matkas_kategorias', 's', 'p.kategoria_id = s.id')
+            // ->innerJoin('p', 'paseka_matkas_kategorias', 's', 'p.kategoria_id = s.id')
         ;
 
         if ($filter->name) {
-            $qb->andWhere($qb->expr()->like('p.name', ':name'));
+            $qb->andWhere($qb->expr()->like('LOWER(p.name)', ':name'));
             $qb->setParameter(':name', '%' . mb_strtolower($filter->name) . '%');
         }
 
@@ -198,17 +198,17 @@ class PlemSideFetcher
             $qb->setParameter(':status', $filter->status);
         }
 
-    //    if ($filter->kategoria) {
-    //        $qb->andWhere('p.kategoria = :kategoria');
-    //        $qb->setParameter(':kategoria', $filter->kategoria);
-    //    }
+        if ($filter->name_kateg) {
+            $qb->andWhere($qb->expr()->like('LOWER(p.name_kateg)', ':name_kateg'));
+            $qb->setParameter(':name_kateg', '%' . mb_strtolower($filter->name_kateg) . '%');
+        }
 
         if ($filter->persona) {
             $qb->andWhere('p.persona = :persona');
             $qb->setParameter(':persona', $filter->persona);
         }
 
-        if (!\in_array($sort, ['name','kategoria', 'status','persona'], true)) {
+        if (!\in_array($sort, ['name','name_kateg', 'status','persona'], true)) {
             throw new \UnexpectedValueException('Cannot sort by ' . $sort);
         }
 

@@ -19,6 +19,11 @@
         border-bottom: 2px solid $white; // linia
     }
 
+    &--child {
+        box-shadow: inset 0px 0px 10px rgba($col-child-ten, 0.9); //тень внутри
+        border-bottom: 2px solid $col-child-ten; // linia
+    }
+
     &--mb0{
         margin-bottom: 0;
     }

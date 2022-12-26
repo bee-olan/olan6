@@ -1,0 +1,61 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Create{% endblock %}
+
+{# {% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+       <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>
+       <li class="breadcrumb-item"><a href="{{ path('paseka_matkas') }}">ПлемМатки</a></li>
+       <li class="breadcrumb-item"><a href="{{ path('paseka_matkas.plemmatka.show', {'id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('paseka_matkas.plemmatka.childmatkas', {'plemmatka_id': plemmatka.id}) }}">ТестМатка</a></li>
+        <li class="breadcrumb-item active">Create</li>
+    </ol>
+{% endblock %} #}
+
+{% block kroxii %}
+    <a href="{{ path('proekt') }}">Главная</a>
+    <a href="#">Рег-ция ПлемМатки</a>
+    <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Список ПлемМаток</a>
+        <a href="{{ path('proekt.pasekas.rasas.plemmatka') }}">Раса_</a>
+    <span class="aktiv ">Пункт 3</span> 
+    <span class="aktiv ">Катеория и внутреняя нумерация</span> 
+{% endblock %}   
+
+{% block bodyy %}
+
+{#    {% include 'app/work/projects/project/_tabs.html.twig' %}#}
+
+<div  class="proekts proekts--plemmatka pb0">
+
+    <div class="inklud">
+
+        <div class="inklud__img">
+        <img class="" src="{{ asset('assets/proekt/images/matkas/matki_.png') }}" alt="">
+            
+        </div>
+
+        <div class="inklud__title teni">
+           Оформим  ДочьМатку (ТестМатку) для<br> 
+           {{plemmatka.nameKateg}}_{{plemmatka.name}}
+        </div> 
+    </div>
+
+    <div class="proekts-plr  ">
+
+        <h1 class="plem__title  ">Заполняем еще две позиции:</h1>
+        <div class="plem-form__header  "> 
+            <div class="plem-form ">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div>
+                    <button type="submit" class="btnn btnn--mb0  ">Сохранить</button>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

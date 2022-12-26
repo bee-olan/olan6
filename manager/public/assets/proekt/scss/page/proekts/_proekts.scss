@@ -23,6 +23,17 @@
     background-color: $white;
   }
 
+  &--childmatka {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 2rem;
+    color: $col-child-ten;
+    background-color:$col-child ;
+    box-shadow: inset 0px 0px 10px rgba($col-child-ten, 0.9), //тень внутри
+      0 15px 25px rgba($white, .35);
+    border-bottom: 2px solid $col-child-ten; // linia
+  }
+
   &--kategor {
     max-width: 100%;
     margin-left: 2rem;

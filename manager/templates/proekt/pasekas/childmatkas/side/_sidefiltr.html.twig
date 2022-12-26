@@ -3,10 +3,10 @@
       <img src="{{ asset('assets/proekt/images/logoo.jpg') }}" alt="">
     </div>
 
-  <div class="sideefiltr">
+  <div class="filter-child">
     {{ form_start(form) }}
-        <ul class="sideefiltr__ul">
-            <li class="sideefiltr__li sideefiltr__li--wid100 sideefiltr__li--flex">
+        <ul class="filter-child__ul">
+            <li class="fil-chi-li fil-chi-li--flex ">
               <div >
                 <button type="submit" class=" btnn btnn--mb0 btnn--pt" >Фильтр</button>
               </div>
@@ -19,12 +19,21 @@
             </li>
 
             <li class="side-title__li">
-              Поиск по части названия
+              Поискт в выпад. меню по
             </li>
-            <li class="sideefiltr__li sideefiltr__li--wid100">
-              <a class="sideefiltr__link " > {{ form_widget(form.name) }}</a> 
+            <li class="fil-chi-li fil-chi-li--centr">
+              <a class="sideefiltr__link " > {{ form_widget(form.author) }}</a> 
+            </li>
+            <li class="fil-chi-li fil-chi-li--centr">
+              <a class="sideefiltr__link " > {{ form_widget(form.executor) }}</a> 
             </li>
             <li class="side-title__li">
+              В каком статусе ДочьМатка 
+            </li>
+            <li class="fil-chi-li fil-chi-li--wid20">
+              <a class="sideefiltr__link ">{{ form_widget(form.status) }}</a>
+            </li>
+            {# <li class="side-title__li">
               Поиск по ПерсонНомеру
             </li>
             <li class="sideefiltr__li sideefiltr__li--wid100">
@@ -38,21 +47,19 @@
               <a class="sideefiltr__link ">{{ form_widget(form.name_kateg) }}</a>
             </li>
             
-            <li class="sideefiltr__li sideefiltr__li--wid4">
-              <a class="sideefiltr__link ">{{ form_widget(form.status) }}</a>
-            </li>
-          
+            
+           #}
           </ul>
       {{ form_end(form) }}
   </div>
   {# <div class="profilee__text"> #}
-      <div class="profilee__header">           
+      {# <div class="profilee__header">           
           <div class="profilee__name"> Внимание! </div>
           <div class="profilee__prof"> Если обнаружили ошибку или <br>не нашли  нужное название
           </div>
           <button class="btnn  btnn--pt btnn--mb0 " type="button" data-modal="contact-modal">
           напишите мне
       </button>
-      </div>
+      </div> #}
   {# </div>   #}
 </aside>

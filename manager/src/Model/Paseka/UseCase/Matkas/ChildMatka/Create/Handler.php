@@ -8,6 +8,9 @@ use App\Model\Flusher;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\UchastieRepository;
 
+use App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository;
+use App\Model\Paseka\Entity\Matkas\Sparings\Id as SparingId;
+
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Id as PlemMatkaId;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository;
 
@@ -22,13 +25,20 @@ class Handler
     private $uchasties;
     private $plemmatkas;
     private $childmatkas;
+    private $sparings;
     private $flusher;
 
-    public function __construct(UchastieRepository $uchasties, PlemMatkaRepository $plemmatkas, ChildMatkaRepository $childmatkas, Flusher $flusher)
+    public function __construct(
+            UchastieRepository $uchasties, 
+            PlemMatkaRepository $plemmatkas, 
+            ChildMatkaRepository $childmatkas,
+            SparingRepository $sparings, 
+            Flusher $flusher)
     {
         $this->uchasties = $uchasties;
         $this->plemmatkas = $plemmatkas;
         $this->childmatkas = $childmatkas;
+        $this->sparings = $sparings;
         $this->flusher = $flusher;
     }
 
@@ -36,7 +46,10 @@ class Handler
     {
 
         $uchastie = $this->uchasties->get(new UchastieId($command->uchastie));
+        
         $plemmatka = $this->plemmatkas->get(new PlemMatkaId($command->plemmatka));
+
+        $sparing = $this->sparings->get(new SparingId($command->sparing));
 
         $childmatkaId = $this->childmatkas->nextId();
         $command->name =  ($plemmatka->getName())."_".$childmatkaId;
@@ -49,7 +62,8 @@ class Handler
             new Type($command->type),
             $command->priority,
             $command->name,
-            $command->content
+            $command->content,
+            $sparing
         );
 
         if ($command->parent) {

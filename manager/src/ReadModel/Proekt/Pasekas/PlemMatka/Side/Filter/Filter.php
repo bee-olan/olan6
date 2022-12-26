@@ -10,5 +10,6 @@ class Filter
 {
     public $name;
     public $persona;
+    public $name_kateg;
     public $status = Status::ACTIVE;
 }

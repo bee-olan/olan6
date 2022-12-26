@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReadModel\Paseka\Matkas\ChildMatka\Filter;
+namespace App\ReadModel\Proekt\Pasekas\ChildMatka\Side\Filter;
 
 use App\Model\Paseka\Entity\Matkas\ChildMatka\Status;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\Type as ChildMatkaType;
@@ -39,34 +39,32 @@ class Form extends AbstractType
                 'Мес' => ChildMatkaType::MESTN,
             ], 'required' => false, 'placeholder' => 'Категории', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('status', Type\ChoiceType::class, ['choices' => [
-                'новая' => Status::NEW,
+                'Новая' => Status::NEW,
                 'Заказана' => Status::ZAKAZ ,
-                'в работе' => Status::WORKING,
-                'вопрос' => Status::HELP,
-                'отклонена' => Status::REJECTED,
-                'завершено' => Status::DONE,
+                'Тестируется' => Status::WORKING,
+                'Вопрос' => Status::HELP,
+                'Отклонена' => Status::REJECTED,
+                'Тест завершено' => Status::DONE,
             ], 
-            'required' => false, 
+            'required' => false,
+            'expanded' => true,
+            'multiple' => false, 
             'placeholder' => 'Статусы', 
-            'attr' => ['onchange' => 'this.form.submit()']])
-            ->add('priority', Type\ChoiceType::class, [
-                'choices' => [
+            'attr' => ['onchange' => 'this.form.submit()']
+            ])
+            ->add('priority', Type\ChoiceType::class, ['choices' => [
                 'Низкий' => 1,
                 'Обычный' => 2,
                 'Высокий' => 3,
                 'Срочный' => 4
-            ], 
-            'required' => false, 
-            'placeholder' => 'Приоритет', 
-            'attr' => ['onchange' => 'this.form.submit()']
-            ])
+            ], 'required' => false, 'placeholder' => 'Приоритеты', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('author', Type\ChoiceType::class, [
                 'choices' => $uchasties,
-                'required' => false, 'placeholder' => 'Авторы', 'attr' => ['onchange' => 'this.form.submit()']
+                'required' => false, 'placeholder' => 'Матководу', 'attr' => ['onchange' => 'this.form.submit()']
             ])
             ->add('executor', Type\ChoiceType::class, [
                 'choices' => $uchasties,
-                'required' => false, 'placeholder' => 'Исполнители', 'attr' => ['onchange' => 'this.form.submit()']
+                'required' => false, 'placeholder' => 'Тестирующему', 'attr' => ['onchange' => 'this.form.submit()']
             ]);
     //         ->add('roots', Type\ChoiceType::class, ['choices' => [
     //             'Roots' => Status::NEW,

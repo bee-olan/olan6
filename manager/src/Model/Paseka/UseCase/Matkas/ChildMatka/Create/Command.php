@@ -32,20 +32,28 @@ class Command
      * @var int
      */
     public $parent;
+
     /**
      * @var \DateTimeImmutable
      * @Assert\Date()
      */
     public $plan;
+
     /**
      * @var string
      * @Assert\NotBlank()
      */
     public $type;
+
     /**
      * @Assert\NotBlank()
      */
     public $priority;
+
+    /**
+     * @Assert\NotBlank()
+     */
+    public $sparing;
 
     public function __construct(string $plemmatka, string $uchastie)
     {

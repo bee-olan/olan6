@@ -73,9 +73,7 @@
 }
 
 .sideefiltr{
-    display: block;
-    
-   
+    display: block;   
 }
 
 .sideefiltr__ul { 
@@ -84,6 +82,7 @@
     align-items: center;
     
   }
+
 
   .sideefiltr__li {              // li
     position: relative; // позиционирование для
@@ -100,6 +99,12 @@
 
         &--wid100 {
             height: 5rem;
+            padding-right: 5px;
+            padding-left: 5px;
+            text-align: center;
+        }
+        &--wid4 {
+            height: 4rem;
             padding-right: 5px;
             padding-left: 5px;
             text-align: center;
@@ -131,7 +136,13 @@
         }
     }
  }
- 
+ .side-title__li{
+    margin: .5rem 0 .5rem 0;
+    padding-left: 1rem;
+    font-size: 1.8rem;
+    color: $text;
+  }
+   
  // стилизация ссылок
 .sideefiltr__link {
     display: block; // ссылки - блочные
@@ -139,7 +150,7 @@
      // это border сверху\снизу у текста
     border-bottom: 2px solid $border-linia;
   
-     font-size: 1.6rem; // шрифт - размер
+     font-size: 1.6rem; 
      line-height: 1.6;
     // text-transform: uppercase;// буквы- большие
     color: $border-kroxi;

@@ -1,13 +1,16 @@
 $white: #f6f6f6;
-$black:     #000;
+$black: #000;
 //
 //page
-$grad2:   #159957;
-$grad1:  #155799;
-$grad3:   #5db0c5;
+$grad2: #159957;
+$grad1: #155799;
+$grad3: #5db0c5;
 //
-$gradien:    #fff;
+$gradien: #fff;
 
+// $col-child: #d4ca9a;
+ $col-child: #efe9cd;
+$col-child-ten: #565656;
 $col-kategor: #b0b0b0;
 $col-uchastie: #8e39c6;
 $text-uchastie: rgb(224, 231, 231);
@@ -15,17 +18,17 @@ $text-uchastie: rgb(224, 231, 231);
 //// хлебные крошки
 $z-index-kroxii: 900;
 
-$border-kroxi:   #a78c16;
-$kroxi-sait:   #155799;
-$kroxii:   #155799;
+$border-kroxi: #a78c16;
+$kroxi-sait: #155799;
+$kroxii: #155799;
 $kroxii-b: #ccb44b;
 
-$grad1-o:  #ccb44b;
-$grad2-o:   #d4ca9a;
+$grad1-o: #ccb44b;
+$grad2-o: #d4ca9a;
 //
-$red:       #ED3024;
-$red_:       red;
-$blue:     #155799;
+$red: #ED3024;
+$red_: red;
+$blue: #155799;
 //
 //// =======================
 $input-bg: transparent;
@@ -33,28 +36,28 @@ $input-bg: transparent;
 //
 $primary: transparent;
 
-$text:   #a78c16;
+$text: #a78c16;
 
 // header - заголовок
 $sidebar-width: 270px;
-$border-foto:   rgb(190, 186, 151);
-$color-text:  #DEDEDE;
-$border-linia:  rgb(190, 186, 151);
-$border-lin-nav:  rgb(175, 169, 112);
-$name-nike:  rgb(175, 169, 112);
+$border-foto: rgb(190, 186, 151);
+$color-text: #DEDEDE;
+$border-linia: rgb(190, 186, 151);
+$border-lin-nav: rgb(175, 169, 112);
+$name-nike: rgb(175, 169, 112);
 //
 // nav - навигация
 $header-color: rgb(155, 144, 74);
 
 //ПлемМатка
 // $plem-color: #565656; цветкрасивыйно не сейчас
-$plem-color: #155799;      //$grad1
-$rasa-color:  green ;
+$plem-color: #155799; //$grad1
+$rasa-color: green;
 //
 $z-index-sidebar: 1000;
-$z-index-header:  1000;
-$z-index-modal:  1010;
-$z-index-input:  2100;
+$z-index-header: 1000;
+$z-index-modal: 1010;
+$z-index-input: 2100;
 //
 $mobile-bp: 575px; // мобильная версия
 $tablet-bp: 991px; // планшетная версия

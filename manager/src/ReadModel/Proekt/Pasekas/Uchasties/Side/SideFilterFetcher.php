@@ -49,6 +49,7 @@ class SideFilterFetcher
                 'm.id',
                 'TRIM(CONCAT( m.name_nike)) AS name',
                  'm.email',
+                //  'm.name_kateg as name_kateg',
                 'g.name as group',
                 'uchkak',
                  'm.status'
@@ -62,10 +63,10 @@ class SideFilterFetcher
             $qb->setParameter(':name', '%' . mb_strtolower($filter->name) . '%');
         }
 
-//         if ($filter->email) {
-//             $qb->andWhere($qb->expr()->like('LOWER(m.email)', ':email'));
-//             $qb->setParameter(':email', '%' . mb_strtolower($filter->email) . '%');
-//         }
+        // if ($filter->name_kateg) {
+        //     $qb->andWhere($qb->expr()->like('LOWER(m.name_kateg)', ':name_kateg'));
+        //     $qb->setParameter(':name_kateg', '%' . mb_strtolower($filter->name_kateg) . '%');
+        // }
 
          if ($filter->status) {
              $qb->andWhere('m.status = :status');

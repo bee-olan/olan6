@@ -55,10 +55,10 @@
                 <ul class = "plem__data">
                     <li class = "plem__name-list plem__name-list--wid plem-ramka mb0" >
                         <a class="" href="{{ path('proekt.pasekas.matkas.plemmatkas.show', {'plem_id': plemmatka.id}) }}">               
-                            <strong class="strongo strongo--kras">{{ plemmatka.kategoria }}</strong>_{{ plemmatka.name }}              
+                            <strong class="strongo strongo--kras">{{ plemmatka.name_kateg }}</strong>_{{ plemmatka.name }}              
                         </a> 
                     </li>
-                    <li class = "plem__name-list">  {{ plemmatka.kategoria }} </li>
+                    <li class = "plem__name-list">  {{ plemmatka.name_kateg }} </li>
                     <li class = "plem__name-list"> {{ plemmatka.persona }} </li>
                     <li class = "plem__name-list">{{  plemmatka_status(plemmatka.status) }}</li>
                     <li class = "plem__name-list">

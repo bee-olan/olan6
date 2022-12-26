@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Paseka\Entity\Matkas\ChildMatka;
 
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
-
+use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
 
@@ -109,6 +109,15 @@ class ChildMatka
      */    
     private $status;
 
+
+    /**
+     * @var Sparing
+     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Matkas\Sparings\Sparing")
+     * @ORM\JoinColumn(name="sparing_id", referencedColumnName="id", nullable=false)
+     */
+    private $sparing;
+
+
      /**
      * @var Uchastie[]|ArrayCollection
      * @ORM\ManyToMany(targetEntity="App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie")
@@ -128,7 +137,8 @@ class ChildMatka
         Type $type,
         int $priority,
         string $name,
-        ?string $content
+        ?string $content,
+        Sparing $sparing
     )
     {
         $this->id = $id;
@@ -141,6 +151,7 @@ class ChildMatka
         $this->type = $type;
         $this->priority = $priority;
         $this->status = Status::new();
+        $this->sparing = $sparing;
         $this->executors = new ArrayCollection();
     }
 
@@ -342,6 +353,11 @@ class ChildMatka
     public function getStatus(): Status
     {
         return $this->status;
+    }
+
+    public function getSparing(): Sparing
+    {
+        return $this->sparing;
     }
 
     /**

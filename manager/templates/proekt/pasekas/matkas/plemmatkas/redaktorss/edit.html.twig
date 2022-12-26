@@ -13,7 +13,17 @@
 
 <div  class="proekts proekts--plemmatka pb0">
 
-    {% include('proekt/pasekas/matkas/plemmatkas/_plemmatka-includ.html.twig') %}
+    <div class="inklud">
+
+        <div class="inklud__img">
+        <img class="" src="{{ asset('assets/proekt/images/karandash_m.png') }}" alt="">
+            
+        </div>
+
+        <div class="inklud__title teni">
+           Формируем название для регистрации  ПлемМатки
+        </div> 
+    </div>
 
     <div class="proekts-plr  ">
     <h1 class="plem__title  ">Есть возможность отредактировать представленную 
@@ -22,7 +32,8 @@
             <div class="plem-form ">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
-                <button type="submit" class="btn-my btn-primary">Сохранить</button>
+                <button type="submit" class="btnn btnn--mb0 btnn--pt
+                btnn--col">Сохранить</button>
                 {{ form_end(form) }}
 
             </div>

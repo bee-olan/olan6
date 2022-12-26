@@ -17,11 +17,15 @@ class Form extends AbstractType
     {
         $builder
             ->add('name', Type\TextType::class, ['required' => false, 'attr' => [
-                'placeholder' => 'Name',
+                'placeholder' => 'Введите часть названия',
                 'onchange' => 'this.form.submit()',
             ]])
+            ->add('name_kateg', Type\TextType::class, ['required' => false, 'attr' => [
+                'placeholder' => 'Введите название ',
+                'onchange' => 'this.form.submit()', // отправляет форму
+            ]])
             ->add('persona', Type\TextType::class, ['required' => false, 'attr' => [
-                'placeholder' => 'ПерсонНомер',
+                'placeholder' => 'Поле для ввода номера',
                 'onchange' => 'this.form.submit()',
             ]])
             ->add('status', Type\ChoiceType::class, ['choices' => [
