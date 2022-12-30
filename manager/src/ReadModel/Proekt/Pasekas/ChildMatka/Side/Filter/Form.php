@@ -33,10 +33,10 @@ class Form extends AbstractType
                 'onchange' => 'this.form.submit()',
             ]])
             ->add('type', Type\ChoiceType::class, ['choices' => [
-                'Эли-тная' => ChildMatkaType::ELIT,
-                'Бре-ндовая' => ChildMatkaType::BREND,
-                'Ада' => ChildMatkaType::ADAPT,
-                'Мес' => ChildMatkaType::MESTN,
+                'Даю маток' => ChildMatkaType::AWTOR,
+                'Беру маток' => ChildMatkaType::TESTIR,
+                'Наблюдаю' => ChildMatkaType::NABLUD,
+                
             ], 'required' => false, 'placeholder' => 'Категории', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('status', Type\ChoiceType::class, ['choices' => [
                 'Новая' => Status::NEW,

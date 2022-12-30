@@ -1,0 +1,54 @@
+.tabl-hover-child tbody tr:hover {
+
+  background-color: rgba($text, 0.1);
+}
+
+.tabl-child {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: $col-child-ten;
+  font-size: 1.4rem;
+  line-height: 1.4;
+
+}
+
+.tabl-col-plem {
+  padding: .5rem .5rem .5rem 1rem;
+  color: $plem-color;
+}
+.tabl-col-child {
+  padding: .5rem .5rem .5rem 1rem;
+  color: $child-text;
+}
+
+.tabl-bord- {
+
+  padding: .5rem .5rem .5rem 1rem;
+  border: 1px solid rgba($col-child-ten, 0.2);
+  color: $col-child-ten;
+
+  a {
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity .2s linear;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+      color: $text;
+    }
+  }
+}
+
+.tabl-bord-plem {
+
+  border: 1px solid rgba($plem-color, 0.5);
+  color: $plem-color;
+}
+
+.tabl-bord-child {
+
+  border: 1px solid rgba($child-text, 0.5);
+  color: $child-text;
+
+}

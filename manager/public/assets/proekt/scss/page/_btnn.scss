@@ -49,6 +49,18 @@
                 color: $grad1;
             }
         }
+
+        &--col-child { 
+            box-shadow: inset 0px 0px 10px rgba($child-text, 0.9);     
+            border: 1px solid $child-text;
+            font-size: 1.5rem;
+            &:hover {
+                box-shadow:  0px 0px 10px rgba($child-text, 0.6);
+                 background: none;
+                text-decoration: none;
+                color: $child-text;
+            }
+        }
         &--col-ras {
         
             border: 1px solid $rasa-color;

@@ -32,12 +32,12 @@ class Form extends AbstractType
                 'placeholder' => 'Search...',
                 'onchange' => 'this.form.submit()',
             ]])
-            ->add('type', Type\ChoiceType::class, ['choices' => [
-                'Эли-тная' => ChildMatkaType::ELIT,
-                'Бре-ндовая' => ChildMatkaType::BREND,
-                'Ада' => ChildMatkaType::ADAPT,
-                'Мес' => ChildMatkaType::MESTN,
-            ], 'required' => false, 'placeholder' => 'Категории', 'attr' => ['onchange' => 'this.form.submit()']])
+            // ->add('type', Type\ChoiceType::class, ['choices' => [
+            //     'Эли-тная' => ChildMatkaType::ELIT,
+            //     'Бре-ндовая' => ChildMatkaType::BREND,
+            //     'Ада' => ChildMatkaType::ADAPT,
+            //     'Мес' => ChildMatkaType::MESTN,
+            // ], 'required' => false, 'placeholder' => 'Категории', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('status', Type\ChoiceType::class, ['choices' => [
                 'новая' => Status::NEW,
                 'Заказана' => Status::ZAKAZ ,

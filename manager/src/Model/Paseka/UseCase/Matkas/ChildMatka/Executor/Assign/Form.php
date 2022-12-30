@@ -21,14 +21,16 @@ class Form extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        
         $uchasties = [];
         foreach ($this->uchasties->activeDepartmentListForPlemMatka($options['plemmatka_id']) as $item) {
 //            $uchasties[$item['department'] . ' - ' . $item['name']] = $item['id'];
             $uchasties[$item['name']] = $item['id'];
         }
-
+// dd($uchasties);
         $builder
             ->add('uchasties', Type\ChoiceType::class, [
+                'label' => 'Назначьте исполнителя:   ',
                 'choices' => $uchasties,
                 'expanded' => true,
                 'multiple' => true,

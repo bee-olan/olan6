@@ -46,16 +46,17 @@ class Form extends AbstractType
                 'widget' => 'single_text', 
                 'input' => 'datetime_immutable'
                 ])
-            ->add('type', Type\ChoiceType::class, [
-                'choices' => [
-                'Эли-тная' => ChildMatkaType::ELIT,
-                'Бре-ндовая' => ChildMatkaType::BREND,
-                'Ада-птированная' => ChildMatkaType::ADAPT,
-                'Мес-тная' => ChildMatkaType::MESTN,
-            ],
-                'expanded' => true,
-                'multiple' => false,
-            ])
+            // ->add('type', Type\ChoiceType::class, [
+            //     'label' => 'В предстоящем сезоне планируете:   ',
+            //     'choices' => [
+            //     'Предложить маточек' => ChildMatkaType::AWTOR,
+            //     'Предложить-Тестировать' => ChildMatkaType::AWTORTEST,
+            //     'Тестировать маточек' => ChildMatkaType::TESTIR,
+            //     'Пока наблюдаю' => ChildMatkaType::NABLUD,
+            // ],
+            //     'expanded' => true,
+            //     'multiple' => false,
+            // ])
             ->add('priority', Type\ChoiceType::class, [
                 'label' => 'Приоритеты для заказа на тестирование   ',
                 'choices' => [

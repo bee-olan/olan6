@@ -150,15 +150,17 @@ class ChildSideFetcher
                 't.plan_date',
                 't.status',
                 'r.nomer AS mesto',
-                'u.nomer AS  author_persona'
+                'u.nomer AS  author_persona',
+                's.name AS  sparing',
+                's.title AS  sparing_title'
             )
             ->from('paseka_matkas_childmatkas', 't')
             ->innerJoin('t', 'paseka_uchasties_uchasties', 'm', 't.author_id = m.id')
             ->innerJoin('t', 'paseka_matkas_plemmatkas', 'p', 't.plemmatka_id = p.id')
             ->innerJoin('t', 'mesto_mestonomers', 'r', 't.author_id = r.id')
             ->innerJoin('t', 'paseka_uchasties_personas', 'u', 't.author_id = u.id')
-        ;
-
+            ->innerJoin('t', 'paseka_matkas_sparings', 's', 't.sparing_id = s.id')
+                    ;
         // if ($filter->member) {
         //     $qb->innerJoin('t', 'work_projects_project_memberships', 'ms', 't.project_id = ms.project_id');
         //     $qb->andWhere('ms.member_id = :member');

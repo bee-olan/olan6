@@ -1,0 +1,53 @@
+   {% if children %}
+        <div class="card-m">
+            <div class="card-header-m">
+                <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id': plemmatka.id}) }}?parent={{ childmatka.id }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a>
+                ДочьМатка
+            </div>
+            <table class="table table-bordered table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>ПлемМатка</th>
+                        <th>Имя</th>
+                        <th>Состояние</th>
+                        <th><span class="fa fa-fire"></span></th>
+                        <th>Исполнитель</th>
+                        <th>Статус</th>
+                        <th>Готов</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for child in children %}
+                        <tr>
+                            <td>{{ child.date|date('Y-m-d') }}</td>
+                            <td>
+                                <a href="{{ path('paseka.matkas.plemmatka.show', {'id': child.plemmatka_id}) }}">{{ child.plemmatka_name }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('paseka.matkas.childmatkas.show', {'id': child.id}) }}">{{ child.name }}</a>
+                            </td>
+                            <td>
+                                {% if child.type != 'none' %}
+                                    {{ paseka_matkas_childmatka_type(child.type) }}
+                                {% endif %}
+                            </td>
+                            <td>{{ paseka_matkas_childmatka_priority(child.priority) }}</td>
+                            <td>
+                                {% for executor in child.executors %}
+                                    <span class="badge badge-default" style="background: #eee">{{ executor.name }}</span>
+                                {% endfor %}
+                            </td>
+                            <td>{{ paseka_matkas_childmatka_status(child.status) }}</td>
+                            <td>
+                                {% if child.progress %}
+                                    {{ paseka_matkas_childmatka_progress(child.progress) }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    ///////-----------------------/////////////////////////

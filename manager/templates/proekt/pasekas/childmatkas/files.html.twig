@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
-{% block title %}{{ task.name }}{% endblock %}
+{% block title %}{{ childmatka.name }}{% endblock %}
 
-{% block breadcrumbs %}
+{# {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>
@@ -12,15 +12,15 @@
         <li class="breadcrumb-item"><a href="{{ path('work.projects.tasks.show', {'id': task.id}) }}">{{ task.name }}</a></li>
         <li class="breadcrumb-item active">Files</li>
     </ol>
-{% endblock %}
+{% endblock %} #}
 
-{% block body %}
+{% block bodyy %}
 
     <h1 class="mt-0 mb-3 font-xl">
-        {% if task.parent %}
+        {% if childmatka.parent %}
             <a href="{{ path('work.projects.tasks.show', {'id': task.parent.id}) }}">{{ task.parent.name }}</a> /
         {% endif %}
-        {{ task.name }}
+        {{ childmatka.name }}
     </h1>
 
     <div class="card">

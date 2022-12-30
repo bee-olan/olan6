@@ -26,16 +26,16 @@
 
 {#    {% include 'app/work/projects/project/_tabs.html.twig' %}#}
 
-<div  class="proekts proekts--plemmatka pb0">
+<div  class="proekts proekts--childmatka pb0">
 
-    <div class="inklud">
+    <div class="inklud inklud--child">
 
         <div class="inklud__img">
         <img class="" src="{{ asset('assets/proekt/images/matkas/matki_.png') }}" alt="">
             
         </div>
 
-        <div class="inklud__title teni">
+        <div class="inklud__title teni--">
            Оформим  ДочьМатку (ТестМатку) для<br> 
            {{plemmatka.nameKateg}}_{{plemmatka.name}}
         </div> 
@@ -45,11 +45,11 @@
 
         <h1 class="plem__title  ">Заполняем еще две позиции:</h1>
         <div class="plem-form__header  "> 
-            <div class="plem-form ">
+            <div class="child-form ">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 <div>
-                    <button type="submit" class="btnn btnn--mb0  ">Сохранить</button>
+                    <button type="submit" class="btnn  btnn--pt btnn--col-child ">Сохранить</button>
                 </div>
                 {{ form_end(form) }}
 

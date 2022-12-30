@@ -62,26 +62,31 @@
         <div class="inklud__img  ">
             <img class="" src="{{ asset('assets/proekt/images/matkas/p4ela1.jpg') }}" alt="">           
         </div>
-
+{% if not plemmatka %}
         <div class="inklud__title  teni teni--kategor">
             Список ПлемМаток и их ДочьМаток
         </div> 
+ {% else %}
+    <div class="inklud__title  teni teni--kategor">
+            Список  ДочьМаток от {{plemmatka.name}}
+    </div> 
+ {% endif %}       
     </div>
 <div class="tabl__header ">
     <div style="overflow: auto">
         <table class="tabl-child  tabl-hover-child ">
             <thead>
             <tr  >
-                <th class="tabl-bord-child " >Дата</th>
+                <th  >Дата</th>
                 {% if not plemmatka %}
-                <th class="tabl-bord-child"  >  ПлемМатка</th>
+                <th class="tabl-col-plem "  >  ПлемМатка</th>
                 {% endif %}
-                 <th class="tabl-bord-child" >ДочьМатка</th>
-                <th class="tabl-bord-child" >Автор</th>
-                <th class="tabl-bord-child">Приорит</th>
-                <th class="tabl-bord-child" >Испол---ль</th>
-                <th class="tabl-bord-child">Plan</th>
-                <th class="tabl-bord-child" >Status</th>
+                 <th class="tabl-col-child" >ДочьМатка</th>
+                <th  >Автор</th>
+                <th >Приорит</th>
+                <th  >Испол---ль</th>
+                <th >Plan</th>
+                <th  >В статусе</th>
                 
             </tr>
             </thead>
@@ -89,36 +94,37 @@
             {% for childmatka in pagination %}
                 <tr>
 {#                    <td>{{ childmatka.id }} </td>#}
-                    <td class="tabl-bord-child">{{ childmatka.date|date('Y-m-d') }}</td>
+                    <td class="tabl-bord-">{{ childmatka.date|date('Y-m-d') }}</td>
 
 
                     {% if not plemmatka %}
-                        <td class="tabl-bord-child">
+                        <td class="tabl-bord- tabl-bord-plem ">
                             <a href="{{ path('proekt.pasekas.matkas.plemmatkas.show', {'plem_id': childmatka.plemmatka_id}) }}">{{childmatka.plemmatka_kat}}_{{ childmatka.plemmatka_name }}</a>
                         </td>
                     {% endif %}
-                    <td class="tabl-bord-child">
+                    <td class="tabl-bord- tabl-bord-child">
                         {% if childmatka.parent %}
                             <span class="fa fa-angle-double-right"></span>
                         {% endif %}
-                        <a href="{{ path('paseka.matkas.childmatkas.show', {'id': childmatka.id}) }}">
-                            {{ paseka_matkas_childmatka_type(childmatka.type) }}{{ childmatka.mesto }}_пН-{{ childmatka.author_persona }}_{{ childmatka.id }}
+                        <a href="{{ path('proekt.pasekas.childmatkas.show', {'id': childmatka.id}) }}">
+                            _{{ childmatka.mesto }}_пН-{{ childmatka.author_persona }}_{{ childmatka.id }}
                         </a>
+                        {# {{ childmatka.sparing }} #}
                     </td>
-                    <td class="tabl-bord-child">{{ childmatka.author_name }}</td>
+                    <td class="tabl-bord-">{{ childmatka.author_name }}</td>
 {#                    <td>#}
 {#                        {% if childmatka.type != 'none' %}#}
 {#                            {{ paseka_matkas_childmatka_type(childmatka.type) }}#}
 {#                        {% endif %}#}
 {#                    </td>#}
-                    <td class="tabl-bord-child">{{childmatka.priority}}</td>
-                    <td class="tabl-bord-child" >
+                    <td class="tabl-bord-">{{childmatka.priority}}</td>
+                    <td class="tabl-bord-" >
                         {% for executor in childmatka.executors %}
                             <span class="badge badge-default" style="background: #eee">{{ executor.name }}</span>
                         {% endfor %}
                     </td>
-                   <td class="tabl-bord-child" >{{ childmatka.plan_date ? childmatka.plan_date|date('Y-m-d') : '' }}</td>
-                    <td class="tabl-bord-child">{{ childmatka.status }}</td>
+                   <td class="tabl-bord-" >{{ childmatka.plan_date ? childmatka.plan_date|date('Y-m-d') : '' }}</td>
+                    <td class="tabl-bord-">{{ childmatka.status }}</td>
                    
                 </tr>
             {% endfor %}

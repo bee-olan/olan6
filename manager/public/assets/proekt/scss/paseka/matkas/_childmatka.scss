@@ -1,0 +1,91 @@
+.child__data {
+    display: flex; // добавляем т.к добаилась li-шка
+    //justify-content: center;
+    justify-content: space-between;
+    align-items: center; // выравнивание по вертикали
+    list-style: none; // убрала точку у li
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2.0;
+
+      &--mt2{
+          margin-bottom: 2rem;     
+          padding-bottom: 2rem;
+      }
+
+    a {
+    padding: .6rem 1.6rem;
+    color: $plem-color;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity .2s linear;
+    // transition: box-shadow .2s linear;
+    // border-radius: 5px;
+
+      &:hover {
+        opacity: 1;
+        text-decoration: none;
+        color: $text;          
+      }
+    }
+}
+//////////////////////////////////
+.row-m {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: 0;
+}
+.col-m {
+  flex: 0 0 33.33333%;
+  max-width: 33.33333%;
+  position: relative;
+  width: 156%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.col-8-m {
+  flex: 0 0 66%;
+  max-width: 66%;
+}
+.col-4-m {
+  flex: 0 0 33%;
+  max-width: 33%;
+  
+}
+.card-m {
+  margin-bottom: 1.5rem;
+}
+.card-m {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  text-align: center;
+  background-color: #fff;
+  background-clip: border-box;
+  
+  border: 1px solid $child-text;;
+  border-radius: .25rem;
+}
+.card-header-m {
+  padding: .6rem .7rem;
+  margin-bottom: 0;
+  background-color: #f0f3f5;
+  box-shadow: inset 0px 0px 10px rgba($child-text, 0.9);
+  border-bottom: 1px solid $child-text;
+}
+.controls-m {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}  
+
+
+
+
+
+
+

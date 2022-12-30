@@ -15,7 +15,7 @@ class Filter
     public $priority;
     public $executor;
     public $name;
-    //public $roots;
+    public $sparing;
 
     private function __construct(?string $plemmatka)
     {
@@ -24,6 +24,7 @@ class Filter
 
     public static function forPlemMatka(string $plemmatka): self
     {
+        dd($plemmatka);
         return new self($plemmatka);
     }
 
@@ -35,6 +36,13 @@ class Filter
     public static function all(): self
     {
         return new self(null);
+    }
+
+    public function forSparing(string $sparing): self
+    {
+        $clone = clone $this;
+        $clone->sparing = $sparing;
+        return $clone;
     }
 
     public function forUchastie(string $uchastie): self

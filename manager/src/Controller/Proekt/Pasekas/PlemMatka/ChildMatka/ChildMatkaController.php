@@ -36,37 +36,37 @@ class ChildMatkaController extends AbstractController
         $this->errors = $errors;
     }
 
-    // /**
-    //  * @Route("", name="")
-    //  * @param PlemMatka $plemmatka
-    //  * @param Request $request
-    //  * @return Response
-    //  */
-    // public function index(PlemMatka $plemmatka, Request $request): Response
-    // {
-    //    // $this->denyAccessUnlessGranted(ProjectAccess::VIEW, $project);
+    /**
+     * @Route("", name="")
+     * @param PlemMatka $plemmatka
+     * @param Request $request
+     * @return Response
+     */
+    public function index(PlemMatka $plemmatka, Request $request): Response
+    {
+       // $this->denyAccessUnlessGranted(ProjectAccess::VIEW, $project);
 
-    //     $filter = Filter\Filter::forPlemMatka($plemmatka->getId()->getValue());
+        $filter = Filter\Filter::forPlemMatka($plemmatka->getId()->getValue());
 
-    //     $form = $this->createForm(Filter\Form::class, $filter);
+        $form = $this->createForm(Filter\Form::class, $filter);
 
-    //     $form->handleRequest($request);
+        $form->handleRequest($request);
 
 
-    //     $pagination = $this->childmatkas->allChildMat(
-    //         $filter,
-    //         $request->query->getInt('page', 1),
-    //         self::PER_PAGE,
-    //         $request->query->get('sort', 't.date'),
-    //         $request->query->get('direction', 'desc')
-    //     );
+        $pagination = $this->childmatkas->allChildMat(
+            $filter,
+            $request->query->getInt('page', 1),
+            self::PER_PAGE,
+            $request->query->get('sort', 't.date'),
+            $request->query->get('direction', 'desc')
+        );
 
-    //     return $this->render('proekt/pasekas/childmatkas/index.html.twig', [
-    //         'plemmatka' => $plemmatka,
-    //         'pagination' => $pagination,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
+        return $this->render('proekt/pasekas/childmatkas/index.html.twig', [
+            'plemmatka' => $plemmatka,
+            'pagination' => $pagination,
+            'form' => $form->createView(),
+        ]);
+    }
 
 
     /**
@@ -91,7 +91,7 @@ class ChildMatkaController extends AbstractController
         $command->name = "hhh";
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
-//dd($plemmatka);
+
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);

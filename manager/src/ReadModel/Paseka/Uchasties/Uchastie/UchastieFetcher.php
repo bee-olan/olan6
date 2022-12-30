@@ -134,7 +134,7 @@ class UchastieFetcher
 //            ->andWhere('m.status = :status AND ms.project_id = :project')
 //            ->setParameter(':status', Status::ACTIVE)
 //            ->setParameter(':project', $project)
-            ->orderBy('d.name')->addOrderBy('name')
+            // ->orderBy('d.name')->addOrderBy('name')
             ->execute();
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
     }

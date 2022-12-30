@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ task.name }}{% endblock %}
+{% block title %}{{ childmatka.name }}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+        {# <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>
         <li class="breadcrumb-item"><a href="{{ path('work.projects') }}">Projects</a></li>
         <li class="breadcrumb-item"><a href="{{ path('work.projects.project.show', {'id': project.id}) }}">{{ project.name }}</a></li>
         <li class="breadcrumb-item"><a href="{{ path('work.projects.project.tasks', {'project_id': project.id}) }}">Tasks</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.tasks.show', {'id': task.id}) }}">{{ task.name }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('work.projects.tasks.show', {'id': task.id}) }}">{{ task.name }}</a></li> #}
         <li class="breadcrumb-item active">Assign</li>
     </ol>
 {% endblock %}
@@ -17,10 +17,10 @@
 {% block body %}
 
     <h1 class="mt-0 mb-3 font-xl">
-        {% if task.parent %}
+        {% if childmatka.parent %}
             <a href="{{ path('work.projects.tasks.show', {'id': task.parent.id}) }}">{{ task.parent.name }}</a> /
         {% endif %}
-        {{ task.name }}
+        {{ childmatka.name }}
     </h1>
 
     <div class="card">

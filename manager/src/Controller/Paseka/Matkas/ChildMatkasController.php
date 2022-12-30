@@ -130,11 +130,13 @@ class ChildMatkasController extends AbstractController
     public function assign(ChildMatka $childmatka, Request $request, Executor\Assign\Handler $handler): Response
     {
         $plemmatka = $childmatka->getPlemMatka();
+        
        // $this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
 
         $command = new Executor\Assign\Command($this->getUser()->getId(), $childmatka->getId()->getValue());
-
-        $form = $this->createForm(Executor\Assign\Form::class, $command, ['$plemmatka_id' => $plemmatka->getId()->getValue()]);
+// dd  ($command);
+        $form = $this->createForm(Executor\Assign\Form::class, $command, ['plemmatka_id' => $plemmatka->getId()->getValue()]);
+      
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

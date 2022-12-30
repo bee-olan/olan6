@@ -1,0 +1,40 @@
+    <div class="controls-m">
+
+        {% if childmatka.hasExecutor(uchastie.id) %}
+            {% if childmatka.isNew() %}
+                <form action="{{ path('paseka.matkas.childmatkas.start', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы точно решили?')">
+                    <input type="hidden" name="token" value="{{ csrf_token('start') }}" />
+                    <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col-child">Начало</button>
+                </form>
+            {% endif %}
+        {% else %}
+            <form action="{{ path('paseka.matkas.childmatkas.take', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                <input type="hidden" name="token" value="{{ csrf_token('take') }}" />
+                <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col-child">Бери</button>
+            </form>
+            {% if childmatka.isNew() %}
+                <form action="{{ path('paseka.matkas.childmatkas.take_and_start', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                    <input type="hidden" name="token" value="{{ csrf_token('take-and-start') }}" />
+                    <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col-child">Бери и Начни</button>
+                </form>
+            {% endif %}
+        {% endif %}
+        <a href="{{ path('proekt.pasekas.childmatkas.assign', {'id': childmatka.id}) }}" class="btnn  btnn--pt btnn--col-child">Назначить исполнителя</a>
+        <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id': plemmatka.id}) }}?parent={{ childmatka.id }}" 
+            class="btnn  btnn--pt btnn--col-child">Добавить ДочьМатку</a>
+        {# <div class="btn-group">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Перети&hellip;
+            </button>
+            <div class="dropdown-menu" x-placement="bottom-start">
+                <a class="dropdown-item" href="{{ path('paseka.matkas.childmatkas.move', {'id': childmatka.id}) }}">Перейти к ПлемМатке&hellip;</a>
+               <a class="dropdown-item" href="{{ path('paseka.matkas.childmatkas.child', {'id': childmatka.id}) }}">Установлен как Дочерний элемент&hellip;</a>
+                Установлен как Дочерний элемент
+               <form class="dropdown-item" action="{{ path('paseka.matkas.childmatkas.delete', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                   <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+                   <button type="submit" class="btn" style="padding: 0">Удалить</button>
+               </form>
+                <button type="submit" class="btn" style="padding: 0">Удалить</button>
+            </div>
+        </div> #}
+    </div>

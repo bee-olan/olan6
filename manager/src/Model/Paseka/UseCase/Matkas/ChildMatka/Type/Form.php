@@ -16,9 +16,9 @@ class Form extends AbstractType
     {
         $builder
             ->add('type', Type\ChoiceType::class, ['choices' => [
-                'Эли' => ChildMatkaType::ELIT,
-                'Бре' => ChildMatkaType::BREND,
-                'Ада' => ChildMatkaType::ADAPT,
+                // 'Эли' => ChildMatkaType::ELIT,
+                // 'Бре' => ChildMatkaType::BREND,
+                // 'Ада' => ChildMatkaType::ADAPT,
                 'Мес' => ChildMatkaType::MESTN,
             ], 'attr' => ['onchange' => 'this.form.submit()']]);
     }

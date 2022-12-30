@@ -20,9 +20,11 @@
     }
 
     &--child {
-        box-shadow: inset 0px 0px 10px rgba($col-child-ten, 0.9); //тень внутри
-        border-bottom: 2px solid $col-child-ten; // linia
-    }
+    //     box-shadow: inset 0px 0px 10px rgba($col-child-ten, 0.9); //тень внутри
+    //     border-bottom: 2px solid $col-child-ten; // linia
+    box-shadow: inset 0px 0px 10px rgba($child-text, 0.9); //тень внутри
+        border-bottom: 2px solid $child-text; // linia
+}
 
     &--mb0{
         margin-bottom: 0;
@@ -70,7 +72,9 @@
     -moz-background-clip: text;
     background-clip: text;
 
-
+    &--child {
+        background-color: $child-text;
+    }
     &--rasa {
         background-color: $rasa-color;
     }
