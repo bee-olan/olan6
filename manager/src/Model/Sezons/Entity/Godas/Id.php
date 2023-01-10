@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Sezons\Entity\Sezon;
+namespace App\Model\Sezons\Entity\Godas;
 
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;

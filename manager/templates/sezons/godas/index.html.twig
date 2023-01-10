@@ -14,7 +14,7 @@
 
 
     <div class="controls">
-        <a href="{{ path('sezons.create') }}" class="btn btn-success">Добавить новый сезон</a>
+        <a href="{{ path('sezons.godas.create') }}" class="btnn btnn--mb0">Добавить новый сезон</a>
     </div>
 
     <div class="box">
@@ -28,10 +28,10 @@
             </thead>
             <tbody>
                 {% set token = csrf_token('delete') %}
-                {% for sezon in sezons %}
+                {% for goda in godas %}
                     <tr>
-                        <td>  {{ sezon.god }} </td>
-                        <td>   {{ sezon.sezon }}  </td>
+                        <td>  {{ goda.god }} </td>
+                        <td>   {{ goda.sezon }}  </td>
                     </tr>
                 {% endfor %}
             </tbody>

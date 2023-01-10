@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Sezons\UseCase\Sezon\Create;
+namespace App\Model\Sezons\UseCase\Godas\Create;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;

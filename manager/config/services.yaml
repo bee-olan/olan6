@@ -42,7 +42,7 @@ services:
 
     App\Model\Paseka\Entity\Uchasties\Personas\PersonaRepository: ~
 
-    App\Model\Sezons\Entity\Sezon\SezonRepository: ~
+    App\Model\Sezons\Entity\Godas\GodaRepository: ~
 
 
     # controllers are imported separately to make sure services can be injected

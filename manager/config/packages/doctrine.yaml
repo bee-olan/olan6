@@ -49,7 +49,7 @@ doctrine:
 
             paseka_uchasties_persona_id: 'App\Model\Paseka\Entity\Uchasties\Personas\IdType'
 
-            sezons_sezon_id: 'App\Model\Sezons\Entity\Sezon\IdType'
+            sezons_goda_id: 'App\Model\Sezons\Entity\Godas\IdType'
 
     orm:
         auto_generate_proxy_classes: true

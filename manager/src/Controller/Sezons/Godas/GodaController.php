@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Sezons;
+namespace App\Controller\Sezons\Godas;
 
 use App\Annotation\Guid;
-use App\Model\Sezons\UseCase\Sezon\Create;
 
-use App\ReadModel\Sezons\SezonFetcher;
+use App\Model\Sezons\UseCase\Godas\Create;
+use App\ReadModel\Sezons\Godas\GodaFetcher;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,9 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/sezons", name="sezons")
+ * @Route("/sezons/godas", name="sezons.godas")
  */
-class SezonsController extends AbstractController
+class GodaController extends AbstractController
 {
     private $logger;
 
@@ -30,33 +30,34 @@ class SezonsController extends AbstractController
 
     /**
      * @Route("", name="")
-     * @param SezonFetcher $sezons
+     * @param GodaFetcher $godas
      * @return Response
      */
-    public function index(SezonFetcher $sezons): Response
+    public function index(GodaFetcher $godas): Response
     {
 
-        $sezons = $sezons->all();
+        $godas = $godas->all();
 
-        return $this->render('app/sezons/index.html.twig', compact('sezons'));
+        return $this->render('sezons/godas/index.html.twig', compact('godas'));
     }
 
     /**
      * @Route("/create", name=".create")
-     * @param SezonFetcher $sezons
+     * @param GodaFetcher $godas
      * @param Request $request
      * @param Create\Handler $handler
      * @return Response
      */
-    public function create(Request $request,  SezonFetcher $sezons, Create\Handler $handler): Response
+    public function create(Request $request,  GodaFetcher $godas, Create\Handler $handler): Response
     {
-            $godMax = $sezons->getMaxGod() + 1;
-       // dd( $godMax);
+        $godMax = $godas->getMaxGod() + 1;
+
+        if ($godMax < 2014) {
+            $godMax = 2015;
+        }
 
         $command = new Create\Command();
 
-//        $form = $this->createForm(Create\Form::class, $command);
-//        $form->handleRequest($request);
         $command->god = $godMax;
 
         $command->sezon = $godMax."-".($godMax + 1);
@@ -64,14 +65,14 @@ class SezonsController extends AbstractController
 //        if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('sezons');
+                return $this->redirectToRoute('sezons.godas');
             } catch (\DomainException $e) {
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
 //        }
 
-        return $this->render('app/sezons/create.html.twig', [
+        return $this->render('sezons/godas/create.html.twig', [
            // 'form' => $form->createView(),
         ]);
     }

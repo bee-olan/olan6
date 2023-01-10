@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Sezons\Entity\Sezon;
+namespace App\Model\Sezons\Entity\Godas;
 
 //use App\Model\Paseka\Entity\Uchasties\Group\Group;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="sezons_sezons")
+ * @ORM\Table(name="sezons_godas")
  */
-class Sezon
+class Goda
 {
     /**
      * @var Id
-     * @ORM\Column(type="sezons_sezon_id")
+     * @ORM\Column(type="sezons_goda_id")
      * @ORM\Id
      */
     private $id;
