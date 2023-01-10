@@ -41,11 +41,11 @@ class Goda
 
     }
 
-//    public function edit(Name $name, Email $email): void
-//    {
-//        $this->name = $name;
-//        $this->email = $email;
-//    }
+    public function edit(int $god, string $sezon): void
+    {
+        $this->god = $god;
+        $this->sezon = $sezon;
+    }
 
     public function getId(): Id
     {

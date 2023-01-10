@@ -1,41 +1,62 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
 {% block title %}Сезоны{% endblock %}
 
-{% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-        <li class="breadcrumb-item active">Сезоны</li>
-    </ol>
-{% endblock %}
+  {% block kroxii %}
+      <a href="{{ path('proekt') }}">Главная</a>
+      <span class="aktiv ">Выбор сезона</span>
+  {% endblock %}
 
-{% block body %}
-
-
-
+{% block bodyy %}
     <div class="controls">
-        <a href="{{ path('sezons.godas.create') }}" class="btnn btnn--mb0">Добавить новый сезон</a>
+        <a href="{{ path('sezons.godas.create') }}" class="btnn btnn--mb0 btnn--pt">Добавить новый сезон</a>
     </div>
+    <div  class="proekts proekts--sezon pb0">
 
-    <div class="box">
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th> Год </th>
-                    <th> Сезон </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% set token = csrf_token('delete') %}
-                {% for goda in godas %}
-                    <tr>
-                        <td>  {{ goda.god }} </td>
-                        <td>   {{ goda.sezon }}  </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="inklud">
+            <div class="inklud__img">
+                <img class="" src="{{ asset('assets/proekt/images/sezon/sezons.png') }}" alt="">
+            </div>
+            <div class="inklud__title teni">
+               Выбор  Сезона
+            </div>
+        </div>
+
+        <div class="proekts-plr  ">
+
+            <div class="box-m">
+                <table class="tabl table-bord- table-hover">
+                    <thead>
+                        <tr>
+                            <th> Год </th>
+                            <th> Сезон </th>
+                            <th>Кол-во ТестМаток</th>
+                            <th>Кол-во Тестирующих</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set token = csrf_token('delete') %}
+                        {% for goda in godas %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('sezons.godas.create') }}">
+                                        {{ goda.god }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('sezons.godas.create')  }}">
+                                        {{ goda.sezon }}
+                                    </a>
+                                </td>
+                                <td> -- </td>
+                                <td> <a href="{{ path('sezons.godas.edit', {'id': goda.id}) }}"
+                                        class="btn-my "><span class="fa fa-pencil"></span></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
 {% endblock %}

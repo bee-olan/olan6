@@ -6,7 +6,10 @@ namespace App\Controller\Sezons\Godas;
 
 use App\Annotation\Guid;
 
+use App\Model\Sezons\Entity\Godas\Goda;
 use App\Model\Sezons\UseCase\Godas\Create;
+use App\Model\Sezons\UseCase\Godas\Edit;
+
 use App\ReadModel\Sezons\Godas\GodaFetcher;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -57,9 +60,7 @@ class GodaController extends AbstractController
         }
 
         $command = new Create\Command();
-
         $command->god = $godMax;
-
         $command->sezon = $godMax."-".($godMax + 1);
 
 //        if ($form->isSubmitted() && $form->isValid()) {
@@ -77,6 +78,35 @@ class GodaController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}/edit", name=".edit")
+     * @param Goda $goda
+     * @param Request $request
+     * @param Edit\Handler $handler
+     * @return Response
+     */
+    public function edit(Goda $goda, Request $request, Edit\Handler $handler): Response
+    {
+        $command = Edit\Command::fromGoda($goda);
+
+        $form = $this->createForm(Edit\Form::class, $command);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $handler->handle($command);
+                return $this->redirectToRoute('sezons.godas.show', ['id' => $goda->getId()]);
+            } catch (\DomainException $e) {
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('sezons/godas/edit.html.twig', [
+            'godas' => $goda,
+            'form' => $form->createView(),
+        ]);
+    }
 
     /**
      * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
@@ -84,6 +114,6 @@ class GodaController extends AbstractController
      */
     public function show(): Response
     {
-        return $this->redirectToRoute('sezons');
+        return $this->redirectToRoute('sezons.godas');
     }
 }
