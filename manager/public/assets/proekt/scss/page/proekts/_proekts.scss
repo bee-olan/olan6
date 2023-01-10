@@ -23,6 +23,12 @@
     background-color: $white;
   }
 
+  &--sezon {
+    color: $sezon-text;
+    background-color:$col-child ;
+    border-bottom: 2px solid $sezon-teni; // linia
+  }
+
   &--childmatka {
     max-width: 100%;
     margin-left: 0;
