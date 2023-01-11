@@ -1288,6 +1288,11 @@ a:hover {
   color: #155799;
   background-color: #f6f6f6;
 }
+.proekts--sezon {
+  color: green;
+  background-color: #efe9cd;
+  border-bottom: 2px solid #025a02;
+}
 .proekts--childmatka {
   max-width: 100%;
   margin-left: 0;

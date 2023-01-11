@@ -23,7 +23,7 @@ class Handler
     {
         $goda = $this->godas->get(new Id($command->id));
 
-        $goda->edit($command->god, $command->seson);
+        $goda->edit($command->god, $command->sezon);
 
         $this->flusher->flush();
     }

@@ -36,7 +36,7 @@ class Command
    public static function fromGoda(Goda $goda): self
     {
        $command = new self($goda->getId()->getValue());
-       $command->god = $goda->getGod;
+       $command->god = $goda->getGod();
        $command->sezon = $goda->getSezon();
        return $command;
     }

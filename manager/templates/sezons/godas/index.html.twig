@@ -8,9 +8,7 @@
   {% endblock %}
 
 {% block bodyy %}
-    <div class="controls">
-        <a href="{{ path('sezons.godas.create') }}" class="btnn btnn--mb0 btnn--pt">Добавить новый сезон</a>
-    </div>
+   
     <div  class="proekts proekts--sezon pb0">
 
         <div class="inklud">
@@ -49,14 +47,21 @@
                                     </a>
                                 </td>
                                 <td> -- </td>
-                                <td> <a href="{{ path('sezons.godas.edit', {'id': goda.id}) }}"
-                                        class="btn-my "><span class="fa fa-pencil"></span></a>
+                                <td> <a href="{{ path('sezons.godas.edit', {'id': goda.id}) }}" class="btnn btnn--mb0 " >
+                                       <div class="karandash">
+                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="">
+                                        </div> 
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+                    <div class="controls">
+            <a href="{{ path('sezons.godas.create') }}" class="btnn  btnn--pt">Добавить новый сезон</a>
         </div>
+        </div>
+
     </div>
 {% endblock %}

@@ -9,6 +9,7 @@ use App\Annotation\Guid;
 use App\Model\Sezons\Entity\Godas\Goda;
 use App\Model\Sezons\UseCase\Godas\Create;
 use App\Model\Sezons\UseCase\Godas\Edit;
+use App\Model\Sezons\UseCase\Godas\Remove;
 
 use App\ReadModel\Sezons\Godas\GodaFetcher;
 use Psr\Log\LoggerInterface;
@@ -106,6 +107,32 @@ class GodaController extends AbstractController
             'godas' => $goda,
             'form' => $form->createView(),
         ]);
+    }
+
+        /**
+     * @Route("/{id}/delete", name=".delete", methods={"POST"})
+     * @param Goda $goda
+     * @param Request $request
+     * @param Remove\Handler $handler
+     * @return Response
+     */
+    public function delete(Goda $goda, Request $request, Remove\Handler $handler): Response
+    {
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            return $this->redirectToRoute('sezons.godas.show', ['id' => $goda->getId()]);
+        }
+
+        $command = new Remove\Command($goda->getId()->getValue());
+
+        try {
+            $handler->handle($command);
+            return $this->redirectToRoute('sezons.godas');
+        } catch (\DomainException $e) {
+            $this->logger->warning($e->getMessage(), ['exception' => $e]);
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('sezons.godas.show', ['id' => $goda->getId()]);
     }
 
     /**
