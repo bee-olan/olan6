@@ -1,3 +1,26 @@
+
+.tabl th, .tabl td {
+  // padding: .55rem;
+  vertical-align: middle;
+ 
+}
+
+th {
+  padding: .55rem;
+  text-align: inherit;
+  font-weight: 600;
+  color: $child-form;
+}
+td {
+  padding: .55rem;
+  text-align: inherit;
+  font-weight: 400;
+}
+tr{
+  font-weight: 400;
+  text-align: left;
+}
+
 .tabl-hover-child tbody tr:hover {
 
   background-color: rgba($text, 0.1);
@@ -8,7 +31,7 @@
   margin-bottom: 1rem;
   color: $col-child-ten;
   font-size: 1.4rem;
-  line-height: 1.4;
+  line-height: 1.5;
 
 }
 
@@ -21,10 +44,14 @@
   color: $child-text;
 }
 
-.tabl-bord- {
 
+.tabl-bord- th, .tabl-bord- td {
+  border: 1px solid #e6e6e6;
+}
+.tabl-bord- {
+  border: 1px solid #e6e6e6;
   padding: .5rem .5rem .5rem 1rem;
-  border: 1px solid rgba($col-child-ten, 0.2);
+  // border: 1px solid rgba($col-child-ten, 0.2);
   color: $col-child-ten;
 
   a {

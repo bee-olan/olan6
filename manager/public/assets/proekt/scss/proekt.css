@@ -973,6 +973,10 @@ a:hover {
   height: 2.2rem;
   width: 2.2rem;
 }
+.karandash--child {
+  height: 1.4rem;
+  width: 1.4rem;
+}
 .karandash img {
   display: flex;
   width: 100%;
@@ -2001,6 +2005,10 @@ legend {
   max-width: 33%;
 }
 
+.input-sm {
+  color: red;
+}
+
 .card-m {
   margin-bottom: 1.5rem;
 }
@@ -2031,6 +2039,10 @@ legend {
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 20px;
+}
+
+.pull-right-m {
+  float: right;
 }
 
 .child-form__header {
@@ -2510,6 +2522,7 @@ legend {
   display: flex;
   text-align: center;
   align-items: center;
+  background-color: #f0f3f5;
   margin-bottom: 2rem;
   box-shadow: inset 0px 0px 10px rgba(21, 87, 153, 0.9);
   border-bottom: 2px solid #155799;
@@ -2521,6 +2534,10 @@ legend {
 .inklud--kategor {
   box-shadow: inset 0px 0px 10px rgba(246, 246, 246, 0.9);
   border-bottom: 2px solid #f6f6f6;
+}
+.inklud--sezon {
+  box-shadow: inset 0px 0px 10px rgba(2, 90, 2, 0.9);
+  border-bottom: 2px solid #025a02;
 }
 .inklud--child {
   box-shadow: inset 0px 0px 10px rgba(142, 57, 198, 0.9);
@@ -2577,6 +2594,9 @@ legend {
 .teni--kategor {
   background-color: #565656;
 }
+.teni--sezon {
+  background-color: #025a02;
+}
 
 table {
   border-collapse: collapse;
@@ -2588,6 +2608,29 @@ table {
   font-size: 1.8rem;
   font-weight: 550;
   padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.tabl th,
+.tabl td {
+  vertical-align: middle;
+}
+
+th {
+  padding: 0.55rem;
+  text-align: inherit;
+  font-weight: 600;
+  color: #565656;
+}
+
+td {
+  padding: 0.55rem;
+  text-align: inherit;
+  font-weight: 400;
+}
+
+tr {
+  font-weight: 400;
+  text-align: left;
 }
 
 .tabl-icon {
@@ -2631,6 +2674,28 @@ table {
   color: #f6f6f6;
 }
 
+.tabl th, .tabl td {
+  vertical-align: middle;
+}
+
+th {
+  padding: 0.55rem;
+  text-align: inherit;
+  font-weight: 600;
+  color: #565656;
+}
+
+td {
+  padding: 0.55rem;
+  text-align: inherit;
+  font-weight: 400;
+}
+
+tr {
+  font-weight: 400;
+  text-align: left;
+}
+
 .tabl-hover-child tbody tr:hover {
   background-color: rgba(167, 140, 22, 0.1);
 }
@@ -2640,7 +2705,7 @@ table {
   margin-bottom: 1rem;
   color: #565656;
   font-size: 1.4rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .tabl-col-plem {
@@ -2653,9 +2718,13 @@ table {
   color: #8e39c6;
 }
 
+.tabl-bord- th, .tabl-bord- td {
+  border: 1px solid #e6e6e6;
+}
+
 .tabl-bord- {
+  border: 1px solid #e6e6e6;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
-  border: 1px solid rgba(86, 86, 86, 0.2);
   color: #565656;
 }
 .tabl-bord- a {

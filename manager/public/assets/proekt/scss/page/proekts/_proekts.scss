@@ -24,7 +24,15 @@
   }
 
   &--sezon {
+    //max-width: 100%;
+    //margin-left: 0;
+    //margin-right: 2rem;
     color: $sezon-text;
+    // color: $col-child-ten;
+
+    // box-shadow: inset 0px 0px 10px rgba($col-child-ten, 0.9), //тень внутри
+    //box-shadow: inset 0px 0px 10px rgba($sezon-teni, 0.9),
+    //0 15px 25px rgba($white, .35);
     background-color:$col-child ;
     border-bottom: 2px solid $sezon-teni; // linia
   }

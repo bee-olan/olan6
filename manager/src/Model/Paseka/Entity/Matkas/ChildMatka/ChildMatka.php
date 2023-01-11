@@ -54,6 +54,12 @@ class ChildMatka
      * @var \DateTimeImmutable|null
      * @ORM\Column(type="date_immutable", nullable=true)
      */   
+    private $zakazDate;
+
+    /**
+     * @var \DateTimeImmutable|null
+     * @ORM\Column(type="date_immutable", nullable=true)
+     */   
     private $planDate;
 
     /**
@@ -61,6 +67,7 @@ class ChildMatka
      * @ORM\Column(type="date_immutable", nullable=true)
      */
     private $startDate;
+
 
     /**
      * @var \DateTimeImmutable|null
@@ -157,17 +164,29 @@ class ChildMatka
 
     public function edit( ?string $content): void
     {
-
         $this->content = $content;
+    }
+
+    public function zakaz(\DateTimeImmutable $date): void
+    {
+        if (!$this->isNew()) {
+            throw new \DomainException('Матка уже заказана.');
+        }
+        // if (!$this->executors->count()) {
+        //     throw new \DomainException('У матки нет исполнителя.');
+        // }
+        $this->changeStatus(Status::zakaz(), $date);
+        
     }
 
     public function start(\DateTimeImmutable $date): void
     {
-        if (!$this->isNew()) {
-            throw new \DomainException('Task is already started.');
+       // dd($date);
+        if (!$this->isNew() and !$this->isZakaz()) {
+            throw new \DomainException('Матка уже заказана.');
         }
         if (!$this->executors->count()) {
-            throw new \DomainException('Task does not contain executors.');
+            throw new \DomainException('У матки нет исполнителя.');
         }
         $this->changeStatus(Status::working(), $date);
     }
@@ -187,17 +206,25 @@ class ChildMatka
         $this->parent = $parent;
     }
 
-    public function plan(?\DateTimeImmutable $date): void
+    // public function plan(?\DateTimeImmutable $date): void
+    // {
+    //     $this->planDate = $date;
+    // }
+
+    public function plan(Uchastie $actor, \DateTimeImmutable $date, \DateTimeImmutable $plan): void
     {
-        $this->planDate = $date;
+        $this->planDate = $plan;
+        // $this->addChange($actor, $date, Set::fromPlan($plan));
+        // $this->recordEvent(new Event\TaskPlanChanged($actor->getId(), $this->id, $date));
     }
 // переместить
-    public function move(PlemMatka $plemmatka): void
+    public function move(Uchastie $actor, PlemMatka $plemmatka): void
     {
         if ($plemmatka === $this->plemmatka) {
             throw new \DomainException('PlemMatka это уже то же самое.');
         }
         $this->plemmatka = $plemmatka;
+        // $this->addChange($actor, $date, Set::fromPlemMatka($plemmatka->getId()));
     }
 
 //изменить тип
@@ -212,7 +239,7 @@ class ChildMatka
     public function changeStatus(Status $status, \DateTimeImmutable $date): void
     {
         if ($this->status->isEqual($status)) {
-            throw new \DomainException('Status is already same.');
+            throw new \DomainException('Статус уже тот же.');
         }
         $this->status = $status;
         if (!$status->isNew() && !$this->startDate) {
@@ -227,6 +254,8 @@ class ChildMatka
             $this->endDate = null;
         }
     }
+
+
 
     public function changeProgress(int $progress): void
     {
@@ -259,7 +288,7 @@ class ChildMatka
     public function assignExecutor(Uchastie $executor): void
     {
         if ($this->executors->contains($executor)) {
-            throw new \DomainException('Executor is already assigned.');
+            throw new \DomainException('Исполнитель уже назначен.');
         }
         $this->executors->add($executor);
     }
@@ -278,6 +307,11 @@ class ChildMatka
     public function isNew(): bool
     {
         return $this->status->isNew();
+    }
+
+    public function isZakaz(): bool
+    {
+        return $this->status->isZakaz();
     }
 
     public function isWorking(): bool
@@ -303,6 +337,11 @@ class ChildMatka
     public function getDate(): \DateTimeImmutable
     {
         return $this->date;
+    }
+
+    public function getZakazDate(): ?\DateTimeImmutable
+    {
+        return $this->zakazDate;
     }
 
     public function getPlanDate(): ?\DateTimeImmutable
@@ -367,4 +406,23 @@ class ChildMatka
     {
         return $this->executors->toArray();
     }
+
+    // /**
+    //  * @return Change[]
+    //  */
+    // public function getChanges(): array
+    // {
+    //     return $this->changes->toArray();
+    // }
+
+    // private function addChange(Uchastie $actor, \DateTimeImmutable $date, Set $set): void
+    // {
+    //     if ($last = $this->changes->last()) {
+    //         /** @var Change $last */
+    //         $next = $last->getId()->next();
+    //     } else {
+    //         $next = ChangeId::first();
+    //     }
+    //     $this->changes->add(new Change($this, $next, $actor, $date, $set));
+    // }
 }

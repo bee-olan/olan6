@@ -48,31 +48,34 @@
         <div class="col-m col-8-m">
             <div class="card-m">
                 <div class="card-header-m ">ДочьМатка {{childmatka.name}}</div>
+                
                 <table class="tabl-child tabl-bord- tabl-bord-child mb-0">
                     <tbody>
                         <tr>
-                            <th>ID</th>
+                            <th>Номер</th>
                             <td colspan="3">{{ childmatka.id }}</td>
                         </tr>
                         <tr>
                             <th>Дата создания</th>
                             <td>{{ childmatka.date|date('Y-m-d H:i:s') }}</td>
-                            <th>Plan Date</th>
+                            <th>Дата по плану</th>
                             <td>
                                 {{ childmatka.planDate ? childmatka.planDate|date('Y-m-d') : '' }}
 
-                                <div class="controls pull-right" style="margin-bottom: 0">
-                                    <a href="{{ path('paseka.matkas.childmatkas.plan', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" class="btn btn-sm py-0">
-                                        <span class="fa fa-pencil"></span>
+                                <div class="controls-m pull-right-m" style="margin-bottom: 0">
+                                    <a href="{{ path('proekt.pasekas.childmatkas.plan', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-child">
+                                        <div class="karandash karandash--child">
+                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
+                                        </div>
                                     </a>
                                     {% if childmatka.planDate %}
-                                        ................
-{#                                        <form action="{{ path('paseka.matkas.childmatkas.plan.remove', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">#}
-{#                                            <input type="hidden" name="token" value="{{ csrf_token('remove-plan') }}" />#}
-{#                                            <button type="submit" class="btn btn-sm py-0">#}
-{#                                                <span class="fa fa-times"></span>#}
-{#                                            </button>#}
-{#                                        </form>#}
+                                        .
+                                       {# <form action="{{ path('paseka.matkas.childmatkas.plan.remove', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                                           <input type="hidden" name="token" value="{{ csrf_token('remove-plan') }}" />
+                                           <button type="submit" class="btn btn-sm py-0">
+                                               <span class="fa fa-times"></span>
+                                           </button>
+                                       </form> #}
                                     {% endif %}
                                 </div>
                             </td>
@@ -82,8 +85,8 @@
                             <td>
                                 {{ form_start(typeForm) }}
                                 <div class="row">
-                                    <div class="col-sm-8">{{ form_widget(typeForm.type, {'attr': {'class': 'input-sm'}}) }}</div>
-                                    <div class="col-sm-4">
+                                    <div class="col-8-m">{{ form_widget(typeForm.type, {'attr': {'class': 'input-sm'}}) }}</div>
+                                    <div class="col-4-m">
                                         <button type="submit" class="btn btn-sm btn-default pull-right invisible">
                                             <span class="fa fa-check"></span>
                                         </button>
@@ -94,9 +97,9 @@
                             <th>Статус</th>
                             <td>
                                 {{ form_start(statusForm) }}
-                                <div class="row">
-                                    <div class="col-sm-8">{{ form_widget(statusForm.status, {'attr': {'class': 'input-sm'}}) }}</div>
-                                    <div class="col-sm-4">
+                                <div class="row-m">
+                                    <div class="col-8-m">{{ form_widget(statusForm.status, {'attr': {'class': 'input-sm'}}) }}</div>
+                                    <div class="col-4-m">
                                         <button type="submit" class="btn btn-sm btn-default pull-right invisible">
                                             <span class="fa fa-check"></span></button>
                                     </div>
@@ -109,8 +112,8 @@
                             <td>
                                 {{ form_start(priorityForm) }}
                                 <div class="row">
-                                    <div class="col-sm-8">{{ form_widget(priorityForm.priority, {'attr': {'class': 'input-sm'}}) }}</div>
-                                    <div class="col-sm-4">
+                                    <div class="col-8-m">{{ form_widget(priorityForm.priority, {'attr': {'class': 'input-sm'}}) }}</div>
+                                    <div class="col-4-m">
                                         <button type="submit" class="btn btn-sm btn-default pull-right invisible">
                                             <span class="fa fa-check"></span></button>
                                     </div>
@@ -121,8 +124,8 @@
                             <td>
                                 {{ form_start(progressForm) }}
                                 <div class="row">
-                                    <div class="col-sm-8">{{ form_widget(progressForm.progress, {'attr': {'class': 'input-sm'}}) }}</div>
-                                    <div class="col-sm-4">
+                                    <div class="col-8-m">{{ form_widget(progressForm.progress, {'attr': {'class': 'input-sm'}}) }}</div>
+                                    <div class="col-4-m">
                                         <button type="submit" class="btn btn-sm btn-default pull-right invisible">
                                             <span class="fa fa-check"></span></button>
                                     </div>
@@ -139,7 +142,7 @@
                    {# <a href="{{ path('proekt.pasekas.childmatkas.files', {'id': childmatka.id}) }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a> #}
                     Файлы
                 </div>
-                <table class="table mb-0">
+                <table class="tabl mb-0">
                     <tbody>
 {#                        {% for file in childmatka.files %}#}
                             <tr>
@@ -175,17 +178,17 @@
             </div>
 
             {% if childmatka.content %}
-                <div class="card mb-3">
-                    <div class="card-body pb-0">
-                        1111111111111111111111111
-{#                        {{ childmatka.content|markdown|purify|work_processor }}#}
+                <div class="card-m mb-3">
+                    <div class="card-body-m pb-0">
+                        {{childmatka.content}}
+                       {# {{ childmatka.content|markdown|purify|work_processor }} #}
                     </div>
                 </div>
             {% endif %}
 
             <div class="card-m">
                 <div class="card-header-m">Выполненные действия</div>
-                <div class="card-body">
+                <div class="card-body-m">
                     <div class="direct-chat">
                         <div class="direct-chat-messages">
 {#                            {% for item in feed.items %}#}

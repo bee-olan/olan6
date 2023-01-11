@@ -3,7 +3,7 @@
     // font-size: 1.8rem;
     text-align: center;
     align-items: center;
-
+    background-color: #f0f3f5;
     margin-bottom: 2rem;
     box-shadow: inset 0px 0px 10px rgba($plem-color, 0.9); //тень внутри
     // box-shadow: 0 5px 22px rgba($white, .25); 
@@ -17,6 +17,11 @@
     &--kategor {
         box-shadow: inset 0px 0px 10px rgba($white, 0.9); //тень внутри
         border-bottom: 2px solid $white; // linia
+    }
+
+    &--sezon {
+        box-shadow: inset 0px 0px 10px rgba($sezon-teni, 0.9); //тень внутри
+        border-bottom: 2px solid $sezon-teni; // linia
     }
 
     &--child {
@@ -81,6 +86,10 @@
 
     &--kategor {
         background-color: #565656;
+    }
+
+    &--sezon {
+        background-color: $sezon-teni;
     }
 
 }

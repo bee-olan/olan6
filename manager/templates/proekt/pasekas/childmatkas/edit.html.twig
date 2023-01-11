@@ -1,35 +1,53 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
 {% block title %}{{ childmatka.name }}{% endblock %}
 
-{% block breadcrumbs %}
+{# {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">На главную</a></li>
-{#        <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>#}
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.childmatkas', {'plemmatka_id': plemmatka.id}) }}">ДочьМатки</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.childmatkas.show', {'id': childmatka.id}) }}">{{ childmatka.name }}</a></li>
         <li class="breadcrumb-item active">Редактировать</li>
     </ol>
-{% endblock %}
+{% endblock %} #}
 
-{% block body %}
+{% block kroxii %}
+        <a href="{{ path('proekt') }}">Главная</a>
+        <a href="{{ path('proekt.pasekas.childmatkas') }}">Список ПлемМатки + ДочьМаток</a>             
+        <span class="aktiv ">Редактировать ком-рий</span> 
+    {% endblock %}
 
-    <h1 class="mt-0 mb-3 font-xl">
+{% block bodyy %}
+
+<div  class="proekts proekts--childmatka">
+    <div class="inklud inklud--child">
+        <div class="inklud__img  ">
+            <img class="" src="{{ asset('assets/proekt/images/matkas/p4ela1.jpg') }}" alt="">           
+        </div>
+
+    <div class="inklud__title  teni teni--kategor">
+           Редактировать ком-рий  ДочьМатки  {{childmatka.name}}
+    </div> 
+   
+</div>
+
+    {# <h1 class="mt-0 mb-3 font-xl">
         {% if childmatka.parent %}
             <a href="{{ path('paseka.matkas.childmatkas.show', {'id': childmatka.parent.id}) }}">{{ childmatka.parent.name }}</a> /
         {% endif %}
         {{ childmatka.name }}
-    </h1>
+    </h1> #}
 
-    <div class="card">
-        <div class="card-body">
+ <div class="plem-form__header  "> 
+            <div class="child-form ">
 
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <div>
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button type="submit" 
+                class="btnn  btnn--pt btnn--col-child">Сохранить</button>
             </div>
             {{ form_end(form) }}
 

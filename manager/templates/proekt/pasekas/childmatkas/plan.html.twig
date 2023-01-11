@@ -1,35 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
-{% block title %}{{ task.name }}{% endblock %}
+{% block title %}{{ childmatka.name }}{% endblock %}
 
-{% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects') }}">Projects</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.show', {'id': project.id}) }}">{{ project.name }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.tasks', {'project_id': project.id}) }}">Tasks</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.tasks.show', {'id': task.id}) }}">{{ task.name }}</a></li>
-        <li class="breadcrumb-item active">Plan</li>
-    </ol>
-{% endblock %}
+{#{% block breadcrumbs %}#}
+{#    <ol class="breadcrumb">#}
+{#        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work.projects') }}">Projects</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.show', {'id': project.id}) }}">{{ project.name }}</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.childmatkas', {'project_id': project.id}) }}">Tasks</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work.projects.childmatkas.show', {'id': childmatka.id}) }}">{{ childmatka.name }}</a></li>#}
+{#        <li class="breadcrumb-item active">Plan</li>#}
+{#    </ol>#}
+{#{% endblock %}#}
 
-{% block body %}
+{% block bodyy %}
+    <div  class="proekts proekts--childmatka">
+    <div class="inklud inklud--child">
+        <div class="inklud__img  ">
+            <img class="" src="{{ asset('assets/proekt/images/matkas/p4ela1.jpg') }}" alt="">
+        </div>
 
-    <h1 class="mt-0 mb-3 font-xl">
-        {% if task.parent %}
-            <a href="{{ path('work.projects.tasks.show', {'id': task.parent.id}) }}">{{ task.parent.name }}</a> /
-        {% endif %}
-        {{ task.name }}
-    </h1>
+        <div class="inklud__title  teni teni--kategor">
+            Редактировать ком-рий  ДочьМатки  {{childmatka.name}}
+        </div>
 
-    <div class="card">
-        <div class="card-body">
+    </div>
+
+{#    <h1 class="mt-0 mb-3 font-xl">#}
+{#        {% if childmatka.parent %}#}
+{#            <a href="{{ path('work.projects.childmatkas.show', {'id': childmatka.parent.id}) }}">{{ childmatka.parent.name }}</a> /#}
+{#        {% endif %}#}
+{#        {{ childmatka.name }}#}
+{#    </h1>#}
+
+    <div class="plem-form__header  ">
+        <div class="child-form ">
 
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <div>
-                <button type="submit" class="btn btn-primary">Set Plan</button>
+                <button type="submit" class="btnn  btnn--pt btnn--col-child">
+                Установить новую дату</button>
             </div>
             {{ form_end(form) }}
 

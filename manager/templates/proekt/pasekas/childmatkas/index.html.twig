@@ -85,8 +85,9 @@
                 <th  >Автор</th>
                 <th >Приорит</th>
                 <th  >Испол---ль</th>
-                <th >Plan</th>
-                <th  >В статусе</th>
+                <th  >Статус</th>
+                <th >Дата</th>
+                
                 
             </tr>
             </thead>
@@ -122,9 +123,10 @@
                         {% for executor in childmatka.executors %}
                             <span class="badge badge-default" style="background: #eee">{{ executor.name }}</span>
                         {% endfor %}
-                    </td>
+                    </td> 
+                     <td class="tabl-bord-">{{ childmatka.status }}</td>
                    <td class="tabl-bord-" >{{ childmatka.plan_date ? childmatka.plan_date|date('Y-m-d') : '' }}</td>
-                    <td class="tabl-bord-">{{ childmatka.status }}</td>
+                  
                    
                 </tr>
             {% endfor %}

@@ -1,27 +1,64 @@
     <div class="controls-m">
-
-        {% if childmatka.hasExecutor(uchastie.id) %}
+ {% if  childmatka.author.id == uchastie.id %}
+ {# Это автор  #}
+           {% if childmatka.hasExecutor(uchastie.id) %}
+        
             {% if childmatka.isNew() %}
                 <form action="{{ path('paseka.matkas.childmatkas.start', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы точно решили?')">
                     <input type="hidden" name="token" value="{{ csrf_token('start') }}" />
-                    <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col-child">Начало</button>
+                    <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col-child">
+                    Начало</button>
                 </form>
             {% endif %}
         {% else %}
             <form action="{{ path('paseka.matkas.childmatkas.take', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
                 <input type="hidden" name="token" value="{{ csrf_token('take') }}" />
-                <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col-child">Бери</button>
+                <button type="submit" 
+                class="btnn btnn--mb0 btnn--pt btnn--col-child">Бери</button>
             </form>
             {% if childmatka.isNew() %}
-                <form action="{{ path('paseka.matkas.childmatkas.take_and_start', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                <form action="{{ path('proekt.pasekas.childmatkas.take_and_start', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
                     <input type="hidden" name="token" value="{{ csrf_token('take-and-start') }}" />
-                    <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col-child">Бери и Начни</button>
+                    <button type="submit" 
+                    class="btnn btnn--mb0 btnn--pt btnn--col-child">Бери и Начни</button>
                 </form>
             {% endif %}
         {% endif %}
-        <a href="{{ path('proekt.pasekas.childmatkas.assign', {'id': childmatka.id}) }}" class="btnn  btnn--pt btnn--col-child">Назначить исполнителя</a>
-        <a href="{{ path('paseka.matkas.plemmatka.childmatkas.create', {'plemmatka_id': plemmatka.id}) }}?parent={{ childmatka.id }}" 
+
+               <a href="{{ path('proekt.pasekas.childmatkas.assign', {'id': childmatka.id}) }}" 
+            class="btnn  btnn--pt btnn--col-child">Назначить исполнителя</a>
+
+        <a href="{{ path('proekt.pasekas.childmatkas.create', {'plemmatka_id': plemmatka.id}) }}?parent={{ childmatka.id }}" 
             class="btnn  btnn--pt btnn--col-child">Добавить ДочьМатку</a>
+
+        <a href="{{ path('proekt.pasekas.childmatkas.edit', {'id': childmatka.id}) }}" 
+            class="btnn  btnn--pt btnn--col-child">Редактировать ком-рий</a>
+    
+
+ {% else %}
+ {# участник заказавает маточку #}
+         {% if childmatka.hasExecutor(uchastie.id) %}
+        
+            {% if childmatka.isZakaz() %}
+                <form action="{{ path('proekt.pasekas.childmatkas.start', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы точно решили?')">
+                    <input type="hidden" name="token" value="{{ csrf_token('start') }}" />
+                    <button type="submit" class="btnn btnn--mb0 btnn--pt btnn--col-child">
+                    Получил(а). Начинаю тестировать</button>
+                </form>
+            {% endif %}
+        {% else %}
+            <form action="{{ path('proekt.pasekas.childmatkas.zakaz', {'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                <input type="hidden" name="token" value="{{ csrf_token('zakaz') }}" />
+                <button type="submit" 
+                class="btnn btnn--mb0 btnn--pt btnn--col-child">Заказываю</button>
+            </form>
+           
+        {% endif %}
+
+ {% endif %}
+
+
+ 
         {# <div class="btn-group">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Перети&hellip;
