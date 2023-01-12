@@ -96,7 +96,7 @@ class PlemMatkaController extends AbstractController
 
         $plemId = $plemmatkas->findIdByPlemMatka($plemmatka);
 
-
+//dd($plemId);
         return $this->render('proekt/pasekas/matkas/plemmatkas/sdelano.html.twig',
             compact('kategoria', 'nomer', 'persona', 'mestoNomer', 'plemmatka', 'plemId') );
     }

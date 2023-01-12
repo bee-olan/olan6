@@ -176,7 +176,7 @@ class ChildMatka
         //     throw new \DomainException('У матки нет исполнителя.');
         // }
         $this->changeStatus(Status::zakaz(), $date);
-        
+
     }
 
     public function start(\DateTimeImmutable $date): void

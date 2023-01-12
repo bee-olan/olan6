@@ -53,12 +53,13 @@ class Handler
 
         $childmatkaId = $this->childmatkas->nextId();
         $command->name =  ($plemmatka->getName())."_".$childmatkaId;
+        $date = new \DateTimeImmutable();
 
         $childmatka = new ChildMatka(
             $childmatkaId,
             $plemmatka,
             $uchastie,
-            new \DateTimeImmutable(),
+            $date,
             new Type($command->type),
             $command->priority,
             $command->name,
@@ -72,7 +73,7 @@ class Handler
         }
 
         if ($command->plan) {
-            $childmatka->plan($command->plan);
+            $childmatka->plan($uchastie, $date, $command->plan);
         }
 
         $this->childmatkas->add($childmatka);

@@ -121,14 +121,16 @@ class PlemMatkaCreateController extends AbstractController
         $command->persona = $persona->getNomer();
 
         $command->sort = $plemmatkas->getMaxSortPerson($command->persona) + 1;
+//        $command->sort = $plemmatkas->getMaxSort() + 1;
 
         $command->mesto = $mestonomer->getNomer();
 
-        
-
+//        $plemTitle = explode("_", $nomer->getTitle());
+//        $plemTitle[0]; // кусок1
+//        $plemTitle[1]; // кусок2
+//        $command->name =$plemTitle[0]."-".$command->sort." : ".$command->mesto."_пН-". $command->persona;
         $command->name = $nomer->getTitle()." : ".$command->mesto."_пН-". $command->persona."_№-".$command->sort;
-
-        // dd($command);
+//        dd( $command->name);
 
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);

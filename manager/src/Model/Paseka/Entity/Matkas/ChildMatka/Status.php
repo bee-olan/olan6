@@ -8,12 +8,12 @@ use Webmozart\Assert\Assert;
 
 class Status
 {
-    public const NEW = 'новая';
+    public const NEW = 'Новая';
     public const ZAKAZ = 'Заказана';
-    public const WORKING = 'в работе';
-    public const HELP = 'вопрос';
-    public const REJECTED = 'отклонена';
-    public const DONE = 'завершено';
+    public const WORKING = 'В работе';
+    public const HELP = 'Вопрос';
+    public const REJECTED = 'Отклонена';
+    public const DONE = 'Тест завершено';
 
     private $name;
 
@@ -34,6 +34,11 @@ class Status
     public static function new(): self
     {
         return new self(self::NEW);
+    }
+
+    public static function zakaz(): self
+    {
+        return new self(self::ZAKAZ);
     }
 
     public static function working(): self
@@ -59,6 +64,11 @@ class Status
     public function isNew(): bool
     {
         return $this->name === self::NEW;
+    }
+
+    public function isZakaz(): bool
+    {
+        return $this->name === self::ZAKAZ;
     }
 
     public function isWorking(): bool
