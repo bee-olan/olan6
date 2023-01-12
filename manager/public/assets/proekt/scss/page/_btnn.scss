@@ -61,6 +61,18 @@
                 color: $child-text;
             }
         }
+
+  &--col-sezon {
+    box-shadow: inset 0px 0px 10px rgba($sezon-teni, 0.9);
+    border: 1px solid $sezon-teni;
+    font-size: 1.5rem;
+    &:hover {
+      box-shadow:  0px 0px 10px rgba($sezon-teni, 0.6);
+      background: none;
+      text-decoration: none;
+      color: $sezon-text;
+    }
+  }
         &--col-ras {
         
             border: 1px solid $rasa-color;

@@ -439,6 +439,17 @@ a:hover {
   text-decoration: none;
   color: #8e39c6;
 }
+.btnn--col-sezon {
+  box-shadow: inset 0px 0px 10px rgba(2, 90, 2, 0.9);
+  border: 1px solid #025a02;
+  font-size: 1.5rem;
+}
+.btnn--col-sezon:hover {
+  box-shadow: 0px 0px 10px rgba(2, 90, 2, 0.6);
+  background: none;
+  text-decoration: none;
+  color: green;
+}
 .btnn--col-ras {
   border: 1px solid green;
 }

@@ -28,8 +28,10 @@
                         <tr>
                             <th> Год </th>
                             <th> Сезон </th>
+                            <td> Ред-ние </td>
                             <th>Кол-во ТестМаток</th>
                             <th>Кол-во Тестирующих</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -42,17 +44,28 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ path('sezons.godas.create')  }}">
+                                    <a href="{{ path('sezons.godas.wzatoks.create', {'id': goda.id})  }}">
                                         {{ goda.sezon }}
                                     </a>
                                 </td>
-                                <td> -- </td>
-                                <td> <a href="{{ path('sezons.godas.edit', {'id': goda.id}) }}" class="btnn btnn--mb0 " >
-                                       <div class="karandash">
-                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="">
-                                        </div> 
+                                <td> <a href="{{ path('sezons.godas.edit', {'id': goda.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
+{#                                       <div class="karandash">#}
+{#                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="">#}
+{#                                        </div> #}
+                                        <div class="karandash karandash--child">
+                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
+                                        </div>
                                     </a>
                                 </td>
+                                <td>
+                                    <div>
+                                        <a href="{{ path('proekt.pasekas.matkas.plemmatkas'  ) }}"
+                                           class="btnn btnn--mb0 btnn--plus" title="Удалить">
+                                        <strong class="strongo strongo--kras">X</strong>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td> -- </td>
                             </tr>
                         {% endfor %}
                     </tbody>
