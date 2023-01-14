@@ -12,17 +12,18 @@
 
     <div  class="proekts proekts--sezon pb0">
 
-{#        {% include('sezons/_sezon-includ.html.twig') %}#}
+        {% include('sezons/godas/_sezon-includ.html.twig') %}
+    <div class="proekts-plr  ">
 
-        <div class="proekts-plr  ">
+        <div class="box-m">
+            {% if wzatoks  %}
 
-            <div class="box-m">
                 <table class="tabl table-bord- table-hover">
                     <thead>
                     <tr>
                         <th> Сезон </th>
                         <th> Номер группы </th>
-                        <th> Кол-во взятков </th>
+                        <th> Кол-во взятков ! </th>
                         <td> -- </td>
                     </tr>
                     </thead>
@@ -30,19 +31,41 @@
 
                     {% for wzatok in wzatoks %}
                         <tr>
-                            <td>----------
-{#                                {{ wzatok.god }} - {{ wzatok.god+1 }}#}
+                            <td>
+                                 {{ goda.sezon }}
                             </td>
                             <td>
                                 {{ wzatok.gruppa }}
                             </td>
                             <td> {{ wzatok.kolwz }} </td>
-                            <td> -- </td>
+                            <td>
+{#                                {{ path('sezons.godas.wzatoks.nomers', {'wzatok_id': wzatok.id}) }}#}
+                                <a href="#"
+                                   class="btn-my btn-my--sm">Добавить данные по
+                                    <strong class="stro stro--kras"> взяткам </strong>
+
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
 
+                {% else %}
+
+                    <ul class="plem__data plem__data--mt2">
+                        <li>
+                            <a href="{{ path('sezons.godas.wzatoks.create', {'id' : goda.id}  ) }}"
+                               class="btnn btnn--mb0 btnn--col">Перейти к заполнению данных за сезон  <strong class="strongo strongo--kras">{{ goda.sezon}} </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sezons.godas'  ) }}"
+                               class="btnn btnn--mb0 btnn--col" >Список сезонов
+                            </a>
+                        </li>
+                    </ul>
+                {% endif %}
             </div>
 
         </div>

@@ -41,16 +41,17 @@ class Wzatok
      */
     private $kolwz;
 
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $gruppa;
+//    /**
+//     * @ORM\Column(type="smallint")
+//     */
+//    private $koltochek;
 
     /**
      * @var string
-     * @ORM\Column(type="string", name="uchastie_id")
+     * @ORM\Column(type="string")
      */
-    private $uchastieId;
+    private $gruppa;
+
 
 
 	
@@ -67,23 +68,28 @@ class Wzatok
     public function __construct( Goda $goda, Id $id,
                                  ?string $content,
                                  int $kolwz,
-                                 int $gruppa,
-                                 string $uchastieId
-    )
+                                 string $gruppa
+//                                 int $koltochek
+                                    )
     {
         $this->goda = $goda;
         $this->id = $id;
         $this->content = $content;
         $this->kolwz = $kolwz;
         $this->gruppa = $gruppa;
-        $this->uchastieId = $uchastieId;
+//        $this->koltochek = $koltochek;
 //        $this->istorias = new ArrayCollection();
     }
 
         public function edit(string $content, int $kolwz): void
     {
-        $this->kolwz = $kolwz;
         $this->content = $content;
+        $this->kolwz = $kolwz;
+
+    }
+    public function isGruppaEqual(string $gruppa): bool
+    {
+        return $this->gruppa === $gruppa;
     }
 //	///////////////////////
 //    public function addIstoria(IstoriaId $id,
@@ -163,19 +169,19 @@ class Wzatok
     {
         return $this->kolwz;
     }
+//    public function getKoltochek(): int
+//    {
+//        return $this->koltochek;
+//    }
 
     public function getContent(): string
     {
         return $this->content;
     }
 
-    public function getGruppa(): int
+    public function getGruppa(): string
     {
         return $this->gruppa;
     }
 
-    public function getUchastieId(): string
-    {
-        return $this->uchastieId;
-    }
 }

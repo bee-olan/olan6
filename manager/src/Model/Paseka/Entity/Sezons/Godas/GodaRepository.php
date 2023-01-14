@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Sezons\Entity\Godas;
+namespace App\Model\Paseka\Entity\Sezons\Godas;
 
 use App\Model\EntityNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,9 +31,13 @@ class GodaRepository
         return $goda;
     }
 
+    public function remove(Goda $goda): void
+    {
+        $this->em->remove($goda);
+    }
+
     public function add(Goda $goda): void
     {
-
         $this->em->persist($goda);
     }
 }

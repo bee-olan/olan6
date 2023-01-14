@@ -80,13 +80,12 @@ class WzatokController extends AbstractController
            $this->addFlash('error', 'Начните с выбора ПерсонНомера ');
            return $this->redirectToRoute('paseka.uchasties.personas.diapazon');
        }
-       $gruppa = $personas->find($this->getUser()->getId());
-
+       $grupp = $personas->find($this->getUser()->getId());
+       $gruppa = (string)$grupp->getNomer();
 
         $command = new Create\Command(
                         $goda->getId()->getValue(),
-                        $this->getUser()->getId(),
-                        $gruppa->getNomer()
+                        $gruppa
                         );
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
@@ -94,7 +93,7 @@ class WzatokController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('sezons.godas.wzatoks', ['id' => $goda->getId()]);
+                return $this->redirectToRoute('sezons.godas.wzatoks', ['id' => $goda->getId()->getValue()]);
             } catch (\DomainException $e) {
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());

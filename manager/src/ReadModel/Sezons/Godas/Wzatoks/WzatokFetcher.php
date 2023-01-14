@@ -35,11 +35,9 @@ class WzatokFetcher
         $stmt = $this->connection->createQueryBuilder()
             ->select(
                 'w.id',
-                'w.goda_id AS goda',
                 'w.content',
                 'w.kolwz',
-                'w.gruppa',
-                'w.uchastie_id'
+                'w.gruppa'
 //                '(SELECT COUNT(*) FROM paseka_goda_linia_nomers n WHERE n.linia_id = w.id) AS nomers'
             // '(
             //     SELECT COUNT(ms.member_id)
@@ -49,7 +47,7 @@ class WzatokFetcher
             // ) AS members_count'
             )
             ->from('sezon_goda_wzatoks', 'w')
-            ->andWhere('w.goda_id = :godas')
+            ->andWhere('goda_id = :godas')
             ->setParameter(':godas', $goda)
             ->orderBy('gruppa')
             ->execute();
@@ -64,8 +62,7 @@ class WzatokFetcher
                 's.id',
                 's.content',
                 's.kolwz',
-                's.gruppa',
-                's.uchastie_id'
+                's.gruppa'
 
 
 //                '(SELECT COUNT(*) FROM paseka_goda_linias l WHERE w.goda_id = s.id) AS linias'
@@ -84,9 +81,7 @@ class WzatokFetcher
                 's.id',
                 's.content',
                 's.kolwz',
-                's.gruppa',
-                's.uchastie_id',
-                's.god'
+                's.gruppa'
 
 //                '(SELECT COUNT(*) FROM paseka_goda_linias l WHERE l.goda_id = s.id) AS linias'
             )

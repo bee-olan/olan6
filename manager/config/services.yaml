@@ -16,7 +16,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Model/User/Entity,Model/Paseka/Entity,Model/Mesto/Entity,Model/Proekt/Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Model/Sezons/Entity,Model/User/Entity,Model/Paseka/Entity,Model/Mesto/Entity,Model/Proekt/Entity,Migrations,Tests,Kernel.php}'
 
     App\Model\User\Entity\User\UserRepository: ~
     App\Model\Mesto\Entity\Okrugs\OkrugRepository: ~
@@ -41,6 +41,8 @@ services:
     App\Model\Paseka\Entity\Uchasties\Uchastie\UchastieRepository: ~
 
     App\Model\Paseka\Entity\Uchasties\Personas\PersonaRepository: ~
+
+    App\Model\Paseka\Entity\Sezons\Godas\GodaRepository: ~
 
     App\Model\Sezons\Entity\Godas\GodaRepository: ~
     App\Model\Sezons\Entity\Godas\Wzatoks\WzatokRepository: ~

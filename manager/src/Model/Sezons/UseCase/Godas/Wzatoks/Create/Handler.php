@@ -25,16 +25,13 @@ class Handler
     {
         $goda = $this->godas->get(new GodaId($command->goda));
 
+        $command->gruppa =  $command->gruppa."-".$goda->getGod();
         $goda->addWzatok(
             Id::next(),
             $command->content,
             $command->kolwz,
-            $command->gruppa,
-            $command->uchastie
-
-        );
-
-//        $this->godas->add($goda);
+            $command->gruppa
+                );
 
         $this->flusher->flush();
     }

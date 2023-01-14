@@ -14,12 +14,12 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-//            ->add('content', Type\TextareaType::class, [
-//                'label' => 'Описание сезона  ',
-//                'required' => false,
-//                'attr' => ['rows' => 3,
-//                    'placeholder' => ' комментарий'
-//                ]])
+            ->add('content', Type\TextareaType::class, [
+                'label' => 'Описание сезона  ',
+                'required' => false,
+                'attr' => ['rows' => 3,
+                    'placeholder' => ' комментарий'
+                ]])
             ->add('kolwz', Type\ChoiceType::class, [
                 'label' => 'Кол-во взятков за сезон   ',
                 'choices' => [

@@ -8,6 +8,7 @@ use App\Model\Sezons\Entity\Godas\Wzatoks\Wzatok;
 use App\Model\Sezons\Entity\Godas\Wzatoks\Id as WzatokId;
 
 use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,48 +63,47 @@ class Goda
     public function addWzatok(WzatokId $id,
                               ?string $content,
                               int $kolwz,
-                              int $gruppa,
-                              string $uchastieId
-                            ): void
+                              string $gruppa): void
     {
+//    if ($this->wzatoks) {
 //        foreach ($this->wzatoks as $wzatok) {
-//            if ($wzatok->isNameStarEqual($kolwz)) {
-//                throw new \DomainException('Это тномер взятка уже существует. ');
+//            if ($wzatok->isGruppaEqual($gruppa)) {
+//                throw new \DomainException('сезон уже существует. Попробуйте для');
 //            }
 //        }
-
+//    }
         $this->wzatoks->add(new Wzatok($this,
                                 $id,
                                 $content,
                                 $kolwz,
-                                $gruppa,
-                                $uchastieId));
+                                $gruppa
+                                     ));
     }
 
-    public function editWzatok(WzatokId $id,
-                               ?string $content,
-                               int $kolwz
-                                ): void
-    {
-        foreach ($this->wzatoks as $current) {
-            if ($current->getId()->isEqual($id)) {
-                $current->edit($content, $kolwz );
-                return;
-            }
-        }
-        throw new \DomainException('Wzatok is not found.');
-    }
-
-    public function removeWzatok(WzatokId $id): void
-    {
-        foreach ($this->wzatoks as $wzatok) {
-            if ($wzatok->getId()->isEqual($id)) {
-                $this->wzatoks->removeElement($wzatok);
-                return;
-            }
-        }
-        throw new \DomainException('Wzatok is not found.');
-    }
+//    public function editWzatok(WzatokId $id,
+//                               ?string $content,
+//                               int $kolwz
+//                                ): void
+//    {
+//        foreach ($this->wzatoks as $current) {
+//            if ($current->getId()->isEqual($id)) {
+//                $current->edit($content, $kolwz );
+//                return;
+//            }
+//        }
+//        throw new \DomainException('Wzatok is not found.');
+//    }
+//
+//    public function removeWzatok(WzatokId $id): void
+//    {
+//        foreach ($this->wzatoks as $wzatok) {
+//            if ($wzatok->getId()->isEqual($id)) {
+//                $this->wzatoks->removeElement($wzatok);
+//                return;
+//            }
+//        }
+//        throw new \DomainException('Wzatok is not found.');
+//    }
 
     public function getWzatoks()
     {

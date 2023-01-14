@@ -49,6 +49,8 @@ doctrine:
 
             paseka_uchasties_persona_id: 'App\Model\Paseka\Entity\Uchasties\Personas\IdType'
 
+            paseka_sezons_goda_id: 'App\Model\Paseka\Entity\Sezons\Godas\IdType'
+
             sezons_goda_id: 'App\Model\Sezons\Entity\Godas\IdType'
             sezon_goda_wzatok_id: 'App\Model\Sezons\Entity\Godas\Wzatoks\IdType'
 

@@ -81,6 +81,7 @@ class Rasa
                                 string $title,
 								int $sortLinia): void
     {
+//        dd($this->linias);
         foreach ($this->linias as $linia) {
             if ($linia->isNameStarEqual($nameStar)) {
                 throw new \DomainException('Линия уже существует. Попробуйте для

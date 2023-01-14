@@ -21,14 +21,13 @@ class WzatokRepository
         $this->em = $em;
     }
 
-    public function getByGodUchastie(string $content): Wzatok
+    public function has(Id $id): bool
     {
-//        if (!$user = $this->repo->findOneBy(['email' => $email->getValue()])) {
-        /** @var Wzatok $wzatok */
-        if (!$wzatok = $this->repo->findOneBy(['content' => $content])) {
-            throw new EntityNotFoundException('$wzatok is not found.');
-        }
-        return $wzatok;
+        return $this->repo->createQueryBuilder('t')
+                ->select('COUNT(t.id)')
+                ->andWhere('t.id = :id')
+                ->setParameter(':id', $id->getValue())
+                ->getQuery()->getSingleScalarResult() > 0;
     }
 
     public function get(Id $id): Wzatok

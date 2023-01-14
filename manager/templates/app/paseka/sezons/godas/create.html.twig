@@ -1,0 +1,36 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Создать{% endblock %}
+
+
+   {% block kroxii %}
+       <a href="{{ path('proekt') }}">Главная</a>
+       <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Выбор сезона</a>
+       <span class="aktiv ">Список </span>
+   {% endblock %}
+
+{% block bodyy %}
+
+    <div  class="proekts proekts--sezon pb0">
+
+    {% include('sezons/godas/_sezon-includ.html.twig') %}
+
+        <div class="proekts-plr  ">
+
+        <div class="plem-form__header  ">
+            <div class="plem-form ">
+
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <div>
+                        <button type="submit" class="btnn btnn--mb0">Сохранить</button>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
