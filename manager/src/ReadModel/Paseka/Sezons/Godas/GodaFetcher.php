@@ -22,7 +22,7 @@ class GodaFetcher
                 'id',
                 'god'
             )
-            ->from('sezons_godas')
+            ->from('paseka_sezons_godas')
             ->orderBy('god')
             ->execute();
 

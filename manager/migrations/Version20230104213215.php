@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230110142708 extends AbstractMigration
+final class Version20230104213215 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,13 +20,16 @@ final class Version20230110142708 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE sezons_godas (id UUID NOT NULL, god INT NOT NULL, sezon VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+
+        $this->addSql('ALTER TABLE paseka_matkas_childmatkas ADD zakaz_date DATE DEFAULT NULL');
+        $this->addSql('COMMENT ON COLUMN paseka_matkas_childmatkas.zakaz_date IS \'(DC2Type:date_immutable)\'');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
+
         $this->addSql('CREATE SEQUENCE paseka_matkas_childmatkas_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('DROP TABLE sezons_godas');
+        $this->addSql('ALTER TABLE paseka_matkas_childmatkas DROP zakaz_date');
     }
 }

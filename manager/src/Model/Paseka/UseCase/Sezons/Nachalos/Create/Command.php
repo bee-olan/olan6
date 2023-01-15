@@ -32,10 +32,10 @@ class Command
      */
     public $gruppa;
 //string $id,
-    public function __construct( string $gruppa)
-    {
-//        $this->id = $id;
+//    public function __construct( string $gruppa)
+//    {
+////        $this->id = $id;
 //        $this->gruppa = $gruppa;
-        $this->goda = 2015;
-    }
+//
+//    }
 }

@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Model\Paseka\UseCase\Sezons\Nachalos\Create;
 
 use App\Model\Flusher;
+use App\Model\Paseka\Entity\Sezons\Godas\GodaRepository;
+use App\Model\Paseka\Entity\Sezons\Godas\Id as GodaId;
 use App\Model\Paseka\Entity\Sezons\Nachalos\Nachalo;
 use App\Model\Paseka\Entity\Sezons\Nachalos\NachaloRepository;
 use App\Model\Paseka\Entity\Sezons\Nachalos\Id;
 
-use App\Model\Sezons\Entity\Godas\GodaRepository;
-use App\Model\Sezons\Entity\Godas\Id as GodaId;
+//use App\Model\Sezons\Entity\Godas\GodaRepository;
+//use App\Model\Sezons\Entity\Godas\Id as GodaId;
 
 
 
@@ -36,13 +38,12 @@ class Handler
 //        }
 
         $goda = $this->godas->get(new GodaId($command->goda));
-//        $group = $this->groups->get(new GroupId($command->group));
-//        $command->gruppa ;
-//            =  $command->gruppa."-".$goda->getGod();
+
+        $command->gruppa =  $command->gruppa."-".$goda->getGod();
 dd($command->goda=$goda);
         $nachalo = new Nachalo(
             Id::next(),
-            $command->goda,
+            $goda,
             $command->koltochek,
             $command->gruppa
                 );

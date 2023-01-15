@@ -24,6 +24,13 @@ class Form extends AbstractType
     {
 //        dd(array_flip($this->godas->assoc()));
         $builder
+            ->add('goda', Type\ChoiceType::class, [
+                'label' => 'Выбрать год участия  ',
+                'choices' => array_flip($this->godas->assoc()),
+                'expanded' => true,
+                'multiple' => false,
+
+            ])
             ->add('koltochek', Type\ChoiceType::class, [
                 'label' => 'Кол-во точков   ',
                 'choices' => [
@@ -35,13 +42,6 @@ class Form extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
             ])
-//            ->add('goda', Type\ChoiceType::class, [
-//                'label' => 'Выбрать год участия  ',
-//                'choices' => array_flip($this->godas->assoc()),
-//                'required' => false,
-//                'expanded' => true,
-//                'multiple' => false,
-//            ])
         ;
     }
 

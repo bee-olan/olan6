@@ -52,8 +52,8 @@ doctrine:
             paseka_sezons_goda_id: 'App\Model\Paseka\Entity\Sezons\Godas\IdType'
             paseka_sezons_nachalo_id: 'App\Model\Paseka\Entity\Sezons\Nachalos\IdType'
 
-            sezons_goda_id: 'App\Model\Sezons\Entity\Godas\IdType'
-            sezon_goda_wzatok_id: 'App\Model\Sezons\Entity\Godas\Wzatoks\IdType'
+#            sezons_goda_id: 'App\Model\Sezons\Entity\Godas\IdType'
+#            sezon_goda_wzatok_id: 'App\Model\Sezons\Entity\Godas\Wzatoks\IdType'
 
     orm:
         auto_generate_proxy_classes: true
@@ -78,12 +78,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Model/Paseka/Entity'
                 prefix: 'App\Model\Paseka\Entity'
                 alias: Paseka
-            Sezons:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Model/Sezons/Entity'
-                prefix: 'App\Model\Sezons\Entity'
-                alias: Sezons
+#            Sezons:
+#                is_bundle: false
+#                type: annotation
+#                dir: '%kernel.project_dir%/src/Model/Sezons/Entity'
+#                prefix: 'App\Model\Sezons\Entity'
+#                alias: Sezons
             Sait:
                 is_bundle: false
                 type: annotation
