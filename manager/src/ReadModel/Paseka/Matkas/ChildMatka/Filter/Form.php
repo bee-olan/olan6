@@ -62,11 +62,14 @@ class Form extends AbstractType
             ])
             ->add('author', Type\ChoiceType::class, [
                 'choices' => $uchasties,
-                'required' => false, 'placeholder' => 'Авторы', 'attr' => ['onchange' => 'this.form.submit()']
+                'required' => false,
+                'placeholder' => 'Авторы',
+                'attr' => ['onchange' => 'this.form.submit()']
             ])
             ->add('executor', Type\ChoiceType::class, [
                 'choices' => $uchasties,
-                'required' => false, 'placeholder' => 'Исполнители', 'attr' => ['onchange' => 'this.form.submit()']
+                'required' => false, 'placeholder' => 'Исполнители',
+                'attr' => ['onchange' => 'this.form.submit()']
             ]);
     //         ->add('roots', Type\ChoiceType::class, ['choices' => [
     //             'Roots' => Status::NEW,

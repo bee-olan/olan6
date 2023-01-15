@@ -43,6 +43,7 @@ services:
     App\Model\Paseka\Entity\Uchasties\Personas\PersonaRepository: ~
 
     App\Model\Paseka\Entity\Sezons\Godas\GodaRepository: ~
+    App\Model\Paseka\Entity\Sezons\Nachalos\NachaloRepository: ~
 
     App\Model\Sezons\Entity\Godas\GodaRepository: ~
     App\Model\Sezons\Entity\Godas\Wzatoks\WzatokRepository: ~

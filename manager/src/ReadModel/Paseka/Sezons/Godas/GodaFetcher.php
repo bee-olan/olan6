@@ -15,7 +15,19 @@ class GodaFetcher
     {
         $this->connection = $connection;
     }
-	
+    public function assoc(): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'id',
+                'god'
+            )
+            ->from('sezons_godas')
+            ->orderBy('god')
+            ->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+    }
 	    public function getMaxGod(): int
         {
             return (int)$this->connection->createQueryBuilder()
