@@ -37,7 +37,10 @@ class Handler
         $uchastie = $this->uchasties->get(new UchastieId($command->uchastie));
 
 
-        $goda->addUchastie($uchastie);
+        $goda->addUchastie(
+            $uchastie,
+            $command->koltochek,
+            $command->goda);
 
         $this->flusher->flush();
     }

@@ -13,28 +13,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Form extends AbstractType
 {
-    private $uchasties;
-
-
-    public function __construct(UchastieFetcher $uchasties)
-    {
-        $this->uchasties = $uchasties;
-
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        $uchasties = [];
-        foreach ($this->uchasties->activeGroupedList() as $item) {
-            $uchasties[$item['group']][$item['name']] = $item['id'];
-        }
-
         $builder
-            ->add('uchastie', Type\ChoiceType::class, [
-                'choices' => $uchasties,
+            ->add('koltochek', Type\ChoiceType::class, [
+                'label' => 'Кол-во точков   ',
+                'choices' => [
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4
+                ],
+                'expanded' => true,
+                'multiple' => false,
             ]);
-
 
     }
 

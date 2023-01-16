@@ -10,6 +10,7 @@ use App\Controller\ErrorHandler;
 use App\Model\Paseka\Entity\Sezons\Godas\Goda;
 use App\Model\User\Entity\User\User;
 use App\ReadModel\Paseka\Sezons\Godas\GodaFetcher;
+use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +36,7 @@ class UchasGodaController extends AbstractController
      * @param GodaFetcher $godas
      * @return Response
      */
-    public function index(Goda $goda, GodaFetcher $godas, Request $request): Response
+    public function index( Goda $goda, GodaFetcher $godas, Request $request): Response
     {
 
        // dd($goda->getUchasgodas());
@@ -50,11 +51,12 @@ class UchasGodaController extends AbstractController
     /**
      * @Route("/assign", name=".assign")
      * @param Goda $goda
+     * @param PersonaFetcher $personas
      * @param Request $request
      * @param Add\Handler $handler
      * @return Response
      */
-    public function assign(Goda $goda, Request $request, Add\Handler $handler): Response
+    public function assign(PersonaFetcher $personas, Goda $goda, Request $request, Add\Handler $handler): Response
     {
         // Привязывает к проекту-ПлемМатка - нового  сотрудника
         // $this->denyAccessUnlessGranted(ProjectAccess::MANAGE_MEMBERS, $goda);
@@ -64,24 +66,34 @@ class UchasGodaController extends AbstractController
 //            return $this->redirectToRoute('paseka.matkas.goda.redaktors.uchasties', ['goda_id' => $goda->getId()]);
 //        }
 
-        $command = new Add\Command($goda->getId()->getValue(), $this->getUser()->getId());
+        if (!$personas->exists($this->getUser()->getId())) {
+            $this->addFlash('error', 'Начните с выбора ПерсонНомера ');
+            return $this->redirectToRoute('paseka.uchasties.personas.diapazon');
+        }
+        $grupp = $personas->find($this->getUser()->getId());
+        $gruppa = (string)$grupp->getNomer();
 
-//        $form = $this->createForm(Add\Form::class, $command, ['goda' => $goda->getId()->getValue()]);
-//        $form->handleRequest($request);
 
-//        if ($form->isSubmitted() && $form->isValid()) {
+        $command = new Add\Command($goda->getId()->getValue(),
+                                    $this->getUser()->getId(),
+                                    $gruppa);
+
+        $form = $this->createForm(Add\Form::class, $command  ); //,['goda' => $goda->getId()->getValue()]
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('sezons.godas.uchasgoda', ['goda_id' => $goda->getId()]);
+                return $this->redirectToRoute('sezons.godas.uchasgoda', ['goda_id' => $goda->getId()->getValue()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
-//        }
+        }
 
         return $this->render('sezons/godas/uchasgoda/assign.html.twig', [
             'goda' => $goda,
-//            'form' => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 

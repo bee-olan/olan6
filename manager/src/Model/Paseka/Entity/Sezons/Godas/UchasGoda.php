@@ -41,16 +41,33 @@ class UchasGoda
     private $uchastie;
 
     /**
+     * @ORM\Column(type="smallint")
+     */
+    private $koltochek;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $gruppa;
+
+    /**
      * UchasGoda constructor.
      * @param Goda $goda
      * @param Uchastie $uchastie
+     * @param int $koltochek
+     * @param string $gruppa
      * @throws \Exception
      */
-    public function __construct(Goda $goda, Uchastie $uchastie )
+    public function __construct(Goda $goda, Uchastie $uchastie,
+                                int $koltochek,
+                                string $gruppa  )
     {      
         $this->id = Uuid::uuid4()->toString();
         $this->goda = $goda;
-        $this->uchastie = $uchastie;        
+        $this->uchastie = $uchastie;
+        $this->koltochek = $koltochek;
+        $this->gruppa = $gruppa;
     }
 
     public function isForUchastie(UchastieId $id): bool
@@ -61,6 +78,22 @@ class UchasGoda
     public function getUchastie(): Uchastie
     {
         return $this->uchastie;
+    }
+
+//    /**
+//     * @return string
+//     */
+    public function getGruppa(): string
+    {
+        return $this->gruppa;
+    }
+
+//    /**
+//     * @return int
+//     */
+    public function getKoltochek(): int
+    {
+        return $this->koltochek;
     }
 
 }    

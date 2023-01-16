@@ -18,11 +18,21 @@ class Command
      */
     public $uchastie;
 
+    /**
+     * @var int
+     */
+    public $koltochek;
 
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
+    public $gruppa;
 
-    public function __construct(string $goda, string $uchastie)
+    public function __construct(string $goda, string $uchastie, string $gruppa)
     {
         $this->goda = $goda;
         $this->uchastie = $uchastie;
+        $this->gruppa = $gruppa;
     }
 }

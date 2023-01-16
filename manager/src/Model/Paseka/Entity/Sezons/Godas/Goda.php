@@ -59,14 +59,17 @@ class Goda
      * @param Uchastie $uchastie
      * @throws \Exception
      */
-    public function addUchastie(Uchastie $uchastie): void
+    public function addUchastie(Uchastie $uchastie, int $koltochek,  string $gruppa): void
     {
         foreach ($this->uchasgodas as $uchasgoda) {
             if ($uchasgoda->isForUchastie($uchastie->getId())) {
                 throw new \DomainException('Участие уже существует.');
             }
         }
-        $this->uchasgodas->add(new UchasGoda($this, $uchastie));
+        $this->uchasgodas->add(new UchasGoda($this, $uchastie,
+                                            $koltochek,
+                                            $gruppa
+                                                ));
     }
 
     public function getUchasgodas()
