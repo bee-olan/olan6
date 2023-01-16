@@ -22,7 +22,7 @@ class Form extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-//        dd(array_flip($this->godas->assoc()));
+
         $builder
             ->add('goda', Type\ChoiceType::class, [
                 'label' => 'Выбрать год участия  ',

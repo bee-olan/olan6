@@ -4,17 +4,26 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Paseka\Sezons\Nachalos;
 
+use App\Model\Paseka\Entity\Sezons\Nachalos\Nachalo;
+
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class NachaloFetcher
 {
     private $connection;
+    private $paginator;
+    private $repository;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, EntityManagerInterface $em, PaginatorInterface $paginator)
     {
         $this->connection = $connection;
+        $this->repository = $em->getRepository(Nachalo::class);
+        $this->paginator = $paginator;
     }
+
 
     public function assoc(): array
     {

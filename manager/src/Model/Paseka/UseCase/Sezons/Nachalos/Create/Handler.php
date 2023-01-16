@@ -40,7 +40,7 @@ class Handler
         $goda = $this->godas->get(new GodaId($command->goda));
 
         $command->gruppa =  $command->gruppa."-".$goda->getGod();
-dd($command->goda=$goda);
+//dd($command->goda=$goda);
         $nachalo = new Nachalo(
             Id::next(),
             $goda,

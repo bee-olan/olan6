@@ -8,11 +8,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
 {
-    /**
-     * @var string
-     * @Assert\NotBlank()
-     */
-    public $id;
+//    /**
+//     * @var string
+//     * @Assert\NotBlank()
+//     */
+//    public $id;
 
     /**
      * @var string
@@ -32,10 +32,10 @@ class Command
      */
     public $gruppa;
 //string $id,
-//    public function __construct( string $gruppa)
-//    {
-////        $this->id = $id;
-//        $this->gruppa = $gruppa;
-//
-//    }
+    public function __construct( string $gruppa)
+    {
+//        $this->id = $id;
+        $this->gruppa = $gruppa;
+
+    }
 }

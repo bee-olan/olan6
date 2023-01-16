@@ -37,7 +37,7 @@
                             <td>
                                 {{ nachalo.gruppa }}
                             </td>
-                            <td> {{ nachalo.kolwz }} </td>
+                            <td> {{ nachalo.koltochek }} </td>
                             <td>
 {#                                {{ path('sezons.godas.nachalos.nomers', {'nachalo_id': nachalo.id}) }}#}
                                 <a href="#"
@@ -51,12 +51,12 @@
                     </tbody>
                 </table>
 
-                {% else %}
+                {% endif %}
 
                     <ul class="plem__data plem__data--mt2">
                         <li>
                             <a href="{{ path('sezons.nachalos.create') }}"
-                               class="btnn btnn--mb0 btnn--col">Перейти к заполнению данных за сезон
+                               class="btnn btnn--mb0 btnn--col">Выбрать  сезон
 {#                                <strong class="strongo strongo--kras">{{ nachalo.sezon}} </strong>#}
                             </a>
                         </li>
@@ -66,7 +66,7 @@
                             </a>
                         </li>
                     </ul>
-                {% endif %}
+
             </div>
 
         </div>

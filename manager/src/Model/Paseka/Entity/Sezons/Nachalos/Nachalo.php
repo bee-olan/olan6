@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Sezons\Nachalos;
 
-use App\Model\Sezons\Entity\Godas\Goda;
+use App\Model\Paseka\Entity\Sezons\Godas\Goda;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**

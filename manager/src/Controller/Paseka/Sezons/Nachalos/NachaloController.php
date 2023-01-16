@@ -81,7 +81,7 @@ class NachaloController extends AbstractController
        $grupp = $personas->find($this->getUser()->getId());
        $gruppa = (string)$grupp->getNomer();
 
-        $command = new Create\Command();
+        $command = new Create\Command($gruppa);
         $command->gruppa = $gruppa;
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);

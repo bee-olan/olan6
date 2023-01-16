@@ -20,14 +20,15 @@ class GodaFetcher
         $stmt = $this->connection->createQueryBuilder()
             ->select(
                 'id',
-                'god'
+                'sezon'
             )
             ->from('paseka_sezons_godas')
-            ->orderBy('god')
+            ->orderBy('sezon')
             ->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
     }
+
 	    public function getMaxGod(): int
         {
             return (int)$this->connection->createQueryBuilder()
