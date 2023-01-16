@@ -43,11 +43,13 @@ class GodaFetcher
             ->select(
                 's.id',
                 's.god',
-                's.sezon'
+                's.sezon',
+                '(SELECT COUNT(*) FROM paseka_sezons_uchasgodas ug WHERE ug.goda_id = s.id) as uchasgoda_count'
             // ,
             // '(SELECT COUNT(*) FROM sait_u4astniks_u4astniks m WHERE m.godd_id = g.id) AS u4astniks'
             )
             ->from('paseka_sezons_godas', 's')
+//            ->innerJoin('s', 'work_members_groups', 'g', 'm.group_id = g.id');
             ->orderBy('god')
             ->execute();
 

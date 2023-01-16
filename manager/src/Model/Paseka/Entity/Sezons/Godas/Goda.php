@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Sezons\Godas;
 
+use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -33,12 +34,19 @@ class Goda
      */
     private $sezon;
 
+    /**
+     * @var ArrayCollection|UchasGoda[]
+     * @ORM\OneToMany(targetEntity="UchasGoda", mappedBy="goda", orphanRemoval=true, cascade={"all"})
+     */
+    private $uchasgodas;
+
 
     public function __construct(Id $id, int $god , string $sezon)
     {
         $this->id = $id;
         $this->god = $god;
         $this->sezon = $sezon;
+        $this->uchasgodas = new ArrayCollection();
     }
 
     public function edit(int $god, string $sezon): void
@@ -46,6 +54,26 @@ class Goda
         $this->god = $god;
         $this->sezon = $sezon;
     }
+///////////////////////////////////
+    /**
+     * @param Uchastie $uchastie
+     * @throws \Exception
+     */
+    public function addUchastie(Uchastie $uchastie): void
+    {
+        foreach ($this->uchasgodas as $uchasgoda) {
+            if ($uchasgoda->isForUchastie($uchastie->getId())) {
+                throw new \DomainException('Участие уже существует.');
+            }
+        }
+        $this->uchasgodas->add(new UchasGoda($this, $uchastie));
+    }
+
+    public function getUchasgodas()
+    {
+        return $this->uchasgodas->toArray();
+    }
+
 /////////////////////////
     public function getId(): Id
     {
