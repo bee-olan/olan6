@@ -37,7 +37,7 @@ class Form extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Command::class,
         ));
-        $resolver->setRequired(['sezon']);
+//        $resolver->setRequired(['sezon']);
 
     }
 }

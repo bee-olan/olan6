@@ -12,10 +12,11 @@
 {% block body %}
 
 
-{#    <div class="controls">#}
-{#        <a href="{{ path('sezon.godas.uchasgoda.assign', {'goda_id': goda.id}) }}" class="btn btn-success">Участвовать в этом сезоне</a>#}
+    <div class="controls">
+        <a href="{{ path('sezons.godas.uchasgoda.assign', {'goda_id': goda.id}) }}" class="btn btn-success">Участвовать в этом сезоне</a>
+        <a href="{{ path('sezons.godas.wsegoda') }}" class="btn btn-success">Смотреть все сезоны</a>
 
-{#    </div>#}
+    </div>
 
     <div class="box">
         <table class="table table-bordered table-hover">
