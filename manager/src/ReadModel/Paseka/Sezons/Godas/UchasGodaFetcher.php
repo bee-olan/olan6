@@ -80,7 +80,7 @@ class UchasGodaFetcher
             )
             ->from('paseka_sezons_uchasgodas', 'u')
             ->innerJoin('u', 'paseka_sezons_godas', 'g', 'g.id = u.goda_id')
-            ->orderBy('gruppa')
+            ->orderBy('sezon')
             ->execute();
 
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);

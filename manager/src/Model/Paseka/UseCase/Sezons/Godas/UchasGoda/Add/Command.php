@@ -34,5 +34,6 @@ class Command
         $this->goda = $goda;
         $this->uchastie = $uchastie;
         $this->gruppa = $gruppa;
+
     }
 }

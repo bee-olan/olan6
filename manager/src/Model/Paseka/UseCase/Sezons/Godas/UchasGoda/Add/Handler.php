@@ -36,11 +36,12 @@ class Handler
         $goda = $this->godas->get(new Id($command->goda));
         $uchastie = $this->uchasties->get(new UchastieId($command->uchastie));
 
+        $command->gruppa =  $command->gruppa."-".$goda->getGod();
 
         $goda->addUchastie(
             $uchastie,
             $command->koltochek,
-            $command->goda);
+            $command->gruppa);
 
         $this->flusher->flush();
     }

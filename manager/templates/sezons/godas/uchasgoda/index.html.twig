@@ -1,57 +1,134 @@
-{% extends 'base.html.twig' %}
+{% extends 'proekt/base.html.twig' %}
 
-{% block title %}{{ goda.sezon }}{% endblock %}
+{% block title %}Начало сезона{% endblock %}
 
-{% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
-        <li class="breadcrumb-item active">Участники по годам</li>
-    </ol>
-{% endblock %}
+  {% block kroxii %}
+      <a href="{{ path('proekt') }}">Главная</a>
+      {#      <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Выбор сезона</a>#}
+      <span class="aktiv ">Список сезонов</span>
+  {% endblock %}
 
-{% block body %}
+{% block bodyy %}
 
+    <div  class="proekts proekts--sezon pb0">
 
-    <div class="controls">
-        <a href="{{ path('sezons.godas.uchasgoda.assign', {'goda_id': goda.id}) }}" class="btn btn-success">Участвовать в этом сезоне</a>
-        <a href="{{ path('sezons.godas.wsegoda') }}" class="btn btn-success">Смотреть все сезоны</a>
+        {% include('sezons/godas/_sezon-includ.html.twig') %}
+        <div class="proekts-plr  ">
 
+            <div class="box-m">
+                {% if uchasgodas  %}
+
+                    <table class="tabl table-bord- table-hover">
+                        <thead>
+                        <tr>
+                            <th> Сезон </th>
+                            <th> Номер группы </th>
+                            <th> Кол-во взятков ! </th>
+                            <td> -- </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for uchasgoda in uchasgodas %}
+                            <tr>
+                                <td>
+                                    {{ goda.sezon }}
+                                </td>
+                                <td>
+                                    {{ uchasgoda.gruppa }}
+                                </td>
+                                <td> {{ uchasgoda.koltochek }} </td>
+                                <td>
+                                    {#                                {{ path('sezons.godas.uchasgodas.nomers', {'uchasgoda_id': uchasgoda.id}) }}#}
+                                    <a href="#"
+                                       class="btn-my btn-my--sm">Добавить данные по
+                                        <strong class="stro stro--kras"> взяткам </strong>
+
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                {% endif %}
+
+                <ul class="plem__data plem__data--mt2">
+                    <li>
+{#                        <a href="{{ path('sezons.uchasgodas.create') }}"#}
+{#                           class="btnn btnn--mb0 btnn--col">Выбрать  сезон#}
+{#                            #}{#                                <strong class="strongo strongo--kras">{{ uchasgoda.sezon}} </strong>#}
+{#                        </a>#}
+                    </li>
+                    <li>
+                        <a href="{{ path('sezons.godas'  ) }}"
+                           class="btnn btnn--mb0 btnn--col" >Список сезонов
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
     </div>
 
-    <div class="box">
-        <table class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <th>{{ goda.sezon }}</th>
 
-                <th>Группа</th>
-                <th>Кол-во точков</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% set token = csrf_token('revoke') %}
-            {% for uchasgoda in uchasgodas %}
-                <tr>
-                    <td>
+{% endblock %}
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}{{ goda.sezon }}{% endblock %}#}
+
+{#{% block breadcrumbs %}#}
+{#    <ol class="breadcrumb">#}
+{#        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>#}
+{#        <li class="breadcrumb-item active">Участники по годам</li>#}
+{#    </ol>#}
+{#{% endblock %}#}
+
+{#{% block body %}#}
+
+
+{#    <div class="controls">#}
+{#        <a href="{{ path('sezons.godas.uchasgoda.assign', {'goda_id': goda.id}) }}" class="btn btn-success">Участвовать в этом сезоне</a>#}
+{#        <a href="{{ path('sezons.godas.wsegoda') }}" class="btn btn-success">Смотреть все сезоны</a>#}
+
+{#    </div>#}
+
+{#    <div class="box">#}
+{#        <table class="table table-bordered table-hover">#}
+{#            <thead>#}
+{#            <tr>#}
+{#                <th>{{ goda.sezon }}</th>#}
+
+{#                <th>Группа</th>#}
+{#                <th>Кол-во точков</th>#}
+{#            </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#            {% set token = csrf_token('revoke') %}#}
+{#            {% for uchasgoda in uchasgodas %}#}
+{#                <tr>#}
+{#                    <td>#}
 {#                        <a href="{{ path('work.members.show', {'id': membership.member.id}) }}" target="_blank" class="pull-right"><span class="fa fa-external-link"></span></a>#}
 {#                        {{ membership.member.name.full }}#}
-                    </td>
-                    <td>{{ uchasgoda.gruppa }}</td>
-                    <td>{{ uchasgoda.koltochek }}</td>
+{#                    </td>#}
+{#                    <td>{{ uchasgoda.gruppa }}</td>#}
+{#                    <td>{{ uchasgoda.koltochek }}</td>#}
 
-                    <td>
-                        <div class="d-flex flex-row">1111111111111
+{#                    <td>#}
+{#                        <div class="d-flex flex-row">1111111111111#}
 {#                            <a href="{{ path('work.projects.project.settings.members.edit', {'project_id': project.id, 'member_id': membership.member.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>#}
 {#                            <form action="{{ path('work.projects.project.settings.members.revoke', {'project_id': project.id, 'member_id': membership.member.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
 {#                                <input type="hidden" name="token" value="{{ token }}" />#}
 {#                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>#}
 {#                            </form>#}
-                        </div>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+{#                        </div>#}
+{#                    </td>#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+{#    </div>#}
 
-{% endblock %}
+{#{% endblock %}#}
