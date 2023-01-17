@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Sezons\Godas;
 
+use App\Model\Paseka\Entity\Sezons\Godas\UchasGoda;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\UseCase\Sezons\Godas\UchasGoda\Add;
+use App\Model\Paseka\UseCase\Sezons\Godas\UchasGoda\Edit ;
 use App\Controller\ErrorHandler;
 use App\Model\Paseka\Entity\Sezons\Godas\Goda;
 use App\Model\User\Entity\User\User;
@@ -39,7 +41,7 @@ class UchasGodaController extends AbstractController
     public function index( Goda $goda, GodaFetcher $godas, Request $request): Response
     {
 
-       // dd($goda->getUchasgodas());
+//        dd($goda->getUchasgodas());
         // $this->denyAccessUnlessGranted(ProjectAccess::MANAGE_MEMBERS, $plemmatka);
 // выводит из проекта uchastniks - учстников
         return $this->render('sezons/godas/uchasgoda/index.html.twig', [
@@ -58,13 +60,6 @@ class UchasGodaController extends AbstractController
      */
     public function assign(PersonaFetcher $personas, Goda $goda, Request $request, Add\Handler $handler): Response
     {
-        // Привязывает к проекту-ПлемМатка - нового  сотрудника
-        // $this->denyAccessUnlessGranted(ProjectAccess::MANAGE_MEMBERS, $goda);
-//Проверка на : Если попытается привязать сотрудника, но еще нет департ-сообщества, то соотв. сообщение
-//        if (!$goda->getDepartments()) {
-//            $this->addFlash('error', 'Добавьте отделы перед добавлением участников.');
-//            return $this->redirectToRoute('paseka.matkas.goda.redaktors.uchasties', ['goda_id' => $goda->getId()]);
-//        }
 
         if (!$personas->exists($this->getUser()->getId())) {
             $this->addFlash('error', 'Начните с выбора ПерсонНомера ');
@@ -78,7 +73,7 @@ class UchasGodaController extends AbstractController
                                     $this->getUser()->getId(),
                                     $gruppa);
 
-        $form = $this->createForm(Add\Form::class, $command  ); //,['goda' => $goda->getId()->getValue()]
+        $form = $this->createForm(Add\Form::class, $command  );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,5 +91,36 @@ class UchasGodaController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/edit", name=".edit")
+     * @param UchasGoda $uchasgoda
+     * @param Request $request
+     * @param Edit\Handler $handler
+     * @return Response
+     */
+    public function edit(UchasGoda $uchasgoda, Request $request, Edit\Handler $handler): Response
+    {
+        $command = Edit\Command::fromUchasGoda($uchasgoda);
+
+        $form = $this->createForm(Edit\Form::class, $command);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $handler->handle($command);
+                return $this->redirectToRoute('paseka.uchasties.show', ['id' => $uchastie->getId()]);
+            } catch (\DomainException $e) {
+                $this->logger->warning($e->getMessage(), ['exception' => $e]);
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('sezons/godas/uchasgoda/edit.html.twig', [
+            'uchastie' => $uchastie,
+            'form' => $form->createView(),
+        ]);
+    }
+
 
 }

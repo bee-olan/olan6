@@ -44,9 +44,7 @@ services:
 
     App\Model\Paseka\Entity\Sezons\Godas\GodaRepository: ~
     App\Model\Paseka\Entity\Sezons\Nachalos\NachaloRepository: ~
-
-#    App\Model\Sezons\Entity\Godas\GodaRepository: ~
-#    App\Model\Sezons\Entity\Godas\Wzatoks\WzatokRepository: ~
+    App\Model\Paseka\Entity\Sezons\Tochkas\TochkaRepository: ~
 
 
     # controllers are imported separately to make sure services can be injected

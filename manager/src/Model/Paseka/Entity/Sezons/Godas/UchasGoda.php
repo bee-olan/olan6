@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Sezons\Godas;
 
+use App\Model\Paseka\Entity\Sezons\Tochkas\Tochka;
+use App\Model\Paseka\Entity\Sezons\Tochkas\Id as TochkaId;
+
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
 
@@ -52,6 +55,16 @@ class UchasGoda
     private $gruppa;
 
     /**
+     * @var ArrayCollection|Tochka[]
+     * @ORM\OneToMany(
+     *     targetEntity="App\Model\Paseka\Entity\Sezons\Tochkas\Tochka",
+     *     mappedBy="uchasgoda", orphanRemoval=true, cascade={"all"}
+     * )
+     * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private $tochkas;
+
+    /**
      * UchasGoda constructor.
      * @param Goda $goda
      * @param Uchastie $uchastie
@@ -68,11 +81,90 @@ class UchasGoda
         $this->uchastie = $uchastie;
         $this->koltochek = $koltochek;
         $this->gruppa = $gruppa;
+        $this->tochkas = new ArrayCollection();
+    }
+////////////////////
+    public function addTochka(TochkaId $id,
+                              int $kolwz
+                            ): void
+    {
+//        dd($this->tochkas);
+        foreach ($this->tochkas as $tochka) {
+            if ($tochka->isNameStarEqual($kolwz)) {
+                throw new \DomainException('Линия уже существует. Попробуйте для
+                этой линии добавить свой номер');
+            }
+        }
+
+        $this->tochkas->add(new Tochka($this,
+            $id,
+            $kolwz));
     }
 
+    public function editTochka(TochkaId $id,
+                               int $kolwz
+                            ): void
+    {
+        foreach ($this->tochkas as $current) {
+            if ($current->getId()->isEqual($id)) {
+                $current->edit( $kolwz );
+                return;
+            }
+        }
+        throw new \DomainException('Tochka is not found.');
+    }
+
+    public function removeTochka(TochkaId $id): void
+    {
+        foreach ($this->tochkas as $tochka) {
+            if ($tochka->getId()->isEqual($id)) {
+                $this->tochkas->removeElement($tochka);
+                return;
+            }
+        }
+        throw new \DomainException('Tochka is not found.');
+    }
+
+    /**
+     * @return Tochka[]|ArrayCollection
+     */
+    public function getTochkas()
+    {
+        return $this->tochkas;
+    }
+
+    /**
+     * @return Goda
+     */
+    public function getGoda(): Goda
+    {
+        return $this->goda;
+    }
+
+//    public function getTochkas()
+//    {
+//        return $this->tochkas->toArray();
+//    }
+
+//
+//    public function getTochka(TochkaId $id): Tochka
+//    {
+//        foreach ($this->tochkas as $tochka) {
+//            if ($tochka->getId()->isEqual($id)) {
+//                return $tochka;
+//            }
+//        }
+//        throw new \DomainException('Tochka is not found.');
+//    }
+/// /////////////
     public function isForUchastie(UchastieId $id): bool
     {
         return $this->uchastie->getId()->isEqual($id);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getUchastie(): Uchastie

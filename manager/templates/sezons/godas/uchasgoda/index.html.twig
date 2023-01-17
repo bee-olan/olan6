@@ -21,7 +21,7 @@
                     <table class="tabl table-bord- table-hover">
                         <thead>
                         <tr>
-                            <th> Сезон </th>
+                            <th> Сезон !!!!!!!!!!!!!!!!!!</th>
                             <th> Номер группы </th>
                             <th> Кол-во взятков ! </th>
                             <td> -- </td>
@@ -38,12 +38,25 @@
                                     {{ uchasgoda.gruppa }}
                                 </td>
                                 <td> {{ uchasgoda.koltochek }} </td>
+                                <td> <a href="{{ path('sezons.godas.edit', {'id': uchasgoda.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
+                                        <div class="karandash karandash--child">
+                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
+                                        </div>
+                                    </a>
+                                </td>
                                 <td>
-                                    {#                                {{ path('sezons.godas.uchasgodas.nomers', {'uchasgoda_id': uchasgoda.id}) }}#}
-                                    <a href="#"
-                                       class="btn-my btn-my--sm">Добавить данные по
-                                        <strong class="stro stro--kras"> взяткам </strong>
-
+                                    <div>
+                                        <a href="{{ path('sezons.godas.delete' , {'id': goda.id} ) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
+                                            <div class="karandash karandash--child">
+                                                <img src="{{ asset('assets/proekt/images/delet.png') }}" alt="редактировать">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    {#                                  {{ path('sezons.godas.uchasgodas.nomers', {'uchasgoda_id': uchasgoda.id}) }}#}
+                                    <a href="{{ path('sezons.tochkas',  {'uchasgoda_id': uchasgoda.id} ) }}"
+                                       class="btnn btnn--mb0 btnn--pt btnn--col">Продолжение
                                     </a>
                                 </td>
                             </tr>
