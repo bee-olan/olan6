@@ -11,29 +11,12 @@ class Command
     /**
      * @Assert\NotBlank()
      */
-    public $goda;
-
-//    /**
-//     * @var string
-//     * @Assert\NotBlank()
-//     */
-//    public $uchastieId;
-
-    /**
-     * @var string
-     */
-    public $content;
-
+    public $uchasgoda;
 
     /**
      * @var int
      */
     public $kolwz;
-
-//    /**
-//     * @var int
-//     */
-//    public $koltochek;
 
     /**
      * @var string
@@ -41,12 +24,11 @@ class Command
      */
     public $gruppa;
 
-    public function __construct(string $goda,
+    public function __construct(string $uchasgoda,
                                 string $gruppa
                                 )
     {
-        $this->goda = $goda;
+        $this->uchasgoda = $uchasgoda;
         $this->gruppa = $gruppa;
-
     }
 }

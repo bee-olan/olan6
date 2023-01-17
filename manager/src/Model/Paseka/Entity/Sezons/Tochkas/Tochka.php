@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Sezons\Tochkas;
 
-//use App\Model\Sezons\Entity\Sxemas\Istorias\Istoria;
-//use App\Model\Sezons\Entity\Sxemas\Istorias\Id as IstoriaId;
+//use App\Model\Sezons\Entity\Sxemas\Wzatoks\Wzatok;
+//use App\Model\Sezons\Entity\Sxemas\Wzatoks\Id as WzatokId;
 
 
 use App\Model\Paseka\Entity\Sezons\Godas\UchasGoda;
@@ -20,7 +20,7 @@ class Tochka
 {
     /**
      * @var UchasGoda
-     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Sezons\Godas\UchasGoda", inversedBy="linias")
+     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Sezons\Godas\UchasGoda", inversedBy="tochkas")
      * @ORM\JoinColumn(name="uchasgoda_id", referencedColumnName="id", nullable=false)
      */
     private $uchasgoda;
@@ -37,27 +37,34 @@ class Tochka
      */
     private $kolwz;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $gruppa;
 	
 //	 /**
-//     * @var ArrayCollection|Istoria[]
+//     * @var ArrayCollection|Wzatok[]
 //     * @ORM\OneToMany(
-//     *     targetEntity="App\Model\Sezons\Entity\Sxemas\Istorias\Istoria",
-//     *     mappedBy="sxema", orphanRemoval=true, cascade={"all"}
+//     *     targetEntity="App\Model\Sezons\Entity\Sxemas\Wzatoks\Wzatok",
+//     *     mappedBy="tochka", orphanRemoval=true, cascade={"all"}
 //     * )
 //     * @ORM\OrderBy({"name" = "ASC"})
 //     */
-//    private $istorias;
+//    private $wzatoks;
 
     public function __construct(
                                 UchasGoda $uchasgoda,
-                                 Id $id,
-                                 int $kolwz
+                                Id $id,
+                                int $kolwz,
+                                string $gruppa
                                     )
     {
         $this->uchasgoda = $uchasgoda;
         $this->id = $id;
         $this->kolwz = $kolwz;
-//        $this->istorias = new ArrayCollection();
+        $this->gruppa = $gruppa;
+//        $this->wzatoks = new ArrayCollection();
     }
 
         public function edit( int $kolwz): void
@@ -70,22 +77,19 @@ class Tochka
         return $this->gruppa === $gruppa;
     }
 //	///////////////////////
-//    public function addIstoria(IstoriaId $id,
-//                               int $rasstojan,
-//                               \DateTimeImmutable $startDate,
-//                               \DateTimeImmutable $pobelkaDate,
-//                               \DateTimeImmutable $endDate,
-//                                int $nomerwz
+//    public function addWzatok(WzatokId $id,
+//                                int $kolwz,
+//                                 string $gruppa
 //                                ): void
 //    {
-//        foreach ($this->istorias as $istoria) {
-//            if ($istoria->isNameStarEqual($nameStar)) {
+//        foreach ($this->wzatoks as $wzatok) {
+//            if ($wzatok->isNameStarEqual($nameStar)) {
 //                throw new \DomainException('Линия уже существует. Попробуйте для
 //                этой линии добавить свой номер');
 //            }
 //        }
 //
-//        $this->istorias->add(new Istoria($this,
+//        $this->wzatoks->add(new Wzatok($this,
 //									$id,
 //                                    $rasstojan,
 //                                    $startDate,
@@ -95,46 +99,46 @@ class Tochka
 //        ));
 //    }
 
-//    public function editIstoria(IstoriaId $id,
+//    public function editWzatok(WzatokId $id,
 //                                string $name,
 //                                string $nameStar,
 //                                string $title
 //                                ): void
 //    {
-//        foreach ($this->istorias as $current) {
+//        foreach ($this->wzatoks as $current) {
 //            if ($current->getId()->isEqual($id)) {
 //                $current->edit($name, $nameStar, $title );
 //                return;
 //            }
 //        }
-//        throw new \DomainException('Istoria is not found.');
+//        throw new \DomainException('Wzatok is not found.');
 //    }
 
-//    public function removeIstoria(IstoriaId $id): void
+//    public function removeWzatok(WzatokId $id): void
 //    {
-//        foreach ($this->istorias as $istoria) {
-//            if ($istoria->getId()->isEqual($id)) {
-//                $this->istorias->removeElement($istoria);
+//        foreach ($this->wzatoks as $wzatok) {
+//            if ($wzatok->getId()->isEqual($id)) {
+//                $this->wzatoks->removeElement($wzatok);
 //                return;
 //            }
 //        }
-//        throw new \DomainException('Istoria is not found.');
+//        throw new \DomainException('Wzatok is not found.');
 //    }
 //
-//	 public function getIstorias()
+//	 public function getWzatoks()
 //    {
-//        return $this->istorias->toArray();
+//        return $this->wzatoks->toArray();
 //    }
 //
 //
-//    public function getIstoria(IstoriaId $id): Istoria
+//    public function getWzatok(WzatokId $id): Wzatok
 //    {
-//        foreach ($this->istorias as $istoria) {
-//            if ($istoria->getId()->isEqual($id)) {
-//                return $istoria;
+//        foreach ($this->wzatoks as $wzatok) {
+//            if ($wzatok->getId()->isEqual($id)) {
+//                return $wzatok;
 //            }
 //        }
-//        throw new \DomainException('Istoria is not found.');
+//        throw new \DomainException('Wzatok is not found.');
 //    }
 /////////////////////////////////////////
     public function getId(): Id
@@ -145,6 +149,12 @@ class Tochka
     public function getKolwz(): int
     {
         return $this->kolwz;
+    }
+
+
+    public function getGruppa(): string
+    {
+        return $this->gruppa;
     }
 
 }

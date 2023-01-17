@@ -85,7 +85,8 @@ class UchasGoda
     }
 ////////////////////
     public function addTochka(TochkaId $id,
-                              int $kolwz
+                              int $kolwz,
+                              string $gruppa
                             ): void
     {
 //        dd($this->tochkas);
@@ -97,8 +98,9 @@ class UchasGoda
         }
 
         $this->tochkas->add(new Tochka($this,
-            $id,
-            $kolwz));
+                                        $id,
+                                        $kolwz,
+                                        $gruppa));
     }
 
     public function editTochka(TochkaId $id,

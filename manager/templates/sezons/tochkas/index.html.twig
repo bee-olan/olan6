@@ -12,7 +12,7 @@
 
     <div  class="proekts proekts--sezon pb0">
 
-        {% include('sezons/nachalos/_nachalo-includ.html.twig') %}
+        {% include('sezons/tochkas/_tochka-includ.html.twig') %}
     <div class="proekts-plr  ">
 
         <div class="box-m">
@@ -41,7 +41,12 @@
             <tr>
                 <td> Точок  </td> <th> {{ number}} </th>
                 <td> Номер группы </td> <th> {{ uchasgoda.gruppa }} - {{ number }}</th>
-                <td> Перейти к  заполнению данных </td>
+                <td>
+                    <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': number}) }}"
+                       class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
+
+                    </a>
+                </td>
             </tr>
             </thead>
 

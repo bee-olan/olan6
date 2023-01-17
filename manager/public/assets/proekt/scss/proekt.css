@@ -584,6 +584,12 @@ a:hover {
 }
 
 /*==============================================*/
+.stron-sezon {
+  font-weight: 600;
+  font-size: 3rem;
+  color: #ED3024;
+}
+
 .strongo {
   font-weight: normal;
   color: #a78c16;

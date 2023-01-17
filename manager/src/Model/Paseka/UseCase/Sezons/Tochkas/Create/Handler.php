@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\Model\Paseka\UseCase\Sezons\Tochkas\Create;
 
 use App\Model\Flusher;
-use App\Model\Sezons\Entity\Godas\GodaRepository;
-use App\Model\Sezons\Entity\Godas\Id as GodaId;
-use App\Model\Sezons\Entity\Godas\Wzatoks\Id;
-
+use App\Model\Paseka\Entity\Sezons\Godas\GodaRepository;
+use App\Model\Paseka\Entity\Sezons\Godas\Id as GodaId;
 
 class Handler
 {
@@ -23,12 +21,11 @@ class Handler
 
     public function handle(Command $command): void
     {
-        $goda = $this->godas->get(new GodaId($command->goda));
 
-        $command->gruppa =  $command->gruppa."-".$goda->getGod();
-        $goda->addWzatok(
+        $uchasgoda = $this->godas->getUchas(new GodaId($command->uchasgoda));
+
+        $uchasgoda->addTochka(
             Id::next(),
-            $command->content,
             $command->kolwz,
             $command->gruppa
                 );

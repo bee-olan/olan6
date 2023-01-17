@@ -31,6 +31,15 @@ class GodaRepository
         return $goda;
     }
 
+    public function getUchas(Id $id): UchasGoda
+    {
+        /** @var UchasGoda $uchasgoda */
+        if (!$uchasgoda = $this->repo->find($id->getValue())) {
+            throw new EntityNotFoundException('Нет такого сезона!!!!!!!!!!.');
+        }
+        return $uchasgoda;
+    }
+
     public function remove(Goda $goda): void
     {
         $this->em->remove($goda);
