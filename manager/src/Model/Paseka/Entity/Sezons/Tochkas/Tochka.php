@@ -72,10 +72,17 @@ class Tochka
         $this->kolwz = $kolwz;
 
     }
-    public function isGruppaEqual(string $gruppa): bool
+    public function isNameEqual(string $gruppa): bool
     {
         return $this->gruppa === $gruppa;
     }
+
+//    public function isGruppaEqual(string $gruppa): bool
+//    {
+//        return $this->gruppa === $gruppa;
+//    }
+
+
 //	///////////////////////
 //    public function addWzatok(WzatokId $id,
 //                                int $kolwz,
@@ -151,10 +158,18 @@ class Tochka
         return $this->kolwz;
     }
 
-
+    /**
+     * @return string
+     */
     public function getGruppa(): string
     {
         return $this->gruppa;
     }
+
+
+//    public function getGruppa(): string
+//    {
+//        return $this->gruppa;
+//    }
 
 }

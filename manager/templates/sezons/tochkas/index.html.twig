@@ -16,87 +16,118 @@
     <div class="proekts-plr  ">
 
         <div class="box-m">
-            <table class="tabl table-bord- table-hover">
-                <thead>
-                <tr>
+{#            <table class="tabl table-bord- table-hover">#}
+{#                <thead>#}
+{#                <tr>#}
 {#                    <th> Сезон </th> <td>{{uchasgoda.sezon}} </td>#}
-                </tr>
-                <tr>
+{#                </tr>#}
+{#                <tr>#}
 
-                    <th> Номер группы </th> <td> {{ uchasgoda.gruppa }} </td><td></td><td></td><td>..............</td>
-                </tr>
-                <tr>
-                    <th> Кол-во точков  </th> <td> {{ uchasgoda.koltochek}} </td><td></td><td></td><td>..............</td>
-                </tr>
-                <tr>
-                     <td> -- </td>  <td> -- </td>
-                </tr>
-                </thead>
-            </table>
-            <table class="tabl table-bord- table-hover">
-    {% for number in 1..uchasgoda.koltochek %}
-
-
-            <thead>
-            <tr>
-                <td> Точок  </td> <th> {{ number}} </th>
-                <td> Номер группы </td> <th> {{ uchasgoda.gruppa }} - {{ number }}</th>
-                <td>
-                    <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': number}) }}"
-                       class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
-
-                    </a>
-                </td>
-            </tr>
-            </thead>
-
-    {% endfor %}
-            </table>
+{#                    <th> Номер группы </th> <td> {{ uchasgoda.gruppa }} </td><td></td><td></td><td>..............</td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <th> Кол-во точков  </th> <td> {{ uchasgoda.koltochek}} </td><td></td><td></td><td>..............</td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                     <td> -- </td>  <td> -- </td>#}
+{#                </tr>#}
+{#                </thead>#}
+{#            </table>#}
+{#            <table class="tabl table-bord- table-hover">#}
+{#    {% for number in 1..uchasgoda.koltochek %}#}
 
 
+{#            <thead>#}
+{#            <tr>#}
+{#                <td> Точок  </td> <th> {{ number}} </th>#}
+{#                <td> Номер группы </td> <th> {{ uchasgoda.gruppa }} - {{ number }}</th>#}
+{#                <td>#}
+{#                    <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': number}) }}"#}
+{#                       class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных#}
 
-{#{% if tochkas  %}#}
+{#                    </a>      #}
+{#                </td>#}
+{#            </tr>#}
+{#            </thead>#}
 
-{#                <table class="tabl table-bord- table-hover">#}
-{#                    <thead>#}
-{#                    <tr>#}
-{#                        <th> Сезон </th>#}
-{#                        <th> Номер группы </th>#}
-{#                        <th> Кол-во взятков ! </th>#}
-{#                        <td> -- </td>#}
-{#                    </tr>#}
-{#                    </thead>#}
-{#                    <tbody>#}
+{#    {% endfor %}#}
+{#            </table>#}
 
-{#                    {% for nachalo in nachalos %}#}
-{#                        <tr>#}
-{#                            <td>#}
-{#                                 {{ nachalo.sezon }}#}
-{#                            </td>#}
-{#                            <td>#}
-{#                                {{ nachalo.gruppa }}#}
-{#                            </td>#}
-{#                            <td> {{ nachalo.koltochek }} </td>#}
-{#                            <td>#}
+
+{#                        <table class="tabl table-bord- table-hover">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th> Сезон </th> <td>{{uchasgoda.goda}} </td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+
+{#                                <th> Номер группы </th> <td> {{ uchasgoda.gruppa }} </td><td></td><td></td><td>..............</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th> Кол-во точков  </th> <td> {{ uchasgoda.koltochek}} </td><td></td><td></td><td>..............</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                 <td> -- </td>  <td> -- </td>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                        </table>#}
+{% if tochoks  %}
+
+
+                <table class="tabl table-bord- table-hover">
+                    <thead>
+                    <tr>
+                        <th> Сезон </th>
+                        <th> Номер группы </th>
+                        <th> Кол-во взятков ! </th>
+                        <td> {{tochoks[0].sezon}} =====================</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for tochok in tochoks %}
+                        <tr>
+                            <td>
+                                 {{ tochok.sezon }}
+                            </td>
+                            <td>
+                                {{ tochok.grtochka }}
+                            </td>
+                            <td> {{ tochok.koltochek }} </td>
+                            <td>
 {#                                {{ path('sezons.godas.nachalos.nomers', {'nachalo_id': nachalo.id}) }}#}
-{#                                <a href="#"#}
-{#                                   class="btn-my btn-my--sm">Добавить данные по#}
-{#                                    <strong class="stro stro--kras"> взяткам </strong>#}
+                                <a href="#"
+                                   class="btn-my btn-my--sm">Добавить данные по
+                                    <strong class="stro stro--kras"> взяткам </strong>
 
-{#                                </a>#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                    {% endfor %}#}
-{#                    </tbody>#}
-{#                </table>#}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
-{#                {% endif %}#}
+        {% else %}
+            <div class="inklud__title teni  teni--sezon ">
 
-                    <ul class="plem__data plem__data--mt2">
-                        <li>
-                            <a href="{{ path('sezons.nachalos.create') }}"
-                               class="btnn btnn--mb0 btnn--col">Выбрать  сезон
-{#                                <strong class="strongo strongo--kras">{{ nachalo.sezon}} </strong>#}
+              Начните заполнять данные по точкам
+{#                <a href="{{ path('sezons.godas'  ) }}"#}
+{#                   class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >Начать ввод данных#}
+{#                </a>#}
+
+
+            <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': 1}) }}"
+                                   class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
+            </a>
+            </div>
+
+            {% endif %}
+                            <div class="proekts-plr linia__li ">
+                                <ul class="plem__data plem__data--mt2">
+                                    <li>
+                                        <a href="{{ path('sezons.nachalos.create') }}"
+                                           class="btnn btnn--mb0 btnn--col">Выбрать  сезон
+            {#                                <strong class="strongo strongo--kras">{{ nachalo.sezon}} </strong>#}
                             </a>
                         </li>
                         <li>
@@ -105,7 +136,7 @@
                             </a>
                         </li>
                     </ul>
-
+                </div>
             </div>
 
         </div>

@@ -12,7 +12,7 @@
 
    // background: linear-gradient( $grad1, $grad2);
    border: 1px solid $border-kroxi;
-  // border: none; // убираем бордер
+
     cursor: pointer;
      border-radius: 3em; // скругляем
      background-color: $primary;
@@ -65,12 +65,12 @@
   &--col-sezon {
     box-shadow: inset 0px 0px 10px rgba($sezon-teni, 0.9);
     border: 1px solid $sezon-teni;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     &:hover {
       box-shadow:  0px 0px 10px rgba($sezon-teni, 0.6);
       background: none;
       text-decoration: none;
-      color: $sezon-text;
+      color: $sezon-teni;
     }
   }
         &--col-ras {

@@ -60,18 +60,18 @@ class UchasGoda
      *     targetEntity="App\Model\Paseka\Entity\Sezons\Tochkas\Tochka",
      *     mappedBy="uchasgoda", orphanRemoval=true, cascade={"all"}
      * )
-     * @ORM\OrderBy({"name" = "ASC"})
+     * @ORM\OrderBy({"gruppa" = "ASC"})
      */
     private $tochkas;
 
-    /**
-     * UchasGoda constructor.
-     * @param Goda $goda
-     * @param Uchastie $uchastie
-     * @param int $koltochek
-     * @param string $gruppa
-     * @throws \Exception
-     */
+//    /**
+//     * UchasGoda constructor.
+//     * @param Goda $goda
+//     * @param Uchastie $uchastie
+//     * @param int $koltochek
+//     * @param string $gruppa
+//     * @throws \Exception
+//     */
     public function __construct(Goda $goda, Uchastie $uchastie,
                                 int $koltochek,
                                 string $gruppa  )
@@ -89,11 +89,18 @@ class UchasGoda
                               string $gruppa
                             ): void
     {
-//        dd($this->tochkas);
+
+//        foreach ($this->tochkas as $tochka) {
+//
+//            if ($tochka->isGruppaEqual($gruppa)) {
+//                throw new \DomainException('Группа уже существует. ');
+//
+//            }
+//        }
+
         foreach ($this->tochkas as $tochka) {
-            if ($tochka->isNameStarEqual($kolwz)) {
-                throw new \DomainException('Линия уже существует. Попробуйте для
-                этой линии добавить свой номер');
+            if ($tochka->isNameEqual($gruppa)) {
+                throw new \DomainException('ГРУППА уже существует.');
             }
         }
 
@@ -148,17 +155,17 @@ class UchasGoda
 //        return $this->tochkas->toArray();
 //    }
 
-//
-//    public function getTochka(TochkaId $id): Tochka
-//    {
-//        foreach ($this->tochkas as $tochka) {
-//            if ($tochka->getId()->isEqual($id)) {
-//                return $tochka;
-//            }
-//        }
-//        throw new \DomainException('Tochka is not found.');
-//    }
-/// /////////////
+
+    public function getTochka(TochkaId $id): Tochka
+    {
+        foreach ($this->tochkas as $tochka) {
+            if ($tochka->getId()->isEqual($id)) {
+                return $tochka;
+            }
+        }
+        throw new \DomainException('Tochka is not found.');
+    }
+//////////////
     public function isForUchastie(UchastieId $id): bool
     {
         return $this->uchastie->getId()->isEqual($id);

@@ -5,25 +5,26 @@ declare(strict_types=1);
 namespace App\Model\Paseka\UseCase\Sezons\Tochkas\Create;
 
 use App\Model\Flusher;
-use App\Model\Paseka\Entity\Sezons\Godas\GodaRepository;
-use App\Model\Paseka\Entity\Sezons\Godas\Id as GodaId;
+
+use App\Model\Paseka\Entity\Sezons\Tochkas\Id;
+use App\ReadModel\Paseka\Sezons\Godas\UchasGodaFetcher;
 
 class Handler
 {
-    private $godas;
+    private $uchasgodas;
     private $flusher;
 
-    public function __construct(GodaRepository $godas, Flusher $flusher)
+    public function __construct(UchasGodaFetcher $uchasgodas, Flusher $flusher)
     {
-        $this->godas = $godas;
+        $this->uchasgodas = $uchasgodas;
         $this->flusher = $flusher;
     }
 
     public function handle(Command $command): void
     {
 
-        $uchasgoda = $this->godas->getUchas(new GodaId($command->uchasgoda));
-
+        $uchasgoda = $this->uchasgodas->getUchas($command->uchasgoda);
+//        dd($uchasgoda);
         $uchasgoda->addTochka(
             Id::next(),
             $command->kolwz,

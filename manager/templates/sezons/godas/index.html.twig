@@ -28,9 +28,10 @@
                         <tr>
                             <th> Год </th>
                             <th> Сезон </th>
+                            <td>Участников</td>
+                            <td>ТестМаток</td>
                             <td> Ред-ние </td>
-                            <th>Кол-во ТестМаток</th>
-                            <th>Кол-во Тестирующих</th>
+                            <td> Удаление </td>
 
                         </tr>
                     </thead>
@@ -48,6 +49,8 @@
                                       {{ goda.sezon }}
                                     </a>
                                 </td>
+                                <td> {{ goda.uchasgoda_count}} </td>
+                                <td> ---------- </td>
                                 <td> <a href="{{ path('sezons.godas.edit', {'id': goda.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
 {#                                       <div class="karandash">#}
 {#                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="">#}
@@ -66,7 +69,7 @@
                                         </a>
                                     </div>
                                 </td>
-                                <td> {{ goda.uchasgoda_count}} </td>
+
                             </tr>
                         {% endfor %}
                     </tbody>

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Paseka\Sezons\Godas;
 
+use App\Model\EntityNotFoundException;
+use App\Model\Paseka\Entity\Sezons\Godas\Id;
 use App\Model\Paseka\Entity\Sezons\Godas\UchasGoda;
 
 use Doctrine\DBAL\Connection;
@@ -37,6 +39,15 @@ class UchasGodaFetcher
             ->execute();
 
             return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+    }
+
+    public function getUchas(string $id): UchasGoda
+    {
+        /** @var UchasGoda $uchasgoda */
+        if (!$uchasgoda = $this->repository->find($id)) {
+            throw new EntityNotFoundException('Нет такого сезона???!!!!!!!!!!.');
+        }
+        return $uchasgoda;
     }
 
     public function allOfGoda(string $goda): array
@@ -73,14 +84,40 @@ class UchasGodaFetcher
                 'u.uchastie_id',
                 'u.koltochek',
                 'u.gruppa',
-                'g.sezon as sezon'
+                'g.sezon as sezon',
+                't.gruppa as grtochka'
 
-
-//                '(SELECT COUNT(*) FROM paseka_goda_linias l WHERE w.goda_id = s.id) AS linias'
+//                '(SELECT COUNT(*) FROM paseka_sezon_tochkas t WHERE t.gruppa = s.id) AS linias'
             )
             ->from('paseka_sezons_uchasgodas', 'u')
             ->innerJoin('u', 'paseka_sezons_godas', 'g', 'g.id = u.goda_id')
+            ->innerJoin('u', 'paseka_sezon_tochkas', 't', 't.uchasgoda_id = u.id')
             ->orderBy('sezon')
+            ->execute();
+
+        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
+    }
+
+    public function allTochok(string $uchasgoda): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'u.id',
+                'u.goda_id ',
+                'u.uchastie_id',
+                'u.koltochek',
+                'u.gruppa',
+                'g.sezon as sezon',
+                't.gruppa as grtochka'
+
+//                '(SELECT COUNT(*) FROM paseka_sezon_tochkas t WHERE t.gruppa = s.id) AS linias'
+            )
+            ->from('paseka_sezons_uchasgodas', 'u')
+            ->innerJoin('u', 'paseka_sezons_godas', 'g', 'g.id = u.goda_id')
+            ->innerJoin('u', 'paseka_sezon_tochkas', 't', 't.uchasgoda_id = u.id')
+            ->andWhere('u.id = :ids')
+            ->setParameter(':ids', $uchasgoda)
+            ->orderBy('grtochka')
             ->execute();
 
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);

@@ -23,7 +23,7 @@
                     <tr>
                         <th> Сезон </th>
                         <th> Номер группы </th>
-                        <th> Кол-во взятков ! </th>
+                        <th> Кол-во точков </th>
                         <td> -- </td>
                     </tr>
                     </thead>
@@ -39,10 +39,10 @@
                             </td>
                             <td> {{ uchasgoda.koltochek }} </td>
                             <td>
-{#                                {{ path('sezons.godas.nachalos.nomers', {'nachalo_id': nachalo.id}) }}#}
-                                <a href="#"
+
+                                <a href="{{ path('sezons.tochkas', {'uchasgoda_id': uchasgoda.id}) }}"
                                    class="btn-my btn-my--sm">Добавить данные по
-                                    <strong class="stro stro--kras"> взяткам </strong>
+                                    <strong class="stro stro--kras"> точкам </strong>
 
                                 </a>
                             </td>

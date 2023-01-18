@@ -442,13 +442,13 @@ a:hover {
 .btnn--col-sezon {
   box-shadow: inset 0px 0px 10px rgba(2, 90, 2, 0.9);
   border: 1px solid #025a02;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 .btnn--col-sezon:hover {
   box-shadow: 0px 0px 10px rgba(2, 90, 2, 0.6);
   background: none;
   text-decoration: none;
-  color: green;
+  color: #025a02;
 }
 .btnn--col-ras {
   border: 1px solid green;
@@ -585,8 +585,8 @@ a:hover {
 
 /*==============================================*/
 .stron-sezon {
-  font-weight: 600;
-  font-size: 3rem;
+  font-weight: normal;
+  font-size: 2.4rem;
   color: #ED3024;
 }
 

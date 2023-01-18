@@ -9,6 +9,8 @@ use App\Model\Paseka\Entity\Sezons\Godas\UchasGoda;
 use App\Model\Paseka\UseCase\Sezons\Tochkas\Create;
 
 use App\Controller\ErrorHandler;
+use App\ReadModel\Paseka\Sezons\Godas\UchasGodaFetcher;
+use App\ReadModel\Paseka\Sezons\Tochkas\TochkaFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,13 +33,17 @@ class TochkaController extends AbstractController
      * @Route("", name="")
      * @param Request $request
      * @param UchasGoda $uchasgoda
+     * @param TochkaFetcher $fetchers
+     * @param UchasGodaFetcher $uchasfetcher
      * @return Response
      */
-    public function index( UchasGoda $uchasgoda, Request $request): Response
+    public function index(UchasGodaFetcher $uchasfetcher, TochkaFetcher $fetchers, UchasGoda $uchasgoda, Request $request): Response
     {
+$tochoks = $uchasfetcher->allTochok($uchasgoda->getId());
 
-        //dd($uchasgoda->getGruppa());
+//        dd($uchasgoda);
         return $this->render('sezons/tochkas/index.html.twig', [
+            'tochoks' => $tochoks,
             'uchasgoda' => $uchasgoda,
             'tochkas' => $uchasgoda->getTochkas(),
         ]);
@@ -66,7 +72,7 @@ class TochkaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('sezons.tochkas', ['$uchasgoda_id' => $uchasgoda->getId()]);
+                return $this->redirectToRoute('sezons.tochkas', ['uchasgoda_id' => $uchasgoda->getId()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
