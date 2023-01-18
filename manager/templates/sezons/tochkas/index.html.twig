@@ -12,6 +12,8 @@
 
     <div  class="proekts proekts--sezon pb0">
 
+
+
         {% include('sezons/tochkas/_tochka-includ.html.twig') %}
     <div class="proekts-plr  ">
 
@@ -77,23 +79,21 @@
                 <table class="tabl table-bord- table-hover">
                     <thead>
                     <tr>
-                        <th> Сезон </th>
-                        <th> Номер группы </th>
-                        <th> Кол-во взятков ! </th>
-                        <td> {{tochoks[0].sezon}} =====================</td>
+
+                        <td> Номер группы </td>
+                        <td> Кол-во взятков ! </td>
+
                     </tr>
                     </thead>
                     <tbody>
 
                     {% for tochok in tochoks %}
                         <tr>
-                            <td>
-                                 {{ tochok.sezon }}
-                            </td>
+
                             <td>
                                 {{ tochok.grtochka }}
                             </td>
-                            <td> {{ tochok.koltochek }} </td>
+                            <td> {{ tochok.kolwz }} </td>
                             <td>
 {#                                {{ path('sezons.godas.nachalos.nomers', {'nachalo_id': nachalo.id}) }}#}
                                 <a href="#"
@@ -103,20 +103,28 @@
                                 </a>
                             </td>
                         </tr>
+
+
                     {% endfor %}
                     </tbody>
                 </table>
+
+
+    <div class="inklud__title teni  teni--sezon ">
+
+        Продолжаем заполнять данные по точкам
+
+        <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': 3}) }}"
+           class="btnn btnn--mb0 btnn--pt btnn--col">Следующий точок - продолжить          </a>
+    </div>
 
         {% else %}
             <div class="inklud__title teni  teni--sezon ">
 
               Начните заполнять данные по точкам
-{#                <a href="{{ path('sezons.godas'  ) }}"#}
-{#                   class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >Начать ввод данных#}
-{#                </a>#}
 
 
-            <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': 1}) }}"
+            <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': 2}) }}"
                                    class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
             </a>
             </div>

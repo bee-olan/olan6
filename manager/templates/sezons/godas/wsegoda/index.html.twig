@@ -12,7 +12,18 @@
 
     <div  class="proekts proekts--sezon pb0">
 
-        {% include('sezons/nachalos/_nachalo-includ.html.twig') %}
+        <div class="inklud inklud--sezon">
+
+            <div class="inklud__img">
+                <img class="" src="{{ asset('assets/proekt/images/sezon/sezons.png') }}" alt="">
+
+            </div>
+
+            <div class="inklud__title teni  teni--sezon ">
+
+             Сезоны ,  в которых есть участники..................................
+            </div>
+        </div>
     <div class="proekts-plr  ">
 
         <div class="box-m">
@@ -23,7 +34,7 @@
                     <tr>
                         <th> Сезон </th>
                         <th> Номер группы </th>
-                        <th> Кол-во точков </th>
+                        <th> Кол-во взятков </th>
                         <td> -- </td>
                     </tr>
                     </thead>
@@ -35,9 +46,9 @@
                                  {{ uchasgoda.sezon }}
                             </td>
                             <td>
-                                {{ uchasgoda.gruppa }}
+                                {{ uchasgoda.grtochka }}
                             </td>
-                            <td> {{ uchasgoda.koltochek }} </td>
+                            <td> {{ uchasgoda.kolwz }} </td>
                             <td>
 
                                 <a href="{{ path('sezons.tochkas', {'uchasgoda_id': uchasgoda.id}) }}"

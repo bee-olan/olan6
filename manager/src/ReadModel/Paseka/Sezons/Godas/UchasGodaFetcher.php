@@ -85,7 +85,9 @@ class UchasGodaFetcher
                 'u.koltochek',
                 'u.gruppa',
                 'g.sezon as sezon',
-                't.gruppa as grtochka'
+                't.gruppa as grtochka',
+                't.kolwz as kolwz'
+
 
 //                '(SELECT COUNT(*) FROM paseka_sezon_tochkas t WHERE t.gruppa = s.id) AS linias'
             )
@@ -93,6 +95,7 @@ class UchasGodaFetcher
             ->innerJoin('u', 'paseka_sezons_godas', 'g', 'g.id = u.goda_id')
             ->innerJoin('u', 'paseka_sezon_tochkas', 't', 't.uchasgoda_id = u.id')
             ->orderBy('sezon')
+            ->orderBy('grtochka')
             ->execute();
 
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
@@ -108,7 +111,8 @@ class UchasGodaFetcher
                 'u.koltochek',
                 'u.gruppa',
                 'g.sezon as sezon',
-                't.gruppa as grtochka'
+                't.gruppa as grtochka',
+                't.kolwz as kolwz'
 
 //                '(SELECT COUNT(*) FROM paseka_sezon_tochkas t WHERE t.gruppa = s.id) AS linias'
             )

@@ -41,7 +41,7 @@ class TochkaController extends AbstractController
     {
 $tochoks = $uchasfetcher->allTochok($uchasgoda->getId());
 
-//        dd($uchasgoda);
+//        dd($tochoks);
         return $this->render('sezons/tochkas/index.html.twig', [
             'tochoks' => $tochoks,
             'uchasgoda' => $uchasgoda,
