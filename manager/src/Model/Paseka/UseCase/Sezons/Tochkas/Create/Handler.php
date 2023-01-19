@@ -28,7 +28,8 @@ class Handler
         $uchasgoda->addTochka(
             Id::next(),
             $command->kolwz,
-            $command->gruppa
+            $command->gruppa,
+            $command->name
                 );
 
         $this->flusher->flush();

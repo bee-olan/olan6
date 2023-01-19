@@ -86,17 +86,11 @@ class UchasGoda
 ////////////////////
     public function addTochka(TochkaId $id,
                               int $kolwz,
-                              string $gruppa
+                              string $gruppa,
+                              string $name
                             ): void
     {
 
-//        foreach ($this->tochkas as $tochka) {
-//
-//            if ($tochka->isGruppaEqual($gruppa)) {
-//                throw new \DomainException('Группа уже существует. ');
-//
-//            }
-//        }
 
         foreach ($this->tochkas as $tochka) {
             if ($tochka->isNameEqual($gruppa)) {
@@ -107,16 +101,18 @@ class UchasGoda
         $this->tochkas->add(new Tochka($this,
                                         $id,
                                         $kolwz,
-                                        $gruppa));
+                                        $gruppa,
+                                        $name));
     }
 
     public function editTochka(TochkaId $id,
-                               int $kolwz
+                               int $kolwz,
+                               string $name
                             ): void
     {
         foreach ($this->tochkas as $current) {
             if ($current->getId()->isEqual($id)) {
-                $current->edit( $kolwz );
+                $current->edit( $kolwz, $name );
                 return;
             }
         }
@@ -149,12 +145,6 @@ class UchasGoda
     {
         return $this->goda;
     }
-
-//    public function getTochkas()
-//    {
-//        return $this->tochkas->toArray();
-//    }
-
 
     public function getTochka(TochkaId $id): Tochka
     {

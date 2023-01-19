@@ -42,6 +42,12 @@ class Tochka
      * @ORM\Column(type="string")
      */
     private $gruppa;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $name;
 	
 //	 /**
 //     * @var ArrayCollection|Wzatok[]
@@ -57,13 +63,15 @@ class Tochka
                                 UchasGoda $uchasgoda,
                                 Id $id,
                                 int $kolwz,
-                                string $gruppa
+                                string $gruppa,
+                                string $name
                                     )
     {
         $this->uchasgoda = $uchasgoda;
         $this->id = $id;
         $this->kolwz = $kolwz;
         $this->gruppa = $gruppa;
+        $this->name = $name;
 //        $this->wzatoks = new ArrayCollection();
     }
 
@@ -77,10 +85,6 @@ class Tochka
         return $this->gruppa === $gruppa;
     }
 
-//    public function isGruppaEqual(string $gruppa): bool
-//    {
-//        return $this->gruppa === $gruppa;
-//    }
 
 
 //	///////////////////////
@@ -167,9 +171,9 @@ class Tochka
     }
 
 
-//    public function getGruppa(): string
-//    {
-//        return $this->gruppa;
-//    }
+   public function getName(): string
+   {
+       return $this->name;
+   }
 
 }

@@ -24,6 +24,12 @@ class Command
      */
     public $gruppa;
 
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
+    public $name;
+
     public function __construct(string $uchasgoda,
                                 string $gruppa
                                 )
