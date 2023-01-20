@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Paseka\Entity\Sezons\Godas;
 
 use App\Model\EntityNotFoundException;
+use App\ReadModel\NotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 
 class GodaRepository
@@ -30,6 +31,13 @@ class GodaRepository
         }
         return $goda;
     }
+//    public function get(string $id): Goda
+//    {
+//        if (!$goda = $this->repo->find($id)) {
+//            throw new NotFoundException('User is not found');
+//        }
+//        return $goda;
+//    }
 
     public function getUchas(string $id): UchasGoda
     {

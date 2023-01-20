@@ -4,7 +4,7 @@
 
   {% block kroxii %}
       <a href="{{ path('proekt') }}">Главная</a>
-      <span class="aktiv ">Выбор сезона</span>
+      <span class="aktiv ">Выбор сезона!</span>
   {% endblock %}
 
 {% block bodyy %}
@@ -45,7 +45,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ path('sezons.godas.uchasgoda.assign', {'goda_id': goda.id})  }}">
+                                    <a href="{{ path('sezons.godas.uchasgoda', {'id': goda.id})  }}">
                                       {{ goda.sezon }}
                                     </a>
                                 </td>
@@ -61,6 +61,7 @@
                                     </a>
                                 </td>
                                 <td>
+
                                     <div>
                                         <a href="{{ path('sezons.godas.delete' , {'id': goda.id} ) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
                                         <div class="karandash karandash--child">
@@ -75,9 +76,11 @@
                     </tbody>
                 </table>
             </div>
-                    <div class="controls">
+
+            <div class="controls">
             <a href="{{ path('sezons.godas.create') }}" class="btnn  btnn--pt">Добавить новый !!! сезон</a>
-        </div>
+            </div>
+
         </div>
 
     </div>

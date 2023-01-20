@@ -1,0 +1,32 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}...........{% endblock %}
+
+ {% block kroxii %}
+     <a href="{{ path('proekt') }}">Главная</a>
+     {#      <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Выбор сезона</a>#}
+     <span class="aktiv ">Список сезонов</span>
+ {% endblock %}
+
+{% block bodyy %}
+
+    <div  class="proekts proekts--sezon pb0">
+
+    {% include('sezons/godas/_sezon-includ.html.twig') %}
+
+        <div class="box">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                         <td>{{ goda.sezon }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        {# <td>{{ materi_status(materi.status.name) }}</td> #}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

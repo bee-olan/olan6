@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Sezons\Tochkas;
 
-//use App\Model\Sezons\Entity\Sxemas\Wzatoks\Wzatok;
-//use App\Model\Sezons\Entity\Sxemas\Wzatoks\Id as WzatokId;
-
+use App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks\Wzatok;
+use App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks\Id as WzatokId;
 
 use App\Model\Paseka\Entity\Sezons\Godas\UchasGoda;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity
@@ -48,23 +48,29 @@ class Tochka
      * @ORM\Column(type="string")
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $tochka;
 	
-//	 /**
-//     * @var ArrayCollection|Wzatok[]
-//     * @ORM\OneToMany(
-//     *     targetEntity="App\Model\Sezons\Entity\Sxemas\Wzatoks\Wzatok",
-//     *     mappedBy="tochka", orphanRemoval=true, cascade={"all"}
-//     * )
-//     * @ORM\OrderBy({"name" = "ASC"})
-//     */
-//    private $wzatoks;
+	/**
+    * @var ArrayCollection|Wzatok[]
+    * @ORM\OneToMany(
+    *     targetEntity="App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks\Wzatok",
+    *     mappedBy="tochka", orphanRemoval=true, cascade={"all"}
+    * )
+    * @ORM\OrderBy({"gruppa" = "ASC"})
+    */
+   private $wzatoks;
 
     public function __construct(
                                 UchasGoda $uchasgoda,
                                 Id $id,
                                 int $kolwz,
                                 string $gruppa,
-                                string $name
+                                string $name,
+                                int $tochka
                                     )
     {
         $this->uchasgoda = $uchasgoda;
@@ -72,7 +78,8 @@ class Tochka
         $this->kolwz = $kolwz;
         $this->gruppa = $gruppa;
         $this->name = $name;
-//        $this->wzatoks = new ArrayCollection();
+        $this->tochka = $tochka;
+       $this->wzatoks = new ArrayCollection();
     }
 
         public function edit( int $kolwz): void
@@ -87,70 +94,82 @@ class Tochka
 
 
 
-//	///////////////////////
-//    public function addWzatok(WzatokId $id,
-//                                int $kolwz,
-//                                 string $gruppa
-//                                ): void
+
+	///////////////////////
+   public function addWzatok(WzatokId $id,
+                               int $rasstojan,
+                               \DateTimeImmutable $startDate,
+                               \DateTimeImmutable $pobelkaDate,
+                               \DateTimeImmutable $endDate,
+                                int $nomerwz,
+                                string $gruppa
+                               ): void
+   {
+       foreach ($this->wzatoks as $wzatok) {
+           if ($wzatok->isGruppaEqual($gruppa)) {
+               throw new \DomainException('Группа для взятка уже существует. Изените номер взятка');
+           }
+       }
+       
+       $this->wzatoks->add(new Wzatok($this,
+									$id,
+                                    $rasstojan,
+                                    $startDate,
+                                    $pobelkaDate,
+                                    $endDate,
+                                    $nomerwz,
+                                    $gruppa
+       ));
+   }
+
+   public function editWzatok(WzatokId $id,
+                               int $rasstojan
+                               
+                               ): void
+   {
+       foreach ($this->wzatoks as $current) {
+           if ($current->getId()->isEqual($id)) {
+               $current->editRasstojan($rasstojan );
+               return;
+           }
+       }
+       throw new \DomainException('Wzatok is not found.');
+   }
+
+   public function removeWzatok(WzatokId $id): void
+   {
+       foreach ($this->wzatoks as $wzatok) {
+           if ($wzatok->getId()->isEqual($id)) {
+               $this->wzatoks->removeElement($wzatok);
+               return;
+           }
+       }
+       throw new \DomainException('Wzatok is not found.');
+   }
+
+//    /**
+//     * @return Wzatok[]|ArrayCollection
+//     */
+//    public function getWzatoks()
 //    {
-//        foreach ($this->wzatoks as $wzatok) {
-//            if ($wzatok->isNameStarEqual($nameStar)) {
-//                throw new \DomainException('Линия уже существует. Попробуйте для
-//                этой линии добавить свой номер');
-//            }
-//        }
-//
-//        $this->wzatoks->add(new Wzatok($this,
-//									$id,
-//                                    $rasstojan,
-//                                    $startDate,
-//                                    $pobelkaDate,
-//                                    $endDate,
-//                                    $nomerwz
-//        ));
+//        return $this->wzatoks;
 //    }
 
-//    public function editWzatok(WzatokId $id,
-//                                string $name,
-//                                string $nameStar,
-//                                string $title
-//                                ): void
-//    {
-//        foreach ($this->wzatoks as $current) {
-//            if ($current->getId()->isEqual($id)) {
-//                $current->edit($name, $nameStar, $title );
-//                return;
-//            }
-//        }
-//        throw new \DomainException('Wzatok is not found.');
-//    }
+   public function getWzatoks()
+   {
+       return $this->wzatoks->toArray();
+   }
 
-//    public function removeWzatok(WzatokId $id): void
-//    {
-//        foreach ($this->wzatoks as $wzatok) {
-//            if ($wzatok->getId()->isEqual($id)) {
-//                $this->wzatoks->removeElement($wzatok);
-//                return;
-//            }
-//        }
-//        throw new \DomainException('Wzatok is not found.');
-//    }
-//
-//	 public function getWzatoks()
-//    {
-//        return $this->wzatoks->toArray();
-//    }
-//
-//
-//    public function getWzatok(WzatokId $id): Wzatok
-//    {
-//        foreach ($this->wzatoks as $wzatok) {
-//            if ($wzatok->getId()->isEqual($id)) {
-//                return $wzatok;
-//            }
-//        }
-//        throw new \DomainException('Wzatok is not found.');
-//    }
+
+   public function getWzatok(WzatokId $id): Wzatok
+   {
+       foreach ($this->wzatoks as $wzatok) {
+           if ($wzatok->getId()->isEqual($id)) {
+               return $wzatok;
+           }
+       }
+       throw new \DomainException('Wzatok is not found.');
+   }
 /////////////////////////////////////////
     public function getId(): Id
     {
@@ -175,5 +194,11 @@ class Tochka
    {
        return $this->name;
    }
-
+//    /**
+//     * @return int
+//     */
+    public function getTochka(): int
+    {
+        return $this->tochka;
+    }
 }

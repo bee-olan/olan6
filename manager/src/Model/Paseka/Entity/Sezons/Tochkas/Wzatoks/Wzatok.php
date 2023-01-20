@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks;
 
-//use App\Model\Sezons\Entity\Sxemas\Istorias\Istoria;
-//use App\Model\Sezons\Entity\Sxemas\Istorias\Id as IstoriaId;
-
-
 use App\Model\Paseka\Entity\Sezons\Tochkas\Tochka;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;

@@ -68,10 +68,9 @@
 
                 <ul class="plem__data plem__data--mt2">
                     <li>
-{#                        <a href="{{ path('sezons.uchasgodas.create') }}"#}
-{#                           class="btnn btnn--mb0 btnn--col">Выбрать  сезон#}
-{#                            #}{#                                <strong class="strongo strongo--kras">{{ uchasgoda.sezon}} </strong>#}
-{#                        </a>#}
+                        <div class="controls">
+                            <a href="{{ path('sezons.godas.uchasgoda.assign', {'id': goda.id} ) }}" class="btnn  btnn--pt">Хотите участвовать в этом сезоне? Жмите!</a>
+                        </div>
                     </li>
                     <li>
                         <a href="{{ path('sezons.godas'  ) }}"

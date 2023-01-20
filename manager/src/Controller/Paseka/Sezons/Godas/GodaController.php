@@ -56,15 +56,10 @@ class GodaController extends AbstractController
     {
         $godMax = $godas->getMaxGod() + 1;
 
-        if ($godMax < 2014) {
-            $godMax = 2015;
-        }
+        if ($godMax < 2014) { $godMax = 2015;}
 
         $command = new Create\Command($godMax);
-//        $command->god = $godMax;
-//        $command->sezon = $godMax."-".($godMax + 1);
 
-//        if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
                 return $this->redirectToRoute('sezons.godas');
@@ -72,11 +67,7 @@ class GodaController extends AbstractController
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
             }
-//        }
-
-        return $this->render('sezons/godas/create.html.twig', [
-           // 'form' => $form->createView(),
-        ]);
+        return $this->render('sezons/godas/create.html.twig');
     }
 
     /**
@@ -118,15 +109,16 @@ class GodaController extends AbstractController
      */
     public function delete(Goda $goda, Request $request, Remove\Handler $handler): Response
     {
+        dd($goda);
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
-            return $this->redirectToRoute('sezons.godas.show', ['id' => $goda->getId()]);
+            return $this->redirectToRoute('sezons.godas');
         }
 
         $command = new Remove\Command($goda->getId()->getValue());
 
         try {
             $handler->handle($command);
-            return $this->redirectToRoute('sezons.godas');
+            return $this->redirectToRoute('sezons.godas.');
         } catch (\DomainException $e) {
             $this->logger->warning($e->getMessage(), ['exception' => $e]);
             $this->addFlash('error', $e->getMessage());
@@ -143,4 +135,6 @@ class GodaController extends AbstractController
     {
         return $this->redirectToRoute('sezons.godas');
     }
+
+
 }

@@ -46,14 +46,14 @@
                                  {{ uchasgoda.sezon }}
                             </td>
                             <td>
-                                {{ uchasgoda.grtochka }}
+                                {{ uchasgoda.grtochka }} (  {{ uchasgoda.name }} )
                             </td>
                             <td> {{ uchasgoda.kolwz }} </td>
                             <td>
 
-                                <a href="{{ path('sezons.tochkas', {'uchasgoda_id': uchasgoda.id}) }}"
-                                   class="btn-my btn-my--sm">Добавить данные по
-                                    <strong class="stro stro--kras"> точкам </strong>
+                                <a href="{{ path('sezons.tochkas.create', {'uchasgoda_id': uchasgoda.id}) }}"
+                                   class="btn-my btn-my--sm">Добавить
+                                    <strong class="stro stro--kras"> точкок </strong>
 
                                 </a>
                             </td>

@@ -1,0 +1,100 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Начало сезона{% endblock %}
+
+  {% block kroxii %}
+      <a href="{{ path('proekt') }}">Главная</a>
+      {#      <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Выбор сезона</a>#}
+      <span class="aktiv ">Список точек</span>
+  {% endblock %}
+
+{% block bodyy %}
+
+    <div  class="proekts proekts--sezon pb0">
+
+
+
+{#        {% include('sezons/tochkas/_tochka-includ.html.twig') %}#}
+    <div class="proekts-plr  ">
+
+        <div class="box-m">
+
+{% if wzatoks  %}
+
+
+                <table class="tabl table-bord- table-hover">
+                    <thead>
+                    <tr>
+
+                        <td> Номер группы </td>
+                        <td> Кол-во взятков ! </td>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for wzatok in wzatoks %}
+                        <tr>
+
+                            <td>
+                                {{ wzatok.gruppa }}
+                            </td>
+                            <td> {{ wzatok.nomerwz }} </td>
+                            <td>
+{#                                {{ path('sezons.godas.nachalos.nomers', {'nachalo_id': nachalo.id}) }}#}
+                                <a href="#"
+                                   class="btn-my btn-my--sm">Добавить данные по
+                                    <strong class="stro stro--kras"> взяткам </strong>
+
+                                </a>
+                            </td>
+                        </tr>
+
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+    <div class="inklud__title teni  teni--sezon ">
+
+        Продолжаем заполнять данные по взяткам на этом точке
+
+        <a href="{{ path('sezons.tochkas.create' , {'tochka_id': tochka}) }}"
+           class="btnn btnn--mb0 btnn--pt btnn--col">Следующий взяток - продолжить          </a>
+    </div>
+
+        {% else %}
+            <div class="inklud__title teni  teni--sezon ">
+
+             Заполняем данные по взятку на этом точке
+
+
+            <a href="{{ path('sezons.tochkas.wzatoks.create' , {'tochka_id': tochka} ) }}"
+                                   class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
+            </a>
+            </div>
+
+            {% endif %}
+                            <div class="proekts-plr linia__li ">
+                                <ul class="plem__data plem__data--mt2">
+                                    <li>
+                                        <a href="{{ path('sezons.nachalos.create') }}"
+                                           class="btnn btnn--mb0 btnn--col">Выбрать  сезон
+            {#                                <strong class="strongo strongo--kras">{{ nachalo.sezon}} </strong>#}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sezons.godas'  ) }}"
+                               class="btnn btnn--mb0 btnn--col" >Список сезонов
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

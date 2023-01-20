@@ -29,7 +29,8 @@ class Handler
             Id::next(),
             $command->kolwz,
             $command->gruppa,
-            $command->name
+            $command->name,
+            $command->tochka
                 );
 
         $this->flusher->flush();

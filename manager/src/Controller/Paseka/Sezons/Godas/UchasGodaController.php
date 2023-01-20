@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Paseka\Sezons\Godas;
 
+use App\Annotation\Guid;
+use App\Model\Paseka\Entity\Sezons\Godas\GodaRepository;
 use App\Model\Paseka\Entity\Sezons\Godas\UchasGoda;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\UseCase\Sezons\Godas\UchasGoda\Add;
@@ -12,7 +14,9 @@ use App\Controller\ErrorHandler;
 use App\Model\Paseka\Entity\Sezons\Godas\Goda;
 use App\Model\User\Entity\User\User;
 use App\ReadModel\Paseka\Sezons\Godas\GodaFetcher;
+use App\ReadModel\Paseka\Sezons\Godas\UchasGodaFetcher;
 use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,8 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/sezons/godas/uchasgoda/{goda_id}", name="sezons.godas.uchasgoda")
- * @ParamConverter("goda", options={"id" = "goda_id"})
+ * @Route("/sezons/godas/{id}/uchasgoda", name="sezons.godas.uchasgoda")
  */
 class UchasGodaController extends AbstractController
 {
@@ -36,12 +39,14 @@ class UchasGodaController extends AbstractController
      * @param Request $request
      * @param Goda $goda
      * @param GodaFetcher $godas
+     * @param GodaRepository $repository
      * @return Response
      */
-    public function index( Goda $goda, GodaFetcher $godas, Request $request): Response
+    public function index( Goda $goda, GodaRepository $repository, GodaFetcher $godas, Request $request): Response
     {
+//       $goda =  $repository->get($id);
 
-//        dd($goda->getUchasgodas());
+//       dd($goda->getUchasgodas());
         // $this->denyAccessUnlessGranted(ProjectAccess::MANAGE_MEMBERS, $plemmatka);
 // выводит из проекта uchastniks - учстников
         return $this->render('sezons/godas/uchasgoda/index.html.twig', [
@@ -54,12 +59,18 @@ class UchasGodaController extends AbstractController
      * @Route("/assign", name=".assign")
      * @param Goda $goda
      * @param PersonaFetcher $personas
+     * @param UchasGodaFetcher $uchasgodas
      * @param Request $request
      * @param Add\Handler $handler
      * @return Response
      */
-    public function assign(PersonaFetcher $personas, Goda $goda, Request $request, Add\Handler $handler): Response
+    public function assign(UchasGodaFetcher $uchasgodas, PersonaFetcher $personas, Goda $goda, Request $request, Add\Handler $handler): Response
     {
+
+        if ($uchasgodas->exists($this->getUser()->getId())) {
+            $this->addFlash('error', 'Вы уже в этом сезоне ');
+            return $this->redirectToRoute('sezons.godas.uchasgoda', ['id' => $goda->getId()->getValue()]);
+        }
 
         if (!$personas->exists($this->getUser()->getId())) {
             $this->addFlash('error', 'Начните с выбора ПерсонНомера ');
@@ -79,7 +90,7 @@ class UchasGodaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('sezons.godas.uchasgoda', ['goda_id' => $goda->getId()->getValue()]);
+                return $this->redirectToRoute('sezons.godas.uchasgoda', ['id' => $goda->getId()->getValue()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
@@ -109,7 +120,7 @@ class UchasGodaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('paseka.uchasties.show', ['id' => $uchastie->getId()]);
+                return $this->redirectToRoute('sezons.godas.uchasgoda', ['id' => $goda->getId()->getValue()]);
             } catch (\DomainException $e) {
                 $this->logger->warning($e->getMessage(), ['exception' => $e]);
                 $this->addFlash('error', $e->getMessage());
@@ -122,5 +133,14 @@ class UchasGodaController extends AbstractController
         ]);
     }
 
-
+    /**
+     * @Route("/{uchasgoda_id}", name=".show", requirements={"uchasgoda_id"=Guid::PATTERN})
+     * @param Goda $goda
+     * @return Response
+     */
+    public function show(Goda $goda): Response
+    {
+        return $this->redirectToRoute('paseka.godas.uchasgoda',
+            ['id' => $goda->getId()]);
+    }
 }

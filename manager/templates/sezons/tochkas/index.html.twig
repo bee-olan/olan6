@@ -91,12 +91,12 @@
                         <tr>
 
                             <td>
-                                {{ tochok.grtochka }}
+                                {{ tochok.grtochka }} ( {{ tochok.name }} )
                             </td>
                             <td> {{ tochok.kolwz }} </td>
                             <td>
 {#                                {{ path('sezons.godas.nachalos.nomers', {'nachalo_id': nachalo.id}) }}#}
-                                <a href="#"
+                                <a href="{{ path('sezons.tochkas.wzatoks', {'id': tochok.id}) }}"
                                    class="btn-my btn-my--sm">Добавить данные по
                                     <strong class="stro stro--kras"> взяткам </strong>
 
@@ -114,7 +114,7 @@
 
         Продолжаем заполнять данные по точкам
 
-        <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': 3}) }}"
+        <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id}) }}"
            class="btnn btnn--mb0 btnn--pt btnn--col">Следующий точок - продолжить          </a>
     </div>
 
@@ -124,7 +124,7 @@
               Начните заполнять данные по точкам
 
 
-            <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': 2}) }}"
+            <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id}) }}"
                                    class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
             </a>
             </div>

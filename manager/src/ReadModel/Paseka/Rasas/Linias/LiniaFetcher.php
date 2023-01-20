@@ -16,7 +16,7 @@ class LiniaFetcher
         $this->connection = $connection;
     }
 	
-	    public function getMaxSortLinia(string $rasa): int
+    public function getMaxSortLinia(string $rasa): int
     {
         return (int)$this->connection->createQueryBuilder()
             ->select('MAX(l.sort_linia) AS m')

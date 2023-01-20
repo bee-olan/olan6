@@ -30,11 +30,17 @@ class Command
      */
     public $name;
 
+    /**
+     * @var int
+     */
+    public $tochka;
+
     public function __construct(string $uchasgoda,
-                                string $gruppa
+                                string $gruppa, int $tochka
                                 )
     {
         $this->uchasgoda = $uchasgoda;
         $this->gruppa = $gruppa;
+        $this->tochka = $tochka;
     }
 }

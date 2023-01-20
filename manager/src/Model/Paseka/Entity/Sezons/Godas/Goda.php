@@ -36,7 +36,8 @@ class Goda
 
     /**
      * @var ArrayCollection|UchasGoda[]
-     * @ORM\OneToMany(targetEntity="UchasGoda", mappedBy="goda", orphanRemoval=true, cascade={"all"})
+     * @ORM\OneToMany(targetEntity="UchasGoda",
+     *     mappedBy="goda", orphanRemoval=true, cascade={"all"})
      */
     private $uchasgodas;
 
@@ -71,6 +72,17 @@ class Goda
                                             $gruppa
                                                 ));
     }
+
+//    public function removeUchastie(UchastieId $id): void
+//    {
+//        foreach ($this->uchasties as $uchastie) {
+//            if ($uchastie->getId()->isEqual($id)) {
+//                $this->uchasties->removeElement($uchastie);
+//                return;
+//            }
+//        }
+//        throw new \DomainException('Uchastie is not found.');
+//    }
 
     public function getUchasgodas()
     {

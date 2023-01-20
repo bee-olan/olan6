@@ -2,26 +2,25 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Paseka\Sezons\Tochkas;
-
-use App\Model\Paseka\Entity\Sezons\Godas\UchasGoda;
-
-use App\Model\Paseka\UseCase\Sezons\Tochkas\Create;
+namespace App\Controller\Paseka\Sezons\Tochkas\Wzatoks;
 
 use App\Controller\ErrorHandler;
-use App\ReadModel\Paseka\Sezons\Godas\UchasGodaFetcher;
-use App\ReadModel\Paseka\Sezons\Tochkas\TochkaFetcher;
+
+use App\ReadModel\Paseka\Sezons\Tochkas\Wzatoks\WzatokFetcher;
+use App\Model\Paseka\Entity\Sezons\Tochkas\Tochka;
+use App\Model\Paseka\UseCase\Sezons\Tochkas\Create;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/sezons/{uchasgoda_id}/tochkas", name="sezons.tochkas")
- * @ParamConverter("uchasgoda", options={"id" = "uchasgoda_id"})
- */
-class TochkaController extends AbstractController
+//     * @ParamConverter("tochka", options={"id" = "tochka_id"})
+    /**
+     * @Route("/sezons/tochkas/{id}/wzatoks", name="sezons.tochkas.wzatoks")
+//     * @ParamConverter("tochka", options={"id" = "tochka_id"})
+     */
+class WzatokController extends AbstractController
 {
     private $errors;
 
@@ -32,41 +31,39 @@ class TochkaController extends AbstractController
     /**
      * @Route("", name="")
      * @param Request $request
-     * @param UchasGoda $uchasgoda
-     * @param TochkaFetcher $fetchers
-     * @param UchasGodaFetcher $uchasfetcher
+     * @param Tochka $tochka
+     * @param WzatokFetcher $fetchers
      * @return Response
      */
-    public function index(UchasGodaFetcher $uchasfetcher, TochkaFetcher $fetchers, UchasGoda $uchasgoda, Request $request): Response
+    public function index(Tochka $tochka, WzatokFetcher $fetchers,  Request $request): Response
     {
 
+        dd($tochka);
+//        $wzatoks = $fetchers->allOfTochka($tochka_id);
 
-$tochoks = $uchasfetcher->allTochok($uchasgoda->getId());
-
-//        dd($tochoks);
-        return $this->render('sezons/tochkas/index.html.twig', [
-            'tochoks' => $tochoks,
-            'uchasgoda' => $uchasgoda,
-            'tochkas' => $uchasgoda->getTochkas(),
+        return $this->render('sezons/tochkas/wzatoks/index.html.twig', [
+            'tochka'=> $tochka_id,
+            'wzatoks' => $fetchers->allOfTochka($tochka_id),
         ]);
     }
 
     /**
      * @Route("/create", name=".create")
-     * @param TochkaFetcher $fetchers
-     * @param UchasGoda $uchasgoda
+     * @param Tochka $tochka
+     * @param string $tochka_id
      * @param Request $request
      * @param Create\Handler $handler
      * @return Response
      */
-    public function create(UchasGoda $uchasgoda, TochkaFetcher $fetchers, Request $request, Create\Handler $handler): Response
+    public function create(string $tochka_id, Tochka $tochka, Request $request, Create\Handler $handler): Response
     {
-        $tochka = (int)$fetchers->getMaxTochka($uchasgoda->getId())+1;
-        $gruppa =  $uchasgoda->getGruppa()." - ". $tochka;
 
-//dd($uchasgoda->getId());
-        $command = new Create\Command($uchasgoda->getId(),
-                                    $gruppa, $tochka);
+        dd( $tochka->getId()->getValue());
+        $gruppa =  $tochka->getGruppa();
+
+dd($tochka->getId());
+        $command = new Create\Command($tochka->getId(),
+                                    $gruppa);
 
         $form = $this->createForm(Create\Form::class, $command  );
         $form->handleRequest($request);
@@ -74,7 +71,7 @@ $tochoks = $uchasfetcher->allTochok($uchasgoda->getId());
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('sezons.tochkas', ['uchasgoda_id' => $uchasgoda->getId()]);
+                return $this->redirectToRoute('sezons.tochkas', ['tochka_id' => $tochka->getId()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
@@ -82,22 +79,22 @@ $tochoks = $uchasfetcher->allTochok($uchasgoda->getId());
         }
 
         return $this->render('sezons/tochkas/create.html.twig', [
-            'tochok' => $tochka,
-            'uchasgoda' => $uchasgoda,
+            'tochok' => $tochok,
+            'tochka' => $tochka,
             'form' => $form->createView(),
         ]);
     }
 
 //    /**
 //     * @Route("/edit", name=".edit")
-//     * @param UchasGoda $uchasgoda
+//     * @param Tochka $tochka
 //     * @param Request $request
 //     * @param Edit\Handler $handler
 //     * @return Response
 //     */
-//    public function edit(UchasGoda $uchasgoda, Request $request, Edit\Handler $handler): Response
+//    public function edit(Tochka $tochka, Request $request, Edit\Handler $handler): Response
 //    {
-//        $command = Edit\Command::fromUchasGoda($uchasgoda);
+//        $command = Edit\Command::fromTochka($tochka);
 //
 //        $form = $this->createForm(Edit\Form::class, $command);
 //        $form->handleRequest($request);
@@ -112,7 +109,7 @@ $tochoks = $uchasfetcher->allTochok($uchasgoda->getId());
 //            }
 //        }
 //
-//        return $this->render('sezons/godas/uchasgoda/edit.html.twig', [
+//        return $this->render('sezons/godas/tochka/edit.html.twig', [
 //            'uchastie' => $uchastie,
 //            'form' => $form->createView(),
 //        ]);
