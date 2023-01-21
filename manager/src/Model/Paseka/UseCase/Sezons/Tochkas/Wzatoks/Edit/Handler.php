@@ -5,25 +5,31 @@ declare(strict_types=1);
 namespace App\Model\Paseka\UseCase\Sezons\Tochkas\Wzatoks\Edit;
 
 use App\Model\Flusher;
+use App\Model\Paseka\Entity\Sezons\Tochkas\TochkaRepository;
+use App\Model\Paseka\Entity\Sezons\Tochkas\Id;
+use App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks\Id as WzatokId;
+
 //use App\Model\Paseka\Entity\Sxemas\Id;
 //use App\Model\Paseka\Entity\Sxemas\SxemaRepository;
 
 class Handler
 {
-    private $sxemas;
+    private $tochkas;
     private $flusher;
 
-    public function __construct(SxemaRepository $sxemas, Flusher $flusher)
+    public function __construct(TochkaRepository $tochkas, Flusher $flusher)
     {
-        $this->sxemas = $sxemas;
+        $this->tochkas = $tochkas;
         $this->flusher = $flusher;
     }
 
     public function handle(Command $command): void
     {
-        $sxema = $this->sxemas->get(new Id($command->id));
+        $tochka = $this->tochkas->get(new Id($command->tochka));
 
-        $sxema->edit($command->name, $command->title);
+        $tochka->editWzaDate(new WzatokId($command->id),
+                        $command->start_date, $command->pobelka_date,
+                        $command->end_date);
 
         $this->flusher->flush();
     }

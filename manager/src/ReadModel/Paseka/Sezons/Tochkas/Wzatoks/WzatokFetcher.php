@@ -28,15 +28,15 @@ class WzatokFetcher
 //
 //        return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
 //    }
-//    public function getMaxWzatok(string $tochka): int
-//    {
-//        return (int)$this->connection->createQueryBuilder()
-//            ->select('MAX(l.sort_linia) AS m')
-//            ->from('paseka_tochka_linias', 'l')
-//            ->andWhere('tochka_id = :tochkas')
-//            ->setParameter(':tochkas', $tochka)
-//            ->execute()->fetch()['m'];
-//    }
+    public function getMaxWzatok(string $tochka): int
+    {
+        return (int)$this->connection->createQueryBuilder()
+            ->select('MAX(w.nomerwz) AS m')
+            ->from('paseka_sezon_tochka_wzatoks', 'w')
+            ->andWhere('tochka_id = :tochkas')
+            ->setParameter(':tochkas', $tochka)
+            ->execute()->fetch()['m'];
+    }
 
     public function all(): array
     {
@@ -68,16 +68,16 @@ class WzatokFetcher
             ->select(
                 'w.id',
                 'w.tochka_id',
-                'w.start_date',
-                'w.pobelka_date',
-                'w.end_date',
+                'w.start_date as start',
+                'w.pobelka_date as pobelka',
+                'w.end_date as end',
                 'w.rasstojan',
                 'w.nomerwz',
                 'w.gruppa'
 //                '(SELECT COUNT(*) FROM paseka_sezons_uchasgodas ug WHERE ug.goda_id = t.id) as uchasgoda_count'
             )
             ->from('paseka_sezon_tochka_wzatoks', 'w')
-            ->andWhere('tochka_id = :tochkas')
+            ->andWhere('w.tochka_id = :tochkas')
             ->setParameter(':tochkas', $tochka)
 //            ->innerJoin('s', 'work_members_groups', 'g', 'm.group_id = g.id');
             ->orderBy('gruppa')

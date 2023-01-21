@@ -14,7 +14,7 @@
 
 
 
-{#        {% include('sezons/tochkas/_tochka-includ.html.twig') %}#}
+        {% include('sezons/tochkas/wzatoks/_wzatok-includ.html.twig') %}
     <div class="proekts-plr  ">
 
         <div class="box-m">
@@ -25,10 +25,11 @@
                 <table class="tabl table-bord- table-hover">
                     <thead>
                     <tr>
-
                         <td> Номер группы </td>
-                        <td> Кол-во взятков ! </td>
-
+                        <td> Расстояние </td>
+                        <td> Начало </td>
+                        <td> Побелка </td>
+                        <td> Завершение </td>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,17 +40,25 @@
                             <td>
                                 {{ wzatok.gruppa }}
                             </td>
-                            <td> {{ wzatok.nomerwz }} </td>
+                            <td> {{ wzatok.rasstojan }} </td>
+                            <td> {{ wzatok.start }} </td>
+                            <td> {{ wzatok.pobelka }} </td>
+                            <td> {{ wzatok.end }} </td>
                             <td>
-{#                                {{ path('sezons.godas.nachalos.nomers', {'nachalo_id': nachalo.id}) }}#}
+                                <a href="{{ path('sezons.tochkas.wzatoks.edit', {'tochka_id': tochka.id ,'id': wzatok.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
+                                    <div class="karandash karandash--child">
+                                        <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
                                 <a href="#"
                                    class="btn-my btn-my--sm">Добавить данные по
-                                    <strong class="stro stro--kras"> взяткам </strong>
+                                    <strong class="stro stro--kras"> ТестМатке </strong>
 
                                 </a>
                             </td>
                         </tr>
-
 
                     {% endfor %}
                     </tbody>
@@ -57,10 +66,7 @@
 
 
     <div class="inklud__title teni  teni--sezon ">
-
-        Продолжаем заполнять данные по взяткам на этом точке
-
-        <a href="{{ path('sezons.tochkas.create' , {'tochka_id': tochka}) }}"
+        <a href="{{ path('sezons.tochkas.wzatoks.create' , {'tochka_id': tochka.id}) }}"
            class="btnn btnn--mb0 btnn--pt btnn--col">Следующий взяток - продолжить          </a>
     </div>
 
@@ -70,7 +76,7 @@
              Заполняем данные по взятку на этом точке
 
 
-            <a href="{{ path('sezons.tochkas.wzatoks.create' , {'tochka_id': tochka} ) }}"
+            <a href="{{ path('sezons.tochkas.wzatoks.create' , {'tochka_id': tochka.id} ) }}"
                                    class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
             </a>
             </div>
@@ -79,7 +85,7 @@
                             <div class="proekts-plr linia__li ">
                                 <ul class="plem__data plem__data--mt2">
                                     <li>
-                                        <a href="{{ path('sezons.nachalos.create') }}"
+                                        <a href="#"
                                            class="btnn btnn--mb0 btnn--col">Выбрать  сезон
             {#                                <strong class="strongo strongo--kras">{{ nachalo.sezon}} </strong>#}
                             </a>

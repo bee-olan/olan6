@@ -1,0 +1,33 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Раса{% endblock %}
+
+    {% block kroxii %}
+
+        <a href="{{ path('home') }}">Главная</a>
+        <a href="{{ path('sezons.godas') }}">Сезоны зарегистрированные</a>
+        <span class="aktiv ">Редактировать : </span>
+
+    {% endblock %}
+
+{% block bodyy %}
+    <div  class="proekts proekts--sezon pb0">
+
+        {% include('sezons/tochkas/wzatoks/_wzatok-includ.html.twig') %}
+        <div class="proekts-plr  ">
+
+            <div class="plem-form__header  ">
+                <div class="plem-form ">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btnn btnn--pt btnn--mb0">Сохранить изменения</button>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -101,6 +101,15 @@ class Wzatok
 
     }
 
+    public function editDate(\DateTimeImmutable $startDate,
+                             \DateTimeImmutable $pobelkaDate,
+                             \DateTimeImmutable $endDate): void
+    {
+        $this->startDate = $startDate;
+        $this->pobelkaDate = $pobelkaDate;
+        $this->endDate = $endDate;
+    }
+
     public function isGruppaEqual(string $gruppa): bool
     {
         return $this->gruppa === $gruppa;

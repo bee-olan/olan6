@@ -40,13 +40,15 @@ class UchasGodaFetcher
 
             return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
     }
-    public function exists(string $id): bool
+    public function exists(string $id, string  $goda): bool
     {
         return $this->connection->createQueryBuilder()
                 ->select('COUNT (id)')
                 ->from('paseka_sezons_uchasgodas')
                 ->where('uchastie_id = :id')
                 ->setParameter(':id', $id)
+                ->where('goda_id = :goda')
+                ->setParameter(':goda', $goda)
                 ->execute()->fetchColumn() > 0;
     }
 
@@ -64,7 +66,8 @@ class UchasGodaFetcher
         $stmt = $this->connection->createQueryBuilder()
             ->select(
                 'u.id',
-                'u.goda',
+                'u.goda_id',
+                'u.uchastie_id',
                 'u.koltochek',
                 'u.gruppa'
 //                '(SELECT COUNT(*) FROM paseka_goda_linia_nomers n WHERE u.linia_id = w.id) AS nomers'
@@ -75,8 +78,8 @@ class UchasGodaFetcher
             //     WHERE md.department_id = d.id AND ms.materi_id = :materi
             // ) AS members_count'
             )
-            ->from('paseka_sezons_uchasgoda', 'u')
-            ->andWhere('goda_id = :godas')
+            ->from('paseka_sezons_uchasgodas', 'u')
+            ->andWhere('u.goda_id = :godas')
             ->setParameter(':godas', $goda)
             ->orderBy('gruppa')
             ->execute();

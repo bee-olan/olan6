@@ -34,23 +34,21 @@ class TochkaController extends AbstractController
      * @param Request $request
      * @param UchasGoda $uchasgoda
      * @param TochkaFetcher $fetchers
-     * @param UchasGodaFetcher $uchasfetcher
      * @return Response
      */
-    public function index(UchasGodaFetcher $uchasfetcher, TochkaFetcher $fetchers, UchasGoda $uchasgoda, Request $request): Response
+    public function index(Request $request, TochkaFetcher $fetchers, UchasGoda $uchasgoda): Response
     {
+//dd($uchasgoda);
 
+//$tochoks = $fetchers->allOfUchasGoda($uchasgoda->getId());
 
-$tochoks = $uchasfetcher->allTochok($uchasgoda->getId());
-
-//        dd($tochoks);
         return $this->render('sezons/tochkas/index.html.twig', [
-            'tochoks' => $tochoks,
             'uchasgoda' => $uchasgoda,
-            'tochkas' => $uchasgoda->getTochkas(),
+            'tochkas' => $fetchers->allOfUchasGoda($uchasgoda->getId()),
         ]);
     }
-
+//'uchasgoda' => $uchasgoda,
+//'tochkas' => $tochkas->allOfUchasGoda($uchasgoda->getId()->getValue()),
     /**
      * @Route("/create", name=".create")
      * @param TochkaFetcher $fetchers
@@ -82,7 +80,7 @@ $tochoks = $uchasfetcher->allTochok($uchasgoda->getId());
         }
 
         return $this->render('sezons/tochkas/create.html.twig', [
-            'tochok' => $tochka,
+            'nomtochka' => $tochka,
             'uchasgoda' => $uchasgoda,
             'form' => $form->createView(),
         ]);

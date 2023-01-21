@@ -37,7 +37,16 @@ class TochkaRepository
             throw new EntityNotFoundException('Tochka is not found.');
         }
         return $tochka;
-    }
+   }
+
+//    public function get(string $id): Tochka
+//    {
+//        /** @var Tochka $tochka */
+//        if (!$tochka = $this->repo->find($id)) {
+//            throw new EntityNotFoundException('Tochka is not found.');
+//        }
+//        return $tochka;
+//    }
 
     public function add(Tochka $tochka): void
     {

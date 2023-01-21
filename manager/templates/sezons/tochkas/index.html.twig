@@ -12,91 +12,31 @@
 
     <div  class="proekts proekts--sezon pb0">
 
-
-
         {% include('sezons/tochkas/_tochka-includ.html.twig') %}
     <div class="proekts-plr  ">
 
         <div class="box-m">
-{#            <table class="tabl table-bord- table-hover">#}
-{#                <thead>#}
-{#                <tr>#}
-{#                    <th> Сезон </th> <td>{{uchasgoda.sezon}} </td>#}
-{#                </tr>#}
-{#                <tr>#}
 
-{#                    <th> Номер группы </th> <td> {{ uchasgoda.gruppa }} </td><td></td><td></td><td>..............</td>#}
-{#                </tr>#}
-{#                <tr>#}
-{#                    <th> Кол-во точков  </th> <td> {{ uchasgoda.koltochek}} </td><td></td><td></td><td>..............</td>#}
-{#                </tr>#}
-{#                <tr>#}
-{#                     <td> -- </td>  <td> -- </td>#}
-{#                </tr>#}
-{#                </thead>#}
-{#            </table>#}
-{#            <table class="tabl table-bord- table-hover">#}
-{#    {% for number in 1..uchasgoda.koltochek %}#}
-
-
-{#            <thead>#}
-{#            <tr>#}
-{#                <td> Точок  </td> <th> {{ number}} </th>#}
-{#                <td> Номер группы </td> <th> {{ uchasgoda.gruppa }} - {{ number }}</th>#}
-{#                <td>#}
-{#                    <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id, 'tochok': number}) }}"#}
-{#                       class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных#}
-
-{#                    </a>      #}
-{#                </td>#}
-{#            </tr>#}
-{#            </thead>#}
-
-{#    {% endfor %}#}
-{#            </table>#}
-
-
-{#                        <table class="tabl table-bord- table-hover">#}
-{#                            <thead>#}
-{#                            <tr>#}
-{#                                <th> Сезон </th> <td>{{uchasgoda.goda}} </td>#}
-{#                            </tr>#}
-{#                            <tr>#}
-
-{#                                <th> Номер группы </th> <td> {{ uchasgoda.gruppa }} </td><td></td><td></td><td>..............</td>#}
-{#                            </tr>#}
-{#                            <tr>#}
-{#                                <th> Кол-во точков  </th> <td> {{ uchasgoda.koltochek}} </td><td></td><td></td><td>..............</td>#}
-{#                            </tr>#}
-{#                            <tr>#}
-{#                                 <td> -- </td>  <td> -- </td>#}
-{#                            </tr>#}
-{#                            </thead>#}
-{#                        </table>#}
-{% if tochoks  %}
-
-
+{% if tochkas  %}
                 <table class="tabl table-bord- table-hover">
                     <thead>
                     <tr>
-
                         <td> Номер группы </td>
                         <td> Кол-во взятков ! </td>
-
                     </tr>
                     </thead>
                     <tbody>
 
-                    {% for tochok in tochoks %}
+                    {% for tochka in tochkas %}
                         <tr>
 
                             <td>
-                                {{ tochok.grtochka }} ( {{ tochok.name }} )
+                                {{ tochka.gruppa }} ( {{ tochka.name }} )
                             </td>
-                            <td> {{ tochok.kolwz }} </td>
+                            <td> {{ tochka.kolwz }} </td>
                             <td>
-{#                                {{ path('sezons.godas.nachalos.nomers', {'nachalo_id': nachalo.id}) }}#}
-                                <a href="{{ path('sezons.tochkas.wzatoks', {'id': tochok.id}) }}"
+
+                                <a href="{{ path('sezons.tochkas.wzatoks', {'tochka_id': tochka.id}) }}"
                                    class="btn-my btn-my--sm">Добавить данные по
                                     <strong class="stro stro--kras"> взяткам </strong>
 
@@ -133,9 +73,9 @@
                             <div class="proekts-plr linia__li ">
                                 <ul class="plem__data plem__data--mt2">
                                     <li>
-                                        <a href="{{ path('sezons.nachalos.create') }}"
+                                        <a href="{{ path('sezons.godas.create') }}"
                                            class="btnn btnn--mb0 btnn--col">Выбрать  сезон
-            {#                                <strong class="strongo strongo--kras">{{ nachalo.sezon}} </strong>#}
+
                             </a>
                         </li>
                         <li>

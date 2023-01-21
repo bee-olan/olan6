@@ -14,22 +14,26 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', Type\TextareaType::class, [
-                'label' => 'Описание сезона  ',
+            ->add('pobelka_date', Type\DateType::class, [
+                'label' => 'Побелка  ',
                 'required' => false,
-                'attr' => ['rows' => 3,
-                    'placeholder' => ' комментарий'
-                ]])
-            ->add('kolwz', Type\ChoiceType::class, [
-                'label' => 'Кол-во взятков за сезон   ',
-                'choices' => [
-                    '1' => 1,
-                    '2' => 2,
-                    '3' => 3
-                ],
-                'expanded' => true,
-                'multiple' => false,
-            ]);
+                'widget' => 'single_text',
+                'input' => 'datetime_immutable'
+            ])
+            ->add('start_date', Type\DateType::class, [
+                'label' => 'Начало взятка  ',
+                'required' => false,
+                'widget' => 'single_text',
+                'input' => 'datetime_immutable'
+            ])
+
+            ->add('end_date', Type\DateType::class, [
+                'label' => 'Завершение взятка  ',
+                'required' => false,
+                'widget' => 'single_text',
+                'input' => 'datetime_immutable'
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

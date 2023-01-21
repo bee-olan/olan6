@@ -109,7 +109,7 @@ class GodaController extends AbstractController
      */
     public function delete(Goda $goda, Request $request, Remove\Handler $handler): Response
     {
-        dd($goda);
+
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('sezons.godas');
         }

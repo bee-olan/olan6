@@ -121,10 +121,23 @@ class Tochka
                                     $gruppa
        ));
    }
+    public function editWzaDate(WzatokId $id,
+                                \DateTimeImmutable $startDate,
+                                \DateTimeImmutable $pobelkaDate,
+                                \DateTimeImmutable $endDate
+                            ): void
+    {
+        foreach ($this->wzatoks as $current) {
+            if ($current->getId()->isEqual($id)) {
+                $current->editDate($startDate, $pobelkaDate, $endDate );
+                return;
+            }
+        }
+        throw new \DomainException('Wzatok is not found.');
+    }
 
    public function editWzatok(WzatokId $id,
                                int $rasstojan
-                               
                                ): void
    {
        foreach ($this->wzatoks as $current) {

@@ -4,16 +4,55 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Paseka\Sezons\Tochkas;
 
+
+use App\Model\EntityNotFoundException;
+use App\Model\Paseka\Entity\Sezons\Tochkas\Tochka;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class TochkaFetcher
 {
     private $connection;
+    private $paginator;
+    private $repository;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, EntityManagerInterface $em, PaginatorInterface $paginator)
     {
         $this->connection = $connection;
+        $this->repository = $em->getRepository(Tochka::class);
+        $this->paginator = $paginator;
+    }
+
+    public function getFindTochka(string $id): Tochka
+    {
+        /** @var Tochka $tochka */
+        if (!$tochka = $this->repository->find($id)) {
+            throw new EntityNotFoundException('Нет такого ТОЧКА???!!!!!!!!!!.');
+        }
+        return $tochka;
+    }
+
+    public function allOfUchasGoda(string $uchasgoda): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                't.id',
+                't.uchasgoda_id',
+                't.kolwz',
+                't.gruppa',
+                't.name',
+                't.tochka'
+//                '(SELECT COUNT(*) FROM paseka_rasa_linia_nomers n WHERE n.linia_id = l.id) AS nomers'
+            )
+            ->from('paseka_sezon_tochkas', 't')
+            ->andWhere('t.uchasgoda_id = :uchasgodas')
+            ->setParameter(':uchasgodas', $uchasgoda)
+            ->orderBy('gruppa')
+            ->execute();
+
+        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
     }
 
     public function getMaxTochka(string $uchasgoda): int

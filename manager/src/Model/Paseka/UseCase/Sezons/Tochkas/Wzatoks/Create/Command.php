@@ -51,11 +51,12 @@ class Command
     public $gruppa;
 
     public function __construct(string $tochka,
-                                string $gruppa
+                                string $gruppa,
+                                int $nomerwz
                                 )
     {
         $this->tochka = $tochka;
         $this->gruppa = $gruppa;
-
+        $this->nomerwz = $nomerwz;
     }
 }
