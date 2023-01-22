@@ -102,7 +102,9 @@ class Tochka
                                \DateTimeImmutable $pobelkaDate,
                                \DateTimeImmutable $endDate,
                                 int $nomerwz,
-                                string $gruppa
+                                string $gruppa,
+                                int $rabotad,
+                                int $rabotach
                                ): void
    {
        foreach ($this->wzatoks as $wzatok) {
@@ -118,7 +120,9 @@ class Tochka
                                     $pobelkaDate,
                                     $endDate,
                                     $nomerwz,
-                                    $gruppa
+                                    $gruppa,
+                                   $rabotad,
+                                   $rabotach
        ));
    }
     public function editWzaDate(WzatokId $id,

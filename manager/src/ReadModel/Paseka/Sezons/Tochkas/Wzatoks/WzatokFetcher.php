@@ -49,7 +49,9 @@ class WzatokFetcher
                 'w.end_date',
                 'w.rasstojan',
                 'w.nomerwz',
-                'w.gruppa'
+                'w.gruppa',
+                'w.rabotad',
+                'w.rabotach'
 //                '(SELECT COUNT(*) FROM paseka_sezons_uchasgodas ug WHERE ug.goda_id = t.id) as uchasgoda_count'
             // ,
             // '(SELECT COUNT(*) FROM sait_u4astniks_u4astniks m WHERE m.godd_id = g.id) AS u4astniks'
@@ -73,7 +75,9 @@ class WzatokFetcher
                 'w.end_date as end',
                 'w.rasstojan',
                 'w.nomerwz',
-                'w.gruppa'
+                'w.gruppa',
+                'w.rabotad',
+                'w.rabotach'
 //                '(SELECT COUNT(*) FROM paseka_sezons_uchasgodas ug WHERE ug.goda_id = t.id) as uchasgoda_count'
             )
             ->from('paseka_sezon_tochka_wzatoks', 'w')

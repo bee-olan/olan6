@@ -26,10 +26,12 @@
                     <thead>
                     <tr>
                         <td> Номер группы </td>
-                        <td> Расстояние </td>
+                        <td> Км </td>
                         <td> Начало </td>
                         <td> Побелка </td>
-                        <td> Завершение </td>
+                        <td> Стор </td>
+                        <td> Дни (часы) </td>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -44,6 +46,7 @@
                             <td> {{ wzatok.start }} </td>
                             <td> {{ wzatok.pobelka }} </td>
                             <td> {{ wzatok.end }} </td>
+                            <td>{{ wzatok.rabotad }} ( {{ wzatok.rabotach }} )</td>
                             <td>
                                 <a href="{{ path('sezons.tochkas.wzatoks.edit', {'tochka_id': tochka.id ,'id': wzatok.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
                                     <div class="karandash karandash--child">

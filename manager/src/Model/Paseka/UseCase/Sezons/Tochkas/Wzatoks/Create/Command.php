@@ -50,6 +50,16 @@ class Command
      */
     public $gruppa;
 
+    /**
+     * @var int
+     */
+    public $rabotach;
+
+    /**
+     * @var int
+     */
+    public $rabotad;
+
     public function __construct(string $tochka,
                                 string $gruppa,
                                 int $nomerwz
