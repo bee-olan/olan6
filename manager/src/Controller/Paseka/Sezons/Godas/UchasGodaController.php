@@ -38,17 +38,21 @@ class UchasGodaController extends AbstractController
      * @Route("", name="")
      * @param Request $request
      * @param Goda $goda
+     * @param PersonaFetcher $personas
      * @param UchasGodaFetcher $uchasgodas
      * @return Response
      */
-    public function index( Goda $goda,  UchasGodaFetcher $uchasgodas, Request $request): Response
+    public function index( Goda $goda, PersonaFetcher $personas, UchasGodaFetcher $uchasgodas, Request $request): Response
     {
-
-
+        $grupp = $personas->find($this->getUser()->getId());
+        $gruppa = (string)$grupp->getNomer()."-".$goda->getGod();
+    $exist=$uchasgodas->exists($gruppa);
+//dd($exist);
 //       dd($uchasgodas->allOfGoda($goda->getId()->getValue()));
         // $this->denyAccessUnlessGranted(ProjectAccess::MANAGE_MEMBERS, $plemmatka);
 // выводит из проекта uchastniks - учстников
         return $this->render('sezons/godas/uchasgoda/index.html.twig', [
+            'exist' => $exist,
             'goda' => $goda,
             'uchasgodas' => $uchasgodas->allOfGoda($goda->getId()->getValue()),
         ]);
@@ -66,10 +70,7 @@ class UchasGodaController extends AbstractController
     public function assign(UchasGodaFetcher $uchasgodas, PersonaFetcher $personas, Goda $goda, Request $request, Add\Handler $handler): Response
     {
 //dd($uchasgodas->getUchas());
-        if ($uchasgodas->exists($this->getUser()->getId(),$goda->getId()->getValue())) {
-            $this->addFlash('error', 'Вы уже в этом сезоне ');
-            return $this->redirectToRoute('sezons.godas.uchasgoda', ['id' => $goda->getId()->getValue()]);
-        }
+
 
         if (!$personas->exists($this->getUser()->getId())) {
             $this->addFlash('error', 'Начните с выбора ПерсонНомера ');
@@ -77,7 +78,11 @@ class UchasGodaController extends AbstractController
         }
         $grupp = $personas->find($this->getUser()->getId());
         $gruppa = (string)$grupp->getNomer();
-
+//    $exist=$uchasgodas->exists($gruppa);
+        if ($uchasgodas->exists($gruppa)) {
+            $this->addFlash('error', 'Вы уже в этом сезоне!!!! ');
+            return $this->redirectToRoute('sezons.godas.uchasgoda', ['id' => $goda->getId()->getValue()]);
+        }
 
         $command = new Add\Command($goda->getId()->getValue(),
                                     $this->getUser()->getId(),
@@ -97,21 +102,25 @@ class UchasGodaController extends AbstractController
         }
 
         return $this->render('sezons/godas/uchasgoda/assign.html.twig', [
+//            'exist' => $exist,
             'goda' => $goda,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("edit", name=".edit")
+     * @Route("/{uchasgoda_id}/edit", name=".edit")
+     * @param string $uchasgoda_id
      * @param UchasGoda $uchasgoda
+     * @param Goda $goda
      * @param Request $request
      * @param Edit\Handler $handler
      * @return Response
      */
-    public function edit(UchasGoda $uchasgoda, Request $request, Edit\Handler $handler): Response
+    public function edit( Goda $goda, UchasGoda $uchasgoda, string $uchasgoda_id, Request $request, Edit\Handler $handler): Response
     {
-        $command = Edit\Command::fromUchasGoda($uchasgoda);
+//        $uchasgoda = $uchasgoda->
+        $command = Edit\Command::fromUchasGoda($uchasgoda_id);
 
         $form = $this->createForm(Edit\Form::class, $command);
         $form->handleRequest($request);
@@ -127,7 +136,7 @@ class UchasGodaController extends AbstractController
         }
 
         return $this->render('sezons/godas/uchasgoda/edit.html.twig', [
-            'uchastie' => $uchastie,
+//            'uchastie' => $uchastie,
             'form' => $form->createView(),
         ]);
     }

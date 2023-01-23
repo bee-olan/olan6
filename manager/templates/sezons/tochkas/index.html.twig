@@ -4,7 +4,8 @@
 
   {% block kroxii %}
       <a href="{{ path('proekt') }}">Главная</a>
-      {#      <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Выбор сезона</a>#}
+      <a href="{{ path('sezons.godas') }}">Список сезонов</a>
+
       <span class="aktiv ">Список точек</span>
   {% endblock %}
 
@@ -22,14 +23,13 @@
                     <thead>
                     <tr>
                         <td> Номер группы </td>
-                        <td> Кол-во взятков ! </td>
+                        <td> Кол-во    <strong class="strongo strongo--kras"> взятков </strong>  </td>
                     </tr>
                     </thead>
                     <tbody>
 
                     {% for tochka in tochkas %}
                         <tr>
-
                             <td>
                                 {{ tochka.gruppa }} ( {{ tochka.name }} )
                             </td>
@@ -49,15 +49,16 @@
                     </tbody>
                 </table>
 
-
-    <div class="inklud__title teni  teni--sezon ">
-
-        Характеристики точка: название, взятки ->
-
-        <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id}) }}"
-           class="btnn btnn--mb0 btnn--pt btnn--col"> продолжить          </a>
-    </div>
-
+            <div class="inklud__title teni  teni--sezon ">
+                    {% if (uchasgoda.koltochek > koles)  %}
+                            Характеристики точка: название, взятки ->
+                            <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id}) }}"
+                               class="btnn btnn--mb0 btnn--pt btnn--col"> продолжить, еще    {{ uchasgoda.koltochek - koles }}
+                            </a>
+                    {% else %}
+                            Точков  {{ koles  }} из {{ uchasgoda.koltochek}}
+                    {% endif %}
+            </div>
         {% else %}
             <div class="inklud__title teni  teni--sezon ">
 
@@ -73,16 +74,11 @@
             {% endif %}
                             <div class="proekts-plr linia__li ">
                                 <ul class="plem__data plem__data--mt2">
-                                    <li>
-                                        <a href="{{ path('sezons.godas.create') }}"
-                                           class="btnn btnn--mb0 btnn--col">Выбрать  сезон
 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('sezons.godas'  ) }}"
-                               class="btnn btnn--mb0 btnn--col" >Список сезонов
-                            </a>
+                            <li>
+                                <a href="{{ path('sezons.godas'  ) }}"
+                                   class="btnn btnn--mb0 btnn--col" >Список сезонов
+                                </a>
                         </li>
                     </ul>
                 </div>

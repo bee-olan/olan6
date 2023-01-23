@@ -30,9 +30,10 @@ class Command
         $this->id = $id;
     }
 
-   public static function fromUchasGoda(UchasGoda $uchasgoda): self
+   public static function fromUchasGoda(string $uchasgoda): self
     {
-       $command = new self($uchasgoda->getId()->getValue());
+       $command = new self($uchasgoda);
+
        $command->koltochek = $uchasgoda->getKoltochek();
 
        return $command;

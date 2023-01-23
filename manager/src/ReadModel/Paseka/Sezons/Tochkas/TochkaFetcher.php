@@ -44,7 +44,7 @@ class TochkaFetcher
                 't.gruppa',
                 't.name',
                 't.tochka'
-//                '(SELECT COUNT(*) FROM paseka_rasa_linia_nomers n WHERE n.linia_id = l.id) AS nomers'
+//                '(SELECT COUNT(*) FROM paseka_sezons_uchasgodas u WHERE u.id = t.uchasgoda_id) AS koltochka'
             )
             ->from('paseka_sezon_tochkas', 't')
             ->andWhere('t.uchasgoda_id = :uchasgodas')

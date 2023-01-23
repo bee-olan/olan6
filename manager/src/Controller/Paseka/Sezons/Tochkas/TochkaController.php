@@ -30,19 +30,21 @@ class TochkaController extends AbstractController
         $this->errors = $errors;
     }
     /**
-     * @Route("", name="")
+     * @Route("/{koles}", name="")
      * @param Request $request
      * @param UchasGoda $uchasgoda
      * @param TochkaFetcher $fetchers
+     * @param string $koles
      * @return Response
      */
-    public function index(Request $request, TochkaFetcher $fetchers, UchasGoda $uchasgoda): Response
+    public function index(Request $request, string $koles, TochkaFetcher $fetchers, UchasGoda $uchasgoda): Response
     {
-//dd($uchasgoda);
+
 
 //$tochoks = $fetchers->allOfUchasGoda($uchasgoda->getId());
 
         return $this->render('sezons/tochkas/index.html.twig', [
+            'koles' => $koles,
             'uchasgoda' => $uchasgoda,
             'tochkas' => $fetchers->allOfUchasGoda($uchasgoda->getId()),
         ]);
@@ -59,6 +61,7 @@ class TochkaController extends AbstractController
      */
     public function create(UchasGoda $uchasgoda, TochkaFetcher $fetchers, Request $request, Create\Handler $handler): Response
     {
+        dd($uchasgoda);
         $tochka = (int)$fetchers->getMaxTochka($uchasgoda->getId())+1;
         $gruppa =  $uchasgoda->getGruppa()." - ". $tochka;
 

@@ -29,7 +29,6 @@ class Form extends AbstractType
 //dd($options['uchastie_id']);
         $childmatkas = [];
         foreach ($this->childmatkas->listZakazForTochka($options['uchastie']) as $item) {
-//            $childmatkas[$item['department'] . ' - ' . $item['name']] = $item['id'];
             $childmatkas[$item['name']] = $item['id'];
         }
 // dd($childmatkas);

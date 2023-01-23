@@ -4,8 +4,8 @@
 
   {% block kroxii %}
       <a href="{{ path('proekt') }}">Главная</a>
-      {#      <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Выбор сезона</a>#}
-      <span class="aktiv ">Список сезонов</span>
+      <a href="{{ path('sezons.godas') }}">Список сезонов</a>
+      <span class="aktiv ">Сезон {{ goda.sezon }}</span>
   {% endblock %}
 
 {% block bodyy %}
@@ -23,7 +23,7 @@
                         <tr>
                             <th> Сезон </th>
                             <th> Номер группы </th>
-                            <th> Кол-во точков ! </th>
+                            <th> Кол-во точков  </th>
                             <td> -- </td>
                         </tr>
                         </thead>
@@ -37,8 +37,8 @@
                                 <td>
                                     {{ uchasgoda.gruppa }}
                                 </td>
-                                <td> {{ uchasgoda.koltochek }} </td>
-                                <td> <a href="{{ path('sezons.godas.edit', {'id': uchasgoda.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
+                                <td> {{  uchasgoda.koles}} (заявлено - {{ uchasgoda.koltochek }})</td>
+                                <td> <a href="{{ path('sezons.godas.uchasgoda.edit', {'id': goda.id , 'uchasgoda_id': uchasgoda.id }) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
                                         <div class="karandash karandash--child">
                                             <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
                                         </div>
@@ -54,8 +54,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    {#                                  {{ path('sezons.godas.uchasgodas.nomers', {'uchasgoda_id': uchasgoda.id}) }}#}
-                                    <a href="{{ path('sezons.tochkas',  {'uchasgoda_id': uchasgoda.id} ) }}"
+                                    <a href="{{ path('sezons.tochkas',  {'uchasgoda_id': uchasgoda.id, 'koles': uchasgoda.koles} ) }}"
                                        class="btnn btnn--mb0 btnn--pt btnn--col">Точки - все о них
                                     </a>
                                 </td>
@@ -68,9 +67,12 @@
 
                 <ul class="plem__data plem__data--mt2">
                     <li>
-                        <div class="controls">
-                            <a href="{{ path('sezons.godas.uchasgoda.assign', {'id': goda.id} ) }}" class="btnn  btnn--pt">Хотите участвовать в этом сезоне? Жмите!</a>
-                        </div>
+                        {% if exist == false %}
+                            <div class="controls">
+                                <a href="{{ path('sezons.godas.uchasgoda.assign', {'id': goda.id} ) }}"
+                                   class="btnn  btnn--pt">Хотите участвовать в этом сезоне? Жмите!</a>
+                            </div>
+                        {% endif %}
                     </li>
                     <li>
                         <a href="{{ path('sezons.godas'  ) }}"

@@ -65,7 +65,7 @@ class TochkaMatkaFetcher
                 'u.tochka_id',
                 'u.childmatka_id'
 
-//                '(SELECT COUNT(*) FROM paseka_goda_linia_nomers n WHERE u.linia_id = w.id) AS nomers'
+//            '(SELECT COUNT(*) FROM paseka_sezon_tochka_wzatoks w WHERE w.tochka_id = t.id) AS koltochka'
             // '(
             //     SELECT COUNT(ms.member_id)
             //     FROM work_projects_project_memberships ms
