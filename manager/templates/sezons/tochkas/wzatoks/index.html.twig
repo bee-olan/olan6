@@ -76,12 +76,16 @@
         {% else %}
             <div class="inklud__title teni  teni--sezon ">
 
-             Заполняем данные по взятку на этом точке
-
+             Развилка, какой путь первый, а какой второй - ваш выбор :
 
             <a href="{{ path('sezons.tochkas.wzatoks.create' , {'tochka_id': tochka.id} ) }}"
-                                   class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
+                                   class="btnn btnn--mb0 btnn--pt btnn--col">Точок: даты, расстояние,погода
             </a>
+
+
+                    <a href="{{ path('sezons.tochkas.tochmatkas.assign' , {'id': tochka.id}) }}"
+                       class="btnn btnn--mb0 btnn--pt btnn--col">Привязка ТестМаток к точку
+                    </a>
             </div>
 
             {% endif %}

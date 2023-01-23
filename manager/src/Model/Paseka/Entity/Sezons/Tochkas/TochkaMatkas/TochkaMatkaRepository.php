@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks;
+namespace App\Model\Paseka\Entity\Sezons\Tochkas\TochkaMatkas;
 
 use App\Model\EntityNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 
-class WzatokRepository
+class TochkaMatkaRepository
 {
     /**
      * @var \Doctrine\ORM\EntityRepository
@@ -17,7 +17,7 @@ class WzatokRepository
 
     public function __construct(EntityManagerInterface $em)
     {
-        $this->repo = $em->getRepository(Wzatok::class);
+        $this->repo = $em->getRepository(TochkaMatka::class);
         $this->em = $em;
     }
 
@@ -30,22 +30,22 @@ class WzatokRepository
                 ->getQuery()->getSingleScalarResult() > 0;
     }
 
-    public function get(Id $id): Wzatok
+    public function get(Id $id): TochkaMatka
     {
-        /** @var Wzatok $wzatok */
-        if (!$wzatok = $this->repo->find($id->getValue())) {
-            throw new EntityNotFoundException('Wzatok is not found.');
+        /** @var TochkaMatka $tochmatka */
+        if (!$tochmatka = $this->repo->find($id->getValue())) {
+            throw new EntityNotFoundException('TochkaMatka is not found.');
         }
-        return $wzatok;
+        return $tochmatka;
     }
 
-    public function add(Wzatok $wzatok): void
+    public function add(TochkaMatka $tochmatka): void
     {
-        $this->em->persist($wzatok);
+        $this->em->persist($tochmatka);
     }
 
-    public function remove(Wzatok $wzatok): void
+    public function remove(TochkaMatka $tochmatka): void
     {
-        $this->em->remove($wzatok);
+        $this->em->remove($tochmatka);
     }
 }

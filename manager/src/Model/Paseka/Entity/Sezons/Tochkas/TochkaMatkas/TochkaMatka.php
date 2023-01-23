@@ -2,77 +2,42 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks;
+namespace App\Model\Paseka\Entity\Sezons\Tochkas\TochkaMatkas;
 
+use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
 use App\Model\Paseka\Entity\Sezons\Tochkas\Tochka;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="paseka_sezon_tochka_wzatoks")
+ * @ORM\Table(name="paseka_sezon_tochka_tochmatkas")
  */
-class Wzatok
+class TochkaMatka
 {
     /**
      * @var Tochka
-     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Sezons\Tochkas\Tochka", inversedBy="wzatoks")
+     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Sezons\Tochkas\Tochka", inversedBy="tochmatkas")
      * @ORM\JoinColumn(name="tochka_id", referencedColumnName="id", nullable=false)
      */
     private $tochka;
 
+
+    /**
+     * @var ChildMatka
+     * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka")
+     * @ORM\JoinColumn(name="childmatka_id", referencedColumnName="id", nullable=false)
+     */
+    private $childmatka;
+
     /**
      * @var Id
-     * @ORM\Column(type="paseka_sezon_tochka_wzatok_id")
+     * @ORM\Column(type="paseka_sezon_tochka_tochmatka_id")
      * @ORM\Id
      */
     private $id;
 
-    /**
-     * @var \DateTimeImmutable|null
-     * @ORM\Column(type="date_immutable", nullable=true)
-     */
-    private $startDate; // начало сезона
-
-    /**
-     * @var \DateTimeImmutable|null
-     * @ORM\Column(type="date_immutable", nullable=true)
-     */
-    private $pobelkaDate; //
-
-    /**
-     * @var \DateTimeImmutable|null
-     * @ORM\Column(type="date_immutable", nullable=true)
-     */
-    private $endDate; // конец сезона
-
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $rasstojan;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $nomerwz;
-
-
-    /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $gruppa;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $rabotad;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $rabotach;
 
 	
 //	 /**
@@ -85,27 +50,13 @@ class Wzatok
 //     */
 //    private $istorias;
 
-    public function __construct( Tochka $tochka, Id $id,
-                                int $rasstojan,
-                                \DateTimeImmutable $startDate,
-                                \DateTimeImmutable $pobelkaDate,
-                                \DateTimeImmutable $endDate,
-                                int $nomerwz,
-                                string $gruppa,
-                                int $rabotad,
-                                int $rabotach
+    public function __construct( Tochka $tochka,
+                                ChildMatka $childmatka
                                 )
     {
+        $this->id = Uuid::uuid4()->toString();
         $this->tochka = $tochka;
-        $this->id = $id;
-        $this->rasstojan = $rasstojan;
-        $this->startDate = $startDate;
-        $this->endDate = $endDate;
-        $this->pobelkaDate = $pobelkaDate;
-        $this->nomerwz = $nomerwz;
-        $this->gruppa = $gruppa;
-        $this->rabotad = $rabotad;
-        $this->rabotach = $rabotach;
+        $this->childmatka = $childmatka;
 //		$this->nomers = new ArrayCollection();
     }
 
@@ -115,19 +66,12 @@ class Wzatok
 
     }
 
-    public function editDate(\DateTimeImmutable $startDate,
-                             \DateTimeImmutable $pobelkaDate,
-                             \DateTimeImmutable $endDate): void
-    {
-        $this->startDate = $startDate;
-        $this->pobelkaDate = $pobelkaDate;
-        $this->endDate = $endDate;
-    }
 
-    public function isGruppaEqual(string $gruppa): bool
-    {
-        return $this->gruppa === $gruppa;
-    }
+
+//    public function isGruppaEqual(string $gruppa): bool
+//    {
+//        return $this->gruppa === $gruppa;
+//    }
 //	///////////////////////
 //    public function addIstoria(IstoriaId $id,
 //                               int $rasstojan,
@@ -201,47 +145,14 @@ class Wzatok
         return $this->id;
     }
 
-    public function getRasstojan(): int
+    /**
+     * @return ChildMatka
+     */
+    public function getChildmatka(): ChildMatka
     {
-        return $this->rasstojan;
+        return $this->childmatka;
     }
 
-    public function getStartDate(): \DateTimeImmutable
-    {
-        return $this->startDate;
-    }
-
-    public function getPobelkaDate(): \DateTimeImmutable
-    {
-        return $this->pobelkaDate;
-    }
-
-    public function getEndDate(): \DateTimeImmutable
-    {
-        return $this->endDate;
-    }
-
-    public function getNomerwz(): int
-    {
-        return $this->nomerwz;
-    }
-
-    public function getGruppa(): string
-    {
-        return $this->gruppa;
-    }
-
-
-    public function getRabotad(): int
-    {
-        return $this->rabotad;
-    }
-
-
-    public function getRabotach(): int
-    {
-        return $this->rabotach;
-    }
 
 
 

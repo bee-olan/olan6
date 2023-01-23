@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks;
+namespace App\Model\Paseka\Entity\Sezons\Tochkas\TochkaMatkas;
 
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;

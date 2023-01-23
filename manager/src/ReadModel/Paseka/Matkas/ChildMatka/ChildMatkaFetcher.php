@@ -22,6 +22,23 @@ class ChildMatkaFetcher
         $this->paginator = $paginator;
     }
 
+    public function listZakazForTochka(string $uchastie): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'e.childmatka_id AS id',
+                'e.uchastie_id',
+                'm.name AS name'
+            )
+            ->from('paseka_matkas_childmatkas_executors', 'e')
+            ->innerJoin('e', 'paseka_matkas_childmatkas', 'm', 'e.childmatka_id = m.id')
+            ->andWhere('e.uchastie_id = :uchasties')
+            ->setParameter(':uchasties', $uchastie)
+            // ->orderBy('d.name')->addOrderBy('name')
+            ->execute();
+        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
+    }
+
     /**
      * @param Filter $filter
      * @param int $page

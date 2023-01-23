@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Sezons\UseCase\Godas\Wzatoks\Remove;
+namespace App\Model\Paseka\UseCase\Sezons\Tochkas\Wzatoks\Remove;
 
 use App\Model\Flusher;
 //use App\Model\Paseka\Entity\Rasas\RasaRepository;

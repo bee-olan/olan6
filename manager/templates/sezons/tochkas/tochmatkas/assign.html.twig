@@ -1,0 +1,73 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Создать{% endblock %}
+
+
+   {% block kroxii %}
+       <a href="{{ path('proekt') }}">Главная</a>
+       <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Выбор сезона</a>
+       <span class="aktiv ">Список </span>
+   {% endblock %}
+
+{% block bodyy %}
+
+    <div  class="proekts proekts--sezon pb0">
+
+        {% include('sezons/godas/_sezon-includ.html.twig') %}
+
+        <div class="proekts-plr  ">
+
+            <div class="plem-form__header  ">
+                <div class="plem-form ">
+
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <div>
+                        <button type="submit" class="btnn btnn--pt btnn--mb0">Сохранить</button>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}.........{% endblock %}#}
+
+{#{% block breadcrumbs %}#}
+{#    <ol class="breadcrumb">#}
+{#        <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Пасека</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}">Редактирование</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties', {'plemmatka_id': plemmatka.id}) }}">Участие</a></li>#}
+{#        <li class="breadcrumb-item active">Назначить</li>#}
+{#    </ol>#}
+{#{% endblock %}#}
+
+{#{% block body %}#}
+
+{#    {% include 'app/work/projects/project/_tabs.html.twig' %}#}
+
+{#    {% include 'app/work/projects/project/settings/_tabs.html.twig' %}#}
+
+{#    <div class="card">#}
+{#        <div class="card-body">#}
+
+{#            {{ form_start(form) }}#}
+{#            {{ form_widget(form) }}#}
+{#            <div>#}
+{#                <button type="submit" class="btn btn-primary">Назначить</button>#}
+{#            </div>#}
+{#            {{ form_end(form) }}#}
+
+{#        </div>#}
+{#    </div>#}
+
+{#{% endblock %}#}

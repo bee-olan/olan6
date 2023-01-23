@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Sezons\Tochkas;
 
+use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
+use App\Model\Paseka\Entity\Sezons\Tochkas\TochkaMatkas\TochkaMatka;
 use App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks\Wzatok;
 use App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks\Id as WzatokId;
 
@@ -64,6 +66,13 @@ class Tochka
     */
    private $wzatoks;
 
+    /**
+     * @var ArrayCollection|TochkaMatkas[]
+     * @ORM\OneToMany(targetEntity="App\Model\Paseka\Entity\Sezons\Tochkas\TochkaMatkas\TochkaMatka",
+     *     mappedBy="tochka", orphanRemoval=true, cascade={"all"})
+     */
+    private $tochmatkas;
+
     public function __construct(
                                 UchasGoda $uchasgoda,
                                 Id $id,
@@ -80,6 +89,7 @@ class Tochka
         $this->name = $name;
         $this->tochka = $tochka;
        $this->wzatoks = new ArrayCollection();
+        $this->tochmatkas = new ArrayCollection();
     }
 
         public function edit( int $kolwz): void
@@ -91,9 +101,28 @@ class Tochka
     {
         return $this->gruppa === $gruppa;
     }
+///////////////////////////////////////////
+    /**
+     * @param ChildMatka $childmatka
+     * @throws \Exception
+     */
+    public function addChildMatka(ChildMatka $childmatka): void
+    {
+        foreach ($this->tochmatkas as $tochmatka) {
+            if ($tochmatka->isForUchastie($childmatka->getId())) {
+                throw new \DomainException('Маточка уже закреплена к  точку.');
+            }
+        }
+        $this->tochmatkas->add(new TochkaMatka($this, $childmatka    ));
+    }
 
 
 
+
+    public function getTochmatkas()
+    {
+        return $this->tochmatkas->toArray();
+    }
 
 	///////////////////////
    public function addWzatok(WzatokId $id,
@@ -218,4 +247,14 @@ class Tochka
     {
         return $this->tochka;
     }
+
+    /**
+     * @return UchasGoda
+     */
+    public function getUchasgoda(): UchasGoda
+    {
+        return $this->uchasgoda;
+    }
+
+
 }

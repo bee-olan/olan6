@@ -46,6 +46,7 @@ services:
     App\Model\Paseka\Entity\Sezons\Nachalos\NachaloRepository: ~
     App\Model\Paseka\Entity\Sezons\Tochkas\TochkaRepository: ~
     App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks\WzatokRepository: ~
+    App\Model\Paseka\Entity\Sezons\Tochkas\TochkaMatkas\TochkaMatkaRepository: ~
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class

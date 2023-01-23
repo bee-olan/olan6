@@ -52,21 +52,22 @@
 
     <div class="inklud__title teni  teni--sezon ">
 
-        Продолжаем заполнять данные по точкам
+        Характеристики точка: название, взятки ->
 
         <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id}) }}"
-           class="btnn btnn--mb0 btnn--pt btnn--col">Следующий точок - продолжить          </a>
+           class="btnn btnn--mb0 btnn--pt btnn--col"> продолжить          </a>
     </div>
 
         {% else %}
             <div class="inklud__title teni  teni--sezon ">
 
-              Начните заполнять данные по точкам
+                Характеристики точка: название, взятки ->
 
 
-            <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id}) }}"
-                                   class="btnn btnn--mb0 btnn--pt btnn--col">Перейти к  заполнению данных
-            </a>
+                <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id}) }}"
+                                       class="btnn btnn--mb0 btnn--pt btnn--col">начинаем, жмите
+                </a>
+
             </div>
 
             {% endif %}

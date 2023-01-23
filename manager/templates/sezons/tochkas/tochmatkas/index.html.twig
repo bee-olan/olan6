@@ -1,0 +1,88 @@
+{% extends 'proekt/base.html.twig' %}
+
+{% block title %}Начало сезона{% endblock %}
+
+  {% block kroxii %}
+      <a href="{{ path('proekt') }}">Главная</a>
+      {#      <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Выбор сезона</a>#}
+      <span class="aktiv ">Список сезонов</span>
+  {% endblock %}
+
+{% block bodyy %}
+
+    <div  class="proekts proekts--sezon pb0">
+
+        {% include('sezons/tochkas/tochmatkas/_tochmatka-includ.html.twig') %}
+        <div class="proekts-plr  ">
+
+            <div class="box-m">
+                {% if tochmatkas  %}
+
+                    <table class="tabl table-bord- table-hover">
+                        <thead>
+                        <tr>
+                            <th> Сезон </th>
+                            <th> Номер группы </th>
+                            <th> Кол-во точков ! </th>
+                            <td> -- </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for tochmatka in tochmatkas %}
+                            <tr>
+                                <td>
+                                    {{ tochka.sezon }}
+                                </td>
+                                <td>
+                                    {{ tochmatka.gruppa }}
+                                </td>
+                                <td> {{ tochmatka.koltochek }} </td>
+                                <td> <a href="{{ path('sezons.tochkas.edit', {'id': tochmatka.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
+                                        <div class="karandash karandash--child">
+                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <div>
+                                        <a href="{{ path('sezons.tochkas.delete' , {'id': tochka.id} ) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
+                                            <div class="karandash karandash--child">
+                                                <img src="{{ asset('assets/proekt/images/delet.png') }}" alt="редактировать">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{ path('sezons.tochkas',  {'tochmatka_id': tochmatka.id} ) }}"
+                                       class="btnn btnn--mb0 btnn--pt btnn--col">Точки - все о них
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                {% endif %}
+
+                <ul class="plem__data plem__data--mt2">
+                    <li>
+                        <div class="controls">
+                            <a href="{{ path('sezons.tochkas.tochmatka.assign', {'id': tochka.id} ) }}" class="btnn  btnn--pt">Хотите прикрепить ТестМатку к этому точку? Жмите!</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="{{ path('sezons.tochkas'  ) }}"
+                           class="btnn btnn--mb0 btnn--col" >Список сезонов
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+

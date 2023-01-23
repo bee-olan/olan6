@@ -53,6 +53,8 @@ doctrine:
             paseka_sezons_nachalo_id: 'App\Model\Paseka\Entity\Sezons\Nachalos\IdType'
             paseka_sezon_tochka_id: 'App\Model\Paseka\Entity\Sezons\Tochkas\IdType'
             paseka_sezon_tochka_wzatok_id: 'App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks\IdType'
+            paseka_sezon_tochka_tochmatka_id: 'App\Model\Paseka\Entity\Sezons\Tochkas\TochkaMatkas\IdType'
+
 
     orm:
         auto_generate_proxy_classes: true

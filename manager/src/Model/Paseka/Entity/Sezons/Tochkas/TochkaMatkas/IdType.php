@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Paseka\Entity\Sezons\Tochkas\Wzatoks;
+namespace App\Model\Paseka\Entity\Sezons\Tochkas\TochkaMatkas;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
 
 class IdType extends GuidType
 {
-    public const NAME = 'paseka_sezon_tochka_wzatok_id';
+    public const NAME = 'paseka_sezon_tochka_tochmatka_id';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
