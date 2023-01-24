@@ -52,6 +52,7 @@ class UchasGodaController extends AbstractController
         // $this->denyAccessUnlessGranted(ProjectAccess::MANAGE_MEMBERS, $plemmatka);
 // выводит из проекта uchastniks - учстников
         return $this->render('sezons/godas/uchasgoda/index.html.twig', [
+            'gruppa' =>  $gruppa,
             'exist' => $exist,
             'goda' => $goda,
             'uchasgodas' => $uchasgodas->allOfGoda($goda->getId()->getValue()),

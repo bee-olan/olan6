@@ -15,8 +15,8 @@
 
  {% block kroxii %}
         <a href="{{ path('proekt') }}">Главная</a>
-        <a href="{{ path('proekt.pasekas.matkas.plemmatkas') }}">Рег-ция ПлемМатки</a>             
-        <span class="aktiv ">Список ПлемМаток</span> 
+        <a href="{{ path('proekt.pasekas.childmatkas') }}">Список ДочьМаток</a>
+        <span class="aktiv ">ДочьМатка  {{ childmatka.name }}</span>
     {% endblock %}
 
 {% block bodyy %}

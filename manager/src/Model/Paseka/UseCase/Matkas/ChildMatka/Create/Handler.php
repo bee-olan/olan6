@@ -44,6 +44,7 @@ class Handler
 
     public function handle(Command $command): void
     {
+        for ($i = 1; $i <= 3; $i++) {
 
         $uchastie = $this->uchasties->get(new UchastieId($command->uchastie));
         
@@ -77,7 +78,7 @@ class Handler
         }
 
         $this->childmatkas->add($childmatka);
-
+    }
         $this->flusher->flush();
     }
 }

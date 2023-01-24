@@ -28,17 +28,17 @@
                     </thead>
                     <tbody>
 
-                    {% for tochka in tochkas %}
+                    {% for key, tochka in tochkas %}
                         <tr>
                             <td>
                                 {{ tochka.gruppa }} ( {{ tochka.name }} )
                             </td>
-                            <td> {{ tochka.kolwz }} </td>
+                            <td> {{ tochka.kolwz }} ( есть данные в {{ tochka.kolwzates }} ) </td>
                             <td>
 
                                 <a href="{{ path('sezons.tochkas.wzatoks', {'tochka_id': tochka.id}) }}"
                                    class="btn-my btn-my--sm">Добавить данные по
-                                    <strong class="stro stro--kras"> взяткам </strong>
+                                    <strong class="strongo strongo--kras"> взяткам </strong>
 
                                 </a>
                             </td>
@@ -48,15 +48,17 @@
                     {% endfor %}
                     </tbody>
                 </table>
-
+{#    {{uchasgoda.koltochek }}#}
+{#    {{ counts }} !!!!!!!!!!!#}
             <div class="inklud__title teni  teni--sezon ">
-                    {% if (uchasgoda.koltochek > koles)  %}
+                     {% if (uchasgoda.koltochek - counts) > 0.1 %}
                             Характеристики точка: название, взятки ->
                             <a href="{{ path('sezons.tochkas.create' , {'uchasgoda_id': uchasgoda.id}) }}"
-                               class="btnn btnn--mb0 btnn--pt btnn--col"> продолжить, еще    {{ uchasgoda.koltochek - koles }}
+                               class="btnn btnn--mb0 btnn--pt btnn--col"> продолжить, еще  <strong class="strongo strongo--kras">  {{ uchasgoda.koltochek - counts}}</strong>
+
                             </a>
-                    {% else %}
-                            Точков  {{ koles  }} из {{ uchasgoda.koltochek}}
+                     {% else %}
+                             Есть данные для   {{ counts  }} из {{ uchasgoda.koltochek}}
                     {% endif %}
             </div>
         {% else %}

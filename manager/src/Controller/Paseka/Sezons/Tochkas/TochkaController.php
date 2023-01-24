@@ -30,27 +30,32 @@ class TochkaController extends AbstractController
         $this->errors = $errors;
     }
     /**
-     * @Route("/{koles}", name="")
+     * @Route("", name="")
      * @param Request $request
      * @param UchasGoda $uchasgoda
      * @param TochkaFetcher $fetchers
-     * @param string $koles
      * @return Response
      */
-    public function index(Request $request, string $koles, TochkaFetcher $fetchers, UchasGoda $uchasgoda): Response
+    public function index(Request $request, TochkaFetcher $fetchers, UchasGoda $uchasgoda): Response
     {
+//dd($uchasgoda->getKoltochek());
 
+$tochoks = $fetchers->allOfUchasGoda($uchasgoda->getId());
 
-//$tochoks = $fetchers->allOfUchasGoda($uchasgoda->getId());
+//if( !($tochoks[$uchasgoda->getKoltochek()-1]['tochka'])){ $fignja=0; }
+//else
+//    { $fignja=$tochoks[$uchasgoda->getKoltochek()-1]['tochka'];}
 
+//dd( $tochoks[$uchasgoda->getKoltochek()-1]['tochka']);
+        $counts = count($tochoks);
         return $this->render('sezons/tochkas/index.html.twig', [
-            'koles' => $koles,
+            'counts' => $counts,
             'uchasgoda' => $uchasgoda,
-            'tochkas' => $fetchers->allOfUchasGoda($uchasgoda->getId()),
+            'tochkas' => $tochoks,
         ]);
     }
-//'uchasgoda' => $uchasgoda,
-//'tochkas' => $tochkas->allOfUchasGoda($uchasgoda->getId()->getValue()),
+
+
     /**
      * @Route("/create", name=".create")
      * @param TochkaFetcher $fetchers
@@ -61,7 +66,9 @@ class TochkaController extends AbstractController
      */
     public function create(UchasGoda $uchasgoda, TochkaFetcher $fetchers, Request $request, Create\Handler $handler): Response
     {
-        dd($uchasgoda);
+        
+    //   $koless= $fetchers->allOfUchasGoda($uchasgoda->getId());
+        
         $tochka = (int)$fetchers->getMaxTochka($uchasgoda->getId())+1;
         $gruppa =  $uchasgoda->getGruppa()." - ". $tochka;
 
@@ -83,6 +90,7 @@ class TochkaController extends AbstractController
         }
 
         return $this->render('sezons/tochkas/create.html.twig', [
+           
             'nomtochka' => $tochka,
             'uchasgoda' => $uchasgoda,
             'form' => $form->createView(),
