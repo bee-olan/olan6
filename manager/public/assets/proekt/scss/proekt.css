@@ -731,6 +731,38 @@ a:hover {
   box-shadow: 0 0 10px rgba(21, 87, 153, 0.15);
 }
 
+.alert-success-proekt {
+  color: #28623c;
+  background-color: #dbf2e3;
+  border-color: #cdedd8;
+}
+
+.alert-success-proekt {
+  color: #193e26;
+}
+
+.alert-proekt {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-danger-proekt {
+  color: #7b1913;
+  background-color: #fbd6d3;
+  border-color: #fac5c2;
+}
+
+.alert-danger-proekt hr {
+  border-top-color: #f8afaa;
+}
+
+.alert-danger-proekt {
+  color: #4f100c;
+}
+
 .headerr {
   display: flex;
   width: calc(100% - 270px);

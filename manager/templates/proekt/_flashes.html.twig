@@ -1,0 +1,10 @@
+{% for message in proekt.flashes('success') %}
+    <div class="alert-proekt alert-success-proekt">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in proekt.flashes('error') %}
+    <div class="alert-proekt alert-danger-proekt">
+        {{ message }}
+    </div>
+{% endfor %}

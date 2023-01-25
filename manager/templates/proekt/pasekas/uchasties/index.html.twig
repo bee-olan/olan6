@@ -28,29 +28,31 @@
         
   <div class="tabll">
         <ul class = "uch-tabl__list uch-color">
-            <li class = "uch-tabl__link" >
+            <li class = "uch-tabl__list-li" >
                Ник
             </li>
             {# <li class = "tabll__list-li tabll__linia">  {{ u4astnik.mesto }} </li> #}
             <li class = "uch-tabl__list-li uch-tabl__linia"> email  </li>
             <li class = "uch-tabl__list-li uch-tabl__linia">Группа</li>
+            <li class = "uch-tabl__list-li uch-tabl__linia" >Сезонов</li>
             <li class = "uch-tabl__list-li uch-tabl__linia">
                 Статус
                 {# {{ member_status(u4astnik.status) }}  #}
             </li>
+
         </ul>    
                    
             {% for u4astnik in pagination %}
         
                 <ul class = "uch-tabl__list">
-                        <li class = " " >
+                        <li class = " uch-tabl__list-li" >
                              <a class="uch-tabl__link" href="{{ path('proekt.pasekas.uchasties.show', {'id': u4astnik.id}) }}"> 
                             {{ u4astnik.name }} </a> 
                         </li>
                         {# <li class = "tabll__list-li tabll__linia">  {{ u4astnik.mesto }} </li> #}
                         <li class = "uch-tabl__list-li uch-tabl__linia"> {{ u4astnik.email }} </li>
                         <li class = "uch-tabl__list-li uch-tabl__linia">{{ u4astnik.group }}</li>
-                        {# <li class = "tabll__list-li tabll__linia">{{ u4astnik.nomer }}</li> #}
+                        <li class = "uch-tabl__list-li uch-tabl__linia">{{ u4astnik.uchasgodas_count }}</li>
                         <li class = "uch-tabl__list-li uch-tabl__linia">
                             {# {{u4astnik.status}} #}
                             {{ uchastiee_status(u4astnik.status) }} 

@@ -141,68 +141,22 @@ class UchasGodaFetcher
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
     }
 
-//    public function allSezSxem(string $god): array
+//    public function allOfUchasGoda(string $uchastie): array
 //    {
 //        $stmt = $this->connection->createQueryBuilder()
 //            ->select(
-//                's.id',
-//                's.content',
-//                's.kolwz',
-//                's.gruppa'
-//
-////                '(SELECT COUNT(*) FROM paseka_goda_linias l WHERE l.goda_id = s.id) AS linias'
+//                'p.id AS project_id',
+//                'p.name AS project_name',
+//                'd.id AS department_id',
+//                'd.name AS department_name'
 //            )
-//            ->from('paseka_sezons_nachalos', 's')
-//            ->andWhere('s.god = :gods')
-//            ->setParameter(':gods', $god)
-//            ->orderBy('gruppa')
-//
-//            ->execute();
-//
-//        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
-//    }
-//    public function allRasaLin(): array
-//    {
-//        $stmt = $this->connection->createQueryBuilder()
-//            ->select(
-//                'r.id',
-//                'r.name',
-//                'r.title',
-//                'l.sort_linia as sort_linia',
-//                'l.name_star as linias',
-//                'l.id as linia_id'
-//                //,
-//                // '(SELECT COUNT(*) FROM paseka_goda_linias l WHERE l.goda_id = r.id) AS kol_lin'
-//            )
-//            ->from('sezon_goda_wzatoks', 'r')
-//            ->innerJoin('r', 'paseka_goda_linias', 'l', 'l.goda_id = r.id')
-//            ->orderBy('name')
-//            ->orderBy('title')
-//            ->execute();
-//
-//        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
-//    }
-//
-//    public function allRasaLinNom(): array
-//    {
-//        $stmt = $this->connection->createQueryBuilder()
-//            ->select(
-//                'r.id',
-//                'r.name',
-//                'r.title',
-//                'l.sort_linia as sort_linia',
-//                'l.name_star as linias',
-//                'l.id as linia_id',
-//                'u.sort_nomer as sort_nomer',
-//                'u.name_star as nomers',
-//                'u.id as nomer_id',
-//                'u.title as nomer_title'
-//            )
-//            ->from('paseka_godas', 'r')
-//            ->innerJoin('r', 'paseka_goda_linias', 'l', 'l.goda_id = r.id')
-//            ->innerJoin('l', 'paseka_goda_linia_nomers', 'n', 'u.linia_id = l.id')
-//            ->orderBy('name')
-//            ->orderBy('title')
+//            ->from('paseka_sezons_uchasgodas', 'u')
+//            ->innerJoin('ms', 'work_projects_project_membership_departments', 'msd', 'ms.id = msd.membership_id')
+//            ->innerJoin('msd', 'work_projects_project_departments', 'd', 'msd.department_id = d.id')
+//            ->innerJoin('d', 'work_projects_projects', 'p', 'd.project_id = p.id')
+//            ->andWhere('ms.member_id = :member')
+//            ->setParameter(':member', $member)
+//            ->orderBy('p.sort')->addOrderBy('d.name')
 //            ->execute();
 //
 //        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);

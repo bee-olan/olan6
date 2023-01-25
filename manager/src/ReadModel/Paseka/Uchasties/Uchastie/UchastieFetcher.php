@@ -48,7 +48,8 @@ class UchastieFetcher
                  'm.email',
                 'g.name as group',
                 'uchkak',
-                 'm.status'
+                 'm.status',
+                '(SELECT COUNT(*) FROM paseka_sezons_uchasgodas ug WHERE ug.uchastie_id = m.id) as uchasgodas_count'
             )
             ->from('paseka_uchasties_uchasties', 'm')
             ->innerJoin('m', 'paseka_uchasties_groups', 'g', 'm.group_id = g.id');
