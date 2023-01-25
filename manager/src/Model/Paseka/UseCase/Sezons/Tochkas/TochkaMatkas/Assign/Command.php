@@ -13,15 +13,18 @@ class Command
      */
     public $tochka;
 
-    /**
-     * @Assert\NotBlank()
-     */
-    public $childmatka;
+
 
     /**
+     * @var array
      * @Assert\NotBlank()
      */
-    public $uchastie;
+    public $childmatkas;
+
+//    /**
+//     * @Assert\NotBlank()
+//     */
+//    public $uchastie;
 
 
     public function __construct(string $tochka

@@ -38,18 +38,10 @@ class TochkaMatkaController extends AbstractController
      * @return Response
      */
     public function index( Request $request, Tochka $tochka,
-                           TochkaMatkaFetcher $tochmatkas,
-                           ChildMatkaFetcher $childmatkas): Response
+                           TochkaMatkaFetcher $tochmatkas): Response
     {
 
 
-     $executor = $tochka->getUchasgoda()->getUchastie()->getId()->getValue();
-
-        $childmatka = $childmatkas->listZakazForTochka($executor);
-
-        dd($childmatka);
-        // $this->denyAccessUnlessGranted(ProjectAccess::MANAGE_MEMBERS, $plemmatka);
-// выводит из проекта uchastniks - учстников
         return $this->render('sezons/tochkas/tochmatkas/index.html.twig', [
             'tochka' => $tochka,
             'tochmatkas' => $tochmatkas->allOfTochka($tochka->getId()->getValue()),
@@ -75,17 +67,17 @@ class TochkaMatkaController extends AbstractController
 //            return $this->redirectToRoute('sezons.tochkas.tochmatkas', ['id' => $tochka->getId()->getValue()]);
 //        }
         $executor = $tochka->getUchasgoda()->getUchastie()->getId()->getValue();
-//
-//        $childmatka = $childmatkas->listZakazForTochka($executor);
-//
+//        dd($executor);
+
+        $childmatka = $childmatkas->listZakazForTochka($executor);
+
 //        dd($childmatka);
 
 
         $command = new Assign\Command($tochka->getId()->getValue());
 
-        $form = $this->createForm(Assign\Form::class,
-                                        $command,
-                                ['uchastie' => $executor] );
+
+        $form = $this->createForm(Assign\Form::class,$command,['uchastie_id' => $executor] );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

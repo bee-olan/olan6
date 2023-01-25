@@ -21,9 +21,9 @@
                     <table class="tabl table-bord- table-hover">
                         <thead>
                         <tr>
-                            <th> Сезон </th>
-                            <th> Номер группы </th>
-                            <th> Кол-во точков ! </th>
+                            <th> Номер </th>
+                            <th> Название </th>
+{#                            <th> Кол-во точков ! </th>#}
                             <td> -- </td>
                         </tr>
                         </thead>
@@ -32,31 +32,32 @@
                         {% for tochmatka in tochmatkas %}
                             <tr>
                                 <td>
-                                    {{ tochka.sezon }}
+                                    {{ tochmatka.childmatka_id }}
                                 </td>
                                 <td>
-                                    {{ tochmatka.gruppa }}
+                                    {{ tochmatka.name }}
                                 </td>
-                                <td> {{ tochmatka.koltochek }} </td>
-                                <td> <a href="{{ path('sezons.tochkas.edit', {'id': tochmatka.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
-                                        <div class="karandash karandash--child">
-                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
-                                        </div>
-                                    </a>
-                                </td>
+
+{#                                <td> {{ tochmatka.koltochek }} </td>#}
+{#                                <td> <a href="{{ path('sezons.tochkas.edit', {'id': tochmatka.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >#}
+{#                                        <div class="karandash karandash--child">#}
+{#                                            <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">#}
+{#                                        </div>#}
+{#                                    </a>#}
+{#                                </td>#}
+{#                                <td>#}
+{#                                    <div>#}
+{#                                        <a href="{{ path('sezons.tochkas.delete' , {'id': tochka.id} ) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >#}
+{#                                            <div class="karandash karandash--child">#}
+{#                                                <img src="{{ asset('assets/proekt/images/delet.png') }}" alt="редактировать">#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </td>#}
                                 <td>
-                                    <div>
-                                        <a href="{{ path('sezons.tochkas.delete' , {'id': tochka.id} ) }}" class="btnn btnn--mb0 btnn--pt btnn--col-sezon" >
-                                            <div class="karandash karandash--child">
-                                                <img src="{{ asset('assets/proekt/images/delet.png') }}" alt="редактировать">
-                                            </div>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="{{ path('sezons.tochkas',  {'tochmatka_id': tochmatka.id} ) }}"
-                                       class="btnn btnn--mb0 btnn--pt btnn--col">Точки - все о них
-                                    </a>
+{#                                    <a href="{{ path('sezons.tochkas',  {'tochmatka_id': tochmatka.id} ) }}"#}
+{#                                       class="btnn btnn--mb0 btnn--pt btnn--col">ТестМатки#}
+{#                                    </a>#}
                                 </td>
                             </tr>
                         {% endfor %}
@@ -65,18 +66,18 @@
 
                 {% endif %}
 
-                <ul class="plem__data plem__data--mt2">
-                    <li>
-                        <div class="controls">
-                            <a href="{{ path('sezons.tochkas.tochmatka.assign', {'id': tochka.id} ) }}" class="btnn  btnn--pt">Хотите прикрепить ТестМатку к этому точку? Жмите!</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="{{ path('sezons.tochkas'  ) }}"
-                           class="btnn btnn--mb0 btnn--col" >Список сезонов
-                        </a>
-                    </li>
-                </ul>
+{#                <ul class="plem__data plem__data--mt2">#}
+{#                    <li>#}
+{#                        <div class="controls">#}
+{#                            <a href="{{ path('sezons.tochkas.tochmatka.assign', {'id': tochka.id} ) }}" class="btnn  btnn--pt">Хотите прикрепить ТестМатку к этому точку? Жмите!</a>#}
+{#                        </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="{{ path('sezons.tochkas'  ) }}"#}
+{#                           class="btnn btnn--mb0 btnn--col" >Список сезонов#}
+{#                        </a>#}
+{#                    </li>#}
+{#                </ul>#}
 
             </div>
 

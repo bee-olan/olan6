@@ -61,9 +61,10 @@ class TochkaMatkaFetcher
     {
         $stmt = $this->connection->createQueryBuilder()
             ->select(
-                'u.id',
-                'u.tochka_id',
-                'u.childmatka_id'
+                'tm.id',
+                'tm.tochka_id',
+                'tm.childmatka_id',
+                'c.name AS name'
 
 //            '(SELECT COUNT(*) FROM paseka_sezon_tochka_wzatoks w WHERE w.tochka_id = t.id) AS koltochka'
             // '(
@@ -73,10 +74,11 @@ class TochkaMatkaFetcher
             //     WHERE md.department_id = d.id AND ms.materi_id = :materi
             // ) AS members_count'
             )
-            ->from('paseka_sezons_tochka_tochmatkas', 'u')
-            ->andWhere('u.tochka_id = :tochkas')
+            ->from('paseka_sezon_tochka_tochmatkas', 'tm')
+            ->innerJoin('tm', 'paseka_matkas_childmatkas', 'c', 'c.id = tm.childmatka_id')
+            ->andWhere('tm.tochka_id = :tochkas')
             ->setParameter(':tochkas', $tochka)
-            ->orderBy('tochka_id')
+            ->orderBy('tm.childmatka_id')
             ->execute();
 
         return $stmt->fetchAll(FetchMode::ASSOCIATIVE);

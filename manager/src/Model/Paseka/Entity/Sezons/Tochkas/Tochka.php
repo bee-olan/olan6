@@ -109,9 +109,9 @@ class Tochka
     public function addChildMatka(ChildMatka $childmatka): void
     {
         foreach ($this->tochmatkas as $tochmatka) {
-            if ($tochmatka->isForUchastie($childmatka->getId())) {
-                throw new \DomainException('Маточка уже закреплена к  точку.');
-            }
+//            if ($tochmatka->isForUchastie($childmatka->getId())) {
+//                throw new \DomainException('Маточка уже закреплена к  точку.');
+//            }
         }
         $this->tochmatkas->add(new TochkaMatka($this, $childmatka    ));
     }

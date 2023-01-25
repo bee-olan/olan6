@@ -16,11 +16,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Form extends AbstractType
 {
     private $childmatkas;
-    private $uchasties;
+//    private $uchasties;
 
-    public function __construct(ChildMatkaFetcher $childmatkas, UchastieFetcher $uchasties)
+    public function __construct(ChildMatkaFetcher $childmatkas)
     {
         $this->childmatkas = $childmatkas;
+//        $this->uchasties = $uchasties;, UchastieFetcher $uchasties
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -28,13 +29,13 @@ class Form extends AbstractType
 
 //dd($options['uchastie_id']);
         $childmatkas = [];
-        foreach ($this->childmatkas->listZakazForTochka($options['uchastie']) as $item) {
+        foreach ($this->childmatkas->listZakazForTochka($options['uchastie_id']) as $item) {
             $childmatkas[$item['name']] = $item['id'];
         }
 // dd($childmatkas);
         $builder
             ->add('childmatkas', Type\ChoiceType::class, [
-                'label' => 'Назначьте исполнителя:   ',
+                'label' => 'Выбор ТестМаток для данного точка:   ',
                 'choices' => $childmatkas,
                 'expanded' => true,
                 'multiple' => true,
@@ -46,7 +47,7 @@ class Form extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Command::class,
         ));
-        $resolver->setRequired(['uchastie']);
+        $resolver->setRequired(['uchastie_id']);
     }
 }
 //class Form extends AbstractType
