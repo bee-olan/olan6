@@ -28,10 +28,12 @@ class ChildMatkaFetcher
             ->select(
                 'e.childmatka_id AS id',
                 'e.uchastie_id',
-                'm.name AS name'
+                'm.name AS name',
+                'm.start_date AS god_test'
             )
             ->from('paseka_matkas_childmatkas_executors', 'e')
             ->innerJoin('e', 'paseka_matkas_childmatkas', 'm', 'e.childmatka_id = m.id')
+//            ->innerJoin('e', 'paseka_sezons_godas', 'g', 'e.childmatka_id = m.id')
             ->andWhere('e.uchastie_id = :uchasties')
             ->setParameter(':uchasties', $uchastie)
             // ->orderBy('d.name')->addOrderBy('name')

@@ -70,14 +70,16 @@ class TochkaMatkaController extends AbstractController
 //        dd($executor);
 
         $childmatka = $childmatkas->listZakazForTochka($executor);
-
-//        dd($childmatka);
-
-
-        $command = new Assign\Command($tochka->getId()->getValue());
+        dd($childmatka);
+        $gr = explode(" ", $tochka->getGruppa());
+       $gruppa = $gr[0];
 
 
-        $form = $this->createForm(Assign\Form::class,$command,['uchastie_id' => $executor] );
+        $command = new Assign\Command($tochka->getId()->getValue(), $gruppa);
+
+
+        $form = $this->createForm(Assign\Form::class,$command,
+                        ['uchastie_id' => $executor, 'gruppa' => $gruppa]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

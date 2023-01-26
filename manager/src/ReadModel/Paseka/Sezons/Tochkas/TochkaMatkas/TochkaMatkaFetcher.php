@@ -56,7 +56,24 @@ class TochkaMatkaFetcher
 //        }
 //        return $uchasgoda;
 //    }
+    public function allOfTochMatkaGruppa(string $gruppa): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'tm.id',
+                'tm.childmatka_id',
+                'tm.gruppa',
+                'c.name AS name'
+            )
+            ->from('paseka_sezon_tochka_tochmatkas', 'tm')
+            ->innerJoin('tm', 'paseka_matkas_childmatkas', 'c', 'c.id = tm.childmatka_id')
+            ->andWhere('tm.gruppa = :gruppas')
+            ->setParameter(':gruppas', $gruppa)
+            ->orderBy('tm.childmatka_id')
+            ->execute();
 
+        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
+    }
     public function allOfTochka(string $tochka): array
     {
         $stmt = $this->connection->createQueryBuilder()

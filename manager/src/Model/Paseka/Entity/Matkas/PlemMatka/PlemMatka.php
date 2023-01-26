@@ -85,6 +85,12 @@ class PlemMatka
     private $nameKateg;
 
     /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $godVixod;
+
+    /**
      * @var Kategoria
      * @ORM\ManyToOne(targetEntity="App\Model\Paseka\Entity\Matkas\Kategoria\Kategoria")
      * @ORM\JoinColumn(name="kategoria_id", referencedColumnName="id", nullable=false)
@@ -117,7 +123,8 @@ class PlemMatka
                                  string $rasaNomId,
                                  string $title,
                                  string $nameKateg,
-                                 Kategoria $kategoria
+                                 Kategoria $kategoria,
+                                 string $godVixod
                                   )
     {
         $this->id = $id;
@@ -131,6 +138,7 @@ class PlemMatka
         $this->title = $title;
         $this->nameKateg = $nameKateg;
         $this->kategoria = $kategoria;
+        $this->godVixod = $godVixod;
         $this->departments = new ArrayCollection();
         $this->uchastniks = new ArrayCollection();
 
@@ -331,4 +339,12 @@ class PlemMatka
     {
         return $this->uchastniks->toArray();
     }
+
+
+    public function getGodVixod(): string
+    {
+        return $this->godVixod;
+    }
+
+
 }

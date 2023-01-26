@@ -38,7 +38,11 @@ class TochkaMatka
      */
     private $id;
 
-
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $gruppa;
 	
 //	 /**
 //     * @var ArrayCollection|Istoria[]
@@ -51,12 +55,14 @@ class TochkaMatka
 //    private $istorias;
 
     public function __construct( Tochka $tochka,
-                                ChildMatka $childmatka
+                                ChildMatka $childmatka,
+                                string $gruppa
                                 )
     {
         $this->id = Uuid::uuid4()->toString();
         $this->tochka = $tochka;
         $this->childmatka = $childmatka;
+        $this->gruppa = $gruppa;
 //		$this->nomers = new ArrayCollection();
     }
 
@@ -151,6 +157,12 @@ class TochkaMatka
     public function getChildmatka(): ChildMatka
     {
         return $this->childmatka;
+    }
+
+
+    public function getGruppa(): string
+    {
+        return $this->gruppa;
     }
 
 

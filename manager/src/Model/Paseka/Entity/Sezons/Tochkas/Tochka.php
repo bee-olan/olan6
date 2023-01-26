@@ -106,14 +106,14 @@ class Tochka
      * @param ChildMatka $childmatka
      * @throws \Exception
      */
-    public function addChildMatka(ChildMatka $childmatka): void
+    public function addChildMatka(ChildMatka $childmatka, $gruppa): void
     {
         foreach ($this->tochmatkas as $tochmatka) {
 //            if ($tochmatka->isForUchastie($childmatka->getId())) {
 //                throw new \DomainException('Маточка уже закреплена к  точку.');
 //            }
         }
-        $this->tochmatkas->add(new TochkaMatka($this, $childmatka    ));
+        $this->tochmatkas->add(new TochkaMatka($this, $childmatka ,$gruppa   ));
     }
 
 

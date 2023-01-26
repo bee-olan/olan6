@@ -124,6 +124,12 @@ class ChildMatka
      */
     private $sparing;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $godVixod;
+
 
      /**
      * @var Uchastie[]|ArrayCollection
@@ -145,7 +151,8 @@ class ChildMatka
         int $priority,
         string $name,
         ?string $content,
-        Sparing $sparing
+        Sparing $sparing,
+        string $godVixod
     )
     {
         $this->id = $id;
@@ -159,6 +166,7 @@ class ChildMatka
         $this->priority = $priority;
         $this->status = Status::new();
         $this->sparing = $sparing;
+        $this->godVixod = $godVixod;
         $this->executors = new ArrayCollection();
     }
 
@@ -406,6 +414,14 @@ class ChildMatka
     {
         return $this->executors->toArray();
     }
+
+
+    public function getGodVixod(): string
+    {
+        return $this->godVixod;
+    }
+
+
 
     // /**
     //  * @return Change[]

@@ -6,6 +6,7 @@ namespace App\Model\Paseka\UseCase\Sezons\Tochkas\TochkaMatkas\Assign;
 
 use App\ReadModel\Paseka\Matkas\ChildMatka\ChildMatkaFetcher;
 
+use App\ReadModel\Paseka\Sezons\Tochkas\TochkaMatkas\TochkaMatkaFetcher;
 use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -16,27 +17,38 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Form extends AbstractType
 {
     private $childmatkas;
-//    private $uchasties;
+    private $tochkamatkas;
 
-    public function __construct(ChildMatkaFetcher $childmatkas)
+    public function __construct(ChildMatkaFetcher $childmatkas,
+                                TochkaMatkaFetcher $tochkamatkas)
     {
         $this->childmatkas = $childmatkas;
-//        $this->uchasties = $uchasties;, UchastieFetcher $uchasties
+        $this->tochkamatkas = $tochkamatkas;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
 //dd($options['uchastie_id']);
-        $childmatkas = [];
+        $childmatkas = []; $tochmatkas = []; $chi=[]; $toch = [];
+
         foreach ($this->childmatkas->listZakazForTochka($options['uchastie_id']) as $item) {
             $childmatkas[$item['name']] = $item['id'];
+            $chi[$item['id']]= $item['id'];
         }
-// dd($childmatkas);
+//dd($childmatkas);
+        foreach ($this->tochkamatkas->allOfTochMatkaGruppa($options['gruppa']) as $item) {
+            $tochmatkas[$item['name']] = $item['childmatka_id'];
+            $toch[$item['childmatka_id']]= $item['childmatka_id'];
+        }
+        $testMatkas = array_diff($chi,$toch);
+
+
+
         $builder
             ->add('childmatkas', Type\ChoiceType::class, [
                 'label' => 'Выбор ТестМаток для данного точка:   ',
-                'choices' => $childmatkas,
+                'choices' => $testMatkas,
                 'expanded' => true,
                 'multiple' => true,
             ]);
@@ -47,7 +59,7 @@ class Form extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Command::class,
         ));
-        $resolver->setRequired(['uchastie_id']);
+        $resolver->setRequired(['uchastie_id', 'gruppa']);
     }
 }
 //class Form extends AbstractType

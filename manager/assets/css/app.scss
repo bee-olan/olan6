@@ -9,7 +9,7 @@ html {
 
 body {
     background-color: $color-rasa;
-    //набор шрифтов
+
     font-family: -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue",
     Arial, "Noto Sans", sans-serif,
@@ -104,6 +104,7 @@ main {
 @import "matkas/matka";
 
 @import "page/page";
+@import "page/alert-pr";
 
 @import "mesto/infamesto/inform";
 @import "mesto/infamesto/mesto";

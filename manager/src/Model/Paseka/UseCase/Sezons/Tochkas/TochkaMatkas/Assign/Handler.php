@@ -36,7 +36,7 @@ class Handler
 
         foreach ($command->childmatkas as $id) {
             $childmatka = $this->childmatkass->get(new ChildMatkaId($id));
-            $tochka->addChildMatka($childmatka);
+            $tochka->addChildMatka($childmatka, $command->gruppa);
 //            if (!$tochka->hasExecutor($childmatka->getId())) {
 //                $tochka->assignExecutor($uchastie, new \DateTimeImmutable(), $childmatka);
 //            }

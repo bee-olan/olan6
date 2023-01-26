@@ -21,18 +21,16 @@ class Command
      */
     public $childmatkas;
 
-//    /**
-//     * @Assert\NotBlank()
-//     */
-//    public $uchastie;
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
+    public $gruppa;
 
 
-    public function __construct(string $tochka
-//        , string $childmatka
-
-                                )
+    public function __construct(string $tochka, string $gruppa )
     {
         $this->tochka = $tochka;
-//        $this->childmatka = $childmatka;
+        $this->gruppa = $gruppa;
     }
 }
