@@ -46,7 +46,7 @@
         </div> 
  {% else %}
     <div class="inklud__title  teni teni--kategor">
-            Список  ДочьМаток от {{plemmatka.name}}
+        От {{plemmatka.name}} -  список  ДочьМаток
     </div> 
  {% endif %}       
     </div>
@@ -55,7 +55,7 @@
         <table class="tabl-child  tabl-hover-child ">
             <thead>
             <tr  >
-                <th  >Дата</th>
+                <th  >Дата!!!!</th>
                 {% if not plemmatka %}
                 <th class="tabl-col-plem "  >  ПлемМатка</th>
                 {% endif %}
@@ -78,7 +78,7 @@
 
                     {% if not plemmatka %}
                         <td class="tabl-bord- tabl-bord-plem ">
-                            <a href="{{ path('proekt.pasekas.matkas.plemmatkas.show', {'plem_id': childmatka.plemmatka_id}) }}">{{childmatka.plemmatka_kat}}_{{ childmatka.plemmatka_name }}</a>
+                            <a href="{{ path('proekt.pasekas.matkas.plemmatkas.show', {'plem_id': childmatka.plemmatka_id}) }}">{{ childmatka.plemmatka_name }}</a>
                         </td>
                     {% endif %}
                     <td class="tabl-bord- tabl-bord-child">

@@ -70,7 +70,7 @@ class TochkaMatkaController extends AbstractController
 //        dd($executor);
 
         $childmatka = $childmatkas->listZakazForTochka($executor);
-        dd($childmatka);
+//        dd($childmatka);
         $gr = explode(" ", $tochka->getGruppa());
        $gruppa = $gr[0];
 

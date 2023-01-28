@@ -55,6 +55,7 @@ class Handler
 
     public function handle(Command $command): void
     {
+
         for ($i = 1; $i <= 3; $i++) {
 
         $uchastie = $this->uchasties->get(new UchastieId($command->uchastie));
@@ -65,13 +66,16 @@ class Handler
 
         $plemmatka = $this->plemmatkas->get(new PlemMatkaId($command->plemmatka));
 
+
+            $plem=explode(" ",$plemmatka->getName() );
+
         $sparing = $this->sparings->get(new SparingId($command->sparing));
         $command->godaVixod = (int)$command->plan_date->format('Y');
         $childmatkaId = $this->childmatkas->nextId();
 //        $command->name =  ($plemmatka->getName())."_".$childmatkaId;
-$command->name = $plemmatka->getNameKateg()."_".$plemmatka->getSort()."-".$childmatkaId." : пн-".
-    $persona->getNomer()."_".$mestonomer->getNomer()."_".$command->godaVixod."_".$childmatkaId ;
-
+$command->name = $plem[0]."-".$childmatkaId." : пн-".
+    $persona->getNomer()."_".$mestonomer->getNomer()."_".$command->godaVixod;
+//            dd($command->name);
 //        $date = new \DateTimeImmutable();
 
 

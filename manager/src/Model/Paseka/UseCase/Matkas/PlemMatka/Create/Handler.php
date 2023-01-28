@@ -78,8 +78,8 @@ class Handler
         $command->rasaNomId = $mestonomer->getId()->getValue();
         $command->godaVixod = (int)$goda->getGod();
 //dd($command->godaVixod);
-        $command->name = $nom[0]."-".$command->nameKateg."-".$command->sort." : ".
-            $nom[1]."-".$nom[2]." : пн".$command->persona."_".$command->mesto."_".$command->godaVixod."_".$command->sort;
+        $command->name = $nom[0]."_".$command->nameKateg."_".$command->sort." : ".
+            $nom[1]."-".$nom[2]." : пн".$command->persona."_".$command->mesto."_".$command->godaVixod;
 //      dd($command->name);
         $plemmatka = new PlemMatka(
             Id::next(),
