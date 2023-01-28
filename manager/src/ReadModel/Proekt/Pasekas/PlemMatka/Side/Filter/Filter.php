@@ -11,5 +11,6 @@ class Filter
     public $name;
     public $persona;
     public $name_kateg;
+//    public $god_v;
     public $status = Status::ACTIVE;
 }

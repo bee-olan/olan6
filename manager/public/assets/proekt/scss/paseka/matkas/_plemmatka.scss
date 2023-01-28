@@ -68,7 +68,7 @@
       }
 
     a {
-      padding: .6rem 1.6rem;
+      padding: .6rem 1rem;
       color: $plem-color;
       text-decoration: none;
       opacity: 0.6;
@@ -98,20 +98,26 @@
 .plem__name-list{
   display: flex;
   padding: .6rem;
-  max-width: 15rem;
+  min-width: 13%;
     &--wid{
-    min-width: 31rem;
+      min-width: 34%;
+    // min-width: 33rem;
     padding: 0;
     }
 
 }
 .plem__name {
    display: flex; // добавляем т.к добаилась li-шка
-  // max-width: 15.0rem;
+  min-width: 13%;
   // color: $text-uchastie;
   padding: .6rem;
   border-bottom: 1px solid $plem-color; // linia
 
+  &--wid34 {
+    min-width: 34%;
+   
+  }
+  
   &--wid20 {
    // width: 20.0rem;
     padding: .6rem 0 .6rem 5rem;

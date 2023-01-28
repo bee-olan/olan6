@@ -34,28 +34,6 @@
         </div>
     {% endif %}
 
-    {# <div class="card">
-        <div class="card-body pb-1">
-
-            {{ form_start(form) }}
-            <div class="row">
-                <div class="col-md-2 mb-2">{{ form_widget(form.text) }}</div>
-                <div class="col-md-2 mb-2">{{ form_widget(form.type) }}</div>
-                <div class="col-md-2 mb-2">{{ form_widget(form.status) }}</div>
-                <div class="col-md-2 mb-2">{{ form_widget(form.priority) }}</div>
-                <div class="col-md-2 mb-2">{{ form_widget(form.author) }}</div>
-                <div class="col-md-2 mb-2">{{ form_widget(form.executor) }}</div>
-                <div class="col-md-2 mb-2">
-                    <button type="submit" class="btn btn-primary">Filter</button>
-                    <a href="{{ path('paseka.matkas.childmatkas') }}" class="btn btn-default">Clear</a>
-                </div>
-            </div>
-            {{ form_end(form) }}
-
-        </div>
-    </div> #}
-
-    {# {% include 'app/work/projects/childmatkas/_presets.html.twig' %} #}
 
 <div  class="proekts proekts--childmatka">
     <div class="inklud inklud--child">
@@ -108,7 +86,8 @@
                             <span class="fa fa-angle-double-right"></span>
                         {% endif %}
                         <a href="{{ path('proekt.pasekas.childmatkas.show', {'id': childmatka.id}) }}">
-                            _{{ childmatka.mesto }}_пН-{{ childmatka.author_persona }}_{{ childmatka.id }}
+                            {{ childmatka.name }}
+
                         </a>
                         {# {{ childmatka.sparing }} #}
                     </td>

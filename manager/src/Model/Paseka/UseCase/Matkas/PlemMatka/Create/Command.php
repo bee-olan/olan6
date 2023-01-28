@@ -8,10 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
 {
-    /**
-     * @Assert\NotBlank()
-     */
-    public $name;
+//    /**
+//     * @Assert\NotBlank()
+//     */
+//    public $name;
 
     /**
      * @Assert\NotBlank()
@@ -24,11 +24,11 @@ class Command
      */
     public $uchastieId;
 
-    /**
-     * @var string
-     * @Assert\NotBlank()
-     */
-    public $rasaNomId;
+//    /**
+//     * @var string
+//     * @Assert\NotBlank()
+//     */
+//    public $rasaNomId;
 
     /**
      * @var string
@@ -40,21 +40,29 @@ class Command
      * @var string
      * @Assert\NotBlank()
      */
-    public $mesto;
-
-    /**
-     * @Assert\NotBlank()
-     */
-    public $persona;
+    public $nomerId;
 
 //    /**
-//     * @var string
 //     * @Assert\NotBlank()
 //     */
-//    public $nameKateg;
+//    public $persona;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
+    public $goda;
 
     /**
      * @Assert\NotBlank()
      */
     public $kategoria;
+
+    public function __construct(string $nomerId, int $sort, string $uchastieId)
+    {
+        $this->nomerId=$nomerId;
+        $this->sort = $sort;
+        $this->uchastieId = $uchastieId;
+
+    }
 }

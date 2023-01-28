@@ -13,6 +13,7 @@ use App\ReadModel\Paseka\Matkas\ChildMatka\ChildMatkaFetcher;
 //use App\Security\Voter\Work\Projects\ProjectAccess;
 use App\Controller\ErrorHandler;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
+use App\ReadModel\Proekt\Pasekas\PlemMatka\Side\PlemSideFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,6 +80,7 @@ class ChildMatkaController extends AbstractController
     public function create(PlemMatka $plemmatka, Request $request, Create\Handler $handler): Response
     {
        // $this->denyAccessUnlessGranted(ProjectAccess::VIEW, $project);
+
 
         $command = new Create\Command(
             $plemmatka->getId()->getValue(),

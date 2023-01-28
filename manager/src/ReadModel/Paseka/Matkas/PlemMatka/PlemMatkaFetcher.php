@@ -183,6 +183,7 @@ class PlemMatkaFetcher
                 'p.persona',
                 'p.status',
                 'p.rasa_nom_id',
+                'p.goda_vixod ',
                 's.name AS kategoria'
                 //,
               //  'm.nomer as mestonomer'

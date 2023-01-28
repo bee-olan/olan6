@@ -15,6 +15,21 @@ class GodaFetcher
     {
         $this->connection = $connection;
     }
+
+    public function assocGod(): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'id',
+                'god'
+            )
+            ->from('paseka_sezons_godas')
+            ->orderBy('god')
+            ->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+    }
+
     public function assoc(): array
     {
         $stmt = $this->connection->createQueryBuilder()

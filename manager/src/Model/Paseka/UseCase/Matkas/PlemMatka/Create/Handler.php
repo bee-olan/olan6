@@ -5,60 +5,94 @@ declare(strict_types=1);
 namespace App\Model\Paseka\UseCase\Matkas\PlemMatka\Create;
 
 use App\Model\Flusher;
+use App\Model\Mesto\Entity\InfaMesto\Id as MestoNomerId;
+use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
+
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Id;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository;
-use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
+
+use App\Model\Paseka\Entity\Rasas\Linias\Nomers\NomerRepository;
+use \App\Model\Paseka\Entity\Rasas\Linias\Nomers\Id as NomerId;
+
 use App\Model\Paseka\Entity\Matkas\Sparings\SparingRepository;
 use App\Model\Paseka\Entity\Matkas\Sparings\Id as SparingId;
 
 use App\Model\Paseka\Entity\Matkas\Kategoria\KategoriaRepository;
 use App\Model\Paseka\Entity\Matkas\Kategoria\Id as KategoriaId;
 
+use App\Model\Paseka\Entity\Sezons\Godas\Id as GodaId;
+use App\Model\Paseka\Entity\Sezons\Godas\GodaRepository;
+
+use App\Model\Paseka\Entity\Uchasties\Personas\Id as PersonaId;
+use App\Model\Paseka\Entity\Uchasties\Personas\PersonaRepository;
+
 class Handler
 {
     private $plemmatkas;
-   // private $sparings;
+    private $godas;
     private $kategorias;
+    private $personas;
+    private $mestonomers;
+    private $nomerRepository; //  основа для плем матки
     private $flusher;
 
     public function __construct(PlemMatkaRepository $plemmatkas,
-//                                SparingRepository $sparings,
+                                GodaRepository $godas,
                                 KategoriaRepository $kategorias,
+                                PersonaRepository $personas,
+                                MestoNomerRepository $mestonomers,
+                                NomerRepository $nomerRepository,
                                 Flusher $flusher)
     {
         $this->plemmatkas = $plemmatkas;
-//        $this->sparings = $sparings;
+        $this->godas = $godas;
         $this->kategorias = $kategorias;
+        $this->personas=$personas;
+        $this->mestonomers=$mestonomers;
+        $this->nomerRepository=$nomerRepository;
         $this->flusher = $flusher;
     }
 
     public function handle(Command $command): void
     {
-        //$sparing = $this->sparings->get(new SparingId($command->sparing));
+        $goda = $this->godas->get(new GodaId($command->goda));
+//dd( $goda);
         $kategoria = $this->kategorias->get(new KategoriaId($command->kategoria));
+//
+        $persona = $this->personas->get(new PersonaId($command->uchastieId));
 
-//dd($kategoria->getName());
-//        if ($this->plemmatkas->hasBySort($command->sort)) {
+        $mestonomer = $this->mestonomers->get(new MestoNomerId($command->uchastieId));
+//        dd($mestonomer->getNomer() );
+//        if ($this->plemmatkas->hasSortPerson($sort, $command->persona)) {
 //            throw new \DomainException('ТАКОЙ номер есть в БД.');
 //        }
+        $nomer = $this->nomerRepository->get(new NomerId($command->nomerId));
+//dd($nomer);
+        $nom = explode("_", $nomer->getTitle());
 
-        if ($this->plemmatkas->hasSortPerson($command->sort, $command->persona)) {
-            throw new \DomainException('ТАКОЙ номер есть в БД.');
-        }
-
+        $command->nameKateg = $kategoria->getName();
+//        $command->kategoriaId = $kategoria->getId()->getValue();
+        $command->mesto = $mestonomer->getNomer();
+        $command->persona = $persona->getNomer();
+        $command->rasaNomId = $mestonomer->getId()->getValue();
+        $command->godaVixod = (int)$goda->getGod();
+//dd($command->godaVixod);
+        $command->name = $nom[0]."-".$command->nameKateg."-".$command->sort." : ".
+            $nom[1]."-".$nom[2]." : пн".$command->persona."_".$command->mesto."_".$command->godaVixod."_".$command->sort;
+//      dd($command->name);
         $plemmatka = new PlemMatka(
             Id::next(),
-            $command->name ,
+            $command->name,
             $command->sort,
-//            $sparing,
             $command->uchastieId,
             $command->mesto,
             $command->persona,
             $command->rasaNomId,
             $command->title,
-            $command->nameKateg = $kategoria->getName(),
-            $kategoria
+            $command->nameKateg ,
+            $kategoria,
+            $command->godaVixod
 
         );
 

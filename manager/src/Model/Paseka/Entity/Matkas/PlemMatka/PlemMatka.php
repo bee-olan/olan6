@@ -85,10 +85,10 @@ class PlemMatka
     private $nameKateg;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var int
+     * @ORM\Column(type="integer")
      */
-    private $godVixod;
+    private $godaVixod;
 
     /**
      * @var Kategoria
@@ -116,7 +116,6 @@ class PlemMatka
     public function __construct( Id $id,
                                  string $name,
                                  int $sort,
-//                                 Sparing $sparing,
                                  string $uchastieId,
                                  string  $mesto,
                                  int  $persona,
@@ -124,7 +123,7 @@ class PlemMatka
                                  string $title,
                                  string $nameKateg,
                                  Kategoria $kategoria,
-                                 string $godVixod
+                                 int $godaVixod
                                   )
     {
         $this->id = $id;
@@ -138,7 +137,7 @@ class PlemMatka
         $this->title = $title;
         $this->nameKateg = $nameKateg;
         $this->kategoria = $kategoria;
-        $this->godVixod = $godVixod;
+        $this->godaVixod = $godaVixod;
         $this->departments = new ArrayCollection();
         $this->uchastniks = new ArrayCollection();
 
@@ -340,11 +339,15 @@ class PlemMatka
         return $this->uchastniks->toArray();
     }
 
-
-    public function getGodVixod(): string
+    /**
+     * @return int
+     */
+    public function getGodaVixod(): int
     {
-        return $this->godVixod;
+        return $this->godaVixod;
     }
+
+
 
 
 }

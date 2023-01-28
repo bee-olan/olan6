@@ -37,7 +37,7 @@ class Command
      * @var \DateTimeImmutable
      * @Assert\Date()
      */
-    public $plan;
+    public $plan_date;
 
     /**
      * @var string
@@ -54,6 +54,18 @@ class Command
      * @Assert\NotBlank()
      */
     public $sparing;
+
+//    /**
+//     * @var string
+//     * @Assert\NotBlank()
+//     */
+//    public $goda;
+
+//    /**
+//     * @var int
+//     * @Assert\NotBlank()
+//     */
+//    public $godaVixod;
 
     public function __construct(string $plemmatka, string $uchastie)
     {

@@ -1849,7 +1849,7 @@ legend {
   color: #a78c16;
 }
 .plem__data a {
-  padding: 0.6rem 1.6rem;
+  padding: 0.6rem 1rem;
   color: #155799;
   text-decoration: none;
   opacity: 0.6;
@@ -1874,17 +1874,21 @@ legend {
 .plem__name-list {
   display: flex;
   padding: 0.6rem;
-  max-width: 15rem;
+  min-width: 13%;
 }
 .plem__name-list--wid {
-  min-width: 31rem;
+  min-width: 34%;
   padding: 0;
 }
 
 .plem__name {
   display: flex;
+  min-width: 13%;
   padding: 0.6rem;
   border-bottom: 1px solid #155799;
+}
+.plem__name--wid34 {
+  min-width: 34%;
 }
 .plem__name--wid20 {
   padding: 0.6rem 0 0.6rem 5rem;
@@ -1948,6 +1952,11 @@ legend {
 .plem-form form div fieldset div div label {
   font-size: 1.6rem;
   color: inherit;
+}
+.plem-form form div select {
+  padding-left: 2rem;
+  font-size: 1.8rem;
+  color: #155799;
 }
 .plem-form form div div {
   display: flex;

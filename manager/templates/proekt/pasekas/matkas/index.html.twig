@@ -36,12 +36,12 @@
         {# ------------------------- #}
     <div class="proekts-plr  ">
                 <ul class = "plem__data plem__data--col">
-                    <li class = "plem__name  plem__name-list--wid" >
+                    <li class = "plem__name plem__name--wid34 plem__name-list--wid" >
                     ПлемМатка (по ссылке -расшифровка)
                     </li> 
                     <li class = "plem__name">Кат-рия</li>
-                    <li class = "plem__name">ПерсонНомер</li>
-                   
+                    <li class = "plem__name">П-Номер</li>
+                    <li class = "plem__name">Выход</li>
                     <li class = "plem__name">
                         Статус
                         {# {{ member_status(u4astnik.status) }}  #}
@@ -55,11 +55,13 @@
                 <ul class = "plem__data">
                     <li class = "plem__name-list plem__name-list--wid plem-ramka mb0" >
                         <a class="" href="{{ path('proekt.pasekas.matkas.plemmatkas.show', {'plem_id': plemmatka.id}) }}">               
-                            <strong class="strongo strongo--kras">{{ plemmatka.name_kateg }}</strong>_{{ plemmatka.name }}              
+                            <strong class="strongo strongo--kras">{{ plemmatka.sort }}  </strong> {{ plemmatka.name }}
                         </a> 
                     </li>
                     <li class = "plem__name-list">  {{ plemmatka.name_kateg }} </li>
                     <li class = "plem__name-list"> {{ plemmatka.persona }} </li>
+                    <li class = "plem__name-list"> {{ plemmatka.goda_vixod }} </li>
+
                     <li class = "plem__name-list">{{  plemmatka_status(plemmatka.status) }}</li>
                     <li class = "plem__name-list">
                         <a   href="{{ path('proekt.pasekas.matkas.plemmatkas.redaktorss.edit', {'plemmatka_id': plemmatka.id}) }}"  class="btnn btnn--mb1 " >

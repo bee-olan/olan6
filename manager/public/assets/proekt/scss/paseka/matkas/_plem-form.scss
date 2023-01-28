@@ -48,7 +48,12 @@
                                     }
                             }    
                         }
-            }    
+            }
+            select {
+                padding-left: 2rem;
+                font-size: 1.8rem;                            
+                color:  $plem-color;
+            }
             div {
                 // form-group 
                 display: flex;

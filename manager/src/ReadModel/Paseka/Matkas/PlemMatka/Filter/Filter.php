@@ -11,4 +11,5 @@ class Filter
     public $name;
     public $persona;
     public $status = Status::ACTIVE;
+    public $god_vixod;
 }

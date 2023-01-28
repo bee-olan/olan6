@@ -8,6 +8,7 @@ use App\ReadModel\Paseka\Matkas\SparingFetcher;
 
 use App\Model\Paseka\Entity\Matkas\ChildMatka\Type as ChildMatkaType;;
 
+use App\ReadModel\Paseka\Uchasties\GroupFetcher;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,10 +17,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Form extends AbstractType
 {
     private $sparings;
+//    private $godaFetchers;
 
     public function __construct(SparingFetcher $sparings)
     {
         $this->sparings = $sparings;
+//        $this->godaFetchers = $godaFetchers;
     }
 
 
@@ -33,6 +36,12 @@ class Form extends AbstractType
                 'attr' => ['rows' => 3,
                 'placeholder' => ' Подробное описание ДочьМатки'
                 ]])
+//              ->add('goda', Type\ChoiceType::class, [
+//                'label' => 'Год выхода матки',
+//                'choices' => array_flip($this->godaFetchers->assocGod()),
+//                'expanded' => false,
+//                'multiple' => false,
+//            ])
             ->add('sparing', Type\ChoiceType::class, [
                 'label' => 'Выбрать вид   облета  ',
                 'choices' => array_flip($this->sparings->assoc()),
@@ -40,7 +49,7 @@ class Form extends AbstractType
                 'multiple' => false,
                 ])
            // ->add('parent', Type\IntegerType::class, ['required' => false])
-            ->add('plan', Type\DateType::class, [
+            ->add('plan_date', Type\DateType::class, [
                 'label' => 'Дата выхода ДочьМатки  ',
                 'required' => false, 
                 'widget' => 'single_text', 

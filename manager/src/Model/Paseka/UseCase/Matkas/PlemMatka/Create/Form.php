@@ -7,6 +7,7 @@ namespace App\Model\Paseka\UseCase\Matkas\PlemMatka\Create;
 use App\ReadModel\Paseka\Matkas\KategoriaFetcher;
 //use App\ReadModel\Paseka\Matkas\SparingFetcher;
 
+use App\ReadModel\Paseka\Sezons\Godas\GodaFetcher;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,12 +15,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Form extends AbstractType
 {
-//    private $sparings;
+    private $godaFetchers;
     private $kategorias;
 
-    public function __construct(KategoriaFetcher $kategorias)
+    public function __construct(KategoriaFetcher $kategorias, GodaFetcher $godaFetchers)
     {
-//        $this->sparings = $sparings;
+        $this->godaFetchers = $godaFetchers;
         $this->kategorias = $kategorias;
     }
 
@@ -33,12 +34,12 @@ class Form extends AbstractType
                 'expanded' => true,
                 'multiple' => false
             ])
-//            ->add('sparing', Type\ChoiceType::class, [
-//                'label' => 'Вид облёта (спаринг)',
-//                'choices' => array_flip($this->sparings->assoc()),
-//                'expanded' => true,
-//                'multiple' => false,
-//            ])
+            ->add('goda', Type\ChoiceType::class, [
+                'label' => 'Год выхода матки',
+                'choices' => array_flip($this->godaFetchers->assocGod()),
+                'expanded' => false,
+                'multiple' => false,
+            ])
             ->add('title', Type\TextType::class, array(
                 'label' => ' Внутренняя нумерация',
                 'attr' => [

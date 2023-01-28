@@ -105,31 +105,30 @@ class PlemMatkaCreateController extends AbstractController
             $this->addFlash('error', 'Пожалуйста, определитесь с номером места расположения Вашей пасеки ');
             return $this->redirectToRoute('mesto.infamesto.okrugs');
         }
+        $sort = $plemmatkas->getMaxSort() + 1;
+
+        $command = new Create\Command($id, $sort, $this->getUser()->getId() );
 
         $nomer = $nomers->get(new Id($id));
-
+//dd($nomer);
         $uchastieId =  $this->getUser()->getId();
-        $persona = $personas->get(new PersonaId($uchastieId));
-        $mestonomer = $mestonomers->get(new MestoNomerId($uchastieId));
+//        $persona = $personas->get(new PersonaId($uchastieId));
+//        $mestonomer = $mestonomers->get(new MestoNomerId($uchastieId));
 
-        $command = new Create\Command();
 
-        $command->rasaNomId = $id;
+//        $command->rasaNomId = $id;
 
-        $command->uchastieId = $uchastieId;
+//        $command->uchastieId = $uchastieId;
 
-        $command->persona = $persona->getNomer();
+//        $command->persona = $persona->getNomer();
 
-        $command->sort = $plemmatkas->getMaxSortPerson($command->persona) + 1;
+//        $command->
 //        $command->sort = $plemmatkas->getMaxSort() + 1;
 
-        $command->mesto = $mestonomer->getNomer();
+//        $command->mesto = $mestonomer->getNomer();
 
-//        $plemTitle = explode("_", $nomer->getTitle());
-//        $plemTitle[0]; // кусок1
-//        $plemTitle[1]; // кусок2
-//        $command->name =$plemTitle[0]."-".$command->sort." : ".$command->mesto."_пН-". $command->persona;
-        $command->name = $nomer->getTitle()." : ".$command->mesto."_пН-". $command->persona."_№-".$command->sort;
+
+//        $command->name = $nomer->getTitle()." : "."пн-". $command->persona."_".$command->mesto;
 //        dd( $command->name);
 
         $form = $this->createForm(Create\Form::class, $command);

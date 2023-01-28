@@ -125,10 +125,10 @@ class ChildMatka
     private $sparing;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var int
+     * @ORM\Column(type="integer")
      */
-    private $godVixod;
+    private $godaVixod;
 
 
      /**
@@ -152,7 +152,7 @@ class ChildMatka
         string $name,
         ?string $content,
         Sparing $sparing,
-        string $godVixod
+        int $godaVixod
     )
     {
         $this->id = $id;
@@ -166,7 +166,7 @@ class ChildMatka
         $this->priority = $priority;
         $this->status = Status::new();
         $this->sparing = $sparing;
-        $this->godVixod = $godVixod;
+        $this->godaVixod = $godaVixod;
         $this->executors = new ArrayCollection();
     }
 
@@ -415,11 +415,14 @@ class ChildMatka
         return $this->executors->toArray();
     }
 
-
-    public function getGodVixod(): string
+    /**
+     * @return int
+     */
+    public function getGodaVixod(): int
     {
-        return $this->godVixod;
+        return $this->godaVixod;
     }
+
 
 
 

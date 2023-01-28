@@ -60,6 +60,7 @@ class PlemSideFetcher
             ->execute()->fetch()['m'];
     }
 
+
     public function getMaxSortPerson(int $persona): int
     {
         return (int)$this->connection->createQueryBuilder()
@@ -187,13 +188,14 @@ class PlemSideFetcher
                 'p.name',
                 'p.persona',
                 'p.status',
+                'p.sort',
                 'p.rasa_nom_id',
-                'p.name_kateg'
-                //,
-              //  'm.nomer as mestonomer'
+                'p.name_kateg',
+                'p.goda_vixod '
+
             )
             ->from('paseka_matkas_plemmatkas', 'p')
-            // ->innerJoin('p', 'paseka_matkas_kategorias', 's', 'p.kategoria_id = s.id')
+//            ->innerJoin('p', 'paseka_sezons_godas', 'g', 'p.god_vixod = g.(string)id ')
         ;
 
         if ($filter->name) {
