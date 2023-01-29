@@ -2,17 +2,6 @@
 
 {% block title %}ДочьМатки{% endblock %}
 
-{# {% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects') }}">Projects</a></li>
-        {% if project %}
-            <li class="breadcrumb-item"><a href="{{ path('work.projects.project.show', {'id': project.id}) }}">{{ project.name }}</a></li>
-        {% endif %}
-        <li class="breadcrumb-item active">childmatkas</li>
-    </ol>
-{% endblock %} #}
 
 {% block sidebar %}              
     {% include('proekt/pasekas/childmatkas/side/_sidefiltr.html.twig') %}
@@ -52,10 +41,33 @@
     </div>
 <div class="tabl__header ">
     <div style="overflow: auto">
+        {#                       , {'plemmatka_id': plemmatka.id}#}
+        <table class="tabl-child  tabl-hover-child">
+           <tr>
+               <td>
+                   <a href="{{ path('proekt.pasekas.childmatkas') }}"
+                      class="btnn btnn--mb0 btnn--pt btnn--col"> Показать <strong class="strongo strongo--kras">всех  </strong> маток
+                   </a>
+
+               </td>
+               <td>
+                   <a href="{{ path('proekt.pasekas.childmatkas.own') }}"
+                      class="btnn btnn--mb0 btnn--pt btnn--col"> Найти и показать <strong class="strongo strongo--kras">моих  </strong> маток
+                   </a>
+
+               </td>
+               <td>
+                   <a href="{{ path('proekt.pasekas.childmatkas.me'  ) }}"
+                      class="btnn btnn--mb0 btnn--pt btnn--col">Найти и показать   <strong class="strongo strongo--kras">тестируемых мной </strong> маток
+                   </a>
+               </td>
+           </tr>
+       </table>
+
         <table class="tabl-child  tabl-hover-child ">
             <thead>
             <tr  >
-                <th  >Дата!!!!</th>
+                <th  >Дата!!!! </th>
                 {% if not plemmatka %}
                 <th class="tabl-col-plem "  >  ПлемМатка</th>
                 {% endif %}

@@ -16,6 +16,7 @@ class Filter
     public $executor;
     public $name;
     public $sparing;
+    public $roots;
 
     private function __construct(?string $plemmatka)
     {
@@ -24,7 +25,7 @@ class Filter
 
     public static function forPlemMatka(string $plemmatka): self
     {
-        dd($plemmatka);
+//        dd($plemmatka);
         return new self($plemmatka);
     }
 
@@ -34,6 +35,11 @@ class Filter
     }
 
     public static function all(): self
+    {
+        return new self(null);
+    }
+
+    public static function alll(): self
     {
         return new self(null);
     }

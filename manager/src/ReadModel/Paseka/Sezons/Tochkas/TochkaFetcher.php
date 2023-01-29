@@ -34,6 +34,23 @@ class TochkaFetcher
         return $tochka;
     }
 
+    public function allListTochka(string $uchasgoda): array
+    {
+        $stmt = $this->connection->createQueryBuilder()
+            ->select(
+                'id',
+                'name'
+            )
+            ->from('paseka_sezon_tochkas')
+            ->andWhere('uchasgoda_id = :uchasgodas')
+            ->setParameter(':uchasgodas', $uchasgoda)
+            ->orderBy('tochka')
+            ->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+    }
+
+
     public function allOfUchasGoda(string $uchasgoda): array
     {
         $stmt = $this->connection->createQueryBuilder()

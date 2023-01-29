@@ -33,7 +33,9 @@
 
         <a href="{{ path('proekt.pasekas.childmatkas.edit', {'id': childmatka.id}) }}" 
             class="btnn  btnn--pt btnn--col-child">Редактировать ком-рий</a>
-    
+
+        <a href="{{ path('proekt.pasekas.childmatkas.move', {'id': childmatka.id}) }}"
+            class="btnn  btnn--pt btnn--col-child">Перемстить на другой точок&hellip;</a>
 
  {% else %}
  {# участник заказавает маточку #}

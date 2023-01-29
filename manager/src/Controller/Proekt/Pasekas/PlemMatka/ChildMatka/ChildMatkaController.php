@@ -68,8 +68,72 @@ class ChildMatkaController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+///////////////////////////////////////
+    /**
+     * @Route("/me", name=".me")
+     * @param PlemMatka $plemmatka
+     * @param Request $request
+     * @return Response
+     */
+    public function me(PlemMatka $plemmatka, Request $request): Response
+    {
+//        $this->denyAccessUnlessGranted(PlemMatkaAccess::VIEW, $plemmatka);
 
+        $filter = Filter\Filter::forPlemMatka($plemmatka->getId()->getValue());
 
+//        $form = $this->createForm(Filter\Form::class, $filter, [
+//            'action' => $this->generateUrl('work.plemmatkas.plemmatka.childmatkas', ['plemmatka_id' => $plemmatka->getId()]),
+//        ]);
+        $form = $this->createForm(Filter\Form::class, $filter);
+        $form->handleRequest($request);
+
+        $pagination = $this->childmatkas->all(
+            $filter->forExecutor($this->getUser()->getId()),
+            $request->query->getInt('page', 1),
+            self::PER_PAGE,
+            $request->query->get('sort', 't.date'),
+            $request->query->get('direction', 'desc')
+        );
+
+        return $this->render('proekt/pasekas/childmatkas/index.html.twig', [
+            'plemmatka' => $plemmatka,
+            'pagination' => $pagination,
+            'form' => $form->createView(),
+        ]);
+    }
+
+//    /**
+//     * @Route("/own", name=".own")
+//     * @param PlemMatka $plemmatka
+//     * @param Request $request
+//     * @return Response
+//     */
+//    public function own(PlemMatka $plemmatka, Request $request): Response
+//    {
+//        $this->denyAccessUnlessGranted(PlemMatkaAccess::VIEW, $plemmatka);
+//
+//        $filter = Filter\Filter::forPlemMatka($plemmatka->getId()->getValue());
+//
+//        $form = $this->createForm(Filter\Form::class, $filter, [
+//            'action' => $this->generateUrl('work.plemmatkas.plemmatka.childmatkas', ['plemmatka_id' => $plemmatka->getId()]),
+//        ]);
+//        $form->handleRequest($request);
+//
+//        $pagination = $this->childmatkas->all(
+//            $filter->forAuthor($this->getUser()->getId()),
+//            $request->query->getInt('page', 1),
+//            self::PER_PAGE,
+//            $request->query->get('sort'),
+//            $request->query->get('direction')
+//        );
+//
+//        return $this->render('proekt/pasekas/childmatkas/index.html.twig', [
+//            'plemmatka' => $plemmatka,
+//            'pagination' => $pagination,
+//            'form' => $form->createView(),
+//        ]);
+//    }
+/////////////////////////////
     /**
      * @Route("/create", name=".create")
      * @param PlemMatka $plemmatka
@@ -79,7 +143,7 @@ class ChildMatkaController extends AbstractController
      */
     public function create(PlemMatka $plemmatka, Request $request, Create\Handler $handler): Response
     {
-       // $this->denyAccessUnlessGranted(ProjectAccess::VIEW, $project);
+       // $this->denyAccessUnlessGranted(PlemMatkaAccess::VIEW, $plemmatka);
 
 
         $command = new Create\Command(
