@@ -12,6 +12,7 @@ class Permission
     public const VIEW_CHILDMATKAS = 'Смотреть ДочьМаток';
     public const ZAKAZ_CHILDMATKAS = 'Заказывать   ДочьМаток';
     public const MANAGE_CHILDMATKAS_UCHASTIES = 'Участие в регистрации ДочьМаток';
+    public const ADMIN_MATKA = 'Редактировать и удалять';
 
     private $name;
 
