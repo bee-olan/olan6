@@ -15,19 +15,18 @@
 
 {% block body %}
 
-{#    {% include 'app/work/plemmatkas/plemmatka/_tabs.html.twig' %}#}
 
-{#    {% include 'app/work/plemmatkas/plemmatka/settings/_tabs.html.twig' %}#}
 
     <div class="controls">
-        <a href="{{ path('paseka.matkas.plemmatka.redaktors.departments.create', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-success">Добавить название сообщества</a>
+        <a href="{{ path('paseka.matkas.plemmatka.redaktors.departments.create', {'plemmatka_id': plemmatka.id}) }}"
+           class="btn btn-success">Добавить новый рабочий сезон для ПМ</a>
     </div>
 
     <div class="box">
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>Сообщество</th>
+                <th>Сезоны</th>
 {#                <th>Участники</th>#}
                 <th></th>
             </tr>

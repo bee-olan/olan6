@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">Пасека</a></li>
-        <li class="breadcrumb-item active">ПлемМатка</li>
+        <li class="breadcrumb-item active">ПлемМатка!</li>
     </ol>
 {% endblock %}
 
@@ -15,6 +15,7 @@
     <div class="controls">
         <a href="{{ path('paseka.matkas.plemmatka') }}" class="btn btn-success">Добавить Племенную матку</a>
     </div>
+
 
     <div class="card">
         <div class="card-body">
@@ -25,7 +26,7 @@
                 <div class="col-md-2">{{ form_widget(form.persona) }}</div>
                 <div class="col-md-2">{{ form_widget(form.status) }}</div>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">Filter</button>
+                    <button type="submit" class="btn btn-primary">Фильтр</button>
                     <a href="{{ path('paseka.matkas') }}" class="btn btn-outline-secondary">Сброс</a>
                 </div>
             </div>
@@ -38,9 +39,9 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Название', 'name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'ПерсонНомер', 'persona') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Статус', 'status') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -56,7 +57,7 @@
                     <td>{{ plemmatka_status(plemmatka.status) }}</td>
                     <td>
                         <a href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}"
-                           class="btn-my "><span class="fa fa-pencil"></span></a>
+                           class="btn-my btn-my--smm"><span class="fa fa-pencil"></span></a>
                     </td>
 
                 </tr>

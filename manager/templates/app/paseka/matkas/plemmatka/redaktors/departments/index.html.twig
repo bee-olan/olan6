@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Отделы{% endblock %}
+{% block title %}Сезоны{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
@@ -9,26 +9,24 @@
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.redaktors', {'plemmatka_id': plemmatka.id}) }}">Редактирование</a></li>
-        <li class="breadcrumb-item active">Сообщество</li>
+        <li class="breadcrumb-item active">Сезон</li>
     </ol>
 {% endblock %}
 
 {% block body %}
 
-{#    {% include 'app/work/plemmatkas/plemmatka/_tabs.html.twig' %}#}
-
-{#    {% include 'app/work/plemmatkas/plemmatka/settings/_tabs.html.twig' %}#}
 
     <div class="controls">
-        <a href="{{ path('paseka.matkas.plemmatka.redaktors.departments.create', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-success">Добавить название сообщества</a>
+        <a href="{{ path('paseka.matkas.plemmatka.redaktors.departments.create', {'plemmatka_id': plemmatka.id}) }}"
+           class="btn btn-success">Добавить СЕЗОН для племМатки</a>
     </div>
 
     <div class="box">
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>Сообщество</th>
-{#                <th>Участники</th>#}
+                <th>Сезон</th>
+                <th>Участники</th>
                 <th></th>
             </tr>
             <tbody>
@@ -36,14 +34,14 @@
             {% for department in departments %}
                 <tr>
                     <td>{{ department.name }}</td>
-{#                    <td>{{ department.members_count }}</td>#}
+                    <td>{{ department.uchasties_count }}</td>
                     <td>
                         <div class="d-flex flex-row">
                             <a href="{{ path('paseka.matkas.plemmatka.redaktors.departments.edit', {'plemmatka_id': plemmatka.id, 'id': department.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
-{#                            <form action="{{ path('paseka.matkas.plemmatka.redaktors.departments.delete', {'plemmatka_id': plemmatka.id, 'id': department.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
-{#                                <input type="hidden" name="token" value="{{ token }}" />#}
-{#                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>#}
-{#                            </form>#}
+                            <form action="{{ path('paseka.matkas.plemmatka.redaktors.departments.delete', {'plemmatka_id': plemmatka.id, 'id': department.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                <input type="hidden" name="token" value="{{ token }}" />
+                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>
+                            </form>
                         </div>
                     </td>
                 </tr>

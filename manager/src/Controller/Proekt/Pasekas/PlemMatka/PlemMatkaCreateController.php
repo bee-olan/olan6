@@ -54,7 +54,13 @@ class PlemMatkaCreateController extends AbstractController
      */
     public function index(Request $request, PlemSideFetcher $fetcher): Response
     {
-        $filter = new Filter\Filter();
+
+//        $filter = new Filter\Filter(); вместо этого
+        if ($this->isGranted('ROLE_PASEKA_MANAGE_PLEMMATKAS')) {
+            $filter = Filter\Filter::all();
+        } else {
+            $filter = Filter\Filter::forUchastie($this->getUser()->getId());
+        }
 
         $form = $this->createForm(Filter\Form::class, $filter);
         $form->handleRequest($request);

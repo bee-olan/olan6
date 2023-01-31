@@ -22,7 +22,7 @@ class Form extends AbstractType
                 'required' => false,
                 'expanded' => true,
                 'multiple' => true,
-//                'translation_domain' => 'paseka_permissions',
+                'translation_domain' => 'matka_permissions',
             ]);
     }
 

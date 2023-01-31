@@ -8,8 +8,8 @@ use Webmozart\Assert\Assert;
 
 class Permission
 {
-    public const MANAGE_PLEMMATKA_UCHASTIES = 'Участие в регистрации ПлемМаток';
-    public const VIEW_CHILDMATKAS = 'Смотреть ДочьМаток';
+    public const MANAGE_PLEMMATKA_UCHASTIES = 'Registr_PlemMatok';
+    public const VIEW_CHILDMATKAS = 'View_ChildMatka';
     public const ZAKAZ_CHILDMATKAS = 'Заказывать   ДочьМаток';
     public const MANAGE_CHILDMATKAS_UCHASTIES = 'Участие в регистрации ДочьМаток';
     public const ADMIN_MATKA = 'Редактировать и удалять';
@@ -29,6 +29,7 @@ class Permission
             self::MANAGE_CHILDMATKAS_UCHASTIES,
             self::VIEW_CHILDMATKAS,
             self::ZAKAZ_CHILDMATKAS,
+            self::ADMIN_MATKA,
         ];
     }
 

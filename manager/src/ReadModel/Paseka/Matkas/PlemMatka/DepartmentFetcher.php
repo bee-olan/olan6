@@ -33,20 +33,19 @@ class DepartmentFetcher
             ->execute();
         return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
     }
-
+// посчитать вручнкю всех участников этого проекта
     public function allOfPlemMatka(string $plemmatka): array
     {
         $stmt = $this->connection->createQueryBuilder()
             ->select(
                 'd.id',
-                'd.name'
-//                ,
-//                '(
-//                    SELECT COUNT(ms.uchastie_id)
-//                    FROM paseka_matkas_plemmatka_uchasniks ms
-//                    INNER JOIN paseka_matkas_plemmatka_uchasnik_departments md ON ms.id = md.uchasnik_id
-//                    WHERE md.department_id = d.id AND ms.plemmatka_id = :plemmatka
-//                ) AS uchasties_count'
+                'd.name',
+                '(
+                    SELECT COUNT(ms.uchastie_id) 
+                    FROM paseka_matkas_plemmatka_uchastniks ms
+                    INNER JOIN paseka_matkas_plemmatka_uchastnik_departments md ON ms.id = md.uchastnik_id
+                    WHERE md.department_id = d.id AND ms.plemmatka_id = :plemmatka
+                ) AS uchasties_count'
             )
             ->from('paseka_matkas_plemmatka_departments', 'd')
             ->andWhere('plemmatka_id = :plemmatka')

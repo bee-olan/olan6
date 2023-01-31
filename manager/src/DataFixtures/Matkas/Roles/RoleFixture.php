@@ -20,6 +20,7 @@ class RoleFixture extends Fixture
     public const REFERENCE_MANAGER = 'plemmatka_role_manager';
     public const REFERENCE_GUEST = 'plemmatka_role_guest';
     public const REFERENCE_ADMIN = 'plemmatka_role_admin';
+    public const REFERENCE_MATKOVOD = 'plemmatka_role_matkovod';
 
     public function load(ObjectManager $manager): void
     {
@@ -38,7 +39,7 @@ class RoleFixture extends Fixture
         $manager->persist($manage);
         $this->setReference(self::REFERENCE_MANAGER, $manage);
 
-        $admin = $this->createRole('Куратор', [
+        $admin = $this->createRole('Админ', [
             Permission::MANAGE_PLEMMATKA_UCHASTIES,
             Permission::VIEW_CHILDMATKAS,
             Permission::MANAGE_CHILDMATKAS_UCHASTIES,
@@ -46,6 +47,15 @@ class RoleFixture extends Fixture
         ]);
         $manager->persist($admin);
         $this->setReference(self::REFERENCE_ADMIN, $admin);
+
+        $matka = $this->createRole('Матковод', [
+            Permission::MANAGE_PLEMMATKA_UCHASTIES,
+            Permission::VIEW_CHILDMATKAS,
+            Permission::MANAGE_CHILDMATKAS_UCHASTIES,
+
+        ]);
+        $manager->persist($matka);
+        $this->setReference(self::REFERENCE_MANAGER, $matka);
 
         $manager->flush();
     }

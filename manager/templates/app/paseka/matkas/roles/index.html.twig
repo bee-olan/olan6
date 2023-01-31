@@ -28,7 +28,7 @@
                         {% for role in roles %}
                             <th style="text-align: center">
                                 <a href="{{ path('paseka.matkas.roles.show', {'id': role.id}) }}">{{ role.name }}</a>
-{#                                ({{ role.memberships_count }})#}
+                                ({{ role.uchastniks_count }})
                             </th>
                         {% endfor %}
                     </tr>
@@ -36,7 +36,7 @@
                 <tbody>
                     {% for permission in permissions %}
                         <tr>
-                            <td>{{ permission|trans({}, 'paseka_permissions') }}</td>
+                            <td>{{ permission|trans({}, 'matka_permissions') }}</td>
                             {% for role in roles %}
                                 <td style="text-align: center">
                                     {% if permission in role.permissions %}

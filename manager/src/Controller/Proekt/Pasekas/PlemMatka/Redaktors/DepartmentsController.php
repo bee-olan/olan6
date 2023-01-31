@@ -63,10 +63,10 @@ class DepartmentsController extends AbstractController
 
         $command = new Create\Command($plemmatka->getId()->getValue());
 
-        $form = $this->createForm(Create\Form::class, $command);
-        $form->handleRequest($request);
+//        $form = $this->createForm(Create\Form::class, $command);
+//        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+//        if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.matkas.plemmatka.redaktors.departments', ['plemmatka_id' => $plemmatka->getId()]);
@@ -74,11 +74,11 @@ class DepartmentsController extends AbstractController
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
-        }
+//        }
 
         return $this->render('app/paseka/matkas/plemmatka/redaktors/departments/create.html.twig', [
             'plemmatka' => $plemmatka,
-            'form' => $form->createView(),
+//            'form' => $form->createView(),
         ]);
     }
 
@@ -118,35 +118,35 @@ class DepartmentsController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/{id}/delete", name=".delete", methods={"POST"})
-//     * @param PlemMatka $plemmatka
-//     * @param string $id
-//     * @param Request $request
-//     * @param Remove\Handler $handler
-//     * @return Response
-//     */
-//    public function delete(PlemMatka $plemmatka, string $id, Request $request, Remove\Handler $handler): Response
-//    {
-//        //$this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_MEMBERS, $plemmatka);
-//
-//        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
-//            return $this->redirectToRoute('paseka.matkas.plemmatka.redaktors.departments', ['plemmatka_id' => $plemmatka->getId()]);
-//        }
-//
-//        $department = $plemmatka->getDepartment(new Id($id));
-//
-//        $command = new Remove\Command($plemmatka->getId()->getValue(), $department->getId()->getValue());
-//
-//        try {
-//            $handler->handle($command);
-//        } catch (\DomainException $e) {
-//            $this->errors->handle($e);
-//            $this->addFlash('error', $e->getMessage());
-//        }
-//
-//        return $this->redirectToRoute('paseka.matkas.plemmatka.redaktors.departments', ['plemmatka_id' => $plemmatka->getId()]);
-//    }
+    /**
+     * @Route("/{id}/delete", name=".delete", methods={"POST"})
+     * @param PlemMatka $plemmatka
+     * @param string $id
+     * @param Request $request
+     * @param Remove\Handler $handler
+     * @return Response
+     */
+    public function delete(PlemMatka $plemmatka, string $id, Request $request, Remove\Handler $handler): Response
+    {
+        //$this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_MEMBERS, $plemmatka);
+
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            return $this->redirectToRoute('paseka.matkas.plemmatka.redaktors.departments', ['plemmatka_id' => $plemmatka->getId()]);
+        }
+
+        $department = $plemmatka->getDepartment(new Id($id));
+
+        $command = new Remove\Command($plemmatka->getId()->getValue(), $department->getId()->getValue());
+
+        try {
+            $handler->handle($command);
+        } catch (\DomainException $e) {
+            $this->errors->handle($e);
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('paseka.matkas.plemmatka.redaktors.departments', ['plemmatka_id' => $plemmatka->getId()]);
+    }
 
     /**
      * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN}))

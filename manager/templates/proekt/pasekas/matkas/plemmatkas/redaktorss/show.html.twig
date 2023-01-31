@@ -19,7 +19,7 @@
 {#    {% include 'app/work/matkas/plemmatka/redaktors/_tabs.html.twig' %}#}
 
     <div class="controls">
-        <a href="{{ path('paseka.matkas.plemmatka.redaktors.edit', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ path('paseka.matkas.plemmatka.redaktors.edit', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-primary">Редактировать</a>
         {% if plemmatka.active and plemmatka.id.value != app.user.id %}
             <form action="{{ path('paseka.matkas.plemmatka.redaktors.archive', {'plemmatka_id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                 <input type="hidden" name="token" value="{{ csrf_token('archive') }}" />

@@ -170,9 +170,12 @@ class PlemMatka
         foreach ($this->departments as $department) {
             if ($department->getId()->isEqual($id)) {
                 foreach ($this->uchastniks as $uchastnik) {
-                    // if ($uchastnik->isForDepartment($id)) {
-                    //     throw new \DomainException('Unable to remove department with uchasties.');
-                    // }
+//                     if ($uchastnik->isForDepartment($id)) {
+//                         throw new \DomainException('Не удалось удалить отдел с участиемs.');
+//                     }
+                    if($uchastnik->isForDepartment($id)){
+                        throw new \DomainException('Не удалось удалить отдел с участиемs.');
+                    }
                 }
                 $this->departments->removeElement($department);
                 return;
@@ -218,7 +221,7 @@ class PlemMatka
     {
         foreach ($this->uchastniks as $uchastnik) {
             if ($uchastnik->isForUchastie($uchastie->getId())) {
-                throw new \DomainException('Uchastie already exists.');
+                throw new \DomainException('Такой участник уже добавлен.');
             }
         }
         $departments = array_map([$this, 'getDepartment'], $departmentIds);
@@ -246,7 +249,7 @@ class PlemMatka
     {
         foreach ($this->uchastniks as $uchastnik) {
             if ($uchastnik->isForUchastie($uchastie)) {
-                $this->uchastniks->removeElement($$this->uchastnik);
+                $this->uchastniks->removeElement($uchastnik);
                 return;
             }
         }
@@ -331,12 +334,22 @@ class PlemMatka
                 return $department;
             }
         }
-        throw new \DomainException('Department is not found.');
+        throw new \DomainException('раздел  не найден.');
     }
 
     public function getUchastniks()
     {
         return $this->uchastniks->toArray();
+    }
+
+    public function getUchastnik(UchastieId $id): Uchastnik
+    {
+        foreach ($this->uchastniks as $uchastnik) {
+            if ($uchastnik->isForUchastie($id)) {
+                return $uchastnik;
+            }
+        }
+        throw new \DomainException('Такого участника нет.');
     }
 
     /**

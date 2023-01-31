@@ -8,22 +8,19 @@
         <li class="breadcrumb-item"><a href="{{ path('paseka') }}">Пасека</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas') }}">ПлемМатки</a></li>
         <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
-        <li class="breadcrumb-item active">Редактировать</li>
+        <li class="breadcrumb-item active">Редактировать!!!</li>
     </ol>
 {% endblock %}
 
 {% block body %}
 
-{#    {% include 'app/paseka/matkas/plemmatka/_tabs.html.twig' %}#}
-
-{#    {% include 'app/work/matkas/plemmatka/redaktors/_tabs.html.twig' %}#}
 
     <div class="controls">
-        <a href="{{ path('paseka.matkas.plemmatka.redaktors.edit', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ path('paseka.matkas.plemmatka.redaktors.edit', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-primary">Редактировать?</a>
         {% if plemmatka.active and plemmatka.id.value != app.user.id %}
             <form action="{{ path('paseka.matkas.plemmatka.redaktors.archive', {'plemmatka_id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                 <input type="hidden" name="token" value="{{ csrf_token('archive') }}" />
-                <button type="submit" class="btn btn-danger">Archive</button>
+                <button type="submit" class="btn btn-danger">Архивировать?</button>
             </form>
         {% endif %}
         {% if plemmatka.archived %}
@@ -34,7 +31,7 @@
         {% endif %}
         <form action="{{ path('paseka.matkas.delete', {'id': plemmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
             <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-danger">Удалить?</button>
         </form>
 
 {#        <td >#}
@@ -44,8 +41,10 @@
 {#            </form>#}
 {#        </td>#}
 
-        <a href="{{ path('paseka.matkas.plemmatka.redaktors.departments', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-primary">Отделы!!!!!!!</a>
-        <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties', {'plemmatka_id': plemmatka.id}) }}" class="btn btn-primary">Привязать участника</a>
+        <a href="{{ path('paseka.matkas.plemmatka.redaktors.departments', {'plemmatka_id': plemmatka.id}) }}"
+                class="btn btn-primary">Смотреть СЕЗОНЫ</a>
+        <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties', {'plemmatka_id': plemmatka.id}) }}"
+                class="btn btn-primary">Привязать участника</a>
 
     </div>
 
@@ -53,12 +52,28 @@
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <th>Name</th>
+
                     <td>{{ plemmatka_kategoria(plemmatka.nameKateg) }}{{ plemmatka.name }}</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <th>Status</th>
-                    <td>{{ plemmatka_status(plemmatka.status.name) }}</td>
+
+                    <th>...</th>
+                    <td>
+                        <table class="table table-bordered">
+                            <tbody>
+                            {% for departamen in departamens %}
+                            <tr>
+                                <th>сезон</th>
+                                <td>{{departamen.name }}</td>
+                                <th>Status</th>
+                                <td>{{ plemmatka_status(plemmatka.status.name) }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
+
                 </tr>
             </tbody>
         </table>

@@ -37,7 +37,8 @@ class Handler
     public function handle(Command $command): void
     {
         $plemmatka = $this->plemmatkas->get(new Id($command->plemmatka));
-        $uchastie = $this->uchasties->get(new UchastieId($command->uchastie));
+
+        $uchastie = $this->uchasties->get(new UchastieId($plemmatka->getUchastieId()));
 
         $departments = array_map(static function (string $id): DepartmentId {
             return new DepartmentId($id);

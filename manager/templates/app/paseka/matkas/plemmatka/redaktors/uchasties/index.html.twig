@@ -28,9 +28,9 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Сообщество</th>
-                <th>Роли</th>
+                <th>Имя ( Ник )</th>
+                <th>Сезон</th>
+                <th>Роль</th>
                 <th></th>
             </tr>
             </thead>
@@ -40,7 +40,7 @@
                 <tr>
                     <td>
                         <a href="{{ path('paseka.uchasties.show', {'id': uchastnik.uchastie.id}) }}" target="_blank" class="pull-right"><span class="fa fa-external-link"></span></a>
-                        {{ uchastnik.uchastie.name.full }}
+                        {{ uchastnik.uchastie.name.full }} ( {{ uchastnik.uchastie.name.nike }} )
                     </td>
                     <td>
                         <ul class="list-unstyled my-0">
@@ -58,11 +58,12 @@
                     </td>
                     <td>
                         <div class="d-flex flex-row">
-{#                            <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.edit', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>#}
-{#                            <form action="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.revoke', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
-{#                                <input type="hidden" name="token" value="{{ token }}" />#}
-{#                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>#}
-{#                            </form>#}
+                            <a href="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.edit', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}"
+                               class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>
+                            <form action="{{ path('paseka.matkas.plemmatka.redaktors.uchasties.revoke', {'plemmatka_id': plemmatka.id, 'uchastie_id': uchastnik.uchastie.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                <input type="hidden" name="token" value="{{ token }}" />
+                                <button type="submit" class="btn btn-sm btn-danger"><span class="fa fa-times"></span></button>
+                            </form>
                         </div>
                     </td>
                 </tr>

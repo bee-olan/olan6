@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Paseka\Entity\Matkas\PlemMatka;
 
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Department;
+use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Id as DepartmentId;
 use App\Model\Paseka\Entity\Matkas\Role\Role;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
@@ -176,14 +177,14 @@ class Uchastnik
     public function guardDepartments(array $departments): void
     {
         if (\count($departments) === 0) {
-            throw new \DomainException('Set at least one department.');
+            throw new \DomainException('Установите хотя бы один отдел.');
         }
     }
 
     public function guardRoles(array $roles): void
     {
         if (\count($roles) === 0) {
-            throw new \DomainException('Set at least one role.');
+            throw new \DomainException('Установите хотя бы одину роль.');
         }
     }
 }

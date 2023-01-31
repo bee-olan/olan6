@@ -192,11 +192,19 @@ class PlemSideFetcher
                 'p.rasa_nom_id',
                 'p.name_kateg',
                 'p.goda_vixod '
+//                ,
+//                'd.name as departs'
 
             )
-            ->from('paseka_matkas_plemmatkas', 'p')
-//            ->innerJoin('p', 'paseka_sezons_godas', 'g', 'p.god_vixod = g.(string)id ')
-        ;
+            ->from('paseka_matkas_plemmatkas', 'p');
+
+        if ($filter->uchastie) {
+            $qb->andWhere('EXISTS (
+                SELECT ms.uchastie_id FROM paseka_matkas_plemmatka_uchastniks ms WHERE ms.plemmatka_id = p.id AND ms.uchastie_id = :uchastie
+            )');
+            $qb->setParameter(':uchastie', $filter->uchastie);
+        }
+
 
         if ($filter->name) {
             $qb->andWhere($qb->expr()->like('LOWER(p.name)', ':name'));

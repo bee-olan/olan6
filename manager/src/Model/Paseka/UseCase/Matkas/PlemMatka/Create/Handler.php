@@ -8,6 +8,8 @@ use App\Model\Flusher;
 use App\Model\Mesto\Entity\InfaMesto\Id as MestoNomerId;
 use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
 
+use App\Model\Paseka\Entity\Matkas\PlemMatka\Department\Id as DepartmentId;
+
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\Id;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatkaRepository;
@@ -57,9 +59,9 @@ class Handler
     public function handle(Command $command): void
     {
         $goda = $this->godas->get(new GodaId($command->goda));
-//dd( $goda);
+
         $kategoria = $this->kategorias->get(new KategoriaId($command->kategoria));
-//
+
         $persona = $this->personas->get(new PersonaId($command->uchastieId));
 
         $mestonomer = $this->mestonomers->get(new MestoNomerId($command->uchastieId));
@@ -97,6 +99,14 @@ class Handler
         );
 
         $this->plemmatkas->add($plemmatka);
+
+//        $nach = $plemmatka->getGodaVixod()+ count($plemmatka->getDepartments());
+//
+//        $command->name = $nach." - ".($nach +1);
+//        $plemmatka->addDepartment(
+//            DepartmentId::next(),
+//            $command->name
+//        );
 
         $this->flusher->flush();
     }
