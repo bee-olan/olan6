@@ -14,6 +14,7 @@ use App\ReadModel\Paseka\Matkas\PlemMatka\DepartmentFetcher;
 //use App\Security\Voter\Work\Projects\ProjectAccess;
 use App\Controller\ErrorHandler;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
+use App\Security\Voter\Proekt\Matkas\PlemMatkaAccess;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +42,7 @@ class DepartmentsController extends AbstractController
      */
     public function index(PlemMatka $plemmatka, DepartmentFetcher $departments): Response
     {
-       // $this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_MEMBERS, $plemmatka);
+        $this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_UCHASTIES, $plemmatka);
 
 
         return $this->render('app/paseka/matkas/plemmatka/redaktors/departments/index.html.twig', [
@@ -59,7 +60,7 @@ class DepartmentsController extends AbstractController
      */
     public function create(PlemMatka $plemmatka, Request $request, Create\Handler $handler): Response
     {
-        //$this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_MEMBERS, $plemmatka);
+        $this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_UCHASTIES, $plemmatka);
 
         $command = new Create\Command($plemmatka->getId()->getValue());
 
@@ -92,7 +93,7 @@ class DepartmentsController extends AbstractController
      */
     public function edit(PlemMatka $plemmatka, string $id, Request $request, Edit\Handler $handler): Response
     {
-        //$this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_MEMBERS, $plemmatka);
+        $this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_UCHASTIES, $plemmatka);
 
         $department = $plemmatka->getDepartment(new Id($id));
 
@@ -128,7 +129,7 @@ class DepartmentsController extends AbstractController
      */
     public function delete(PlemMatka $plemmatka, string $id, Request $request, Remove\Handler $handler): Response
     {
-        //$this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_MEMBERS, $plemmatka);
+        $this->denyAccessUnlessGranted(PlemMatkaAccess::MANAGE_UCHASTIES, $plemmatka);
 
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('paseka.matkas.plemmatka.redaktors.departments', ['plemmatka_id' => $plemmatka->getId()]);

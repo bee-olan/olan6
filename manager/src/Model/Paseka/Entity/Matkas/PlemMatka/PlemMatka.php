@@ -211,6 +211,17 @@ class PlemMatka
         $this->status = Status::active();
     }
 
+    public function hasUchastie(UchastieId $id): bool
+    {
+        foreach ($this->uchastniks as $uchastnik) {
+            if ($uchastnik->isForUchastie($id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     /**
      * @param Uchastie $uchastie
      * @param DepartmentId[] $departmentIds
@@ -255,6 +266,17 @@ class PlemMatka
         }
         throw new \DomainException('Uchastie is not found.');
     }
+
+    public function isUchastieGranted(UchastieId $id, string $permission): bool
+    {
+        foreach ($this->uchastniks as $uchastnik) {
+            if ($uchastnik->isForUchastie($id)) {
+                return $uchastnik->isGranted($permission);
+            }
+        }
+        return false;
+    }
+
 
     public function isArchived(): bool
     {

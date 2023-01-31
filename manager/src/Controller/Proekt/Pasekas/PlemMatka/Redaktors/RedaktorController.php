@@ -10,6 +10,7 @@ use  App\Model\Paseka\UseCase\Matkas\PlemMatka\Edit;
 use App\Model\Paseka\UseCase\Matkas\PlemMatka\Archive;
 
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
+use App\Security\Voter\Proekt\Matkas\PlemMatkaAccess;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,7 +38,8 @@ class RedaktorController extends AbstractController
      */
     public function show(PlemMatka $plemmatka): Response
     {
-        //$this->denyAccessUnlessGranted(ProjectAccess::EDIT, $project);
+
+        $this->denyAccessUnlessGranted(PlemMatkaAccess::EDIT, $plemmatka);
 
         return $this->render('app/paseka/matkas/plemmatka/redaktors/show.html.twig', compact('plemmatka'));
     }
@@ -51,7 +53,7 @@ class RedaktorController extends AbstractController
      */
     public function edit(PlemMatka $plemmatka, Request $request, Edit\Handler $handler): Response
     {
-       // $this->denyAccessUnlessGranted(ProjectAccess::EDIT, $project);
+        $this->denyAccessUnlessGranted(PlemMatkaAccess::EDIT, $plemmatka);
 
         $command = Edit\Command::fromPlemMatka($plemmatka);
 
@@ -87,7 +89,7 @@ class RedaktorController extends AbstractController
             return $this->redirectToRoute('paseka.matkas.plemmatka.show', ['id' => $plemmatka->getId()]);
         }
 
-        // $this->denyAccessUnlessGranted(PlemMatkaAccess::EDIT, plemmatka);
+         $this->denyAccessUnlessGranted(PlemMatkaAccess::EDIT, plemmatka);
 
         $command = new Archive\Command($plemmatka->getId()->getValue());
 
@@ -103,20 +105,20 @@ class RedaktorController extends AbstractController
 //
 //    /**
 //     * @Route("/reinstate", name=".reinstate", methods={"POST"})
-//     * @param Project $project
+//     * @param PlemMatka $plemmatka
 //     * @param Request $request
 //     * @param Reinstate\Handler $handler
 //     * @return Response
 //     */
-//    public function reinstate(Project $project, Request $request, Reinstate\Handler $handler): Response
+//    public function reinstate(PlemMatka $plemmatka, Request $request, Reinstate\Handler $handler): Response
 //    {
 //        if (!$this->isCsrfTokenValid('reinstate', $request->request->get('token'))) {
-//            return $this->redirectToRoute('work.projects.project.settings', ['project_id' => $project->getId()]);
+//            return $this->redirectToRoute('work.plemmatkas.plemmatka.settings', ['plemmatka_id' => $plemmatka->getId()]);
 //        }
 //
-//        $this->denyAccessUnlessGranted(ProjectAccess::EDIT, $project);
+//        $this->denyAccessUnlessGranted(PlemMatkaAccess::EDIT, $plemmatka);
 //
-//        $command = new Reinstate\Command($project->getId()->getValue());
+//        $command = new Reinstate\Command($plemmatka->getId()->getValue());
 //
 //        try {
 //            $handler->handle($command);
@@ -125,7 +127,7 @@ class RedaktorController extends AbstractController
 //            $this->addFlash('error', $e->getMessage());
 //        }
 //
-//        return $this->redirectToRoute('work.projects.project.settings', ['project_id' => $project->getId()]);
+//        return $this->redirectToRoute('work.plemmatkas.plemmatka.settings', ['plemmatka_id' => $plemmatka->getId()]);
 //    }
 
 
