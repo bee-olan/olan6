@@ -53,8 +53,8 @@ class SideFilterFetcher
                 'g.name as group',
                 'uchkak',
                  'm.status',
-                '(SELECT COUNT(*) FROM paseka_sezons_uchasgodas ug WHERE ug.uchastie_id = m.id) as uchasgodas_count'
-            )
+                '(SELECT COUNT(*) FROM paseka_matkas_plemmatka_uchastniks ms WHERE ms.uchastie_id = m.id) as uchastniks_count',
+                '(SELECT COUNT(*) FROM paseka_sezons_uchasgodas ug WHERE ug.uchastie_id = m.id) as uchasgodas_count'            )
             ->from('paseka_uchasties_uchasties', 'm')
             ->innerJoin('m', 'paseka_uchasties_groups', 'g', 'm.group_id = g.id');
            // ->innerJoin('m', 'paseka_uchasties_personas', 'p', 'm.id = p.id');

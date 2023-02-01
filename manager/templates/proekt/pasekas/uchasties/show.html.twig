@@ -12,10 +12,8 @@
 
 {% block kroxii %}
     <a href="{{ path('proekt') }}">Главная</a>
-    {# <a href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>
-    <a href="{{ path('sait.uchastiess.personass.diapazon') }}">Диапазон</a>
-     #}
-     <span class="aktiv">Личный  кабинет</span>
+    <a href="{{ path('proekt.pasekas.uchasties') }}">Список участников</a>
+     <span class="aktiv">Личный  кабинет...</span>
    
 {% endblock %}
 
@@ -86,5 +84,29 @@
             </tbody>
         </table>
     </div>
+
+    {% if departments %}
+        <div class="box">
+            <table class="tabl tabl-bordered">
+                <thead>
+                <tr>
+                    <th>ПлемМатка</th>
+                    <th>Сезон</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for department in departments %}
+                    <tr>
+                        <td>
+                            {{ department.plemmatka_name }}
+                            {#                            <a href="{{ path('paseka.matkas.plemmatkas.show', {'id': department.plemmatka_id}) }}">{{ department.plemmatka_name }}</a>#}
+                        </td>
+                        <td>{{ department.department_name }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 
 {% endblock %}

@@ -14,6 +14,7 @@ use App\Annotation\Guid;
 
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 
+use App\ReadModel\Paseka\Matkas\PlemMatka\DepartmentFetcher;
 use App\ReadModel\Paseka\Uchasties\PersonaFetcher;
 use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
 
@@ -69,6 +70,7 @@ class InformController extends AbstractController
         return $this->render('proekt/pasekas/uchasties/index.html.twig', [
             'pagination' => $pagination,
             'form' => $form->createView(),
+
         ]);
     }
  
@@ -93,11 +95,15 @@ class InformController extends AbstractController
     /**
      * @Route("/show/{id}", name=".show", requirements={"id"=Guid::PATTERN})
      * @param Uchastie $uchastie
+     * @param DepartmentFetcher $fetcher
      * @return Response
      */
-    public function show(Uchastie $uchastie): Response
+    public function show(DepartmentFetcher $fetcher, Uchastie $uchastie): Response
     {
-        return $this->render('proekt/pasekas/uchasties/show.html.twig', compact('uchastie'));
+        $departments = $fetcher->allOfUchastie($uchastie->getId()->getValue());
+
+        return $this->render('proekt/pasekas/uchasties/show.html.twig',
+            compact('uchastie', 'departments'));
     }
 
 //     /**

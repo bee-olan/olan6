@@ -11,7 +11,7 @@
     {# <a href="{{ path('sait.uchastiess.personass.inform') }}">Участники</a>
     <a href="{{ path('sait.uchastiess.personass.diapazon') }}">Диапазон</a>
      #}
-     <span class="aktiv">ПерсонНомера</span>
+     <span class="aktiv">Список участноков</span>
    
 {% endblock %}
 
@@ -34,6 +34,7 @@
             {# <li class = "tabll__list-li tabll__linia">  {{ u4astnik.mesto }} </li> #}
             <li class = "uch-tabl__list-li uch-tabl__linia"> email  </li>
             <li class = "uch-tabl__list-li uch-tabl__linia">Группа</li>
+            <li class = "uch-tabl__list-li uch-tabl__linia" >ПлемМатки</li>
             <li class = "uch-tabl__list-li uch-tabl__linia" >Сезонов</li>
             <li class = "uch-tabl__list-li uch-tabl__linia">
                 Статус
@@ -52,6 +53,7 @@
                         {# <li class = "tabll__list-li tabll__linia">  {{ u4astnik.mesto }} </li> #}
                         <li class = "uch-tabl__list-li uch-tabl__linia"> {{ u4astnik.email }} </li>
                         <li class = "uch-tabl__list-li uch-tabl__linia">{{ u4astnik.group }}</li>
+                    <li class = "uch-tabl__list-li uch-tabl__linia">{{ u4astnik.uchastniks_count }}</li>
                         <li class = "uch-tabl__list-li uch-tabl__linia">{{ u4astnik.uchasgodas_count }}</li>
                         <li class = "uch-tabl__list-li uch-tabl__linia">
                             {# {{u4astnik.status}} #}

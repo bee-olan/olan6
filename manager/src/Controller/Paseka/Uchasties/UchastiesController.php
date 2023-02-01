@@ -14,6 +14,7 @@ use App\Model\Paseka\UseCase\Uchasties\Uchastie\Edit;
 use App\Model\Paseka\UseCase\Uchasties\Uchastie\Reinstate;
 use App\Model\Paseka\UseCase\Uchasties\Uchastie\Create;
 use App\Model\Paseka\UseCase\Uchasties\Uchastie\Move;
+use App\ReadModel\Paseka\Matkas\PlemMatka\DepartmentFetcher;
 use App\ReadModel\Paseka\Uchasties\Uchastie\Filter;
 use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
 use Psr\Log\LoggerInterface;
@@ -227,10 +228,14 @@ class UchastiesController extends AbstractController
     /**
      * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
      * @param Uchastie $uchastie
+     * @param DepartmentFetcher $fetcher
      * @return Response
      */
-    public function show(Uchastie $uchastie): Response
+    public function show(Uchastie $uchastie, DepartmentFetcher $fetcher): Response
     {
-        return $this->render('app/paseka/uchasties/show.html.twig', compact('uchastie'));
+        $departments = $fetcher->allOfUchastie($uchastie->getId()->getValue());
+
+        return $this->render('app/paseka/uchasties/show.html.twig',
+            compact('uchastie', 'departments'));
     }
 }

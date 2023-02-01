@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Mesto\InfaMesto;
 
 
+use App\Controller\ErrorHandler;
 use App\Model\Mesto\Entity\Okrugs\Okrug;
 use App\ReadModel\Mesto\Oblasts\OblastFetcher;
 
@@ -21,11 +22,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class OblastInfaController extends AbstractController
 {
-    private $logger;
+    private $errors;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(ErrorHandler $errors)
     {
-        $this->logger = $logger;
+        $this->errors = $errors;
     }
 
     /**

@@ -39,12 +39,12 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Имя', 'name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Участие как', 'uchkak') }}</th>
                 <th>Сезонов</th>
-                 {# <th>{{ knp_pagination_sortable(pagination, 'Email', 'email') }}</th> #}
-                <th>{{ knp_pagination_sortable(pagination, 'Group', 'group') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>
+                <th>ПлемМатки</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Группа', 'group') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Статус', 'status') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -53,6 +53,7 @@
                     <td><a href="{{ path('paseka.uchasties.show', {'id': uchastie.id}) }}">{{ uchastie.name }}</a></td>
                     <td>{{ user_uchkak(uchastie.uchkak) }}</td>
                      <td>{{ uchastie.uchasgodas_count }}</td>
+                    <td>{{ uchastie.uchastniks_count }}</td>
                     <td>{{ uchastie.group }}</td>
                     <td>{{ uchastie_status(uchastie.status) }}</td>
                 </tr>

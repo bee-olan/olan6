@@ -21,7 +21,7 @@
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <th>Name</th>
+                    <th>Имя (Ник!!)</th>
                     <td>{{ uchastie.name.full }}</td>
                    
 {#					<td>#}
@@ -79,25 +79,28 @@
         </table>
     </div>
 
-{#    {% if departments %}#}
-{#        <div class="box">#}
-{#            <table class="table table-bordered">#}
-{#                <thead>#}
-{#                <tr>#}
-{#                    <th>Project</th>#}
-{#                    <th>Department</th>#}
-{#                </tr>#}
-{#                </thead>#}
-{#                <tbody>#}
-{#                {% for department in departments %}#}
-{#                    <tr>#}
-{#                        <td><a href="{{ path('work.projects.project.show', {'id': department.project_id}) }}">{{ department.project_name }}</a></td>#}
-{#                        <td>{{ department.department_name }}</td>#}
-{#                    </tr>#}
-{#                {% endfor %}#}
-{#                </tbody>#}
-{#            </table>#}
-{#        </div>#}
-{#    {% endif %}#}
+    {% if departments %}
+        <div class="box">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ПлемМатка</th>
+                    <th>Сезон</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for department in departments %}
+                    <tr>
+                        <td>
+                            {{ department.plemmatka_name }}
+{#                            <a href="{{ path('paseka.matkas.plemmatkas.show', {'id': department.plemmatka_id}) }}">{{ department.plemmatka_name }}</a>#}
+                        </td>
+                        <td>{{ department.department_name }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 
 {% endblock %}

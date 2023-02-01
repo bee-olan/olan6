@@ -157,11 +157,6 @@ class PersonasController extends AbstractController
             return $this->redirectToRoute('paseka.uchasties.personas', ['person' => $person]);
         }
 
-          //dd($this->getUser()->getId());
-
-		//$user = $this->users->findDetail($this->getUser()->getId());
-
-        //$command = new Create\Command($user->id);
 
 		$command = new Create\Command($this->getUser()->getId() );
         $command->nomer = $person;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Mesto\InfaMesto;
 
+use App\Controller\ErrorHandler;
 use App\Model\Mesto\Entity\InfaMesto\Id;
 use App\Model\Mesto\Entity\InfaMesto\MestoNomerRepository;
 use App\ReadModel\Mesto\InfaMesto\MestoNomerFetcher;
@@ -24,11 +25,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MestoNomerController  extends AbstractController
 {
-    private $logger;
+    private $errors;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(ErrorHandler $errors)
     {
-        $this->logger = $logger;
+        $this->errors = $errors;
     }
 
     /**
@@ -57,7 +58,7 @@ class MestoNomerController  extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('paseka.uchasties.uchastie');
             } catch (\DomainException $e) {
-                $this->logger->warning($e->getMessage(), ['exception' => $e]);
+                $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
 

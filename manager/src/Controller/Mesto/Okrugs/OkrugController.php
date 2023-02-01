@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Mesto\Okrugs;
 
+use App\Controller\ErrorHandler;
 use App\Model\Mesto\Entity\Okrugs\Okrug;
 
 use App\Model\Mesto\UseCase\Okrugs\Create;
@@ -24,11 +25,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class OkrugController extends AbstractController
 {
-    private $logger;
+    private $errors;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(ErrorHandler $errors)
     {
-        $this->logger = $logger;
+        $this->errors = $errors;
     }
 
     /**
@@ -60,7 +61,7 @@ class OkrugController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('mesto.okrug');
             } catch (\DomainException $e) {
-                $this->logger->warning($e->getMessage(), ['exception' => $e]);
+                $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -89,7 +90,7 @@ class OkrugController extends AbstractController
                 $handler->handle($command);
                 return $this->redirectToRoute('mesto.okrug.show', ['id' => $okrug->getId()]);
             } catch (\DomainException $e) {
-                $this->logger->warning($e->getMessage(), ['exception' => $e]);
+                $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
         }
@@ -119,7 +120,7 @@ class OkrugController extends AbstractController
             $handler->handle($command);
             return $this->redirectToRoute('mesto.okrug');
         } catch (\DomainException $e) {
-            $this->logger->warning($e->getMessage(), ['exception' => $e]);
+            $this->errors->handle($e);
             $this->addFlash('error', $e->getMessage());
         }
 
