@@ -180,8 +180,8 @@
             {% if childmatka.content %}
                 <div class="card-m mb-3">
                     <div class="card-body-m pb-0">
-                        {{childmatka.content}}
-                       {# {{ childmatka.content|markdown|purify|work_processor }} #}
+{#                        {{childmatka.content}}#}
+                        {{ childmatka.content|markdown }}
                     </div>
                 </div>
             {% endif %}

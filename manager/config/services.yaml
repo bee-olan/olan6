@@ -80,5 +80,7 @@ services:
     App\Widget\:
         resource: '../src/Widget'
         tags: ['twig.extension']
+
+    cebe\markdown\MarkdownExtra:
         
            

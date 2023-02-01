@@ -136,6 +136,7 @@
       <path value="$PROJECT_DIR$/manager/vendor/symfony/event-dispatcher-contracts" />
       <path value="$PROJECT_DIR$/manager/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/manager/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/manager/vendor/cebe/markdown" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Proekt\Pasekas\ChildMatkas;
 
-//use App\Model\Work\Entity\Projects\Project\Project;
+//use App\Model\Work\Entity\PlemMatkas\PlemMatka\PlemMatka;
 use App\Model\Paseka\UseCase\Matkas\ChildMatka\Create;
 use App\Model\Paseka\UseCase\Matkas\ChildMatka\ChildOf;
 use App\Model\Paseka\UseCase\Matkas\ChildMatka\Edit;
@@ -23,10 +23,12 @@ use App\Model\Paseka\UseCase\Matkas\ChildMatka\Type;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
 use App\ReadModel\Proekt\Pasekas\ChildMatka\Side\Filter;
 use App\ReadModel\Proekt\Pasekas\ChildMatka\Side\ChildSideFetcher;
-//use App\Security\Voter\Work\Projects\ProjectAccess;
+
 use App\Controller\ErrorHandler;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
 use App\ReadModel\Proekt\Pasekas\PlemMatka\Side\PlemSideFetcher;
+use App\Security\Voter\Proekt\Matkas\ChildMatkaAccess;
+use App\Security\Voter\Proekt\Matkas\PlemMatkaAccess;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,11 +59,13 @@ class ChildMatkasController extends AbstractController
      */
     public function index(Request $request, ChildSideFetcher $childmatkas): Response
     {
-        // if ($this->isGranted('ROLE_WORK_MANAGE_PROJECTS')) {
+
+
+         if ($this->isGranted('ROLE_WORK_MANAGE_PROJECTS')) {
              $filter = Filter\Filter::all();
-        // } else {
-         //   $filter = Filter\Filter::all()->forUchastie($this->getUser()->getId());
-       // }
+         } else {
+            $filter = Filter\Filter::all()->forUchastie($this->getUser()->getId());
+        }
 
         $form = $this->createForm(Filter\Form::class, $filter);
         $form->handleRequest($request);
@@ -91,7 +95,7 @@ class ChildMatkasController extends AbstractController
      */
     public function create( PlemMatka $plemmatka, Request $request, Create\Handler $handler): Response
     {
-       // $this->denyAccessUnlessGranted(ProjectAccess::VIEW, $project);
+        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
 
         $command = new Create\Command(
@@ -131,7 +135,7 @@ class ChildMatkasController extends AbstractController
      */
     public function edit(ChildMatka $childmatka, Request $request, Edit\Handler $handler): Response
     {
-        //$this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = Edit\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
 
@@ -164,7 +168,7 @@ class ChildMatkasController extends AbstractController
 //     */
 //    public function move(ChildMatka $childmatka, Request $request, Move\Handler $handler): Response
 //    {
-//        // $this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+//        // $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 //
 //        $command = Move\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
 //

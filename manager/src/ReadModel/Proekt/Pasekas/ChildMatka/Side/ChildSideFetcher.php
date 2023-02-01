@@ -70,11 +70,11 @@ class ChildSideFetcher
             ->innerJoin('t', 'paseka_uchasties_personas', 'u', 't.author_id = u.id')
         ;
 
-//        if ($filter->member) {
-//            $qb->innerJoin('t', 'paseka_matkas_plemmatka_memberships', 'ms', 't.plemmatka_id = ms.plemmatka_id');
-//            $qb->andWhere('ms.member_id = :member');
-//            $qb->setParameter(':member', $filter->member);
-//        }
+        if ($filter->uchastie) {
+            $qb->innerJoin('t', 'paseka_matkas_plemmatka_uchastniks', 'ms', 't.plemmatka_id = ms.plemmatka_id');
+            $qb->andWhere('ms.uchastie_id = :uchastie');
+            $qb->setParameter(':uchastie', $filter->uchastie);
+        }
 
         if ($filter->plemmatka) {
             $qb->andWhere('t.plemmatka_id = :plemmatka');
