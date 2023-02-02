@@ -137,6 +137,8 @@
       <path value="$PROJECT_DIR$/manager/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/manager/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/manager/vendor/cebe/markdown" />
+      <path value="$PROJECT_DIR$/manager/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/manager/vendor/exercise/htmlpurifier-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

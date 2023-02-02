@@ -6,11 +6,7 @@ namespace App\ReadModel\Proekt\Pasekas\ChildMatka\Side;
 
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
 use App\ReadModel\Proekt\Pasekas\ChildMatka\Side\Filter\Filter;
-//use Doctrine\DBAL\Connection;
-//use Doctrine\DBAL\FetchMode;
-//use Knp\Component\Pager\Pagination\PaginationInterface;
-//use Knp\Component\Pager\Pagination\SlidingPagination;
-//use Knp\Component\Pager\PaginatorInterface;
+
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,10 +23,11 @@ class ChildSideFetcher
     {
         $this->connection = $connection;
         $this->paginator = $paginator;
+
         $this->repository = $em->getRepository(ChildMatka::class);
     }
 
-    public function find(int $id): ?ChildMatka
+    public function find(string $id): ?ChildMatka
     {
         return $this->repository->find($id);
     }

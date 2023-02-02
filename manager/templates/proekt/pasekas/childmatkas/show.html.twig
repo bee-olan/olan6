@@ -181,13 +181,13 @@
                 <div class="card-m mb-3">
                     <div class="card-body-m pb-0">
 {#                        {{childmatka.content}}#}
-                        {{ childmatka.content|markdown }}
+                        {{ childmatka.content|markdown|purify|work_processor }}
                     </div>
                 </div>
             {% endif %}
 
             <div class="card-m">
-                <div class="card-header-m">Выполненные действия</div>
+                <div class="card-header-m">Выполненные действия!!!</div>
                 <div class="card-body-m">
                     <div class="direct-chat">
                         <div class="direct-chat-messages">
