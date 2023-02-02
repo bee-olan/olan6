@@ -174,11 +174,12 @@ class ChildSideFetcher
             ->innerJoin('t', 'paseka_uchasties_personas', 'u', 't.author_id = u.id')
             ->innerJoin('t', 'paseka_matkas_sparings', 's', 't.sparing_id = s.id')
         ;
-        // if ($filter->member) {
-        //     $qb->innerJoin('t', 'work_projects_project_memberships', 'ms', 't.project_id = ms.project_id');
-        //     $qb->andWhere('ms.member_id = :member');
-        //     $qb->setParameter(':member', $filter->member);
-        // }
+
+       if ($filter->uchastie) {
+           $qb->innerJoin('t', 'paseka_matkas_plemmatka_uchastniks', 'ms', 't.plemmatka_id = ms.plemmatka_id');
+           $qb->andWhere('ms.uchastie_id = :uchastie');
+           $qb->setParameter(':uchastie', $filter->uchastie);
+       }
 
         if ($filter->plemmatka) {
             $qb->andWhere('t.plemmatka_id = :plemmatka');
@@ -190,9 +191,19 @@ class ChildSideFetcher
             $qb->setParameter(':author', $filter->author);
         }
 
-        if ($filter->name) {
-            $qb->andWhere($qb->expr()->like('LOWER(t.name)', ':name'));
-            $qb->setParameter(':name', '%' . mb_strtolower($filter->name) . '%');
+       if ($filter->text) {
+           $vector = "(setweight(to_tsvector(t.name),'A') || setweight(to_tsvector(coalesce(t.content,'')), 'B'))";
+           $query = 'plainto_tsquery(:text)';
+           $qb->andWhere($qb->expr()->orX(
+               $qb->expr()->like('LOWER(CONCAT(t.name, \' \', coalesce(t.content, \'\')))', ':text'),
+               "$vector @@ $query"
+           ));
+           $qb->setParameter(':text', '%' . mb_strtolower($filter->text) . '%');
+           if (empty($sort)) {
+               $sort = "ts_rank($vector, $query)";
+               $direction = 'desc';
+           }
+
         }
 
         if ($filter->type) {
@@ -231,7 +242,7 @@ class ChildSideFetcher
 //            throw new \UnexpectedValueException('Cannot sort by ' . $sort);
 //        }
 
-        $qb->orderBy($sort, $direction);
+        $qb->orderBy($sort ?: 't.id', $direction === 'desc' ? 'desc' : 'asc');
 
 //        /** @var SlidingPagination $pagination */
         $pagination = $this->paginator->paginate($qb, $page, $size);
@@ -291,26 +302,36 @@ class ChildSideFetcher
             ->innerJoin('t', 'paseka_uchasties_personas', 'u', 't.author_id = u.id')
             ->innerJoin('t', 'paseka_matkas_sparings', 's', 't.sparing_id = s.id')
                     ;
-        // if ($filter->member) {
-        //     $qb->innerJoin('t', 'work_projects_project_memberships', 'ms', 't.project_id = ms.project_id');
-        //     $qb->andWhere('ms.member_id = :member');
-        //     $qb->setParameter(':member', $filter->member);
-        // }
+        if ($filter->uchastie) {
+            $qb->innerJoin('t', 'paseka_matkas_plemmatka_uchastniks', 'ms', 't.plemmatka_id = ms.plemmatka_id');
+            $qb->andWhere('ms.uchastie_id = :uchastie');
+            $qb->setParameter(':uchastie', $filter->uchastie);
+        }
 
         if ($filter->plemmatka) {
             $qb->andWhere('t.plemmatka_id = :plemmatka');
             $qb->setParameter(':plemmatka', $filter->plemmatka);
         }
 
-//        if ($filter->author) {
-//            $qb->andWhere('t.author_id = :author');
-//            $qb->setParameter(':author', $filter->author);
-//        }
+        if ($filter->author) {
+            $qb->andWhere('t.author_id = :author');
+            $qb->setParameter(':author', $filter->author);
+        }
 
-         if ($filter->name) {
-             $qb->andWhere($qb->expr()->like('LOWER(t.name)', ':name'));
-             $qb->setParameter(':name', '%' . mb_strtolower($filter->name) . '%');
-         }
+        if ($filter->text) {
+            $vector = "(setweight(to_tsvector(t.name),'A') || setweight(to_tsvector(coalesce(t.content,'')), 'B'))";
+            $query = 'plainto_tsquery(:text)';
+            $qb->andWhere($qb->expr()->orX(
+                $qb->expr()->like('LOWER(CONCAT(t.name, \' \', coalesce(t.content, \'\')))', ':text'),
+                "$vector @@ $query"
+            ));
+            $qb->setParameter(':text', '%' . mb_strtolower($filter->text) . '%');
+            if (empty($sort)) {
+                $sort = "ts_rank($vector, $query)";
+                $direction = 'desc';
+            }
+
+        }
 
         if ($filter->type) {
             $qb->andWhere('t.type = :type');
@@ -337,7 +358,7 @@ class ChildSideFetcher
             throw new \UnexpectedValueException('Cannot sort by ' . $sort);
         }
 
-        $qb->orderBy($sort, $direction === 'desc' ? 'desc' : 'asc');
+        $qb->orderBy($sort ?: 't.id', $direction === 'desc' ? 'desc' : 'asc');
 
         /** @var SlidingPagination $pagination */
         $pagination = $this->paginator->paginate($qb, $page, $size);

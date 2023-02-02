@@ -62,20 +62,22 @@ class ChildMatkasController extends AbstractController
 
 
          if ($this->isGranted('ROLE_WORK_MANAGE_PROJECTS')) {
-             $filter = Filter\Filter::all();
+             $filter = Filter\Filter::alll();
          } else {
-            $filter = Filter\Filter::all()->forUchastie($this->getUser()->getId());
+            $filter = Filter\Filter::alll()->forUchastie($this->getUser()->getId());
         }
 
         $form = $this->createForm(Filter\Form::class, $filter);
         $form->handleRequest($request);
 
-        $pagination = $childmatkas->all(
+        $pagination = $childmatkas->alll(
             $filter,
             $request->query->getInt('page', 1),
             self::PER_PAGE,
-            $request->query->get('sort', 't.id'),
-            $request->query->get('direction', 'desc')
+//            $request->query->get('sort', 't.id'),
+//            $request->query->get('direction', 'desc')
+            $request->query->get('sort'),
+            $request->query->get('direction')
         );
 
         return $this->render('proekt/pasekas/childmatkas/index.html.twig', [

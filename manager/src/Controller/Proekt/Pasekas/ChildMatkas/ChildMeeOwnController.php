@@ -57,6 +57,8 @@ class ChildMeeOwnController extends AbstractController
             $filter->forExecutor($this->getUser()->getId()),
             $request->query->getInt('page', 1),
             self::PER_PAGE,
+//            $request->query->get('sort'),
+//            $request->query->get('direction')
             $request->query->get('sort'),
             $request->query->get('direction')
         );
