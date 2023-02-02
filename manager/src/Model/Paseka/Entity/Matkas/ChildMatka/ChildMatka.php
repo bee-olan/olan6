@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Matkas\ChildMatka;
 
+use App\Model\Paseka\Entity\Matkas\ChildMatka\File\File;
+use App\Model\Paseka\Entity\Matkas\ChildMatka\File\Id as FileId;
+use App\Model\Paseka\Entity\Matkas\ChildMatka\File\Info;
 use App\Model\Paseka\Entity\Matkas\PlemMatka\PlemMatka;
 use App\Model\Paseka\Entity\Matkas\Sparings\Sparing;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
@@ -94,6 +97,13 @@ class ChildMatka
     private $type;
 
     /**
+     * @var ArrayCollection|File[]
+     * @ORM\OneToMany(targetEntity="App\Model\Paseka\Entity\Matkas\ChildMatka\File\File", mappedBy="childmatka", orphanRemoval=true, cascade={"all"})
+     * @ORM\OrderBy({"date" = "ASC"})
+     */
+    private $files;
+
+    /**
      * @ORM\Column(type="smallint") 
      */
     private $progress;  // smallint - маленький int
@@ -161,6 +171,7 @@ class ChildMatka
         $this->date = $date;
         $this->name = $name;
         $this->content = $content;
+        $this->files = new ArrayCollection();
         $this->progress = 0;
         $this->type = $type;
         $this->priority = $priority;
@@ -312,6 +323,26 @@ class ChildMatka
         throw new \DomainException('Executor is not assigned.');
     }
 
+    public function addFile(FileId $id,
+                            Uchastie $uchastie,
+                            \DateTimeImmutable $date,
+                            Info $info): void
+    {
+        $this->files->add(new File($this, $id, $uchastie, $date, $info));
+    }
+
+    public function removeFile(FileId $id): void
+    {
+        foreach ($this->files as $current) {
+            if ($current->getId()->isEqual($id)) {
+                $this->files->removeElement($current);
+                return;
+            }
+        }
+        throw new \DomainException('File is not found.');
+    }
+
+
     public function isNew(): bool
     {
         return $this->status->isNew();
@@ -423,7 +454,13 @@ class ChildMatka
         return $this->godaVixod;
     }
 
-
+    /**
+     * @return File[]
+     */
+    public function getFiles(): array
+    {
+        return $this->files->toArray();
+    }
 
 
     // /**
