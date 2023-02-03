@@ -37,6 +37,7 @@
       <excludeFolder url="file://$MODULE_DIR$/manager/vendor/knplabs/knp-components" />
       <excludeFolder url="file://$MODULE_DIR$/manager/vendor/knplabs/knp-paginator-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/manager/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/manager/vendor/league/flysystem-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/manager/vendor/league/mime-type-detection" />
       <excludeFolder url="file://$MODULE_DIR$/manager/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/manager/vendor/myclabs/deep-copy" />
