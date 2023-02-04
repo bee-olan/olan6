@@ -60,7 +60,7 @@ class Form extends AbstractType
             ], 'required' => false, 'placeholder' => 'Приоритеты', 'attr' => ['onchange' => 'this.form.submit()']])
             ->add('author', Type\ChoiceType::class, [
                 'choices' => $uchasties,
-                'required' => false, 'placeholder' => 'Матководу', 'attr' => ['onchange' => 'this.form.submit()']
+                'required' => false, 'placeholder' => 'матководу', 'attr' => ['onchange' => 'this.form.submit()']
             ])
             ->add('executor', Type\ChoiceType::class, [
                 'choices' => $uchasties,
