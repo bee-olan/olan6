@@ -2,26 +2,26 @@
 
 {% block title %}{{ childmatka.name }}{% endblock %}
 
-{# {% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects') }}">Projects</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.show', {'id': project.id}) }}">{{ project.name }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.tasks', {'project_id': project.id}) }}">Tasks</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('work.projects.tasks.show', {'id': task.id}) }}">{{ task.name }}</a></li>
-        <li class="breadcrumb-item active">Files</li>
-    </ol>
-{% endblock %} #}
 
 {% block bodyy %}
 
-    <h1 class="mt-0 mb-3 font-xl">
-        {% if childmatka.parent %}
-            <a href="{{ path('work.projects.tasks.show', {'id': task.parent.id}) }}">{{ task.parent.name }}</a> /
-        {% endif %}
-        {{ childmatka.name }}
-    </h1>
+{#    <h1 class="mt-0 mb-3 font-xl">#}
+{#        {% if childmatka.parent %}#}
+{#            <a href="{{ path('work.projects.tasks.show', {'id': task.parent.id}) }}">{{ task.parent.name }}</a> /#}
+{#        {% endif %}#}
+{#        {{ childmatka.name }}#}
+{#    </h1>#}
+<div  class="proekts proekts--childmatka">
+    <div class="inklud inklud--child">
+        <div class="inklud__img  ">
+            <img class="" src="{{ asset('assets/proekt/images/matkas/p4ela1.jpg') }}" alt="">
+        </div>
+
+        <div class="inklud__title  teni teni--kategor">
+            Загрузка файлов для  {{childmatka.name}}
+        </div>
+
+    </div>
 
     <div class="card">
         <div class="card-body">
@@ -29,11 +29,11 @@
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <div>
-                <button type="submit" class="btn btn-primary">Upload</button>
+                <button type="submit" class="btn btn-primary">Загрузить</button>
             </div>
             {{ form_end(form) }}
 
         </div>
     </div>
-
+</div>
 {% endblock %}

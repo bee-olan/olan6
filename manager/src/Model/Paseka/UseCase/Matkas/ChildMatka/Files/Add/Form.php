@@ -20,7 +20,7 @@ class Form extends AbstractType
                 'multiple' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please select files',
+                        'message' => 'Пожалуйста, выберите файлы',
                     ]),
                 ],
             ]);

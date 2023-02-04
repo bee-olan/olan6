@@ -97,7 +97,7 @@ class ChildMatkasController extends AbstractController
      */
     public function create( PlemMatka $plemmatka, Request $request, Create\Handler $handler): Response
     {
-        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
+//        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
 
         $command = new Create\Command(

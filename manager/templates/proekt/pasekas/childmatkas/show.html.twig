@@ -63,7 +63,8 @@
                                 {{ childmatka.planDate ? childmatka.planDate|date('Y-m-d') : '' }}
 
                                 <div class="controls-m pull-right-m" style="margin-bottom: 0">
-                                    <a href="{{ path('proekt.pasekas.childmatkas.plan', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" class="btnn btnn--mb0 btnn--pt btnn--col-child">
+                                    <a href="{{ path('proekt.pasekas.childmatkas.plan', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}"
+                                       class="btnn btnn--mb0 btnn--pt btnn--col-child">
                                         <div class="karandash karandash--child">
                                             <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
                                         </div>
@@ -138,41 +139,46 @@
             </div>
 
             <div class="card-m">
-                <div class="card-header-m">
-                   {# <a href="{{ path('proekt.pasekas.childmatkas.files', {'id': childmatka.id}) }}" class="btn btn-sm btn-default py-0 pull-right"><span class="fa fa-plus"></span></a> #}
-                    Файлы
+                <div class="card-header-m"> Файлы
+                    <a href="{{ path('proekt.pasekas.childmatkas.files', {'id': childmatka.id}) }}"
+                       class="btnn btnn--mb0 btnn--pt btnn--col-child">
+                        <div class="karandash karandash--child">
+                            <img src="{{ asset('assets/proekt/images/file.png') }}" alt="загрузить файл">
+                        </div>
+                    </a>
+
                 </div>
                 <table class="tabl mb-0">
                     <tbody>
-{#                        {% for file in childmatka.files %}#}
+                        {% for file in childmatka.files %}
                             <tr>
                                 <td>
                                     ??????
-{#                                    <a href="{{ storage_path(file.info.path ~ '/' ~ file.info.name) }}" target="_blank">{{ file.info.name }}</a>#}
+                                    <a href="{{ storage_path(file.info.path ~ '/' ~ file.info.name) }}" target="_blank">{{ file.info.name }}</a>
                                 </td>
                                 <td>
                                     ????????
-{#                                    {{ (file.info.size / 1024)|number_format(2, '.', ',') }} KB#}
+                                    {{ (file.info.size / 1024)|number_format(2, '.', ',') }} KB
                                 </td>
                                 <td>
                                     ==============================
-{#                                    {{ file.date|date('Y-m-d H:i:s') }}#}
+                                    {{ file.date|date('Y-m-d H:i:s') }}
                                 </td>
                                 <td>
                                     --------------------------
-{#                                    <a href="{{ path('paseka.uchasties.show', {'id': file.uchastie.id}) }}">{{ file.uchastie.name.full }}</a>#}
+                                    <a href="{{ path('paseka.uchasties.show', {'id': file.uchastie.id}) }}">{{ file.uchastie.name.full }}</a>
                                 </td>
                                 <td style="width: 27px; box-sizing: content-box">
-{#                                    <form action="{{ path('paseka.matkas.childmatkas.files.delete', {'id': childmatka.id, 'file_id': file.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">#}
-{#                                        <input type="hidden" name="token" value="{{ csrf_token('delete-file') }}" />#}
-{#                                        <button type="submit" class="btn btn-sm btn-default">#}
-{#                                            <span class="fa fa-times"></span>#}
-{#                                        </button>#}
-{#                                    </form>#}
+                                    <form action="{{ path('paseka.matkas.childmatkas.files.delete', {'id': childmatka.id, 'file_id': file.id}) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                                        <input type="hidden" name="token" value="{{ csrf_token('delete-file') }}" />
+                                        <button type="submit" class="btn btn-sm btn-default">
+                                            <span class="fa fa-times"></span>
+                                        </button>
+                                    </form>
                                     //////////////////
                                 </td>
                             </tr>
-{#                        {% endfor %}#}
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
