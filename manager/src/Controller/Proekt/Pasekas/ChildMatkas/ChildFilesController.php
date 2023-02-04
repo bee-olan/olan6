@@ -50,7 +50,7 @@ class ChildFilesController extends AbstractController
      * @param FileUploader $uploader
      * @return Response
      */
-    public function files(ChildMatka $childmatka, Request $request, Files\Add\Handler $handler, FileUploader $uploader): Response
+    public function files( Request $request, Files\Add\Handler $handler, ChildMatka $childmatka, FileUploader $uploader): Response
     {
 //        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
@@ -62,12 +62,14 @@ class ChildFilesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $files = [];
             foreach ($form->get('files')->getData() as $file) {
+
                 $uploaded = $uploader->upload($file);
                 $files[] = new Files\Add\File(
                     $uploaded->getPath(),
                     $uploaded->getName(),
                     $uploaded->getSize()
                 );
+
             }
             $command->files = $files;
 

@@ -21,12 +21,16 @@ class FileUploader
 
     public function upload(UploadedFile $file): File
     {
+//        dd($file);
         $path = date('Y/m/d');
         $name = Uuid::uuid4()->toString() . '.' . $file->getClientOriginalExtension();
 
         $this->storage->createDir($path);
+
         $stream = fopen($file->getRealPath(), 'rb+');
+
         $this->storage->writeStream($path . '/' . $name, $stream);
+
         fclose($stream);
 
         return new File($path, $name, $file->getSize());
