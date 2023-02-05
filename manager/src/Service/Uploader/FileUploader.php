@@ -25,10 +25,11 @@ class FileUploader
         $path = date('Y/m/d');
         $name = Uuid::uuid4()->toString() . '.' . $file->getClientOriginalExtension();
 
-        $this->storage->createDir($path);
+
+$this->storage->createDir($path);
 
         $stream = fopen($file->getRealPath(), 'rb+');
-
+//        dd($stream);
         $this->storage->writeStream($path . '/' . $name, $stream);
 
         fclose($stream);

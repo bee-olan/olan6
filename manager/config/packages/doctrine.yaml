@@ -10,6 +10,7 @@ doctrine:
 
         url: '%env(resolve:DATABASE_URL)%'
 
+        schema_filter: '~^(?!paseka_matkas_childmatkas_seq)~'
 
         types:
             user_user_id: 'App\Model\User\Entity\User\IdType'
