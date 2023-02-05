@@ -28,10 +28,10 @@ class Command
         $this->id = $id;
     }
 
-    public static function fromTask(string $actor, Task $task): self
+    public static function fromChildMatka(string $actor, ChildMatka $childmatka): self
     {
-        $command = new self($actor, $task->getId()->getValue());
-        $command->date = $task->getPlanDate() ?: new \DateTimeImmutable();
+        $command = new self($actor, $childmatka->getId()->getValue());
+        $command->date = $childmatka->getPlanDate() ?: new \DateTimeImmutable();
         return $command;
     }
 }

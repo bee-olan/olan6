@@ -6,7 +6,7 @@ namespace App\Controller\Paseka\Matkas;
 
 // use App\Model\Work\Entity\Members\Member\Member;
 
-//use App\Model\Paseka\UseCase\Matkas\ChildMatka\Task;
+use App\Model\Comment\UseCase\Comment;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Uchastie;
 use App\Model\Paseka\UseCase\Matkas\ChildMatka\ChildOf;
 use App\Model\Paseka\UseCase\Matkas\ChildMatka\Edit;
@@ -24,6 +24,7 @@ use App\Model\Paseka\UseCase\Matkas\ChildMatka\Type;
 
 
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
+use App\ReadModel\Paseka\Matkas\ChildMatka\CommentFetcher;
 use App\ReadModel\Paseka\Matkas\ChildMatka\Filter;
 use App\ReadModel\Paseka\Matkas\ChildMatka\ChildMatkaFetcher;
 
@@ -31,6 +32,7 @@ use App\ReadModel\Paseka\Uchasties\Uchastie\UchastieFetcher;
 
 
 use App\Controller\ErrorHandler;
+use App\Security\Voter\Proekt\Matkas\ChildMatkaAccess;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -96,7 +98,7 @@ class ChildMatkasController extends AbstractController
      */
     public function edit(ChildMatka $childmatka, Request $request, Edit\Handler $handler): Response
     {
-        //$this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+        //$this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = Edit\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
 
@@ -131,7 +133,7 @@ class ChildMatkasController extends AbstractController
     {
         $plemmatka = $childmatka->getPlemMatka();
         
-       // $this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+       // $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = new Executor\Assign\Command($this->getUser()->getId(), $childmatka->getId()->getValue());
 // dd  ($command);
@@ -171,7 +173,7 @@ class ChildMatkasController extends AbstractController
             return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
         }
 
-       // $this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+       // $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = new Executor\Revoke\Command(
             $this->getUser()->getId(),
@@ -202,7 +204,7 @@ class ChildMatkasController extends AbstractController
             return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
         }
 
-//        $this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+//        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = new Take\Command($this->getUser()->getId(), $childmatka->getId()->getValue());
 
@@ -229,7 +231,7 @@ class ChildMatkasController extends AbstractController
             return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
         }
 
-        //$this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+        //$this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = new TakeAndStart\Command($this->getUser()->getId(), $childmatka->getId()->getValue());
 
@@ -256,7 +258,7 @@ class ChildMatkasController extends AbstractController
             return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
         }
 
-        //$this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+        //$this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = new Start\Command($this->getUser()->getId(), $childmatka->getId()->getValue());
 
@@ -279,7 +281,7 @@ class ChildMatkasController extends AbstractController
      */
     public function move(ChildMatka $childmatka, Request $request, Move\Handler $handler): Response
     {
-       // $this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+       // $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = Move\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
 
@@ -296,7 +298,7 @@ class ChildMatkasController extends AbstractController
             }
         }
 
-        return $this->render('app/work/projects/tasks/move.html.twig', [
+        return $this->render('app/work/projects/childmatkas/move.html.twig', [
             'plemmatka' => $childmatka->getPlemMatka(),
             'childmatka' => $childmatka,
             'form' => $form->createView(),
@@ -312,7 +314,7 @@ class ChildMatkasController extends AbstractController
      */
     public function plan(ChildMatka $childmatka, Request $request, Plan\Set\Handler $handler): Response
     {
-       // $this->denyAccessUnlessGranted(TaskAccess::MANAGE, $task);
+       // $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
         $command = Plan\Set\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
 
@@ -342,10 +344,12 @@ class ChildMatkasController extends AbstractController
      * @param Request $request
      * @param UchastieFetcher $uchasties
      * @param ChildMatkaFetcher $childmatkas
+     * @param CommentFetcher $comments
      * @param Status\Handler $statusHandler
      * @param Progress\Handler $progressHandler
      * @param Type\Handler $typeHandler
      * @param Priority\Handler $priorityHandler
+     * @param Comment\Create\Handler
      * @return Response
      */
     public function show(
@@ -353,13 +357,15 @@ class ChildMatkasController extends AbstractController
         Request $request,
         UchastieFetcher $uchasties,
         ChildMatkaFetcher $childmatkas,
+        CommentFetcher $comments,
         Status\Handler $statusHandler,
         Progress\Handler $progressHandler,
         Type\Handler $typeHandler,
-        Priority\Handler $priorityHandler
+        Priority\Handler $priorityHandler,
+        Comment\Create\Handler $commentHandler
     ): Response
     {
-      //  $this->denyAccessUnlessGranted(TaskAccess::VIEW, $task);
+        $this->denyAccessUnlessGranted(ChildMatkaAccess::VIEW, $childmatka);
 
         if (!$uchastie = $uchasties->find($this->getUser()->getId())) {
             throw $this->createAccessDeniedException();
@@ -378,7 +384,7 @@ class ChildMatkasController extends AbstractController
             }
         }
 
-        $progressCommand = Progress\Command::fromTask($childmatka);
+        $progressCommand = Progress\Command::fromChildMatka($childmatka);
         $progressForm = $this->createForm(Progress\Form::class, $progressCommand);
         $progressForm->handleRequest($request);
         if ($progressForm->isSubmitted() && $progressForm->isValid()) {
@@ -417,15 +423,35 @@ class ChildMatkasController extends AbstractController
             }
         }
 
+        $commentCommand = new Comment\Create\Command(
+            $this->getUser()->getId(),
+            ChildMatka::class,
+            (string)$childmatka->getId()->getValue()
+        );
+
+        $commentForm = $this->createForm(Comment\Create\Form::class, $commentCommand);
+        $commentForm->handleRequest($request);
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+            try {
+                $commentHandler->handle($commentCommand);
+                return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
+            } catch (\DomainException $e) {
+                $this->errors->handle($e);
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
         return $this->render('app/paseka/matkas/childmatkas/show.html.twig', [
             'plemmatka' => $childmatka->getPlemMatka(),
             'childmatka' => $childmatka,
             'uchastie' => $uchastie,
             'children' => $childmatkas->childrenOf($childmatka->getId()->getValue()),
+            'comments' => $comments->allForChildMatka($childmatka->getId()->getValue()),
             'statusForm' => $statusForm->createView(),
             'progressForm' => $progressForm->createView(),
             'typeForm' => $typeForm->createView(),
             'priorityForm' => $priorityForm->createView(),
+            'commentForm' => $commentForm->createView(),
         ]);
     }
 }
