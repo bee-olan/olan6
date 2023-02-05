@@ -210,31 +210,52 @@ class ChildMatka
         $this->changeStatus(Status::working(), $date);
     }
 
-    public function setChildOf(?ChildMatka $parent): void
+//    public function setChildOf(?ChildMatka $parent): void
+//    {
+//        if ($parent) {
+//            $current = $parent;
+//            do {
+//                if ($current === $this) {
+//                    throw new \DomainException('Цикломатические дети.');
+//                }
+//            }
+//            while ($current && $current = $current->getParent());
+//        }
+//
+//        $this->parent = $parent;
+//    }
+
+    public function setChildOf(ChildMatka $parent): void
     {
-        if ($parent) {
-            $current = $parent;
-            do {
-                if ($current === $this) {
-                    throw new \DomainException('Цикломатические дети.');
-                }
-            }
-            while ($current && $current = $current->getParent());
+        if ($parent === $this->parent) {
+            return;
         }
+        $current = $parent;
+        do {
+            if ($current === $this) {
+                throw new \DomainException('Цикломатические дети.');
+            }
+        }
+        while ($current && $current = $current->getParent());
 
         $this->parent = $parent;
     }
 
-    // public function plan(?\DateTimeImmutable $date): void
-    // {
-    //     $this->planDate = $date;
-    // }
+    public function setRoot(): void
+    {
+        $this->parent = null;
+    }
 
     public function plan(Uchastie $actor, \DateTimeImmutable $date, \DateTimeImmutable $plan): void
     {
         $this->planDate = $plan;
         // $this->addChange($actor, $date, Set::fromPlan($plan));
         // $this->recordEvent(new Event\TaskPlanChanged($actor->getId(), $this->id, $date));
+    }
+
+    public function removePlan(): void
+    {
+        $this->planDate = null;
     }
 // переместить
     public function move(Uchastie $actor, PlemMatka $plemmatka): void

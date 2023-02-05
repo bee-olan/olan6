@@ -24,10 +24,10 @@ class Handler
         $childmatka = $this->childmatkas->get(new Id($command->id));
 
         if ($command->parent) {
-            $parent = $this->tasks->get(new Id($command->parent));
+            $parent = $this->childmatkas->get(new Id($command->parent));
             $childmatka->setChildOf($parent);
         } else {
-            $childmatka->setChildOf(null);
+            $childmatka->setRoot();
         }
 
         $this->flusher->flush();

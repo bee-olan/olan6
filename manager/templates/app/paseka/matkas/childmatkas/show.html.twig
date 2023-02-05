@@ -124,13 +124,14 @@
                 <table class="table table-bordered mb-0">
                     <tbody>
                         <tr>
-                            <th>ID</th>
+                            <th>Номер</th>
                             <td colspan="3">{{ childmatka.id }}</td>
                         </tr>
+{# --Дата создания----------------------------------------- #}
                         <tr>
-                            <th>Дата создания</th>
-                            <td>{{ childmatka.date|date('Y-m-d H:i:s') }}</td>
-                            <th>Plan Date</th>
+                            <th>Дата выхода</th>
+                            <td>{{ childmatka.date|date('Y-m-d') }}</td>
+                            <th>Дата реализации</th>
                             <td>
                                 {{ childmatka.planDate ? childmatka.planDate|date('Y-m-d') : '' }}
 
@@ -139,7 +140,7 @@
                                         <span class="fa fa-pencil"></span>
                                     </a>
                                     {% if childmatka.planDate %}
-                                        ................
+                    ????
 {#                                        <form action="{{ path('paseka.matkas.childmatkas.plan.remove', {'plemmatka_id': plemmatka.id, 'id': childmatka.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
 {#                                            <input type="hidden" name="token" value="{{ csrf_token('remove-plan') }}" />#}
 {#                                            <button type="submit" class="btn btn-sm py-0">#}
@@ -150,6 +151,7 @@
                                 </div>
                             </td>
                         </tr>
+  {# --Категория----------------------------------------- #}
                         <tr>
                             <th>Категория</th>
                             <td>
@@ -164,6 +166,7 @@
                                 </div>
                                 {{ form_end(typeForm) }}
                             </td>
+{# --Статус----------------------------------------- #}
                             <th>Статус</th>
                             <td>
                                 {{ form_start(statusForm) }}
@@ -177,6 +180,7 @@
                                 {{ form_end(statusForm) }}
                             </td>
                         </tr>
+{# --Приоритет----------------------------------------- #}
                         <tr>
                             <th>Приоритет</th>
                             <td>
@@ -190,7 +194,8 @@
                                 </div>
                                 {{ form_end(priorityForm) }}
                             </td>
-                            <th>Progress</th>
+{# --Прогресс----------------------------------------- #}
+                            <th>Прогресс</th>
                             <td>
                                 {{ form_start(progressForm) }}
                                 <div class="row">
