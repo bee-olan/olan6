@@ -15,6 +15,7 @@ use App\Model\Paseka\UseCase\Matkas\ChildMatka\Plan;
 use App\Controller\ErrorHandler;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
 
+use App\Security\Voter\Proekt\Matkas\ChildMatkaAccess;
 use App\Service\Uploader\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,7 +51,7 @@ class FilesChildController extends AbstractController
     {
 //        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
 
-        $command = new Files\Add\Command($childmatka->getId()->getValue(), $this->getUser()->getId());
+        $command = new Files\Add\Command($this->getUser()->getId(), $childmatka->getId()->getValue());
 
         $form = $this->createForm(Files\Add\Form::class, $command);
         $form->handleRequest($request);
@@ -58,7 +59,6 @@ class FilesChildController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $files = [];
             foreach ($form->get('files')->getData() as $file) {
-//dd($file);
                 $uploaded = $uploader->upload($file);
                 $files[] = new Files\Add\File(
                     $uploaded->getPath(),
@@ -85,34 +85,34 @@ class FilesChildController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/{id}/files/{file_id}/delete", name=".files.delete", methods={"POST"})
-//     * @ParamConverter("uchastie", options={"id" = "uchastie_id"})
-//     * @param ChildMatka $childmatka
-//     * @param string $file_id
-//     * @param Request $request
-//     * @param Files\Remove\Handler $handler
-//     * @return Response
-//     */
-//    public function fileDelete(ChildMatka $childmatka, string $file_id, Request $request, Files\Remove\Handler $handler): Response
-//    {
-//        if (!$this->isCsrfTokenValid('revoke', $request->request->get('token'))) {
-//            return $this->redirectToRoute('proekt.pasekas.childmatkas.show', ['id' => $childmatka->getId()]);
-//        }
-//
-//        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
-//
-//        $command = new Files\Remove\Command($childmatka->getId()->getValue(), $file_id);
-//
-//        try {
-//            $handler->handle($command);
-//        } catch (\DomainException $e) {
-//            $this->errors->handle($e);
-//            $this->addFlash('error', $e->getMessage());
-//        }
-//
-//        return $this->redirectToRoute('proekt.pasekas.childmatkas.show', ['id' => $childmatka->getId()]);
-//    }
+    /**
+     * @Route("/{id}/files/{file_id}/delete", name=".files.delete", methods={"POST"})
+     * @ParamConverter("uchastie", options={"id" = "uchastie_id"})
+     * @param ChildMatka $childmatka
+     * @param string $file_id
+     * @param Request $request
+     * @param Files\Remove\Handler $handler
+     * @return Response
+     */
+    public function fileDelete(ChildMatka $childmatka, string $file_id, Request $request, Files\Remove\Handler $handler): Response
+    {
+        if (!$this->isCsrfTokenValid('revoke', $request->request->get('token'))) {
+            return $this->redirectToRoute('proekt.pasekas.childmatkas.show', ['id' => $childmatka->getId()]);
+        }
+
+        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
+
+        $command = new Files\Remove\Command($this->getUser()->getId(), $childmatka->getId()->getValue(), $file_id);
+
+        try {
+            $handler->handle($command);
+        } catch (\DomainException $e) {
+            $this->errors->handle($e);
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('proekt.pasekas.childmatkas.show', ['id' => $childmatka->getId()]);
+    }
 
 
 

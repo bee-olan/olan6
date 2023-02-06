@@ -27,6 +27,7 @@ class Handler
 
     public function handle(Command $command): void
     {
+
         $actor = $this->uchasties->get(new UchastieId($command->actor));
         $childmatka = $this->childmatkas->get(new Id($command->id));
 

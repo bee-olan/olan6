@@ -157,7 +157,7 @@ class ChildMatka
 
     /**
      * @var Change[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Change", mappedBy="task", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Change", mappedBy="childmatka", orphanRemoval=true, cascade={"persist"})
      * @ORM\OrderBy({"id" = "ASC"})
      */
     private $changes;
@@ -308,7 +308,7 @@ class ChildMatka
         $this->addChange($actor, $date, Set::fromType($type));
     }
 
-    public function changeStatus(Uchastie $actor, \DateTimeImmutable $date,Status $status): void
+    public function changeStatus(Uchastie $actor, \DateTimeImmutable $date, Status $status): void
     {
         if ($this->status->isEqual($status)) {
             throw new \DomainException('Статус уже тот же.');

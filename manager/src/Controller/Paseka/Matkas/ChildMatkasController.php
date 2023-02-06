@@ -24,6 +24,7 @@ use App\Model\Paseka\UseCase\Matkas\ChildMatka\Type;
 
 
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
+use App\ReadModel\Paseka\Matkas\ActionFetcher;
 use App\ReadModel\Paseka\Matkas\ChildMatka\CommentFetcher;
 use App\ReadModel\Paseka\Matkas\ChildMatka\Filter;
 use App\ReadModel\Paseka\Matkas\ChildMatka\ChildMatkaFetcher;
@@ -116,6 +117,39 @@ class ChildMatkasController extends AbstractController
         }
 
         return $this->render('app/paseka/matkas/childmatkas/edit.html.twig', [
+            'plemmatka' => $childmatka->getPlemMatka(),
+            'childmatka' => $childmatka,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/child", name=".child")
+     * @param ChildMatka $childmatka
+     * @param Request $request
+     * @param ChildOf\Handler $handler
+     * @return Response
+     */
+    public function childOf(ChildMatka $childmatka, Request $request, ChildOf\Handler $handler): Response
+    {
+        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
+
+        $command = ChildOf\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
+
+        $form = $this->createForm(ChildOf\Form::class, $command);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $handler->handle($command);
+                return $this->redirectToRoute('work.plemmatkas.childmatkas.show', ['id' => $childmatka->getId()]);
+            } catch (\DomainException $e) {
+                $this->errors->handle($e);
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('app/paseka/matkas/childmatkas/child.html.twig', [
             'plemmatka' => $childmatka->getPlemMatka(),
             'childmatka' => $childmatka,
             'form' => $form->createView(),
@@ -298,7 +332,7 @@ class ChildMatkasController extends AbstractController
             }
         }
 
-        return $this->render('app/work/projects/childmatkas/move.html.twig', [
+        return $this->render('app/work/plemmatkas/childmatkas/move.html.twig', [
             'plemmatka' => $childmatka->getPlemMatka(),
             'childmatka' => $childmatka,
             'form' => $form->createView(),
@@ -339,12 +373,67 @@ class ChildMatkasController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/plan/remove", name=".plan.remove", methods={"POST"})
+     * @param ChildMatka\ $childmatka
+     * @param Request $request
+     * @param Plan\Remove\Handler $handler
+     * @return Response
+     */
+    public function removePlan(ChildMatka $childmatka, Request $request, Plan\Remove\Handler $handler): Response
+    {
+        if (!$this->isCsrfTokenValid('remove-plan', $request->request->get('token'))) {
+            return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
+        }
+
+        $this->denyAccessUnlessGranted(ChildMatkaAccess::MANAGE, $childmatka);
+
+        $command = new Plan\Remove\Command($this->getUser()->getId(), $childmatka->getId()->getValue());
+
+        try {
+            $handler->handle($command);
+        } catch (\DomainException $e) {
+            $this->errors->handle($e);
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
+    }
+
+    /**
+     * @Route("/{id}/delete", name=".delete", methods={"POST"})
+     * @param ChildMatka $childmatka
+     * @param Request $request
+     * @param Remove\Handler $handler
+     * @return Response
+     */
+    public function delete(ChildMatka $childmatka, Request $request, Remove\Handler $handler): Response
+    {
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
+        }
+
+        $this->denyAccessUnlessGranted(ChildMatkaAccess::DELETE, $childmatka);
+
+        $command = new Remove\Command($childmatka->getId()->getValue());
+
+        try {
+            $handler->handle($command);
+        } catch (\DomainException $e) {
+            $this->errors->handle($e);
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('paseka.matkas.childmatkas');
+    }
+
+    /**
      * @Route("/{id}", name=".show", requirements={"id"="\d+"}))
      * @param ChildMatka $childmatka
      * @param Request $request
      * @param UchastieFetcher $uchasties
      * @param ChildMatkaFetcher $childmatkas
      * @param CommentFetcher $comments
+     * @param ActionFetcher $actions
      * @param Status\Handler $statusHandler
      * @param Progress\Handler $progressHandler
      * @param Type\Handler $typeHandler
@@ -358,6 +447,7 @@ class ChildMatkasController extends AbstractController
         UchastieFetcher $uchasties,
         ChildMatkaFetcher $childmatkas,
         CommentFetcher $comments,
+       ActionFetcher $actions,
         Status\Handler $statusHandler,
         Progress\Handler $progressHandler,
         Type\Handler $typeHandler,
@@ -371,7 +461,7 @@ class ChildMatkasController extends AbstractController
             throw $this->createAccessDeniedException();
         }
 
-        $statusCommand = Status\Command::fromChildMatka($childmatka);
+        $statusCommand = Status\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
         $statusForm = $this->createForm(Status\Form::class, $statusCommand);
         $statusForm->handleRequest($request);
         if ($statusForm->isSubmitted() && $statusForm->isValid()) {
@@ -384,7 +474,8 @@ class ChildMatkasController extends AbstractController
             }
         }
 
-        $progressCommand = Progress\Command::fromChildMatka($childmatka);
+
+        $progressCommand = Progress\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
         $progressForm = $this->createForm(Progress\Form::class, $progressCommand);
         $progressForm->handleRequest($request);
         if ($progressForm->isSubmitted() && $progressForm->isValid()) {
@@ -397,7 +488,7 @@ class ChildMatkasController extends AbstractController
             }
         }
 
-        $typeCommand = Type\Command::fromChildMatka($childmatka);
+        $typeCommand = Type\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
         $typeForm = $this->createForm(Type\Form::class, $typeCommand);
         $typeForm->handleRequest($request);
         if ($typeForm->isSubmitted() && $typeForm->isValid()) {
@@ -410,7 +501,7 @@ class ChildMatkasController extends AbstractController
             }
         }
 
-        $priorityCommand = Priority\Command::fromChildMatka($childmatka);
+        $priorityCommand = Priority\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
         $priorityForm = $this->createForm(Priority\Form::class, $priorityCommand);
         $priorityForm->handleRequest($request);
         if ($priorityForm->isSubmitted() && $priorityForm->isValid()) {
@@ -447,6 +538,7 @@ class ChildMatkasController extends AbstractController
             'uchastie' => $uchastie,
             'children' => $childmatkas->childrenOf($childmatka->getId()->getValue()),
             'comments' => $comments->allForChildMatka($childmatka->getId()->getValue()),
+            'actions' => $actions->allForChildMatka($childmatka->getId()->getValue()),
             'statusForm' => $statusForm->createView(),
             'progressForm' => $progressForm->createView(),
             'typeForm' => $typeForm->createView(),

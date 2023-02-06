@@ -73,15 +73,17 @@ class Handler
 
         $sparing = $this->sparings->get(new SparingId($command->sparing));
         $command->godaVixod = (int)$command->plan_date->format('Y');
-        $childmatkaId = $this->childmatkas->nextId();
 
-        $command->name = $plem[0]."-".$childmatkaId." : пн-".
-        $persona->getNomer()."_".$mestonomer->getNomer()."_".$command->godaVixod;
 
         $date = new \DateTimeImmutable();
         $command->plan = $date;
 
         for ($i = 1; $i <= 3; $i++) {
+
+            $childmatkaId = $this->childmatkas->nextId();
+
+            $command->name = $plem[0]."-".$childmatkaId." : пн-".
+                $persona->getNomer()."_".$mestonomer->getNomer()."_".$command->godaVixod;
 
         $childmatka = new ChildMatka(
             $childmatkaId,
