@@ -15,11 +15,12 @@ class Command
     /**
      * @Assert\NotBlank()
      */
-    public $uchaste;
+    public $actor;
 
-    public function __construct(string $uchaste, int $id)
+    public function __construct(string $actor, int $id)
     {
         $this->id = $id;
-        $this->uchaste = $uchaste;
+        $this->actor = $actor;
     }
 }
+

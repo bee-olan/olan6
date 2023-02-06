@@ -32,8 +32,8 @@ class Handler
         $actor = $this->uchastes->get(new UchastieId($command->actor));
         $childmatka = $this->childmatkas->get(new Id($command->id));
 
-        $childmatka->removePlan($actor, new \DateTimeImmutable());
+        $childmatka->removePlan($actor, new \DateTimeImmutable(), null);
 
-        $this->flusher->flush($childmatka);
+        $this->flusher->flush();
     }
 }

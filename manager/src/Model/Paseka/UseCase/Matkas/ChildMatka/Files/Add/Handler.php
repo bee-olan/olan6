@@ -35,9 +35,8 @@ class Handler
 
         foreach ($command->files as $file) {
             $childmatka->addFile(
+                $actor, new \DateTimeImmutable(),
                 FileId::next(),
-                $actor,
-                new \DateTimeImmutable(),
                 new Info(
                     $file->path,
                     $file->name,

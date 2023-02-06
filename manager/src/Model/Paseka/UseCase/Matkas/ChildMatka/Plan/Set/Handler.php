@@ -34,6 +34,6 @@ class Handler
 
         $childmatka->plan($actor, new \DateTimeImmutable(), $command->date);
 
-        $this->flusher->flush($childmatka);
+        $this->flusher->flush();
     }
 }

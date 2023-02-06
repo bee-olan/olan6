@@ -35,6 +35,7 @@ doctrine:
             paseka_matkas_childmatka_id: 'App\Model\Paseka\Entity\Matkas\ChildMatka\IdType'
             paseka_matkas_childmatka_type: 'App\Model\Paseka\Entity\Matkas\ChildMatka\TypeType'
             paseka_matkas_child_file_id: 'App\Model\Paseka\Entity\Matkas\ChildMatka\File\IdType'
+            paseka_matkas_child_change_id: 'App\Model\Paseka\Entity\Matkas\ChildMatka\Change\IdType'
 
             mesto_okrug_id: 'App\Model\Mesto\Entity\Okrugs\IdType'
             mesto_okrug_oblast_id: 'App\Model\Mesto\Entity\Okrugs\Oblasts\IdType'

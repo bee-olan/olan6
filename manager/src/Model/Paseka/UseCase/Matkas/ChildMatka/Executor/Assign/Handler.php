@@ -29,12 +29,13 @@ class Handler
 
     public function handle(Command $command): void
     {
+        $actor = $this->uchasties->get(new UchastieId($command->actor));
         $childmatka = $this->childmatkas->get(new Id($command->id));
 
         foreach ($command->uchasties as $id) {
             $uchastie = $this->uchasties->get(new UchastieId($id));
             if (!$childmatka->hasExecutor($uchastie->getId())) {
-                $childmatka->assignExecutor($uchastie);
+                $childmatka->assignExecutor($actor, new \DateTimeImmutable(),$uchastie);
             }
         }
 

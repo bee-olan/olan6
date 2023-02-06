@@ -29,10 +29,11 @@ class Handler
 
     public function handle(Command $command): void
     {
+        $actor = $this->uchasties->get(new UchastieId($command->actor));
         $childmatka = $this->childmatkas->get(new Id($command->id));
         $uchastie = $this->uchasties->get(new UchastieId($command->uchastie));
 
-        $childmatka->revokeExecutor($uchastie->getId());
+        $childmatka->revokeExecutor($actor, new \DateTimeImmutable(),$uchastie->getId());
 
         $this->flusher->flush();
     }

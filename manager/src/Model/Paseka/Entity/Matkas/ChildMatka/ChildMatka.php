@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Matkas\ChildMatka;
 
+use App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Change;
+use App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Id as ChangeId;
+use App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Set;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\File\File;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\File\Id as FileId;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\File\Info;
@@ -152,6 +155,13 @@ class ChildMatka
      */   
     private $executors; // экзекутор - исполнитель
 
+    /**
+     * @var Change[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Change", mappedBy="task", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
+    private $changes;
+
     public function __construct(
         Id $id,
         PlemMatka $plemmatka,
@@ -179,12 +189,42 @@ class ChildMatka
         $this->sparing = $sparing;
         $this->godaVixod = $godaVixod;
         $this->executors = new ArrayCollection();
+        $this->changes = new ArrayCollection();
+        $this->addChange($author, $date, Set::forNewChildMatka($plemmatka->getId(), $name, $content, $type, $priority));
     }
 
-    public function edit( ?string $content): void
+    public function edit(Uchastie $actor, \DateTimeImmutable $date,
+//                         string $name,
+                         ?string $content): void
     {
-        $this->content = $content;
+//        if ($name !== $this->name) {
+//            $this->name = $name;
+//            $this->addChange($actor, $date, Set::fromName($name));
+//        }
+        if ($content !== $this->content) {
+            $this->content = $content;
+            $this->addChange($actor, $date, Set::fromContent($content));
+        }
     }
+
+    public function addFile(Uchastie $actor, \DateTimeImmutable $date, FileId $id, Info $info): void
+    {
+        $this->files->add(new File($this, $id, $actor, $date, $info));
+        $this->addChange($actor, $date, Set::fromFile($id));
+    }
+
+    public function removeFile(Uchastie $actor, \DateTimeImmutable $date, FileId $id): void
+    {
+        foreach ($this->files as $current) {
+            if ($current->getId()->isEqual($id)) {
+                $this->files->removeElement($current);
+                $this->addChange($actor, $date, Set::fromRemovedFile($current->getId()));
+                return;
+            }
+        }
+        throw new \DomainException('File is not found.');
+    }
+
 
     public function zakaz(\DateTimeImmutable $date): void
     {
@@ -198,7 +238,7 @@ class ChildMatka
 
     }
 
-    public function start(\DateTimeImmutable $date): void
+    public function start(Uchastie $actor, \DateTimeImmutable $date): void
     {
        // dd($date);
         if (!$this->isNew() and !$this->isZakaz()) {
@@ -207,25 +247,11 @@ class ChildMatka
         if (!$this->executors->count()) {
             throw new \DomainException('У матки нет исполнителя.');
         }
-        $this->changeStatus(Status::working(), $date);
+        $this->changeStatus($actor, $date, Status::working());
     }
 
-//    public function setChildOf(?ChildMatka $parent): void
-//    {
-//        if ($parent) {
-//            $current = $parent;
-//            do {
-//                if ($current === $this) {
-//                    throw new \DomainException('Цикломатические дети.');
-//                }
-//            }
-//            while ($current && $current = $current->getParent());
-//        }
-//
-//        $this->parent = $parent;
-//    }
 
-    public function setChildOf(ChildMatka $parent): void
+    public function setChildOf(Uchastie $actor, \DateTimeImmutable $date,ChildMatka $parent): void
     {
         if ($parent === $this->parent) {
             return;
@@ -239,55 +265,63 @@ class ChildMatka
         while ($current && $current = $current->getParent());
 
         $this->parent = $parent;
+
+        $this->addChange($actor, $date, Set::fromParent($parent->getId()));
     }
 
-    public function setRoot(): void
+    public function setRoot(Uchastie $actor, \DateTimeImmutable $date): void
     {
         $this->parent = null;
+        $this->addChange($actor, $date, Set::forRemovedParent());
     }
 
     public function plan(Uchastie $actor, \DateTimeImmutable $date, \DateTimeImmutable $plan): void
     {
         $this->planDate = $plan;
-        // $this->addChange($actor, $date, Set::fromPlan($plan));
+        $this->addChange($actor, $date, Set::fromPlan($plan));
         // $this->recordEvent(new Event\TaskPlanChanged($actor->getId(), $this->id, $date));
     }
 
-    public function removePlan(): void
+    public function removePlan(Uchastie $actor, \DateTimeImmutable $date): void
     {
         $this->planDate = null;
+        $this->addChange($actor, $date, Set::forRemovedPlan());
     }
 // переместить
-    public function move(Uchastie $actor, PlemMatka $plemmatka): void
+    public function move(Uchastie $actor, \DateTimeImmutable $date, PlemMatka $plemmatka): void
     {
         if ($plemmatka === $this->plemmatka) {
             throw new \DomainException('PlemMatka это уже то же самое.');
         }
         $this->plemmatka = $plemmatka;
-        // $this->addChange($actor, $date, Set::fromPlemMatka($plemmatka->getId()));
+         $this->addChange($actor, $date, Set::fromPlemMatka($plemmatka->getId()));
+
     }
 
 //изменить тип
-    public function changeType(Type $type): void
+    public function changeType(Uchastie $actor, \DateTimeImmutable $date,Type $type): void
     {
         if ($this->type->isEqual($type)) {
             throw new \DomainException('Тип уже тот же самый.');
         }
         $this->type = $type;
+        $this->addChange($actor, $date, Set::fromType($type));
     }
 
-    public function changeStatus(Status $status, \DateTimeImmutable $date): void
+    public function changeStatus(Uchastie $actor, \DateTimeImmutable $date,Status $status): void
     {
         if ($this->status->isEqual($status)) {
             throw new \DomainException('Статус уже тот же.');
         }
         $this->status = $status;
+        $this->addChange($actor, $date, Set::fromStatus($status));
+
         if (!$status->isNew() && !$this->startDate) {
             $this->startDate = $date;
         }
         if ($status->isDone()) {
             if ($this->progress !== 100) {
-                $this->changeProgress(100);
+                $this->changeProgress($actor, $date, 100);
             }
             $this->endDate = $date;
         } else {
@@ -297,22 +331,24 @@ class ChildMatka
 
 
 
-    public function changeProgress(int $progress): void
+    public function changeProgress(Uchastie $actor, \DateTimeImmutable $date, int $progress): void
     {
         Assert::range($progress, 0, 100);
         if ($progress === $this->progress) {
             throw new \DomainException('Прогресс уже такой же.');
         }
         $this->progress = $progress;
+        $this->addChange($actor, $date, Set::fromProgress($progress));
     }
 
-    public function changePriority(int $priority): void
+    public function changePriority(Uchastie $actor, \DateTimeImmutable $date, int $priority): void
     {
         Assert::range($priority, 1, 4);
         if ($priority === $this->priority) {
             throw new \DomainException('Priority is already same.');
         }
         $this->priority = $priority;
+        $this->addChange($actor, $date, Set::fromPriority($priority));
     }
 
     public function hasExecutor(UchastieId $id): bool
@@ -325,43 +361,27 @@ class ChildMatka
         return false;
     }
 
-    public function assignExecutor(Uchastie $executor): void
+    public function assignExecutor(Uchastie $actor, \DateTimeImmutable $date, Uchastie $executor): void
     {
         if ($this->executors->contains($executor)) {
             throw new \DomainException('Исполнитель уже назначен.');
         }
         $this->executors->add($executor);
+        $this->addChange($actor, $date, Set::fromExecutor($executor->getId()));
     }
 
-    public function revokeExecutor(UchastieId $id): void
+    public function revokeExecutor(Uchastie $actor, \DateTimeImmutable $date, UchastieId $id): void
     {
         foreach ($this->executors as $current) {
             if ($current->getId()->isEqual($id)) {
                 $this->executors->removeElement($current);
+                $this->addChange($actor, $date, Set::fromRevokedExecutor($current->getId()));
                 return;
             }
         }
         throw new \DomainException('Executor is not assigned.');
     }
 
-    public function addFile(FileId $id,
-                            Uchastie $uchastie,
-                            \DateTimeImmutable $date,
-                            Info $info): void
-    {
-        $this->files->add(new File($this, $id, $uchastie, $date, $info));
-    }
-
-    public function removeFile(FileId $id): void
-    {
-        foreach ($this->files as $current) {
-            if ($current->getId()->isEqual($id)) {
-                $this->files->removeElement($current);
-                return;
-            }
-        }
-        throw new \DomainException('File is not found.');
-    }
 
 
     public function isNew(): bool
@@ -484,22 +504,22 @@ class ChildMatka
     }
 
 
-    // /**
-    //  * @return Change[]
-    //  */
-    // public function getChanges(): array
-    // {
-    //     return $this->changes->toArray();
-    // }
+     /**
+      * @return Change[]
+      */
+     public function getChanges(): array
+     {
+         return $this->changes->toArray();
+     }
 
-    // private function addChange(Uchastie $actor, \DateTimeImmutable $date, Set $set): void
-    // {
-    //     if ($last = $this->changes->last()) {
-    //         /** @var Change $last */
-    //         $next = $last->getId()->next();
-    //     } else {
-    //         $next = ChangeId::first();
-    //     }
-    //     $this->changes->add(new Change($this, $next, $actor, $date, $set));
-    // }
+     private function addChange(Uchastie $actor, \DateTimeImmutable $date, Set $set): void
+     {
+         if ($last = $this->changes->last()) {
+             /** @var Change $last */
+             $next = $last->getId()->next();
+         } else {
+             $next = ChangeId::first();
+         }
+         $this->changes->add(new Change($this, $next, $actor, $date, $set));
+     }
 }

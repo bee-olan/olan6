@@ -38,7 +38,7 @@ class Handler
 
         $childmatka->removeFile($actor, new \DateTimeImmutable(), new FileId($command->file));
 
-        $this->flusher->flush($childmatka);
+        $this->flusher->flush();
     }
 }
 

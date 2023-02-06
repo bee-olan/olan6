@@ -56,7 +56,9 @@ class Handler
     public function handle(Command $command): void
     {
 
-        for ($i = 1; $i <= 3; $i++) {
+        $parent = $command->parent ? $this->childmatkas->get(new Id($command->parent)) : null;
+
+
 
         $uchastie = $this->uchasties->get(new UchastieId($command->uchastie));
 
@@ -72,12 +74,14 @@ class Handler
         $sparing = $this->sparings->get(new SparingId($command->sparing));
         $command->godaVixod = (int)$command->plan_date->format('Y');
         $childmatkaId = $this->childmatkas->nextId();
-//        $command->name =  ($plemmatka->getName())."_".$childmatkaId;
-$command->name = $plem[0]."-".$childmatkaId." : пн-".
-    $persona->getNomer()."_".$mestonomer->getNomer()."_".$command->godaVixod;
-//            dd($command->name);
-//        $date = new \DateTimeImmutable();
 
+        $command->name = $plem[0]."-".$childmatkaId." : пн-".
+        $persona->getNomer()."_".$mestonomer->getNomer()."_".$command->godaVixod;
+
+        $date = new \DateTimeImmutable();
+        $command->plan = $date;
+
+        for ($i = 1; $i <= 3; $i++) {
 
         $childmatka = new ChildMatka(
             $childmatkaId,
@@ -93,17 +97,17 @@ $command->name = $plem[0]."-".$childmatkaId." : пн-".
 
         );
 
-        if ($command->parent) {
-            $parent = $this->childmatkas->get(new Id($command->parent));
-            $childmatka->setChildOf($parent);
+            if ($parent) {
+    //            $parent = $this->childmatkas->get(new Id($command->parent));
+                $childmatka->setChildOf($uchastie, $date, $parent);
+            }
+
+            if ($command->plan) {
+                $childmatka->plan($uchastie, $date, $command->plan);
+            }
+
+            $this->childmatkas->add($childmatka);
         }
-
-//        if ($command->plan) {
-//            $childmatka->plan($uchastie, $date, $command->plan);
-//        }
-
-        $this->childmatkas->add($childmatka);
-    }
         $this->flusher->flush();
     }
 }
