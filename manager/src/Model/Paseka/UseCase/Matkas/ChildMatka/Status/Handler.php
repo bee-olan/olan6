@@ -11,7 +11,7 @@ use App\Model\Paseka\Entity\Matkas\ChildMatka\Status;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatkaRepository;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
 use App\Model\Paseka\Entity\Uchasties\Uchastie\UchastieRepository;
-use App\Model\Paseka\UseCase\Matkas\ChildMatka\Priority\Command;
+//use App\Model\Paseka\UseCase\Matkas\ChildMatka\Priority\Command;
 
 class Handler
 {
@@ -25,10 +25,12 @@ class Handler
         $this->uchasties = $uchasties;
         $this->childmatkas = $childmatkas;
         $this->flusher = $flusher;
+
     }
 
     public function handle(Command $command): void
     {
+//        dd( $command);
         $actor = $this->uchasties->get(new UchastieId($command->actor));
         $childmatka = $this->childmatkas->get(new Id($command->id));
 

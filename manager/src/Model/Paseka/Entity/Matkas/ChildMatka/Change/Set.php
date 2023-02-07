@@ -110,7 +110,9 @@ class Set
 
     }
 
-    public static function forNewChildMatka(PlemMatkaId $plemmatka, string $name, ?string $content, Type $type, int $priority): self
+    public static function forNewChildMatka(PlemMatkaId $plemmatka,
+                                            string $name, ?string $content,
+                                            Type $type, int $priority): self
     {
         $set = new self();
         $set->plemmatkaId = $plemmatka;

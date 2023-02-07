@@ -461,9 +461,13 @@ class ChildMatkasController extends AbstractController
             throw $this->createAccessDeniedException();
         }
 
+
         $statusCommand = Status\Command::fromChildMatka($this->getUser()->getId(), $childmatka);
+
         $statusForm = $this->createForm(Status\Form::class, $statusCommand);
+
         $statusForm->handleRequest($request);
+
         if ($statusForm->isSubmitted() && $statusForm->isValid()) {
             try {
                 $statusHandler->handle($statusCommand);

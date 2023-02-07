@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\UseCase\Matkas\ChildMatka\Status;
 
+
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -29,10 +30,11 @@ class Command
         $this->id = $id;
     }
 
-    public static function fromChildMatka(string $actor,ChildMatka $childmatka): self
+    public static function fromChildMatka(string $actor,  ChildMatka $childmatka): self
     {
         $command = new self($actor, $childmatka->getId()->getValue());
         $command->status = $childmatka->getStatus()->getName();
+
         return $command;
     }
 }
