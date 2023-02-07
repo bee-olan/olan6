@@ -7,16 +7,19 @@ namespace App\Model\Paseka\Entity\Matkas\ChildMatka\Event;
 //use App\Model\Work\Entity\Members\Member\Id as MemberId;
 //use App\Model\Work\Entity\Projects\Task\Id;
 
+use App\Model\Paseka\Entity\Matkas\ChildMatka\Id;
+use App\Model\Paseka\Entity\Uchasties\Uchastie\Id as UchastieId;
+
 class TaskExecutorAssigned
 {
     public $actorId;
-    public $taskId;
+    public $childmatkaId;
     public $executorId;
 
-    public function __construct(MemberId $actorId, Id $taskId, MemberId $executorId)
+    public function __construct(UchastieId $actorId, Id $childmatkaId, UchastieId $executorId)
     {
         $this->actorId = $actorId;
-        $this->taskId = $taskId;
+        $this->childmatkaId = $childmatkaId;
         $this->executorId = $executorId;
     }
 }
