@@ -80,7 +80,7 @@ services:
     mailer:
         image: mailhog/mailhog
         ports:
-            - "8088:8025"
+            - "8087:8025"
 
 volumes:
     manager-postgres:

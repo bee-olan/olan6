@@ -4,9 +4,9 @@
 
     <p>Hello, {{ author.name.first }}!</p>
 
-    <p>Your task &laquo;{{ task.name }}&raquo; has assigned to executor {{ executor.name.full }}:</p>
+    <p>Вашей матке &laquo;{{ childmatka.name }}&raquo; назначен исполнитель {{ executor.name.full }}:</p>
 
-    {% set url = url('work.projects.tasks.show', {'id': task.id}) %}
+    {% set url = url('paseka.matkas.childmatkas.show', {'id': childmatka.id}) %}
 
     <p><a href="{{ url }}">{{ url }}</a></p>
 
