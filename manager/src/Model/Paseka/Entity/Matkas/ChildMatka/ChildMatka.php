@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Paseka\Entity\Matkas\ChildMatka;
 
+use App\Model\AggregateRoot;
+use App\Model\EventsTrait;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Change;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Id as ChangeId;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\Change\Set;
@@ -25,8 +27,9 @@ use Webmozart\Assert\Assert;
  *     @ORM\Index(columns={"date"})
  * })
  */
-class ChildMatka
+class ChildMatka implements AggregateRoot
 {
+    use EventsTrait;
     /**
      * @var Id
      * @ORM\Column(type="paseka_matkas_childmatka_id")
@@ -368,6 +371,7 @@ class ChildMatka
         }
         $this->executors->add($executor);
         $this->addChange($actor, $date, Set::fromExecutor($executor->getId()));
+        $this->recordEvent(new Event\ChildExecutorAssigned($actor->getId(), $this->id, $executor->getId()));
     }
 
     public function revokeExecutor(Uchastie $actor, \DateTimeImmutable $date, UchastieId $id): void
