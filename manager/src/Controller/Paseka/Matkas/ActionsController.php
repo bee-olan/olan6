@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Paseka\Matkas;
 
 
-//use App\ReadModel\Work\Projects\Action\ActionFetcher;
-//use App\ReadModel\Work\Projects\Action\Filter;
+
 use App\ReadModel\Paseka\Matkas\Actions\ActionFetcher;
 use App\ReadModel\Paseka\Matkas\Actions\Filter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -37,12 +36,12 @@ class ActionsController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        if ($this->isGranted('ROLE_WORK_MANAGE_PROJECTS')) {
+//        if ($this->isGranted('ROLE_WORK_MANAGE_PROJECTS')) {
             $filter = Filter::all();
-        } else {
-            $filter = Filter::all()->forUchastie($this->getUser()->getId());
-        }
-
+//        } else {
+//            $filter = Filter::all()->forUchastie($this->getUser()->getId());
+//        }
+//dd($filter);
         $pagination = $this->actions->all(
             $filter,
             $request->query->getInt('page', 1),

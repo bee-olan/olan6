@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tasks{% endblock %}
+{% block title %}ТестМатки{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
@@ -8,9 +8,9 @@
 {#        <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>#}
 {#        <li class="breadcrumb-item"><a href="{{ path('work.plemmatkas') }}">Projects</a></li>#}
         {% if plemmatka %}
-            <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id': plemmatka.id}) }}">{{ plemmatka.name }}</a></li>
         {% endif %}
-        <li class="breadcrumb-item active">Actions</li>
+        <li class="breadcrumb-item active">Действие</li>
     </ol>
 {% endblock %}
 
@@ -26,12 +26,12 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Дата</th>
                     {% if not plemmatka %}
-                        <th>Project</th>
+                        <th>племМатка</th>
                     {% endif %}
-                    <th>Task</th>
-                    <th>Action</th>
+                    <th>тестМатка</th>
+                    <th>Действие</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +40,7 @@
                         <td>{{ action.date|date('Y-m-d H:i:s') }}</td>
                         {% if not plemmatka %}
                             <td>
-                                <a href="{{ path('paseka.matkas.plemmatka.show', {'id':  action.plemmatka_id}) }}">{{ action.plemmatka_name }}</a>
+                                <a href="{{ path('paseka.matkas.plemmatka.show', {'plem_id':  action.plemmatka_id}) }}">{{ action.plemmatka_name }}</a>
                             </td>
                         {% endif %}
                         <td>

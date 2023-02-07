@@ -24,7 +24,8 @@ use App\Model\Paseka\UseCase\Matkas\ChildMatka\Type;
 
 
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
-use App\ReadModel\Paseka\Matkas\ActionFetcher;
+
+use App\ReadModel\Paseka\Matkas\Actions\ActionFetcher;
 use App\ReadModel\Paseka\Matkas\ChildMatka\CommentFetcher;
 use App\ReadModel\Paseka\Matkas\ChildMatka\Filter;
 use App\ReadModel\Paseka\Matkas\ChildMatka\ChildMatkaFetcher;
