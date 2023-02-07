@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Event\Listener\Work\Projects\Task;
+namespace App\Event\Listener\Paseka\Matkas\ChildMatka;
 
 use App\Model\Work\Entity\Projects\Task\Event\TaskFileRemoved;
 use App\Service\Uploader\FileUploader;
