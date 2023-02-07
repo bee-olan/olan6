@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ReadModel\Work\Projects\Action\Feed;
+namespace App\ReadModel\Paseka\Matkas\Actions\Feed;
 
 use App\ReadModel\Comment\CommentRow;
 

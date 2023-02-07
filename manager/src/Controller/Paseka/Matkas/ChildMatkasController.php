@@ -26,6 +26,7 @@ use App\Model\Paseka\UseCase\Matkas\ChildMatka\Type;
 use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
 
 use App\ReadModel\Paseka\Matkas\Actions\ActionFetcher;
+use App\ReadModel\Paseka\Matkas\Actions\Feed\Feed;
 use App\ReadModel\Paseka\Matkas\ChildMatka\CommentFetcher;
 use App\ReadModel\Paseka\Matkas\ChildMatka\Filter;
 use App\ReadModel\Paseka\Matkas\ChildMatka\ChildMatkaFetcher;
@@ -537,13 +538,18 @@ class ChildMatkasController extends AbstractController
             }
         }
 
+        $feed = new Feed(
+            $actions->allForChildMatka($childmatka->getId()->getValue()),
+            $comments->allForChildMatka($childmatka->getId()->getValue())
+        );
+
+
         return $this->render('app/paseka/matkas/childmatkas/show.html.twig', [
             'plemmatka' => $childmatka->getPlemMatka(),
             'childmatka' => $childmatka,
             'uchastie' => $uchastie,
             'children' => $childmatkas->childrenOf($childmatka->getId()->getValue()),
-            'comments' => $comments->allForChildMatka($childmatka->getId()->getValue()),
-            'actions' => $actions->allForChildMatka($childmatka->getId()->getValue()),
+            'feed' => $feed,
             'statusForm' => $statusForm->createView(),
             'progressForm' => $progressForm->createView(),
             'typeForm' => $typeForm->createView(),
