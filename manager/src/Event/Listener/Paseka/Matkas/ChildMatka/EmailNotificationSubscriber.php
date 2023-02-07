@@ -49,15 +49,15 @@ class EmailNotificationSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $message = (new \Swift_Message('ChildMatka Executor Assignment'))
+        $message = (new \Swift_Message('Вы тестируете ДочьМатку - назначены исполнителем'))
             ->setTo([$executor->getEmail()->getValue() => $executor->getName()->getFull()])
-            ->setBody($this->twig->render('mail/work/projects/childmatka/executor-assigned-executor.html.twig', [
+            ->setBody($this->twig->render('mail/paseka/matkas/childmatka/executor-assigned-executor.html.twig', [
                 'childmatka' => $childmatka,
                 'executor' => $executor,
             ]), 'text/html');
 
         if (!$this->mailer->send($message)) {
-            throw new \RuntimeException('Unable to send message.');
+            throw new \RuntimeException('Не удается отправить сообщение.');
         }
     }
 
@@ -71,16 +71,16 @@ class EmailNotificationSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $message = (new \Swift_Message('Your ChildMatka Executor Assignment'))
+        $message = (new \Swift_Message('Вашей ДочьМатке назначен исполнитель'))
             ->setTo([$author->getEmail()->getValue() => $author->getName()->getFull()])
-            ->setBody($this->twig->render('mail/work/projects/childmatka/executor-assigned-author.html.twig', [
+            ->setBody($this->twig->render('mail/paseka/matkas/childmatka/executor-assigned-author.html.twig', [
                 'childmatka' => $childmatka,
                 'author' => $author,
                 'executor' => $executor,
             ]), 'text/html');
 
         if (!$this->mailer->send($message)) {
-            throw new \RuntimeException('Unable to send message.');
+            throw new \RuntimeException('Не удается отправить сообщение.');
         }
     }
 }
