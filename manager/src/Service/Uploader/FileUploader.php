@@ -21,7 +21,7 @@ class FileUploader
 
     public function upload(UploadedFile $file): File
     {
-//        dd($file);
+
         $path = date('Y/m/d');
         $name = Uuid::uuid4()->toString() . '.' . $file->getClientOriginalExtension();
 
@@ -40,6 +40,11 @@ $this->storage->createDir($path);
     public function generateUrl(string $path): string
     {
         return $this->basUrl . '/' . $path;
+    }
+
+    public function remove(string $path, string $name): void
+    {
+        $this->storage->delete($path . '/' . $name);
     }
 }
 
