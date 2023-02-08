@@ -139,9 +139,10 @@
       <path value="$PROJECT_DIR$/manager/vendor/cebe/markdown" />
       <path value="$PROJECT_DIR$/manager/vendor/ezyang/htmlpurifier" />
       <path value="$PROJECT_DIR$/manager/vendor/exercise/htmlpurifier-bundle" />
+      <path value="$PROJECT_DIR$/manager/vendor/league/flysystem-bundle" />
       <path value="$PROJECT_DIR$/manager/vendor/league/mime-type-detection" />
       <path value="$PROJECT_DIR$/manager/vendor/league/flysystem" />
-      <path value="$PROJECT_DIR$/manager/vendor/league/flysystem-bundle" />
+      <path value="$PROJECT_DIR$/manager/vendor/symfony/messenger" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

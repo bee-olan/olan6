@@ -147,7 +147,7 @@ class ChildMatkasController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $files = [];
             foreach ($form->get('files')->getData() as $file) {
-                dd($form->get('files')->getData());
+//                dd($form->get('files')->getData());
                 $uploaded = $uploader->upload($file);
                 $files[] = new Files\Add\File(
                     $uploaded->getPath(),
