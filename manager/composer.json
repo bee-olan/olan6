@@ -8,6 +8,7 @@
         "ext-iconv": "*",
         "ext-json": "^1.6",
         "cebe/markdown": "~1.2.0",
+        "centrifugal/phpcent": "^3.0",
         "composer/package-versions-deprecated": "1.11.99.4",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^1.11",
