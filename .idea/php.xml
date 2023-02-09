@@ -4,7 +4,6 @@
     <include_path>
       <path value="$PROJECT_DIR$/manager/vendor/sensio/framework-extra-bundle" />
       <path value="$PROJECT_DIR$/manager/vendor/phpspec/prophecy" />
-      <path value="$PROJECT_DIR$/manager/vendor/predis/predis" />
       <path value="$PROJECT_DIR$/manager/vendor/finesse/swiftmailer-defaults-plugin" />
       <path value="$PROJECT_DIR$/manager/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/manager/vendor/monolog/monolog" />
