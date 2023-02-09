@@ -16,7 +16,7 @@
         "doctrine/orm": "^2.7",
         "exercise/htmlpurifier-bundle": "^2.0",
         "finesse/swiftmailer-defaults-plugin": "^2.0",
-        "knplabs/knp-paginator-bundle": "^3.0",
+        "knplabs/knp-paginator-bundle": "^4.0",
         "league/flysystem-bundle": "^1.1.10",
         "phpdocumentor/reflection-docblock": "^5.3",
         "ramsey/uuid": "^4.2",

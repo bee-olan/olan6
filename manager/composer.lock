@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b81bd3014300c014a7d171c425628089",
+    "content-hash": "cabe24112809e7fa75a75c04883a4031",
     "packages": [
         {
             "name": "brick/math",
@@ -2174,33 +2174,33 @@
         },
         {
             "name": "knplabs/knp-paginator-bundle",
-            "version": "v3.0.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle.git",
-                "reference": "06100a8f3a1e878d3d2d5d06a61c4e648f94aed7"
+                "reference": "ea6ac65818a734a9afaa05270e162506e726c184"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/06100a8f3a1e878d3d2d5d06a61c4e648f94aed7",
-                "reference": "06100a8f3a1e878d3d2d5d06a61c4e648f94aed7",
+                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/ea6ac65818a734a9afaa05270e162506e726c184",
+                "reference": "ea6ac65818a734a9afaa05270e162506e726c184",
                 "shasum": ""
             },
             "require": {
-                "knplabs/knp-components": "~1.2",
-                "php": ">=5.6.0",
-                "symfony/framework-bundle": "~2.7|~3.0|~4.0",
-                "symfony/translation": "~2.7|~3.0|~4.0",
-                "twig/twig": "~1.12|~2"
+                "knplabs/knp-components": "^1.3 || ^2.0",
+                "php": "^7.1",
+                "symfony/framework-bundle": "^3.4 || ^4.0",
+                "symfony/translation": "^3.4 || ^4.0",
+                "twig/twig": "^2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8.35|~5.4.3|~6.4",
-                "symfony/expression-language": "~2.7|~3.0|~4.0"
+                "phpunit/phpunit": "^6.4 || ^8.0",
+                "symfony/expression-language": "^3.4 || ^4.0"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-master": "4.1.x-dev"
                 }
             },
             "autoload": {
@@ -2235,9 +2235,9 @@
             ],
             "support": {
                 "issues": "https://github.com/KnpLabs/KnpPaginatorBundle/issues",
-                "source": "https://github.com/KnpLabs/KnpPaginatorBundle/tree/v3.0.0"
+                "source": "https://github.com/KnpLabs/KnpPaginatorBundle/tree/v4"
             },
-            "time": "2019-02-28T13:51:20+00:00"
+            "time": "2019-11-30T12:18:02+00:00"
         },
         {
             "name": "league/flysystem",

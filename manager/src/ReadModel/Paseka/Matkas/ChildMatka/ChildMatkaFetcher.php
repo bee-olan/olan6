@@ -4,22 +4,30 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Paseka\Matkas\ChildMatka;
 
+use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
 use App\ReadModel\Paseka\Matkas\ChildMatka\Filter\Filter;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use Knp\Component\Pager\Pagination\SlidingPagination;
 use Knp\Component\Pager\PaginatorInterface;
 
 class ChildMatkaFetcher
 {
     private $connection;
     private $paginator;
+    private $repository;
 
-    public function __construct(Connection $connection, PaginatorInterface $paginator)
+    public function __construct(Connection $connection, EntityManagerInterface $em, PaginatorInterface $paginator)
     {
         $this->connection = $connection;
         $this->paginator = $paginator;
+        $this->repository = $em->getRepository(ChildMatka::class);
+    }
+
+    public function find(string $id): ?ChildMatka
+    {
+        return $this->repository->find($id);
     }
 
     public function listZakazForTochka(string $uchastie): array
@@ -124,10 +132,10 @@ class ChildMatkaFetcher
 
         $qb->orderBy($sort, $direction === 'desc' ? 'desc' : 'asc');
 
-        /** @var SlidingPagination $pagination */
+
         $pagination = $this->paginator->paginate($qb, $page, $size);
 
-        $childmatkas = $pagination->getItems();
+        $childmatkas = (array)$pagination->getItems();
         $executors = $this->batchLoadExecutors(array_column($childmatkas, 'id'));
 
         $pagination->setItems(array_map(static function (array $childmatka) use ($executors) {
@@ -225,10 +233,10 @@ class ChildMatkaFetcher
 
         $qb->orderBy($sort, $direction === 'desc' ? 'desc' : 'asc');
 
-        /** @var SlidingPagination $pagination */
+
         $pagination = $this->paginator->paginate($qb, $page, $size);
 
-        $childmatkas = $pagination->getItems();
+        $childmatkas = (array)$pagination->getItems();
         $executors = $this->batchLoadExecutors(array_column($childmatkas, 'id'));
 
         $pagination->setItems(array_map(static function (array $childmatka) use ($executors) {
