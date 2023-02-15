@@ -21,7 +21,7 @@ class OkrugFetcher
         $stmt = $this->connection->createQueryBuilder()
             ->select(
                 'id',
-                'name'               
+                'name'
             )
             ->from('mesto_okrugs')
             ->orderBy('name')
@@ -36,7 +36,8 @@ class OkrugFetcher
             ->select(
                 'g.id',
                 'g.name',
-				'g.nomer'
+				'g.nomer',
+                '(SELECT COUNT(*) FROM mesto_okrug_oblasts o WHERE o.okrug_id = g.id) AS oblasts'
             )
             ->from('mesto_okrugs', 'g')
             ->orderBy('name')

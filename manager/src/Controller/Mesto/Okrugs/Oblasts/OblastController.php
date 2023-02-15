@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Mesto\Okrugs\Oblasts;
 
+use App\Model\Comment\UseCase\Comment;
 use App\Controller\ErrorHandler;
+use App\Model\Mesto\Entity\Okrugs\Oblasts\Oblast;
 use App\Model\Mesto\UseCase\Okrugs\Oblasts\Create;
 use App\Model\Mesto\UseCase\Okrugs\Oblasts\Edit;
 use App\Model\Mesto\UseCase\Okrugs\Oblasts\Remove;
@@ -13,6 +15,7 @@ use App\Model\Mesto\Entity\Okrugs\Oblasts\Id;
 
 use App\Annotation\Guid;
 use App\Model\Mesto\Entity\Okrugs\Okrug;
+use App\ReadModel\Mesto\Oblasts\CommentFetcher;
 use App\ReadModel\Mesto\Oblasts\OblastFetcher;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -35,15 +38,43 @@ class OblastController extends AbstractController
 
     /**
      * @Route("/", name="")
+     * @param Request $request,
      * @param Okrug $okrug
+//     * @param Oblast $oblast
      * @param OblastFetcher $oblasts
+     * @param CommentFetcher $comments
+     * @param Comment\Create\Handler $commentHandler
      * @return Response
      */
-    public function index(Okrug $okrug, OblastFetcher $oblasts): Response
+    public function index(Request $request, Okrug $okrug,
+                          OblastFetcher $oblasts,
+                          CommentFetcher $comments,
+                          Comment\Create\Handler $commentHandler
+                            ): Response
     {
+        $commentCommand = new Comment\Create\Command(
+            $this->getUser()->getId(),
+            Okrug::class,
+            (string)$okrug->getId()->getValue()
+        );
+
+        $commentForm = $this->createForm(Comment\Create\Form::class, $commentCommand);
+        $commentForm->handleRequest($request);
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+            try {
+                $commentHandler->handle($commentCommand);
+                return $this->redirectToRoute('mesto.okrug.oblast', ['id' => $okrug->getId()]);
+            } catch (\DomainException $e) {
+                $this->errors->handle($e);
+                $this->addFlash('error', $e->getMessage());
+            }
+        }
+
         return $this->render('app/mesto/okrug/oblast/index.html.twig', [
             'okrug' => $okrug,
             'oblasts' => $oblasts->allOfOkrug($okrug->getId()->getValue()),
+            'comments' => $comments->allForOblast($okrug->getId()->getValue()),
+            'commentForm' => $commentForm->createView(),
         ]);
     }
 

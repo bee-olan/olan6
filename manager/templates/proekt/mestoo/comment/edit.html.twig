@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ childmatka.name }}{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+{#        <li class="breadcrumb-item"><a href="{{ path('work') }}">Work</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work.projects') }}">Projects</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.show', {'id': project.id}) }}">{{ project.name }}</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work.projects.project.childmatkas', {'project_id': project.id}) }}">Tasks</a></li>#}
+{#        <li class="breadcrumb-item"><a href="{{ path('work.projects.childmatkas.show', {'id': childmatka.id}) }}">{{ childmatka.name }}</a></li>#}
+        <li class="breadcrumb-item active">Комментарий</li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="mt-0 mb-3 font-xl">
+        {# {% if childmatka.parent %}
+            <a href="{{ path('work.projects.childmatkas.show', {'id': childmatka.parent.id}) }}">{{ childmatka.parent.name }}</a> /
+        {% endif %} #}
+        {{ okrug.name }}
+    </h1>
+
+    <div class="card">
+        <div class="card-body">
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -25,6 +25,7 @@ class Entity
 
     public function __construct(string $type, string $id)
     {
+       // проверка на пустоту значения
         Assert::notEmpty($type);
         Assert::notEmpty($id);
 

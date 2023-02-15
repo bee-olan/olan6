@@ -43,11 +43,13 @@
                     <td>{{ oblast.nomer }}</td>
 
                     <td>
-                         <a href="{{ path('mesto.okrug.oblast.raion', {'id': oblast.id}) }}">{{ oblast.name }} ***- добавить район</a>
+                         <a href="{{ path('mesto.okrug.oblast.raion', {'id': oblast.id}) }}">
+                             {{ oblast.name }} ( {{ oblast.raions }} )
+                         </a>
 
                     </td>
 
-                   <td>{{ oblast.mesto }}</td>
+                   <td>{{ oblast.mesto }}  </td>
                     <td>
                         <div class="d-flex flex-row">
                             <a href="{{ path('mesto.okrug.oblast.edit', {'id': okrug.id, 'oblast_id': oblast.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>

@@ -1296,9 +1296,6 @@ a:hover {
 .cabinet__control::-moz-placeholder {
   color: rgba(246, 246, 246, 0.2);
 }
-.cabinet__control:-ms-input-placeholder {
-  color: rgba(246, 246, 246, 0.2);
-}
 .cabinet__control::placeholder {
   color: rgba(246, 246, 246, 0.2);
 }
@@ -1809,9 +1806,6 @@ legend {
 .search__input::-moz-placeholder {
   color: rgba(246, 246, 246, 0.4);
 }
-.search__input:-ms-input-placeholder {
-  color: rgba(246, 246, 246, 0.4);
-}
 .search__input::placeholder {
   color: rgba(246, 246, 246, 0.4);
 }
@@ -2200,9 +2194,6 @@ legend {
 .add-post__textarea::-moz-placeholder {
   color: #D2D2D2;
 }
-.add-post__textarea:-ms-input-placeholder {
-  color: #D2D2D2;
-}
 .add-post__textarea::placeholder {
   color: #D2D2D2;
 }
@@ -2233,7 +2224,7 @@ legend {
 }
 @media screen and (max-width: 575px) {
   .add-post__file,
-.add-post__send {
+  .add-post__send {
     width: 3.4rem;
     height: 3.4rem;
   }
@@ -2644,9 +2635,6 @@ legend {
   color: #f6f6f6;
 }
 .form__control::-moz-placeholder {
-  color: rgba(63, 63, 63, 0.7);
-}
-.form__control:-ms-input-placeholder {
   color: rgba(63, 63, 63, 0.7);
 }
 .form__control::placeholder {

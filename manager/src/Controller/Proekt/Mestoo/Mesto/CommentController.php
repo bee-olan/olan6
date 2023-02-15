@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Paseka\Matkas\ChildMatka;
+namespace App\Controller\Proekt\Mestoo\Mesto;
 
 use App\Controller\ErrorHandler;
 use App\Model\Comment\Entity\Comment\Comment;
 use App\Model\Comment\UseCase\Comment\Edit;
 use App\Model\Comment\UseCase\Comment\Remove;
-//use App\Model\Work\Entity\PlemMatkas\ChildMatka\ChildMatka;
-use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
+//use App\Model\Work\Entity\PlemMatkas\Okrug\ChildMatka;
+//use App\Model\Paseka\Entity\Matkas\ChildMatka\ChildMatka;
+use App\Model\Mesto\Entity\Okrugs\Okrug;
 use App\Security\Voter\Comment\CommentAccess;
 //use App\Security\Voter\Work\PlemMatkas\ChildMatkaAccess;
 use App\Security\Voter\Proekt\Matkas\ChildMatkaAccess;
@@ -20,8 +21,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/paseka/matkas/childmatkas/{childmatka_id}/comments", name="paseka.matkas.childmatkas.comments")
- * @ParamConverter("childmatka", options={"id" = "childmatka_id"})
+ * @Route("/paseka/matkas/okrugs/{okrug_id}/comments", name="paseka.matkas.okrugs.comments")
+ * @ParamConverter("okrug", options={"id" = "okrug_id"})
  */
 class CommentController extends AbstractController
 {
@@ -34,16 +35,16 @@ class CommentController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name=".edit")
-     * @param ChildMatka $childmatka
+     * @param Okrug $okrug
      * @param Comment $comment
      * @param Request $request
      * @param Edit\Handler $handler
      * @return Response
      */
-    public function edit(ChildMatka $childmatka, Comment $comment, Request $request, Edit\Handler $handler): Response
+    public function edit(Okrug $okrug, Comment $comment, Request $request, Edit\Handler $handler): Response
     {
-        $this->denyAccessUnlessGranted(ChildMatkaAccess::VIEW, $childmatka);
-        $this->checkCommentIsForChildMatka($childmatka, $comment);
+        $this->denyAccessUnlessGranted(OkrugAccess::VIEW, $okrug);
+        $this->checkCommentIsForOkrug($okrug, $comment);
         $this->denyAccessUnlessGranted(CommentAccess::MANAGE, $comment);
 
         $command = Edit\Command::fromComment($comment);
@@ -54,36 +55,36 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('paseka.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
+                return $this->redirectToRoute('paseka.matkas.okrugs.show', ['id' => $okrug->getId()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
         }
 
-        return $this->render('app/paseka/matkas/childmatkas/comment/edit.html.twig', [
-            'plemmatka' => $childmatka->getPlemMatka(),
-            'childmatka' => $childmatka,
+        return $this->render('app/paseka/matkas/okrugs/comment/edit.html.twig', [
+            'okrug' => $oblast->getOkrug(),
+            'okrug' => $okrug,
             'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}/delete", name=".delete", methods={"POST"})
-     * @param ChildMatka $childmatka
+     * @param Okrug $okrug
      * @param Comment $comment
      * @param Request $request
      * @param Remove\Handler $handler
      * @return Response
      */
-    public function delete(ChildMatka $childmatka, Comment $comment, Request $request, Remove\Handler $handler): Response
+    public function delete(Okrug $okrug, Comment $comment, Request $request, Remove\Handler $handler): Response
     {
         if (!$this->isCsrfTokenValid('delete-comment', $request->request->get('token'))) {
-            return $this->redirectToRoute('work.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
+            return $this->redirectToRoute('work.projects.okrugs.show', ['id' => $okrug->getId()]);
         }
 
-        $this->denyAccessUnlessGranted(ChildMatkaAccess::VIEW, $childmatka);
-        $this->checkCommentIsForChildMatka($childmatka, $comment);
+        $this->denyAccessUnlessGranted(OkrugAccess::VIEW, $okrug);
+        $this->checkCommentIsForOkrug($okrug, $comment);
         $this->denyAccessUnlessGranted(CommentAccess::MANAGE, $comment);
 
         $command = new Remove\Command($comment->getId()->getValue());
@@ -95,14 +96,14 @@ class CommentController extends AbstractController
             $this->addFlash('error', $e->getMessage());
         }
 
-        return $this->redirectToRoute('work.matkas.childmatkas.show', ['id' => $childmatka->getId()]);
+        return $this->redirectToRoute('work.projects.okrugs.show', ['id' => $okrug->getId()]);
     }
 
-    private function checkCommentIsForChildMatka(ChildMatka $childmatka, Comment $comment): void
+    private function checkCommentIsForOkrug(Okrug $okrug, Comment $comment): void
     {
         if (!(
-            $comment->getEntity()->getType() === ChildMatka::class &&
-            (int)$comment->getEntity()->getId() === $childmatka->getId()->getValue()
+            $comment->getEntity()->getType() === Okrug::class &&
+            (int)$comment->getEntity()->getId() === $okrug->getId()->getValue()
         )) {
             throw $this->createNotFoundException();
         }

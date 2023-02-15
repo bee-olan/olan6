@@ -30,7 +30,9 @@
                                 <a href="{{ path('proekt.mestoo.oblasts', {'okrug_id': okrug.id}) }}">{{ okrug.nomer }} </a>
                             </li>
                             <li class="mestoo__title-item ">
-                                <a href="{{ path('proekt.mestoo.oblasts', {'okrug_id': okrug.id}) }}">{{ okrug.name }} </a>
+                                <a href="{{ path('proekt.mestoo.oblasts', {'okrug_id': okrug.id}) }}">
+                                    {{ okrug.name }}  ( {{ okrug.oblasts }}  )
+                                </a>
                             </li>
                         </ul>
                     </div>
