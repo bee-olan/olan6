@@ -9,10 +9,10 @@
 {% block kroxii %}   
             <a href="{{ path('proekt') }}">Главная</a>
             <a href="{{ path('proekt.mestoo.inform') }}">НомерМеста</a>
-            <a href="{{ path('proekt.mestoo.okrugs', {'okrug_id': okrug_id} ) }}">Номера Округов</a>
-            <a href="{{ path('proekt.mestoo.oblasts', { 'oblast_id': oblast_id, 'okrug_id': okrug_id} ) }}">Номера Регионов/Областей</a>
+            <a href="{{ path('proekt.mestoo.okrugs', {'okrug_id': okrug.id} ) }}">Номера Округов</a>
+            <a href="{{ path('proekt.mestoo.oblasts', { 'oblast_id': oblast.id, 'okrug_id': okrug.id} ) }}">Номера Регионов/Областей</a>
         
-             <a href="{{ path('proekt.mestoo.raions', {'raion_id': raion.id, 'oblast_id': oblast_id, 'okrug_id': okrug_id, 'name_ok': name_ok  } ) }}">Номера Районов</a>
+             <a href="{{ path('proekt.mestoo.raions', {'raion_id': raion.id, 'oblast_id': oblast.id, 'okrug_id': okrug.id } ) }}">Номера Районов</a>
            
             <span class="aktiv">Номер места расположения </span> 
 {% endblock %}
@@ -28,8 +28,8 @@
         <div class="mestoo__raspol">
             <ul class="mestoo__title">
                 
-                {# <li class="mestoo__title-item mestoo__nomer-text">{{ okrug.nomer }}</li> #}
-                <li class="mestoo__title-item "> {{ name_ok }}</li>
+                 <li class="mestoo__title-item mestoo__nomer-text">{{ okrug.nomer }}</li>
+                <li class="mestoo__title-item "> {{ okrug.name }}</li>
                 <li>
                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -43,8 +43,8 @@
        <div class=" mestoo--obla ">
             <div class="mestoo__raspol">
                 <ul class="mestoo__title">
-                    {# <li class="mestoo__title-item mestoo__nomer-text">{{ oblast.nomer }}</li> #}
-                    <li class="mestoo__title-item ">{{ name_ob }} </li>           
+                     <li class="mestoo__title-item mestoo__nomer-text">{{ oblast.nomer }}</li>
+                    <li class="mestoo__title-item ">{{ oblast.name }} </li>
                 
                     <li>
                         <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -97,19 +97,18 @@
     <div class = "mestoo__linia-top"></div>
 
     <div class="mestoo  ">
-        <div class="mestoo__raspol ">     
+        <div class="mestoo__raspol ">
             <ul class="mestoo__title nomer-text">
                 <li class="mestoo__title-item ">
-                     Вы не нашли название ?  Нужно
+                     Вы случайно не туда зашли ?
                 </li>
                 <li class="mestoo__title-item ">
-                    <button class="btnn  btnn--mb1 btnn--pt" type="button" 
-                        data-modal="mesto-sait-modal">
-                        написать мне
-                    </button>
-                </li>                       
-            </ul>                   
-        </div>               
+                    <a class="mestoo__read  btnn btnn--mb1 btnn--pt" href="{{ path('proekt.mestoo.okrugs') }}">
+                        Попробуйте еще раз
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class = "mestoo__linia-top"></div>
 </div>

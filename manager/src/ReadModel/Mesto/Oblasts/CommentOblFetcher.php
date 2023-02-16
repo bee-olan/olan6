@@ -10,7 +10,7 @@ use App\ReadModel\Comment\CommentRow;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 
-class CommentFetcher
+class CommentOblFetcher
 {
     private $connection;
 

@@ -31,23 +31,20 @@ class MestoController extends AbstractController
 
 
     /**
-     * @Route("/mesto/{okrug_id},{name_ok},{oblast_id},{name_ob}", name=".mesto")
-     * @param string $name_ok
-     * @param string $okrug_id
-     * @param string $oblast_id
-     * @param string $name_ob
+//     * @Route("/mesto/{okrug_id},{oblast_id}", name=".mesto")
+     * @Route("/mesto", name=".mesto")
      * @param Raion $raion
      * @return Response
      */
-    public function mesto(string $okrug_id, string $name_ok, string $oblast_id, string $name_ob,  Raion $raion): Response
+    public function mesto( Raion $raion): Response
     {
         //$this->denyAccessUnlessGranted(OkrugAccess::MANAGE_MEMBERS, $okrug);
+        $oblast = $raion->getOblast()->getName();
 
+        $okrug = $raion->getOblast()->getOkrug()->getName();
         return $this->render('proekt/mestoo/mesto.html.twig', [
-            'okrug_id' => $okrug_id,
-            'name_ok' => $name_ok,
-            'oblast_id' => $oblast_id,
-            'name_ob' => $name_ob,
+            'okrug' => $raion->getOblast()->getOkrug(),
+            'oblast' => $raion->getOblast(),
             'raion' => $raion,
         ]);
     }

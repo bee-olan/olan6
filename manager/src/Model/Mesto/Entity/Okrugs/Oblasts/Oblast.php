@@ -163,4 +163,11 @@ class Oblast
         }
         throw new \DomainException('raion is not found.');
     }
+
+
+    public function getOkrug(): Okrug
+    {
+        return $this->okrug;
+    }
+
 }

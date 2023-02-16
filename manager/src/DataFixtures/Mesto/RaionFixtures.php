@@ -38,7 +38,7 @@ class RaionFixtures extends Fixture implements DependentFixtureInterface
         $rai = $this->createRaion($rost, $name="Багаевский район", $nomer = "3", $mesto = "3-61-3");
         $manager->persist($rai);
    /////////////////////////////////
-        $rai = $this->createRaion($perm, $name="Гайнский район", $nomer = "1", $mesto = "4-59-1");
+        $rai = $this->createRaion($perm, $name="Гайнский район", $nomer = "1", $mesto = "5-59-1");
         $manager->persist($rai);
 
 

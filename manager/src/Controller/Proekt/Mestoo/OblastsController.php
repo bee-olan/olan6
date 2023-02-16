@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Controller\Proekt\Mestoo;
 
 use App\Annotation\Guid;
-use App\ReadModel\Mesto\Oblasts\CommentFetcher;
+//use App\ReadModel\Mesto\Oblasts\CommentFetcher;
+use App\ReadModel\Mesto\Oblasts\CommentOblFetcher;
 use App\ReadModel\Mesto\Oblasts\OblastFetcher;
 use App\Model\Comment\UseCase\Comment;
 
@@ -37,13 +38,13 @@ class OblastsController extends AbstractController
      * @param Request $request,
      * @param Okrug $okrug
      * @param OblastFetcher $oblasts
-     * @param CommentFetcher $comments
+     * @param CommentOblFetcher $comments
      * @param Comment\Create\Handler $commentHandler
      * @return Response
      */ 
     public function oblasts(Request $request, Okrug $okrug,
                             OblastFetcher $oblasts,
-                            CommentFetcher $comments,
+                            CommentOblFetcher $comments,
                             Comment\Create\Handler $commentHandler
                              ): Response
     {
@@ -51,7 +52,7 @@ class OblastsController extends AbstractController
         $commentCommand = new Comment\Create\Command(
             $this->getUser()->getId(),
             Okrug::class,
-            (string)$okrug->getId()->getValue()
+            $okrug->getId()->getValue()
         );
 
         $commentForm = $this->createForm(Comment\Create\Form::class, $commentCommand);
