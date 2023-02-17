@@ -39,23 +39,23 @@ class OblastsController extends AbstractController
      * @param Okrug $okrug
      * @param OblastFetcher $oblasts
      * @param CommentOblFetcher $comments
-     * @param Comment\Create\Handler $commentHandler
+     * @param Comment\AddMesto\Handler $commentHandler
      * @return Response
      */ 
     public function oblasts(Request $request, Okrug $okrug,
                             OblastFetcher $oblasts,
                             CommentOblFetcher $comments,
-                            Comment\Create\Handler $commentHandler
+                            Comment\AddMesto\Handler $commentHandler
                              ): Response
     {
         //$this->denyAccessUnlessGranted(OkrugAccess::MANAGE_MEMBERS, $okrug);
-        $commentCommand = new Comment\Create\Command(
+        $commentCommand = new Comment\AddMesto\Command(
             $this->getUser()->getId(),
             Okrug::class,
             $okrug->getId()->getValue()
         );
 
-        $commentForm = $this->createForm(Comment\Create\Form::class, $commentCommand);
+        $commentForm = $this->createForm(Comment\AddMesto\Form::class, $commentCommand);
         $commentForm->handleRequest($request);
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             try {

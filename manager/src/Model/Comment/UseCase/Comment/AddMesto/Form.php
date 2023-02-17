@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Comment\UseCase\Comment\Create;
+namespace App\Model\Comment\UseCase\Comment\AddMesto;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -15,10 +15,10 @@ class Form extends AbstractType
     {
         $builder
             ->add('text', Type\TextareaType::class,[
-                'label' => 'Комментарий :-- ',
+                'label' => 'Запрос :  ',
                 'attr' => [
-                    'rows' => 6,
-                    'placeholder' => 'комментарий тут'
+                    'rows' => 3,
+                    'placeholder' => 'Название тут'
                 ]]);
     }
 

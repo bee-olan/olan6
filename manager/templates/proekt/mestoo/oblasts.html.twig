@@ -47,12 +47,12 @@
             <div class="mestoo__raspol">
                 <ul class="mestoo__title">
                     <li class="mestoo__title-item mestoo__nomer-red">
-                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id, 'okrug_id': okrug.id , 'name_ok':  okrug.name }) }}">
+                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id, 'okrug_id': okrug.id  }) }}">
                             {{ okrug.nomer }} - {{ oblast.nomer }}
                         </a>     
                     </li>
                     <li class="mestoo__title-item ">
-                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id , 'okrug_id': okrug.id, 'name_ok': okrug.name }) }}">
+                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id , 'okrug_id': okrug.id }) }}">
                             {{ oblast.name }} ( {{ oblast.raions }} )
                         </a> 
                     </li>           
@@ -62,7 +62,28 @@
         </div>
     {% endfor %}
 </div>
+{# ----------------------- #}
 
+
+
+    <div  class="proekts proekts-plr">
+        <h3 class="form__title">Запрос на недостающие название  Республики / Края / Области + Района</h3>
+
+        <div class="plem-form__header  ">
+            <div class="plem-form ">
+                {{ form_start(commentForm) }}
+                {{ form_widget(commentForm) }}
+
+                <button type="submit" class="btnn   btnn--pt">Отправить</button>
+                {{ form_end(commentForm) }}
+                <span class="form__line"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+{# ----------------------- #}
     <div class="card">
         <div class="card-header">Comments</div>
         {% if comments|length %}
