@@ -1,12 +1,12 @@
 .profilee {
     margin-top: -1rem;
     
-    @include breakpoint($tablet-bp) {
-        margin-top: -1rem;
-        position: relative; ///---1 что бы дочернии были absolute
+    // @include breakpoint($tablet-bp) {
+    //     margin-top: -1rem;
+    //     position: relative; ///---1 что бы дочернии были absolute
         
-        border-bottom: 1px solid #1C1C1C;
-    }
+    //     border-bottom: 1px solid #1C1C1C;
+    // }
 }
 
 .profilee__avatar {
@@ -25,16 +25,16 @@
         height: 7rem;
     }
 
-     @include breakpoint($tablet-bp) {
-        width: 6rem;
-        height: 5.5rem;
+    //  @include breakpoint($tablet-bp) {
+    //     width: 6rem;
+    //     height: 5.5rem;
 
-        border: 1px solid $border-foto;
+    //     border: 1px solid $border-foto;
         
-        margin-left: 0;
-        position: absolute; /// ---1 что бы фото и надпись были не в столбик
-        left: 0;       
-    }
+    //     margin-left: 0;
+    //     position: absolute; /// ---1 что бы фото и надпись были не в столбик
+    //     left: 0;       
+    // }
 }
 
 .profilee__header {
@@ -42,11 +42,11 @@
     
     text-align: center;
     
-    @include breakpoint($tablet-bp) {
-        padding-top: 2rem;
-        padding-left: 8rem;
-        text-align: left;
-    }
+    // @include breakpoint($tablet-bp) {
+    //     padding-top: 2rem;
+    //     padding-left: 8rem;
+    //     text-align: left;
+    // }
 }
 
 .profilee__name {
@@ -54,9 +54,9 @@
     font-size: 1.8rem;
     text-align: center;
 
-    @include breakpoint($tablet-bp) {
-        font-size: 1.5rem;
-    }
+    // @include breakpoint($tablet-bp) {
+    //     font-size: 1.5rem;
+    // }
 }
 
 .profilee__prof {
@@ -64,9 +64,9 @@
     font-weight: 300;
     color: #DEDEDE;
     
-    @include breakpoint($tablet-bp) {
-        font-size: 1.2rem;
-    }
+    // @include breakpoint($tablet-bp) {
+    //     font-size: 1.2rem;
+    // }
 }
 
 .profilee__text {
@@ -81,9 +81,9 @@
     border-top: 2px solid $border-lin-nav;
     border-bottom: 2px solid $border-lin-nav;
 
-    @include breakpoint($tablet-bp) {
-        display: none;
-    }
+    // @include breakpoint($tablet-bp) {
+    //     display: none;
+    // }
 }
 
 

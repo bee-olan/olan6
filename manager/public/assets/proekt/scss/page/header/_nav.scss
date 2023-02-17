@@ -5,21 +5,21 @@
         margin: 3rem 0;
     }
     
-    @include breakpoint($tablet-bp) {
-        display: none;
+    // @include breakpoint($tablet-bp) {
+    //     display: none;
         
-        &--mobile {
-            display: block;
-        }
-    }
+    //     &--mobile {
+    //         display: block;
+    //     }
+    // }
 }
 
 .navv__list {
     display: flex;
 
-    @include breakpoint($tablet-bp) {
-        flex-direction: column; // что бы навигация шла друг под другом
-    }
+    // @include breakpoint($tablet-bp) {
+    //     flex-direction: column; // что бы навигация шла друг под другом
+    // }
 }
 
 .navv__item {
@@ -41,13 +41,13 @@
         }
      }
 
-     @include breakpoint($tablet-bp) {
-        &:hover {
-            .navv__link {
-                background: none;
-            }
-        }
-    }
+    //  @include breakpoint($tablet-bp) {
+    //     &:hover {
+    //         .navv__link {
+    //             background: none;
+    //         }
+    //     }
+    // }
 }
 
 // стилизация ссылок
@@ -86,12 +86,12 @@
          }
      }
      
-     @include breakpoint($tablet-bp) {
-        padding-left: 0;
-        padding-right: 0;
+    //  @include breakpoint($tablet-bp) {
+    //     padding-left: 0;
+    //     padding-right: 0;
         
-        font-size: 1.6rem;
-    }
+    //     font-size: 1.6rem;
+    // }
 }
 
 

@@ -411,7 +411,7 @@ pre {
   border-radius: 5px;
   position: relative;
   padding: 8px 10px;
-  background: #fff;
+  background: rgba(246, 246, 246, 0.2);
   border: 1px solid #d2d6de;
   margin: 5px 0 0 50px;
   color: #444444;
@@ -454,7 +454,6 @@ pre {
 .direct-chat-info {
   display: block;
   margin-bottom: 2px;
-  font-size: 12px;
 }
 
 .direct-chat-name {
@@ -888,19 +887,9 @@ pre {
   right: 0;
   z-index: 1000;
 }
-@media screen and (max-width: 991px) {
-  .headerr {
-    width: 100%;
-  }
-}
 
 .headerr__left {
   width: 75%;
-}
-@media screen and (max-width: 991px) {
-  .headerr__left {
-    width: 40%;
-  }
 }
 
 .headerr__right {
@@ -909,21 +898,10 @@ pre {
   justify-content: flex-end;
   margin-right: 1rem;
 }
-@media screen and (max-width: 991px) {
-  .headerr__right {
-    width: 60%;
-  }
-}
 
 .headerr-container {
   max-width: 100%;
   margin: 1rem 19rem 5rem 0rem;
-}
-@media screen and (max-width: 575px) {
-  .headerr-container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
 }
 
 .subnavv {
@@ -1051,32 +1029,14 @@ pre {
 .show-sidebar .burgerr:after {
   transform: rotate(-45deg);
 }
-@media screen and (max-width: 991px) {
-  .burgerr {
-    display: block;
-  }
-}
 
 .navv--mobile {
   display: none;
   margin: 3rem 0;
 }
-@media screen and (max-width: 991px) {
-  .navv {
-    display: none;
-  }
-  .navv--mobile {
-    display: block;
-  }
-}
 
 .navv__list {
   display: flex;
-}
-@media screen and (max-width: 991px) {
-  .navv__list {
-    flex-direction: column;
-  }
 }
 
 .navv__item {
@@ -1089,11 +1049,6 @@ pre {
 }
 .navv__item:hover > .subnavv {
   display: block;
-}
-@media screen and (max-width: 991px) {
-  .navv__item:hover .navv__link {
-    background: none;
-  }
 }
 
 .navv__link {
@@ -1120,13 +1075,6 @@ pre {
   top: 50%;
   right: 1.35rem;
   transform: translateY(-50%);
-}
-@media screen and (max-width: 991px) {
-  .navv__link {
-    padding-left: 0;
-    padding-right: 0;
-    font-size: 1.6rem;
-  }
 }
 
 .karandash {
@@ -1342,13 +1290,6 @@ pre {
 .profilee {
   margin-top: -1rem;
 }
-@media screen and (max-width: 991px) {
-  .profilee {
-    margin-top: -1rem;
-    position: relative;
-    border-bottom: 1px solid #1C1C1C;
-  }
-}
 
 .profilee__avatar {
   display: block;
@@ -1363,48 +1304,21 @@ pre {
 .profilee__avatar--persona {
   height: 7rem;
 }
-@media screen and (max-width: 991px) {
-  .profilee__avatar {
-    width: 6rem;
-    height: 5.5rem;
-    border: 1px solid rgb(190, 186, 151);
-    margin-left: 0;
-    position: absolute;
-    left: 0;
-  }
-}
 
 .profilee__header {
   margin-bottom: 2rem;
   text-align: center;
-}
-@media screen and (max-width: 991px) {
-  .profilee__header {
-    padding-top: 2rem;
-    padding-left: 8rem;
-    text-align: left;
-  }
 }
 
 .profilee__name {
   font-size: 1.8rem;
   text-align: center;
 }
-@media screen and (max-width: 991px) {
-  .profilee__name {
-    font-size: 1.5rem;
-  }
-}
 
 .profilee__prof {
   font-size: 1.4rem;
   font-weight: 300;
   color: #DEDEDE;
-}
-@media screen and (max-width: 991px) {
-  .profilee__prof {
-    font-size: 1.2rem;
-  }
 }
 
 .profilee__text {
@@ -1415,11 +1329,6 @@ pre {
   text-align: center;
   border-top: 2px solid rgb(175, 169, 112);
   border-bottom: 2px solid rgb(175, 169, 112);
-}
-@media screen and (max-width: 991px) {
-  .profilee__text {
-    display: none;
-  }
 }
 
 .mainn {
@@ -1792,6 +1701,67 @@ pre {
   }
 }
 
+.form__title {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+  color: #f6f6f6;
+  font-weight: 500;
+}
+
+.mesto-form__header {
+  margin: 0 0 2.5rem 0;
+}
+
+.mesto-form {
+  margin-right: 4rem;
+}
+.mesto-form form div div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+.mesto-form form div div .form__group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.mesto-form form div div .form__control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #3F3F3F;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: 1.4rem;
+  color: #f6f6f6;
+}
+.mesto-form form div div .form__control::-moz-placeholder {
+  color: rgba(246, 246, 246, 0.2);
+}
+.mesto-form form div div .form__control::placeholder {
+  color: rgba(246, 246, 246, 0.2);
+}
+.mesto-form form div div label {
+  min-width: 10%;
+  font-size: 1.8rem;
+  color: #a78c16;
+}
+.mesto-form form div div textarea {
+  min-width: 90%;
+  height: 50px;
+  background: rgba(246, 246, 246, 0.2);
+  border: 1px solid #d2d6de;
+  border-radius: 5px;
+  margin-left: 2rem;
+  color: #444444;
+  overflow: hidden;
+  resize: none;
+}
+
 .personaa-form div div div {
   display: flex;
   justify-content: flex-start;
@@ -1967,68 +1937,28 @@ legend {
   font-weight: 500;
 }
 
-.form__group {
+.card-mesto {
   margin-bottom: 1.5rem;
+}
+
+.card-mesto {
   position: relative;
-}
-.form__group--md {
-  margin-bottom: 2.5rem;
-}
-
-.form__control {
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0 0.75rem;
-  background: none;
-  border: none;
-  border-bottom: 1px solid rgb(190, 186, 151);
-  border-radius: 0;
-  box-shadow: none;
-  font-family: inherit;
-  font-size: 1.4rem;
-  color: #f6f6f6;
-}
-.form__control::-moz-placeholder {
-  color: rgba(63, 63, 63, 0.7);
-}
-.form__control::placeholder {
-  color: rgba(63, 63, 63, 0.7);
-}
-.form__control:focus + .form__line {
-  width: 100%;
-}
-.form__control--textarea {
-  height: 30px;
-  overflow: hidden;
-  resize: none;
-}
-
-.form__line {
-  width: 0;
-  height: 1px;
-  background-color: #155799;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
-  transition: width 0.2s linear;
-}
-
-.form__footer--center {
-  text-align: center;
-}
-
-.form__footer-list {
   display: flex;
-  justify-content: center;
-  font-size: 1.2rem;
-  line-height: 1.2;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
 }
-.form__footer-list li {
-  margin: 0 1rem;
+
+.card-header-mesto {
+  padding: 1.2rem 0.7rem;
+  margin-bottom: 0;
+  box-shadow: inset 0px 0px 10px rgba(246, 246, 246, 0.9);
+  border-bottom: 1px solid #f6f6f6;
 }
-.form__footer-list a {
-  text-decoration: none;
+
+.pull-right {
+  float: right;
 }
 
 .plem__header {
@@ -2435,7 +2365,6 @@ legend {
 
 .ras__data {
   display: flex;
-  justify-content: start;
   align-items: center;
   list-style: none;
   max-width: 65%;

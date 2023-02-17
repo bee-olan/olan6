@@ -47,9 +47,9 @@
             <div class="mestoo__raspol">
                 <ul class="mestoo__title">
                     <li class="mestoo__title-item mestoo__nomer-red">
-                        <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id, 'okrug_id': okrug.id  }) }}">
+                        {# <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id, 'okrug_id': okrug.id  }) }}"> #}
                             {{ okrug.nomer }} - {{ oblast.nomer }}
-                        </a>     
+                        {# </a>      #}
                     </li>
                     <li class="mestoo__title-item ">
                         <a href="{{ path('proekt.mestoo.raions', {'oblast_id': oblast.id , 'okrug_id': okrug.id }) }}">
@@ -67,16 +67,17 @@
 
 
     <div  class="proekts proekts-plr">
-        <h3 class="form__title">Запрос на недостающие название  Республики / Края / Области + Района</h3>
+        <h3 class="form__title">Написать запрос на недостающие название  Республики / Края / Области + Района</h3>
 
-        <div class="plem-form__header  ">
-            <div class="plem-form ">
+        <div class="mesto-form__header  ">
+            <div class="mesto-form ">
                 {{ form_start(commentForm) }}
+              
                 {{ form_widget(commentForm) }}
 
-                <button type="submit" class="btnn   btnn--pt">Отправить</button>
+                <button type="submit" class="btnn  btnn--mb0 btnn--pt">Отправить</button>
                 {{ form_end(commentForm) }}
-                <span class="form__line"></span>
+                
             </div>
         </div>
     </div>
@@ -84,8 +85,9 @@
 
 
 {# ----------------------- #}
-    <div class="card">
-        <div class="card-header">Comments</div>
+<div  class="proekts proekts-plr">
+    <div class="card-mesto">
+        <h3 class="form__title">Запросы на недостающие названия  Республик / Края / Областей + Районов</h3>
         {% if comments|length %}
             <div class="card-body">
                 <div class="direct-chat">
@@ -118,12 +120,7 @@
                     </div>
                 </div>
             </div>
-        {% endif %}
-        <div class="card-body border-top border-light">
-            {{ form_start(commentForm) }}
-            {{ form_widget(commentForm) }}
-            <button type="submit" class="btn btn-primary">Отправить</button>
-            {{ form_end(commentForm) }}
-        </div>
+        {% endif %}       
     </div>
+</div>    
  {% endblock %}

@@ -70,7 +70,7 @@
         }
     }
     
-    @include breakpoint($tablet-bp) {
-        display: block;
-    }
+    // @include breakpoint($tablet-bp) {
+    //     display: block;
+    // }
 }

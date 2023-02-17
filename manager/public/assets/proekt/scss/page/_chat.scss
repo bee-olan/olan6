@@ -33,7 +33,8 @@
     border-radius: 5px;
     position: relative;
     padding: 8px 10px;
-    background: #fff;
+    background: rgba($white, .2);
+    // background: #d2d6de;
     border: 1px solid #d2d6de;
     margin: 5px 0 0 50px;
     color: #444444;
@@ -70,7 +71,7 @@
 .direct-chat-info {
     display: block;
     margin-bottom: 2px;
-    font-size: 12px;
+    // font-size: 12px;
 }
 .direct-chat-name {
     font-weight: 600;
