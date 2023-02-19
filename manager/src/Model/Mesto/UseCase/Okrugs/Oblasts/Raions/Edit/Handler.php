@@ -23,7 +23,10 @@ class Handler
     {
         $raion = $this->raions->get(new Id($command->id));
         $command->mesto = $command->mesto."-".$command->nomer;
-        $raion->edit($command->name, $command->nomer, $command->mesto);
+        $raion->edit($command->name, $command->nomer, 
+                    $command->mesto,
+                    $command->shirDolg
+                );
 
         $this->flusher->flush();
     }

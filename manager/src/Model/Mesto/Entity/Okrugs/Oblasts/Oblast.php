@@ -85,7 +85,9 @@ class Oblast
     public function addRaion(  RaionId $id,
                                string $name,
                                string $nomer,
-                               string $mesto): void
+                               string $mesto,
+                                string $shirDolg
+                                ): void
     {
         foreach ($this->raions as $raion) {
             if ($raion->isNameEqual($name)) {
@@ -95,13 +97,13 @@ class Oblast
                 throw new \DomainException('Такой номер района - уже существует.');
             }
         }
-        $this->raions->add(new Raion($this, $id, $name, $nomer, $mesto));
+        $this->raions->add(new Raion($this, $id, $name, $nomer, $mesto, $shirDolg));
     }
-    public function editRaion(RaionId $id, string $name, $nomer, $mesto): void
+    public function editRaion(RaionId $id, string $name, $nomer, $mesto,  $shirDolg): void
     {
         foreach ($this->raions as $current) {
             if ($current->getId()->isEqual($id)) {
-                $current->edit($name, $nomer, $mesto);
+                $current->edit($name, $nomer, $mesto,  $shirDolg);
                 return;
             }
         }

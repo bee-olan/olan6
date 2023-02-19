@@ -35,6 +35,7 @@
                 <th>Номер</th>
                 <th>Название</th>
                 <th>Номер Районы</th>
+                <th>Широта,Долгота</th>
                 <th>Действия</th>
             </tr>
             <tbody>
@@ -45,11 +46,10 @@
                     <td>{{ raion.nomer }}</td>
 
                     <td>
-
                         {{ raion.name }} 
-                    </td>                
-                    
+                    </td>                             
                    <td>{{ raion.mesto }}</td>
+                   <td>{{ raion.shir_dolg }}</td>
                     <td>
                          <div class="d-flex flex-row">
                             <a href="{{ path('mesto.okrug.oblast.raion.edit', {'id': oblast.id, 'raion_id': raion.id}) }}" class="btn btn-sm btn-primary mr-1"><span class="fa fa-pencil"></span></a>

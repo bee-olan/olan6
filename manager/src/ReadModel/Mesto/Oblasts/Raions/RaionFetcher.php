@@ -24,12 +24,13 @@ class RaionFetcher
                 'id',
                 'name',
                 'nomer',
-                'mesto'
+                'mesto',
+                'shir_dolg'
             )
             ->from('mesto_okrug_oblast_raions')
             ->andWhere('oblast_id = :oblast')
             ->setParameter(':oblast', $oblast)
-            ->orderBy('name')
+            // ->orderBy('name')
             ->orderBy('nomer')
             ->orderBy('mesto')
             ->execute();
@@ -44,7 +45,8 @@ class RaionFetcher
                 'd.id',
                 'd.name',
                 'd.nomer',
-                'd.mesto'
+                'd.mesto',
+                'd.shir_dolg'
                 // '(
                 //     SELECT COUNT(ms.member_id)
                 //     FROM work_projects_project_memberships ms
@@ -55,7 +57,7 @@ class RaionFetcher
             ->from('mesto_okrug_oblast_raions', 'd')
             ->andWhere('oblast_id = :oblast')
             ->setParameter(':oblast', $oblast)
-            ->orderBy('name')
+            // ->orderBy('name')
             ->orderBy('nomer')
             ->orderBy('mesto')
             ->execute();
