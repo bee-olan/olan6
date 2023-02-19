@@ -41,11 +41,6 @@ class Command
      */
     public $mesto;
 
-    /**
-     * @var string
-     * @Assert\NotBlank()
-     */
-    public $shirDolg;
 
     public function __construct(string $oblast, string $id)
     {
@@ -61,7 +56,7 @@ class Command
         $command->name = $raion->getName();
 		$command->nomer = $raion->getNomer();
 		$command->mesto = $mest[0]."-".$mest[1];
-        $command->shirDolg = $raion->getShirDolg();
+
         return $command;
     }
 }

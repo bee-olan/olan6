@@ -106,11 +106,27 @@
 {# </div>#}
     <div class = "mestoo__linia-top mestoo-ml"></div>
 
-
     <div  class="proekts proekts-plr">
-        <div class="card-m">
+        <h3 class="form__title">Написать запрос на недостающие название   Района</h3>
+
+        <div class="mesto-form__header  ">
+            <div class="mesto-form ">
+                {{ form_start(commentForm) }}
+
+                {{ form_widget(commentForm) }}
+
+                <button type="submit" class="btnn  btnn--mb0 btnn--pt">Отправить</button>
+                {{ form_end(commentForm) }}
+
+            </div>
+        </div>
+    </div>
+{# ----------------------- #}
+    <div  class="proekts proekts-plr">
+        <div class="card-mesto">
+         <h3 class="form__title">Запросы на недостающие названия   Районов</h3>
         {% if comments|length %}
-{#            <div class="card-body-m">#}
+           <div class="card-body">
                 <div class="direct-chat">
                     <div class="direct-chat-messages">
                         {% for comment in comments %}
@@ -123,18 +139,21 @@
                                 <div class="direct-chat-text">
                                     {{ comment.text|markdown|purify|work_processor }}
                                     {% if is_granted('manage', comment) %}
-                                        <div class="controls mb-0">
-                                            <a href="{{ path('proekt.mestoo.comment.edit', {'oblast_id': oblast.id, 'id': comment.id}) }}"
+                                        <div class="controls-m">
+                                            <a href="{{ path('proekt.mestoo.commentr.edit', {'oblast_id': oblast.id, 'id': comment.id}) }}"
                                                class="btnn btnn--mb0 btnn--pt btnn--col-child">
                                                 <div class="karandash karandash--child">
                                                     <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
                                                 </div>
                                             </a>
-                                            <form action="{{ path('proekt.mestoo.comment.delete', {'oblast_id': oblast.id, 'id': comment.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                            <form action="{{ path('proekt.mestoo.commentr.delete', {'oblast_id': oblast.id, 'id': comment.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                                                 <input type="hidden" name="token" value="{{ csrf_token('delete-comment') }}" />
-                                                <div class="karandash karandash--child">
-                                                    <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
-                                                </div>
+                                                <button type="submit"  class="btnn  btnn--ml3 btnn--pt btnn--col-child">
+
+                                                    <div class="karandash karandash--child">
+                                                        <img src="{{ asset('assets/proekt/images/delet.png') }}" alt="удалить">
+                                                    </div>
+                                                </button>
                                             </form>
                                         </div>
                                     {% endif %}
@@ -143,20 +162,11 @@
                         {% endfor %}
                     </div>
                 </div>
-{#            </div>#}
+           </div>
         {% endif %}
     </div>
 </div>
-    <h1 class = "pagee__title ">Если нет названия Вашего района, напишите, добавлю</h1>
-    <div  class="proekts proekts-plr">
-        <div class="plem-form__header  ">
-            <div class="plem-form ">
-                {{ form_start(commentForm) }}
-                {{ form_widget(commentForm) }}
-                <button type="submit" class="btnn  btnn--pt">Отправить</button>
-                {{ form_end(commentForm) }}
-            </div>
-        </div>
-    </div>
+
+
 </div>
  {% endblock %}

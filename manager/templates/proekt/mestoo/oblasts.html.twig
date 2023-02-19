@@ -102,15 +102,22 @@
                                 <div class="direct-chat-text">
                                     {{ comment.text|markdown|purify|work_processor }}
                                     {% if is_granted('manage', comment) %}
-                                        <div class="controls mb-0">
-{#                                            <a href="{{ path('proekt.mestoo.comment.edit', {'okrug_id': okrug.id, 'id': comment.id}) }}" class="btn btn-sm btn-outline-secondary">#}
-{#                                                <span class="fa fa-pencil"></span>#}
-{#                                            </a>#}
-{#                                            <form action="{{ path('proekt.mestoo.comment.delete', {'okrug_id': okrug.id, 'id': comment.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">#}
-{#                                                <input type="hidden" name="token" value="{{ csrf_token('delete-comment') }}" />#}
-{#                                                <button type="submit" class="btn btn-sm btn-outline-secondary">#}
-{#                                                    <span class="fa fa-times"></span>#}
-{#                                                </button>#}
+                                        <div class="controls-m ">
+                                            <a href="{{ path('proekt.mestoo.comment.edit',
+                                                {'okrug_id': okrug.id, 'id': comment.id}) }}"
+                                               class="btnn btnn--mb0 btnn--pt btnn--col-child">
+                                                <div class="karandash karandash--child">
+                                                    <img src="{{ asset('assets/proekt/images/karandash.png') }}" alt="редактировать">
+                                                </div>
+                                            </a>
+                                            <form action="{{ path('proekt.mestoo.comment.delete', {'okrug_id': okrug.id, 'id': comment.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                                <input type="hidden" name="token" value="{{ csrf_token('delete-comment') }}" />
+                                                <button type="submit"  class="btnn  btnn--ml3 btnn--pt btnn--col-child">
+
+                                                    <div class="karandash karandash--child">
+                                                        <img src="{{ asset('assets/proekt/images/delet.png') }}" alt="удалить">
+                                                    </div>
+                                                </button>
                                             </form>
                                         </div>
                                     {% endif %}

@@ -30,8 +30,8 @@ class Handler
             Id::next(),
             $command->name,
 			$command->nomer,
-            $command->mesto = $command->mesto."-".$command->nomer,
-            $command->shirDolg
+            $command->mesto = $command->mesto."-".$command->nomer
+//            $command->shirDolg
         );
 
         $this->flusher->flush();

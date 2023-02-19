@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Proekt\Mestoo\Oblast;
+namespace App\Controller\Proekt\Mestoo\Raion;
 
 use App\Controller\ErrorHandler;
 use App\Model\Comment\Entity\Comment\Comment;
@@ -10,7 +10,7 @@ use App\Model\Comment\UseCase\Comment\Edit;
 use App\Model\Comment\UseCase\Comment\Remove;
 
 use App\Model\Mesto\Entity\Okrugs\Oblasts\Oblast;
-use App\Model\Mesto\Entity\Okrugs\Okrug;
+
 use App\Security\Voter\Comment\CommentAccess;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -20,10 +20,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/proekt/mestoo/{okrug_id}/comment", name="proekt.mestoo.comment")
- * @ParamConverter("okrug", options={"id" = "okrug_id"})
+ * @Route("/proekt/mestoo/{oblast_id}/commentr", name="proekt.mestoo.commentr")
+ * @ParamConverter("oblast", options={"id" = "oblast_id"})
  */
-class CommentOblController extends AbstractController
+class CommentRaiController extends AbstractController
 {
     private $errors;
 
@@ -34,18 +34,16 @@ class CommentOblController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name=".edit")
-     * @param Okrug $okrug
+     * @param Oblast $oblast
      * @param Comment $comment
      * @param Request $request
      * @param Edit\Handler $handler
      * @return Response
      */
-    public function edit(Request $request, Comment $comment, Okrug $okrug, Edit\Handler $handler): Response
+    public function edit(Oblast $oblast, Comment $comment, Request $request, Edit\Handler $handler): Response
     {
-//       dd($okrug->getOblasts());
-//        dd($oblast->getOkrug()->getName());
 //        $this->denyAccessUnlessGranted(OblastAccess::VIEW, $oblast);
-        $this->checkCommentIsForOblast($okrug, $comment);
+        $this->checkCommentIsForOblast($oblast, $comment);
         $this->denyAccessUnlessGranted(CommentAccess::MANAGE, $comment);
 
         $command = Edit\Command::fromComment($comment);
@@ -56,36 +54,36 @@ class CommentOblController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                return $this->redirectToRoute('proekt.mestoo.oblasts', ['okrug_id' => $okrug->getId()]);
+                return $this->redirectToRoute('proekt.mestoo.raions', ['oblast_id' => $oblast->getId()]);
             } catch (\DomainException $e) {
                 $this->errors->handle($e);
                 $this->addFlash('error', $e->getMessage());
             }
         }
 
-        return $this->render('proekt/mestoo/comment/edit.html.twig', [
-            'okrug' => $okrug,
-            'oblast' => $okrug->getOblasts(),
+        return $this->render('proekt/mestoo/commentr/edit.html.twig', [
+            'raion' => $oblast->getRaions(),
+            'oblast' => $oblast,
             'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}/delete", name=".delete", methods={"POST"})
-     * @param Okrug $okrug
+     * @param Oblast $oblast
      * @param Comment $comment
      * @param Request $request
      * @param Remove\Handler $handler
      * @return Response
      */
-    public function delete(Okrug $okrug, Comment $comment, Request $request, Remove\Handler $handler): Response
+    public function delete(Oblast $oblast, Comment $comment, Request $request, Remove\Handler $handler): Response
     {
         if (!$this->isCsrfTokenValid('delete-comment', $request->request->get('token'))) {
-            return $this->redirectToRoute('proekt.mestoo.oblasts', ['okrug_id' => $okrug->getId()]);
+            return $this->redirectToRoute('proekt.mestoo.raions', ['oblast_id' => $oblast->getId()]);
         }
 
 //        $this->denyAccessUnlessGranted(OblastAccess::VIEW, $oblast);
-        $this->checkCommentIsForOblast($okrug, $comment);
+        $this->checkCommentIsForOblast($oblast, $comment);
         $this->denyAccessUnlessGranted(CommentAccess::MANAGE, $comment);
 
         $command = new Remove\Command($comment->getId()->getValue());
@@ -97,14 +95,14 @@ class CommentOblController extends AbstractController
             $this->addFlash('error', $e->getMessage());
         }
 
-        return $this->redirectToRoute('proekt.mestoo.oblasts', ['okrug_id' => $okrug->getId()]);
+        return $this->redirectToRoute('proekt.mestoo.raions', ['oblast_id' => $oblast->getId()]);
     }
 
-    private function checkCommentIsForOblast(Okrug $okrug, Comment $comment): void
+    private function checkCommentIsForOblast(Oblast $oblast, Comment $comment): void
     {
         if (!(
-            $comment->getEntity()->getType() === Okrug::class &&
-            $comment->getEntity()->getId() === $okrug->getId()->getValue()
+            $comment->getEntity()->getType() === Oblast::class &&
+            $comment->getEntity()->getId() === $oblast->getId()->getValue()
         )) {
             throw $this->createNotFoundException();
         }

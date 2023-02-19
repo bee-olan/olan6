@@ -26,12 +26,12 @@ class Form extends AbstractType
                 'placeholder' => 'Введите номер'
             ]
         ))
-        ->add('shirDolg',Type\TextType::class, array(
-            'label' => 'Широта,Долгота ',
-            'attr' => [
-                'placeholder' => 'хх.ххххх,хх.ххххх'
-            ]
-        ))
+//        ->add('shirDolg',Type\TextType::class, array(
+//            'label' => 'Широта,Долгота ',
+//            'attr' => [
+//                'placeholder' => 'хх.ххххх,хх.ххххх'
+//            ]
+//        ))
         ;
     }
 

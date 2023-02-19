@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ okrug.name }}{% endblock %}
+{% block title %}{{ oblast.name }}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
@@ -20,7 +20,7 @@
         {# {% if childmatka.parent %}
             <a href="{{ path('work.projects.childmatkas.show', {'id': childmatka.parent.id}) }}">{{ childmatka.parent.name }}</a> /
         {% endif %} #}
-        {{ okrug.name }}
+        {{ oblast.name }}
     </h1>
 
     <div class="card">

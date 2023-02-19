@@ -47,7 +47,7 @@ class CommentAccess extends Voter
         switch ($attribute) {
             case self::MANAGE:
                 return
-                    $this->security->isGranted('ROLE_WORK_MANAGE_PROJECTS') || $own;
+                    $this->security->isGranted('ROLE_PASEKA_MANAGE_PROEKTS') || $own;
                 break;
         }
 

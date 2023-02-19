@@ -34,6 +34,7 @@ security:
             - ROLE_MANAGE_USERS
             - ROLE_PASEKA_MANAGE_UCHASTIES
             - ROLE_PASEKA_MANAGE_PLEMMATKAS
+            - ROLE_PASEKA_MANAGE_PROEKTS
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

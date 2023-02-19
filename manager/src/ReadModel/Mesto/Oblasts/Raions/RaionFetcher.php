@@ -24,8 +24,7 @@ class RaionFetcher
                 'id',
                 'name',
                 'nomer',
-                'mesto',
-                'shir_dolg'
+                'mesto'
             )
             ->from('mesto_okrug_oblast_raions')
             ->andWhere('oblast_id = :oblast')
@@ -45,8 +44,7 @@ class RaionFetcher
                 'd.id',
                 'd.name',
                 'd.nomer',
-                'd.mesto',
-                'd.shir_dolg'
+                'd.mesto'
                 // '(
                 //     SELECT COUNT(ms.member_id)
                 //     FROM work_projects_project_memberships ms
