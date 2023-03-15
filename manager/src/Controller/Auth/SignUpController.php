@@ -62,7 +62,7 @@ class SignUpController extends AbstractController
 
         try {
             $handler->handle($command);
-            $this->addFlash('success', 'Email is successfully confirmed.');
+            $this->addFlash('success', 'Электронное письмо успешно подтверждено.');
             return $this->redirectToRoute('home');
         } catch (\DomainException $e) {
             $this->logger->warning($e->getMessage(), ['exception' => $e]);
