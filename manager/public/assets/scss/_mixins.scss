@@ -1,6 +1,0 @@
-@mixin breakpoint($bp) { 
-    @media screen and  (max-width: $bp) {
-        @content;
-    }    
-}
-// breakpoint -  точка останова  -- миксин для медиа запроса
